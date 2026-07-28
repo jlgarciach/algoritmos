@@ -1,0 +1,143 @@
+---
+title: "Clase 2. Primeros pasos en C++"
+---
+
+
+> **Laboratorio No. 1**
+
+## Objetivos
+
+Al finalizar esta práctica el estudiante será capaz de:
+
+- Utilizar OnlineGDB para escribir y ejecutar programas.
+- Comprender la estructura básica de un programa en C++.
+- Declarar variables.
+- Leer datos desde el teclado.
+- Mostrar resultados en pantalla.
+
+## Herramienta de trabajo
+
+Trabajaremos utilizando:
+
+<https://www.onlinegdb.com/online_c++_compiler>
+
+## Nuestro primer programa
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    cout << "Hola Ingeniería en Sistemas" << endl;
+    return 0;
+}
+```
+
+### Explicación
+
+| Línea | Descripción |
+|-------|-------------|
+| `#include <iostream>` | Biblioteca para entrada y salida. |
+| `using namespace std;` | Permite utilizar `cout` y `cin` sin escribir `std::`. |
+| `int main()` | Punto de inicio del programa. |
+| `{ }` | Delimitan el bloque principal. |
+| `return 0;` | Finaliza correctamente el programa. |
+
+## Entrada y salida
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int edad;
+
+    cout << "Ingrese su edad: ";
+    cin >> edad;
+
+    cout << "Usted tiene " << edad << " años." << endl;
+
+    return 0;
+}
+```
+
+## Tipos de datos
+
+| Tipo | Ejemplo |
+|------|----------|
+| int | 25 |
+| float | 25.5 |
+| double | 3.14159265 |
+| char | 'A' |
+| string | "Guatemala" |
+| bool | true |
+
+## Ejercicio guiado
+
+Crear un programa que solicite:
+
+- Nombre
+- Edad
+- Carrera
+
+y muestre la información ingresada.
+
+## Laboratorio
+
+### Ejercicio 1
+
+Solicite dos números enteros y muestre su suma.
+
+### Ejercicio 2
+
+Solicite tres números y muestre su multiplicación.
+
+### Ejercicio 3
+
+Calcule el área de un rectángulo.
+
+### Ejercicio 4
+
+Calcule el promedio de tres notas.
+
+## Introducción a `while`
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int i = 1;
+
+    while(i <= 5)
+    {
+        cout << i << endl;
+        i++;
+    }
+
+    return 0;
+}
+```
+
+> **Observe:** Si elimina `i++;` el ciclo nunca finalizará.
+
+## Resumen
+
+En esta clase aprendimos:
+
+- La estructura de un programa en C++.
+- Uso de `cout` y `cin`.
+- Declaración de variables.
+- Tipos de datos.
+- Primer ciclo `while`.
+
+## Tarea
+
+1. Programa que calcule el perímetro de un rectángulo.
+2. Programa que calcule el promedio de cuatro notas.
+3. Programa que determine si un número es positivo o negativo.
+4. Programa que convierta grados Celsius a Fahrenheit.
+5. Modifique el ejemplo del ciclo `while` para mostrar los números del 1 al 10.

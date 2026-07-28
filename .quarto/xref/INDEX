@@ -1,0 +1,23 @@
+{
+  "capitulos/01_introduccion.qmd": {
+    "01_introduccion.html": "16bcee68"
+  },
+  "index.qmd": {
+    "index.html": "7be98554"
+  },
+  "capitulos/99_cierre.qmd": {
+    "99_cierre.html": "cc6c66b0"
+  },
+  "capitulos/02_primeros_pasos_cpp.qmd": {
+    "02_primeros_pasos_cpp.html": "4b1f96c1"
+  },
+  "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.qmd": {
+    "Laboratorio_01_Desarrollo_de_una_Solucion.html": "1626a7ae"
+  },
+  "Laboratorio_01_Desarrollo_de_una_Solucion.qmd": {
+    "Laboratorio_01_Desarrollo_de_una_Solucion.html": "54598591"
+  },
+  "capitulos/03_expresiones_logicas_estructuras_condicionales.qmd": {
+    "03_expresiones_logicas_estructuras_condicionales.html": "207f060f"
+  }
+}

@@ -1,0 +1,9 @@
+# Cierre del capítulo
+
+::: {.callout-tip title="Consejo final del Ingeniero"}
+Un buen programador no es quien escribe código más rápido, sino quien piensa mejor la solución antes de programarla.
+:::
+
+## Próximo paso
+
+En el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.

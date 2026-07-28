@@ -1,0 +1,762 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Algoritmos",
+    "section": "",
+    "text": "UNIVERSIDAD MARIANO GÁLVEZ DE GUATEMALA\n\n\nFacultad de Ingeniería en Sistemas\n\n\n\n\n\nALGORITMOS\n\n\nIntroducción y Fundamentos\n\n\n\n\n\nEditorial Académica\nIngeniería en Sistemas\n\n\nIng. Jorge Luis García Chacón\n\n\nSegundo Semestre\nEdición 2026\n\n\nDiseñar una vez.\nEnseñar toda la vida.\n\n\n\n1 Créditos Editoriales\nAutor\nIng. Jorge Luis García Chacón\nEditorial\nEditorial Académica de Ingeniería en Sistemas\nArquitectura Editorial\nOpenAI · ChatGPT\nEdición\n2026\n\n\n2 Acerca de este volumen\nEste libro forma parte de la colección Editorial Académica de Ingeniería en Sistemas.\nSu propósito es proporcionar material de estudio moderno, visual y práctico para apoyar el proceso de enseñanza y aprendizaje.\nCada capítulo ha sido diseñado para combinar teoría, ejemplos, diagramas, laboratorios y ejercicios que permitan al estudiante comprender los conceptos y aplicarlos en situaciones reales.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>index.html</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html",
+    "href": "capitulos/01_introduccion.html",
+    "title": "2  Presentación del curso",
+    "section": "",
+    "text": "2.1 Objetivo general de la asignatura\nBienvenidos al curso de Algoritmos para estudiantes de Ingeniería en Sistemas.\nEste documento inicia una ruta de aprendizaje que busca que el estudiante no solo aprenda instrucciones, símbolos o código, sino que desarrolle una forma ordenada de pensar para resolver problemas.\nResolver problemas básicos a través de la construcción de programas basados en algoritmos y un lenguaje de programación, generando acciones hacia la búsqueda de propuestas pertinentes.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#aprendizajes-esperados",
+    "href": "capitulos/01_introduccion.html#aprendizajes-esperados",
+    "title": "2  Presentación del curso",
+    "section": "2.2 Aprendizajes esperados",
+    "text": "2.2 Aprendizajes esperados\nAl finalizar la asignatura, el estudiante será capaz de:\n\nDescomponer un problema en subproblemas para resolverlo de forma más sencilla.\nInterpretar algoritmos y programas para resolver problemas básicos de programación.\nConstruir algoritmos y programas aplicados a problemas matemáticos sencillos.\nTrabajar colaborativamente, cumpliendo un rol y responsabilizándose de él.\nComprender situaciones problemáticas que tienen un componente informático.\n\n\n\n\n\n\n\nTipConsejo del Ingeniero\n\n\n\nAntes de escribir código, primero piense cómo resolvería el problema con lápiz y papel. Programar es más fácil cuando el algoritmo ya está claro.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#elementos-básicos-de-un-algoritmo",
+    "href": "capitulos/01_introduccion.html#elementos-básicos-de-un-algoritmo",
+    "title": "2  Presentación del curso",
+    "section": "3.1 Elementos básicos de un algoritmo",
+    "text": "3.1 Elementos básicos de un algoritmo\nTodo algoritmo puede analizarse con la siguiente estructura:\n\n\n\nElemento\nPregunta que responde\nEjemplo\n\n\n\n\nEntrada\n¿Qué datos necesito?\nDos números\n\n\nProceso\n¿Qué operaciones realizo?\nSumar los números\n\n\nSalida\n¿Qué resultado entrego?\nResultado de la suma\n\n\n\n\n\n\n\n\n\nImportanteImportante\n\n\n\nUn algoritmo debe llevarnos desde un estado inicial hasta un estado final. Si no sabemos dónde empieza o dónde termina, el algoritmo estará incompleto.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejemplo-cotidiano",
+    "href": "capitulos/01_introduccion.html#ejemplo-cotidiano",
+    "title": "2  Presentación del curso",
+    "section": "3.2 Ejemplo cotidiano",
+    "text": "3.2 Ejemplo cotidiano\nPensemos en preparar una taza de café.\nEntrada\n\nAgua\nCafé\nAzúcar\nTaza\n\nProceso\n\nCalentar el agua.\nColocar café en la taza.\nAgregar agua caliente.\nAgregar azúcar si se desea.\nMezclar.\n\nSalida\n\nUna taza de café lista para tomar.\n\nAunque este ejemplo parece simple, ya contiene los tres elementos fundamentales: entrada, proceso y salida.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#algoritmo-para-sumar-dos-números",
+    "href": "capitulos/01_introduccion.html#algoritmo-para-sumar-dos-números",
+    "title": "2  Presentación del curso",
+    "section": "6.1 Algoritmo para sumar dos números",
+    "text": "6.1 Algoritmo para sumar dos números\nProblema: Crear un algoritmo que sume dos números ingresados por el usuario.\nEntrada\n\nPrimer número.\nSegundo número.\n\nProceso\n\nSumar ambos números.\n\nSalida\n\nResultado de la suma.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#pseudocódigo",
+    "href": "capitulos/01_introduccion.html#pseudocódigo",
+    "title": "2  Presentación del curso",
+    "section": "6.2 Pseudocódigo",
+    "text": "6.2 Pseudocódigo\nAlgoritmo SumarDosNumeros\nVariables\n    Entero var1, var2, var3\nInicio\n    Escribir \"Ingrese el primer valor\"\n    Leer var1\n\n    Escribir \"Ingrese el segundo valor\"\n    Leer var2\n\n    var3 = var1 + var2\n\n    Escribir \"El resultado es: \", var3\nFin",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#explicación-paso-a-paso",
+    "href": "capitulos/01_introduccion.html#explicación-paso-a-paso",
+    "title": "2  Presentación del curso",
+    "section": "6.3 Explicación paso a paso",
+    "text": "6.3 Explicación paso a paso\n\n\n\nPaso\nAcción\nResultado\n\n\n\n\n1\nDefinir variables\nvar1, var2, var3 existen en memoria\n\n\n2\nLeer primer valor\nvar1 almacena el primer número\n\n\n3\nLeer segundo valor\nvar2 almacena el segundo número\n\n\n4\nSumar\nvar3 almacena var1 + var2\n\n\n5\nMostrar resultado\nSe imprime var3",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#análisis",
+    "href": "capitulos/01_introduccion.html#análisis",
+    "title": "2  Presentación del curso",
+    "section": "7.1 Análisis",
+    "text": "7.1 Análisis\nEntrada\n\nPrimer número.\nSegundo número.\nTercer número.\n\nProceso\n\nMultiplicar los tres valores.\n\nSalida\n\nResultado de la multiplicación.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#pseudocódigo-1",
+    "href": "capitulos/01_introduccion.html#pseudocódigo-1",
+    "title": "2  Presentación del curso",
+    "section": "7.2 Pseudocódigo",
+    "text": "7.2 Pseudocódigo\nAlgoritmo MultiplicarTresNumeros\nVariables\n    Entero var1, var2, var3, var4\nInicio\n    Escribir \"Ingrese el primer valor\"\n    Leer var1\n\n    Escribir \"Ingrese el segundo valor\"\n    Leer var2\n\n    Escribir \"Ingrese el tercer valor\"\n    Leer var3\n\n    var4 = var1 * var2 * var3\n\n    Escribir \"El resultado es: \", var4\nFin\n\n\n\n\n\n\nTipObserve\n\n\n\nPara multiplicar tres números necesitamos cuatro variables: tres para guardar las entradas y una para guardar el resultado.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#nomenclatura-básica",
+    "href": "capitulos/01_introduccion.html#nomenclatura-básica",
+    "title": "2  Presentación del curso",
+    "section": "8.1 Nomenclatura básica",
+    "text": "8.1 Nomenclatura básica\n\n\n\nSímbolo\nNombre\nSignificado\n\n\n\n\n◯\nÓvalo\nInicio o fin del algoritmo\n\n\n▱\nParalelogramo\nEntrada o salida de datos\n\n\n▭\nRectángulo\nProceso u operación\n\n\n◇\nRombo\nDecisión o bifurcación\n\n\n↓ / →\nFlechas\nDirección del flujo\n\n\n●\nCírculo pequeño\nConector\n\n\n\n\n\n\n\n\n\nNotaNota para el docente\n\n\n\nEn el PDF se utilizan símbolos simples para que el documento sea liviano y fácil de renderizar. En clase, estos mismos símbolos se explican con dibujos más grandes en la pizarra o en diagramas de flujo.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejemplo-gráfico-del-flujo-para-sumar-dos-números",
+    "href": "capitulos/01_introduccion.html#ejemplo-gráfico-del-flujo-para-sumar-dos-números",
+    "title": "2  Presentación del curso",
+    "section": "8.2 Ejemplo gráfico del flujo para sumar dos números",
+    "text": "8.2 Ejemplo gráfico del flujo para sumar dos números\n\n\n\n\n\nflowchart TD\n    A([Inicio]) --&gt; B[Definir var1, var2, var3]\n    B --&gt; C[/Leer var1/]\n    C --&gt; D[/Leer var2/]\n    D --&gt; E[var3 = var1 + var2]\n    E --&gt; F[/Mostrar var3/]\n    F --&gt; G([Fin])",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejemplo-textual-del-flujo-para-sumar-dos-números",
+    "href": "capitulos/01_introduccion.html#ejemplo-textual-del-flujo-para-sumar-dos-números",
+    "title": "2  Presentación del curso",
+    "section": "8.3 Ejemplo textual del flujo para sumar dos números",
+    "text": "8.3 Ejemplo textual del flujo para sumar dos números\nInicio\n  ↓\nDefinir var1, var2, var3\n  ↓\nLeer var1\n  ↓\nLeer var2\n  ↓\nvar3 = var1 + var2\n  ↓\nMostrar var3\n  ↓\nFin\n\n\n\n\n\n\nNotaPara la clase\n\n\n\nPrimero puede mostrarse el diagrama gráfico y luego el flujo textual. La idea es que el estudiante relacione cada símbolo con una acción concreta del algoritmo.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejemplo-mayor-de-edad",
+    "href": "capitulos/01_introduccion.html#ejemplo-mayor-de-edad",
+    "title": "2  Presentación del curso",
+    "section": "9.1 Ejemplo: mayor de edad",
+    "text": "9.1 Ejemplo: mayor de edad\nProblema: Crear un algoritmo donde una persona ingrese su edad y se muestre si es mayor de edad.\nAlgoritmo MayorDeEdad\nVariables\n    Entero edad\nInicio\n    Escribir \"Ingrese su edad\"\n    Leer edad\n\n    Si edad &gt;= 18 Entonces\n        Escribir \"Es mayor de edad\"\n    Sino\n        Escribir \"Es menor de edad\"\n    FinSi\nFin",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#diagrama-de-flujo",
+    "href": "capitulos/01_introduccion.html#diagrama-de-flujo",
+    "title": "2  Presentación del curso",
+    "section": "9.2 Diagrama de flujo",
+    "text": "9.2 Diagrama de flujo\n\n\n\n\n\nflowchart TD\n    A([Inicio]) --&gt; B[/Leer edad/]\n    B --&gt; C{¿edad &gt;= 18?}\n    C -- Verdadero --&gt; D[/Mostrar \"Es mayor de edad\"/]\n    C -- Falso --&gt; E[/Mostrar \"Es menor de edad\"/]\n    D --&gt; F([Fin])\n    E --&gt; F",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#flujo-lógico",
+    "href": "capitulos/01_introduccion.html#flujo-lógico",
+    "title": "2  Presentación del curso",
+    "section": "9.3 Flujo lógico",
+    "text": "9.3 Flujo lógico\nInicio\n  ↓\nLeer edad\n  ↓\n¿edad &gt;= 18?\n  ├── Verdadero → Mostrar \"Es mayor de edad\"\n  └── Falso     → Mostrar \"Es menor de edad\"\n  ↓\nFin\n\n\n\n\n\n\nImportanteIdea clave\n\n\n\nEn las bifurcaciones, el algoritmo no ejecuta todo. Ejecuta solamente el camino que corresponde al resultado de la condición.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#módulo-o-residuo",
+    "href": "capitulos/01_introduccion.html#módulo-o-residuo",
+    "title": "2  Presentación del curso",
+    "section": "11.1 Módulo o residuo",
+    "text": "11.1 Módulo o residuo\nEl operador % devuelve el residuo de una división entera.\n5 % 2 = 1\n4 % 2 = 0\n\n\n\n\n\n\nTipUso frecuente\n\n\n\nEl operador módulo se utiliza mucho para saber si un número es par o impar.\nSi numero % 2 == 0, entonces el número es par.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#operador-y",
+    "href": "capitulos/01_introduccion.html#operador-y",
+    "title": "2  Presentación del curso",
+    "section": "13.1 Operador Y: &&",
+    "text": "13.1 Operador Y: &&\nEl operador && es verdadero solamente cuando ambas condiciones son verdaderas.\n\n\n\nA\nB\nA && B\n\n\n\n\nV\nV\nV\n\n\nV\nF\nF\n\n\nF\nV\nF\n\n\nF\nF\nF\n\n\n\n\n\n\n\n\n\nNotaForma de recordarlo\n\n\n\nEl operador && es exigente: pide que todo se cumpla.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#operador-o",
+    "href": "capitulos/01_introduccion.html#operador-o",
+    "title": "2  Presentación del curso",
+    "section": "13.2 Operador O: ||",
+    "text": "13.2 Operador O: ||\nEl operador || es verdadero cuando al menos una condición es verdadera.\n\n\n\nA\nB\nA || B\n\n\n\n\nV\nV\nV\n\n\nV\nF\nV\n\n\nF\nV\nV\n\n\nF\nF\nF\n\n\n\n\n\n\n\n\n\nNotaForma de recordarlo\n\n\n\nEl operador || es flexible: acepta que se cumpla una condición o la otra.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#operador-no",
+    "href": "capitulos/01_introduccion.html#operador-no",
+    "title": "2  Presentación del curso",
+    "section": "13.3 Operador NO: !",
+    "text": "13.3 Operador NO: !\nEl operador ! invierte el valor lógico.\n\n\n\nA\n!A\n\n\n\n\nV\nF\n\n\nF\nV\n\n\n\n\n\n\n\n\n\nNotaForma de recordarlo\n\n\n\nEl operador ! voltea la respuesta: lo verdadero se vuelve falso y lo falso se vuelve verdadero.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#cuándo-se-aplican-los-ciclos",
+    "href": "capitulos/01_introduccion.html#cuándo-se-aplican-los-ciclos",
+    "title": "2  Presentación del curso",
+    "section": "19.1 ¿Cuándo se aplican los ciclos?",
+    "text": "19.1 ¿Cuándo se aplican los ciclos?\nLos ciclos se aplican cuando queremos ejecutar un conjunto de instrucciones varias veces.\nPor ejemplo:\n\nSumar varios números.\nPedir datos de varios estudiantes.\nBuscar el número mayor de una lista.\nRepetir un menú hasta que el usuario decida salir.\n\n\n\n\n\n\n\nNotaIdea clave\n\n\n\nSi una acción debe repetirse, probablemente necesitamos un ciclo.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#análisis-1",
+    "href": "capitulos/01_introduccion.html#análisis-1",
+    "title": "2  Presentación del curso",
+    "section": "20.1 Análisis",
+    "text": "20.1 Análisis\nEntrada\n\nCantidad de números a sumar: N.\nCada uno de los números.\n\nProceso\n\nRepetir la lectura de números.\nAcumular la suma.\n\nSalida\n\nTotal de la suma.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#diagrama-de-flujo-1",
+    "href": "capitulos/01_introduccion.html#diagrama-de-flujo-1",
+    "title": "2  Presentación del curso",
+    "section": "20.2 Diagrama de flujo",
+    "text": "20.2 Diagrama de flujo\n\n\n\n\n\nflowchart TD\n    A([Inicio]) --&gt; B[suma = 0&lt;br/&gt;contador = 1]\n    B --&gt; C[/Leer N/]\n    C --&gt; D{¿contador &lt;= N?}\n    D -- Sí --&gt; E[/Leer número/]\n    E --&gt; F[suma = suma + número]\n    F --&gt; G[contador = contador + 1]\n    G --&gt; D\n    D -- No --&gt; H[/Mostrar suma/]\n    H --&gt; I([Fin])",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#pseudocódigo-2",
+    "href": "capitulos/01_introduccion.html#pseudocódigo-2",
+    "title": "2  Presentación del curso",
+    "section": "20.3 Pseudocódigo",
+    "text": "20.3 Pseudocódigo\nAlgoritmo SumarNNumeros\nVariables\n    Entero N, contador, numero, suma\nInicio\n    suma = 0\n    contador = 1\n\n    Escribir \"Ingrese cuántos números desea sumar\"\n    Leer N\n\n    Mientras contador &lt;= N Hacer\n        Escribir \"Ingrese un número\"\n        Leer numero\n        suma = suma + numero\n        contador = contador + 1\n    FinMientras\n\n    Escribir \"La suma total es: \", suma\nFin",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#diagrama-de-flujo-2",
+    "href": "capitulos/01_introduccion.html#diagrama-de-flujo-2",
+    "title": "2  Presentación del curso",
+    "section": "23.1 Diagrama de flujo",
+    "text": "23.1 Diagrama de flujo\n\n\n\n\n\nflowchart TD\n    A([Inicio]) --&gt; B[/Leer a, b/]\n    B --&gt; C{¿a == 0?}\n    C -- Sí --&gt; D[/Mostrar \"Error\"/]\n    C -- No --&gt; E[x = -b / a]\n    E --&gt; F[/Mostrar x/]\n    D --&gt; G[/Mostrar \"Fin programa\"/]\n    F --&gt; G\n    G --&gt; H([Fin])",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#pseudocódigo-3",
+    "href": "capitulos/01_introduccion.html#pseudocódigo-3",
+    "title": "2  Presentación del curso",
+    "section": "23.2 Pseudocódigo",
+    "text": "23.2 Pseudocódigo\nAlgoritmo EcuacionPrimerGrado\nVariables\n    Entero a, b, x\nInicio\n    Escribir \"Ingrese valores de a y b\"\n    Leer a, b\n\n    Si a == 0 Entonces\n        Escribir \"Error: no se puede dividir entre cero\"\n    Sino\n        x = -b / a\n        Escribir \"La solución es: \", x\n    FinSi\n\n    Escribir \"Fin del programa\"\nFin",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#código-en-c",
+    "href": "capitulos/01_introduccion.html#código-en-c",
+    "title": "2  Presentación del curso",
+    "section": "23.3 Código en C++",
+    "text": "23.3 Código en C++\n#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    int a, b, x;\n\n    cout &lt;&lt; \"Ingrese valores de EC (a y b): \";\n    cin &gt;&gt; a &gt;&gt; b;\n\n    if (a == 0) {\n        cout &lt;&lt; \"Error\" &lt;&lt; endl;\n    } else {\n        x = -b / a;\n        cout &lt;&lt; \"La solución es: \" &lt;&lt; x &lt;&lt; endl;\n    }\n\n    cout &lt;&lt; \"Fin programa\" &lt;&lt; endl;\n    return 0;\n}\n\n\n\n\n\n\nAdvertenciaObservación importante\n\n\n\nEn este ejemplo x está declarada como entero. Más adelante puede mejorarse usando variables reales para obtener resultados decimales.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejercicio-1",
+    "href": "capitulos/01_introduccion.html#ejercicio-1",
+    "title": "2  Presentación del curso",
+    "section": "24.1 Ejercicio 1",
+    "text": "24.1 Ejercicio 1\nCree un algoritmo que multiplique tres números ingresados por teclado y muestre el resultado.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejercicio-2",
+    "href": "capitulos/01_introduccion.html#ejercicio-2",
+    "title": "2  Presentación del curso",
+    "section": "24.2 Ejercicio 2",
+    "text": "24.2 Ejercicio 2\nCree un algoritmo que divida dos números ingresados por teclado y muestre el resultado.\nTome en cuenta que no se debe dividir entre cero.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejercicio-3",
+    "href": "capitulos/01_introduccion.html#ejercicio-3",
+    "title": "2  Presentación del curso",
+    "section": "24.3 Ejercicio 3",
+    "text": "24.3 Ejercicio 3\nCree un algoritmo que permita sumar tres números ingresados por teclado y muestre el resultado.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejercicio-4",
+    "href": "capitulos/01_introduccion.html#ejercicio-4",
+    "title": "2  Presentación del curso",
+    "section": "24.4 Ejercicio 4",
+    "text": "24.4 Ejercicio 4\nCree un algoritmo donde una persona ingrese su edad y muestre si es mayor de edad.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejercicio-5",
+    "href": "capitulos/01_introduccion.html#ejercicio-5",
+    "title": "2  Presentación del curso",
+    "section": "24.5 Ejercicio 5",
+    "text": "24.5 Ejercicio 5\nCree un algoritmo que muestre en forma ordenada tres números enteros ingresados desde teclado, de mayor a menor.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/01_introduccion.html#ejercicio-6",
+    "href": "capitulos/01_introduccion.html#ejercicio-6",
+    "title": "2  Presentación del curso",
+    "section": "24.6 Ejercicio 6",
+    "text": "24.6 Ejercicio 6\nCree un algoritmo que permita sumar N números y muestre el resultado. El valor de N debe ser ingresado por teclado, al igual que los números que se sumarán.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Presentación del curso</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html",
+    "href": "capitulos/02_primeros_pasos_cpp.html",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "",
+    "text": "3.1 Objetivos\nAl finalizar esta práctica el estudiante será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#objetivos",
+    "href": "capitulos/02_primeros_pasos_cpp.html#objetivos",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "",
+    "text": "Utilizar OnlineGDB para escribir y ejecutar programas.\nComprender la estructura básica de un programa en C++.\nDeclarar variables.\nLeer datos desde el teclado.\nMostrar resultados en pantalla.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#herramienta-de-trabajo",
+    "href": "capitulos/02_primeros_pasos_cpp.html#herramienta-de-trabajo",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "3.2 Herramienta de trabajo",
+    "text": "3.2 Herramienta de trabajo\nTrabajaremos utilizando:\nhttps://www.onlinegdb.com/online_c++_compiler",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#nuestro-primer-programa",
+    "href": "capitulos/02_primeros_pasos_cpp.html#nuestro-primer-programa",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "3.3 Nuestro primer programa",
+    "text": "3.3 Nuestro primer programa\n#include &lt;iostream&gt;\nusing namespace std;\n\nint main()\n{\n    cout &lt;&lt; \"Hola Ingeniería en Sistemas\" &lt;&lt; endl;\n    return 0;\n}\n\n3.3.1 Explicación\n\n\n\n\n\n\n\nLínea\nDescripción\n\n\n\n\n#include &lt;iostream&gt;\nBiblioteca para entrada y salida.\n\n\nusing namespace std;\nPermite utilizar cout y cin sin escribir std::.\n\n\nint main()\nPunto de inicio del programa.\n\n\n{ }\nDelimitan el bloque principal.\n\n\nreturn 0;\nFinaliza correctamente el programa.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#entrada-y-salida",
+    "href": "capitulos/02_primeros_pasos_cpp.html#entrada-y-salida",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "3.4 Entrada y salida",
+    "text": "3.4 Entrada y salida\n#include &lt;iostream&gt;\nusing namespace std;\n\nint main()\n{\n    int edad;\n\n    cout &lt;&lt; \"Ingrese su edad: \";\n    cin &gt;&gt; edad;\n\n    cout &lt;&lt; \"Usted tiene \" &lt;&lt; edad &lt;&lt; \" años.\" &lt;&lt; endl;\n\n    return 0;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#tipos-de-datos",
+    "href": "capitulos/02_primeros_pasos_cpp.html#tipos-de-datos",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "3.5 Tipos de datos",
+    "text": "3.5 Tipos de datos\n\n\n\nTipo\nEjemplo\n\n\n\n\nint\n25\n\n\nfloat\n25.5\n\n\ndouble\n3.14159265\n\n\nchar\n‘A’\n\n\nstring\n“Guatemala”\n\n\nbool\ntrue",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#ejercicio-guiado",
+    "href": "capitulos/02_primeros_pasos_cpp.html#ejercicio-guiado",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "3.6 Ejercicio guiado",
+    "text": "3.6 Ejercicio guiado\nCrear un programa que solicite:\n\nNombre\nEdad\nCarrera\n\ny muestre la información ingresada.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#laboratorio",
+    "href": "capitulos/02_primeros_pasos_cpp.html#laboratorio",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "3.7 Laboratorio",
+    "text": "3.7 Laboratorio\n\n3.7.1 Ejercicio 1\nSolicite dos números enteros y muestre su suma.\n\n\n3.7.2 Ejercicio 2\nSolicite tres números y muestre su multiplicación.\n\n\n3.7.3 Ejercicio 3\nCalcule el área de un rectángulo.\n\n\n3.7.4 Ejercicio 4\nCalcule el promedio de tres notas.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#introducción-a-while",
+    "href": "capitulos/02_primeros_pasos_cpp.html#introducción-a-while",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "3.8 Introducción a while",
+    "text": "3.8 Introducción a while\n#include &lt;iostream&gt;\nusing namespace std;\n\nint main()\n{\n    int i = 1;\n\n    while(i &lt;= 5)\n    {\n        cout &lt;&lt; i &lt;&lt; endl;\n        i++;\n    }\n\n    return 0;\n}\n\nObserve: Si elimina i++; el ciclo nunca finalizará.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#resumen",
+    "href": "capitulos/02_primeros_pasos_cpp.html#resumen",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "3.9 Resumen",
+    "text": "3.9 Resumen\nEn esta clase aprendimos:\n\nLa estructura de un programa en C++.\nUso de cout y cin.\nDeclaración de variables.\nTipos de datos.\nPrimer ciclo while.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/02_primeros_pasos_cpp.html#tarea",
+    "href": "capitulos/02_primeros_pasos_cpp.html#tarea",
+    "title": "3  Clase 2. Primeros pasos en C++",
+    "section": "3.10 Tarea",
+    "text": "3.10 Tarea\n\nPrograma que calcule el perímetro de un rectángulo.\nPrograma que calcule el promedio de cuatro notas.\nPrograma que determine si un número es positivo o negativo.\nPrograma que convierta grados Celsius a Fahrenheit.\nModifique el ejemplo del ciclo while para mostrar los números del 1 al 10.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Clase 2. Primeros pasos en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html",
+    "href": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html",
+    "title": "4  Laboratorio 1. Desarrollo de una solución informática",
+    "section": "",
+    "text": "5 Laboratorio 1",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Laboratorio 1. Desarrollo de una solución informática</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#desarrollo-de-una-solución-informática",
+    "href": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#desarrollo-de-una-solución-informática",
+    "title": "4  Laboratorio 1. Desarrollo de una solución informática",
+    "section": "5.1 Desarrollo de una solución informática",
+    "text": "5.1 Desarrollo de una solución informática\n\n5.1.1 Objetivo\nAplicar los conocimientos adquiridos durante las primeras clases del curso mediante el análisis, diseño e implementación de una solución informática utilizando pseudocódigo, diagrama de flujo y el lenguaje de programación C++.\n\n\n\n\n\n\nImportanteCompetencias que se evaluarán\n\n\n\nAl finalizar este laboratorio el estudiante será capaz de:\n\nAnalizar un requerimiento.\nIdentificar entradas, procesos y salidas.\nDiseñar un algoritmo mediante pseudocódigo.\nRepresentar la solución utilizando un diagrama de flujo.\nImplementar el algoritmo en C++.\nVerificar el funcionamiento de la solución mediante casos de prueba.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Laboratorio 1. Desarrollo de una solución informática</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#parte-1.-análisis-del-requerimiento",
+    "href": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#parte-1.-análisis-del-requerimiento",
+    "title": "4  Laboratorio 1. Desarrollo de una solución informática",
+    "section": "7.1 Parte 1. Análisis del requerimiento",
+    "text": "7.1 Parte 1. Análisis del requerimiento\nAntes de escribir cualquier algoritmo complete la siguiente información.\n\n7.1.1 Entradas\nEscriba las entradas que necesita el sistema.\n\n\n\nNo.\nEntrada\n\n\n\n\n1\n\n\n\n2\n\n\n\n3\n\n\n\n4\n\n\n\n\n\n\n\n7.1.2 Procesos\nDescriba las operaciones que realizará el algoritmo.\n\n\n\nNo.\nProceso\n\n\n\n\n1\n\n\n\n2\n\n\n\n3\n\n\n\n\n\n\n\n7.1.3 Salidas\nIndique qué información mostrará el programa.\n\n\n\nNo.\nSalida\n\n\n\n\n1\n\n\n\n2\n\n\n\n3",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Laboratorio 1. Desarrollo de una solución informática</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#pseudocódigo",
+    "href": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#pseudocódigo",
+    "title": "4  Laboratorio 1. Desarrollo de una solución informática",
+    "section": "8.1 Pseudocódigo",
+    "text": "8.1 Pseudocódigo\nDiseñe el algoritmo utilizando pseudocódigo.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Laboratorio 1. Desarrollo de una solución informática</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#diagrama-de-flujo",
+    "href": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#diagrama-de-flujo",
+    "title": "4  Laboratorio 1. Desarrollo de una solución informática",
+    "section": "8.2 Diagrama de flujo",
+    "text": "8.2 Diagrama de flujo\nDiseñe el diagrama de flujo correspondiente.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Laboratorio 1. Desarrollo de una solución informática</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#caso-de-prueba-no.-1",
+    "href": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#caso-de-prueba-no.-1",
+    "title": "4  Laboratorio 1. Desarrollo de una solución informática",
+    "section": "10.1 Caso de prueba No. 1",
+    "text": "10.1 Caso de prueba No. 1\n\n\n\nDato\nValor\n\n\n\n\nNombre\n\n\n\nNota 1\n\n\n\nNota 2\n\n\n\nNota 3\n\n\n\nPromedio esperado\n\n\n\nResultado esperado",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Laboratorio 1. Desarrollo de una solución informática</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#caso-de-prueba-no.-2",
+    "href": "capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html#caso-de-prueba-no.-2",
+    "title": "4  Laboratorio 1. Desarrollo de una solución informática",
+    "section": "10.2 Caso de prueba No. 2",
+    "text": "10.2 Caso de prueba No. 2\n\n\n\nDato\nValor\n\n\n\n\nNombre\n\n\n\nNota 1\n\n\n\nNota 2\n\n\n\nNota 3\n\n\n\nPromedio esperado\n\n\n\nResultado esperado",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Laboratorio 1. Desarrollo de una solución informática</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "",
+    "text": "5.1 Presentación de la clase\nEn las clases anteriores aprendimos a identificar entradas, procesos y salidas; declarar variables; utilizar operadores aritméticos; trabajar con DIV y MOD; construir expresiones; y representar una solución mediante pseudocódigo, diagrama de flujo y código C++.\nEn esta clase daremos continuidad a esos temas incorporando las expresiones lógicas y las estructuras de decisión:\nLa meta no es memorizar sintaxis. La meta es aprender a decidir qué estructura conviene usar según el problema.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#presentación-de-la-clase",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#presentación-de-la-clase",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "",
+    "text": "if;\nif...else;\nif...else if...else;\nswitch...case.\n\n\n\n\n\n\n\n\nNotaIdea central\n\n\n\nUna estructura condicional permite que el algoritmo tome caminos diferentes según el valor de una condición.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#distribución-de-los-80-minutos",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#distribución-de-los-80-minutos",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "5.2 Distribución de los 80 minutos",
+    "text": "5.2 Distribución de los 80 minutos\n\n\n\nTiempo\nActividad\n\n\n\n\n12 minutos\nIntroducción y repaso conceptual\n\n\n18 minutos\nEjercicio guiado 1 con if...else if...else\n\n\n18 minutos\nEl mismo ejercicio con switch...case\n\n\n20 minutos\nEjercicio guiado 2: condiciones compuestas\n\n\n7 minutos\nComparación, errores frecuentes y cierre\n\n\n5 minutos\nExplicación de la tarea\n\n\n\n\n\n\n\n\n\nTipMetodología de la clase\n\n\n\nLa explicación representa aproximadamente el 15 % de la sesión. El resto se dedica a analizar, diseñar, programar y probar soluciones.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#operadores-aritméticos",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#operadores-aritméticos",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "7.1 Operadores aritméticos",
+    "text": "7.1 Operadores aritméticos\n\n\n\nOperador\nDescripción\nEjemplo\n\n\n\n\n+\nSuma\n10 + 3 = 13\n\n\n-\nResta\n10 - 3 = 7\n\n\n*\nMultiplicación\n10 * 3 = 30\n\n\n/\nDivisión\n10 / 3 = 3 si ambas variables son enteras\n\n\n%\nResiduo\n10 % 3 = 1",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#operadores-relacionales",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#operadores-relacionales",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "7.2 Operadores relacionales",
+    "text": "7.2 Operadores relacionales\n\n\n\nOperador\nSignificado\n\n\n\n\n&gt;\nMayor que\n\n\n&lt;\nMenor que\n\n\n&gt;=\nMayor o igual que\n\n\n&lt;=\nMenor o igual que\n\n\n==\nIgual que\n\n\n!=\nDiferente de",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#operadores-lógicos",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#operadores-lógicos",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "7.3 Operadores lógicos",
+    "text": "7.3 Operadores lógicos\n\n\n\nOperador\nNombre\nUso\n\n\n\n\n&&\nAND\nTodas las condiciones deben ser verdaderas\n\n\n||\nOR\nAl menos una condición debe ser verdadera\n\n\n!\nNOT\nInvierte el resultado lógico",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#precedencia-simplificada",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#precedencia-simplificada",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "7.4 Precedencia simplificada",
+    "text": "7.4 Precedencia simplificada\n\n\n\nNivel\nOperadores\n\n\n\n\n1\n()\n\n\n2\n!\n\n\n3\n*, /, %\n\n\n4\n+, -\n\n\n5\n&lt;, &gt;, &lt;=, &gt;=\n\n\n6\n==, !=\n\n\n7\n&&\n\n\n8\n||\n\n\n9\n=\n\n\n\n\n\n\n\n\n\nAdvertenciaConsejo\n\n\n\nCuando una expresión sea larga, utilice paréntesis. Aunque el resultado sea correcto, los paréntesis hacen que la intención sea más clara.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#sintaxis",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#sintaxis",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "8.1 Sintaxis",
+    "text": "8.1 Sintaxis\nif (condicion1) {\n    // instrucciones\n} else if (condicion2) {\n    // instrucciones\n} else {\n    // instrucciones\n}",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#requerimiento",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#requerimiento",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "9.1 Requerimiento",
+    "text": "9.1 Requerimiento\nCrear un programa que:\n\nSolicite dos números.\nSolicite una operación: +, -, *, / o %.\nRealice la operación seleccionada.\nEvite dividir entre cero.\nMuestre un mensaje si la operación no es válida.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#parte-a.-análisis",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#parte-a.-análisis",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "9.2 Parte A. Análisis",
+    "text": "9.2 Parte A. Análisis\n\n9.2.1 Entradas\n\n\n\nDato\nTipo\n\n\n\n\nPrimer número\nEntero\n\n\nSegundo número\nEntero\n\n\nOperación\nCarácter\n\n\n\n\n\n9.2.2 Procesos\n\nLeer los dos números.\nLeer la operación.\nComparar la operación ingresada.\nEjecutar el cálculo correspondiente.\nValidar división y residuo entre cero.\n\n\n\n9.2.3 Salidas\n\nResultado de la operación.\nMensaje de error cuando corresponda.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#parte-b.-diagrama-de-flujo",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#parte-b.-diagrama-de-flujo",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "9.3 Parte B. Diagrama de flujo",
+    "text": "9.3 Parte B. Diagrama de flujo\n\n\n\n\n\nflowchart TD\n    A([Inicio]) --&gt; B[/Leer num1, num2 y operador/]\n    B --&gt; C{operador == '+'}\n    C -- Sí --&gt; D[resultado = num1 + num2]\n    C -- No --&gt; E{operador == '-'}\n    E -- Sí --&gt; F[resultado = num1 - num2]\n    E -- No --&gt; G{operador == '*'}\n    G -- Sí --&gt; H[resultado = num1 * num2]\n    G -- No --&gt; I{operador == '/' o '%'}\n    I -- No --&gt; J[/Mostrar operación inválida/]\n    I -- Sí --&gt; K{num2 == 0}\n    K -- Sí --&gt; L[/Mostrar error/]\n    K -- No --&gt; M{operador == '/'}\n    M -- Sí --&gt; N[resultado = num1 / num2]\n    M -- No --&gt; O[resultado = num1 % num2]\n    D --&gt; P[/Mostrar resultado/]\n    F --&gt; P\n    H --&gt; P\n    N --&gt; P\n    O --&gt; P\n    J --&gt; Q([Fin])\n    L --&gt; Q\n    P --&gt; Q",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#parte-c.-pseudocódigo",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#parte-c.-pseudocódigo",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "9.4 Parte C. Pseudocódigo",
+    "text": "9.4 Parte C. Pseudocódigo\nAlgoritmo CalculadoraConIf\nVariables\n    Entero num1, num2, resultado\n    Caracter operador\n\nInicio\n    Leer num1\n    Leer num2\n    Leer operador\n\n    Si operador == '+' Entonces\n        resultado = num1 + num2\n        Escribir resultado\n    Sino Si operador == '-' Entonces\n        resultado = num1 - num2\n        Escribir resultado\n    Sino Si operador == '*' Entonces\n        resultado = num1 * num2\n        Escribir resultado\n    Sino Si operador == '/' Entonces\n        Si num2 == 0 Entonces\n            Escribir \"Error\"\n        Sino\n            resultado = num1 / num2\n            Escribir resultado\n        FinSi\n    Sino Si operador == '%' Entonces\n        Si num2 == 0 Entonces\n            Escribir \"Error\"\n        Sino\n            resultado = num1 % num2\n            Escribir resultado\n        FinSi\n    Sino\n        Escribir \"Operación no válida\"\n    FinSi\nFin",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#parte-d.-código-c",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#parte-d.-código-c",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "9.5 Parte D. Código C++",
+    "text": "9.5 Parte D. Código C++\n#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    int num1, num2, resultado;\n    char operador;\n\n    cout &lt;&lt; \"Ingrese el primer numero: \";\n    cin &gt;&gt; num1;\n\n    cout &lt;&lt; \"Ingrese el segundo numero: \";\n    cin &gt;&gt; num2;\n\n    cout &lt;&lt; \"Ingrese la operacion (+, -, *, /, %): \";\n    cin &gt;&gt; operador;\n\n    if (operador == '+') {\n        resultado = num1 + num2;\n        cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n\n    } else if (operador == '-') {\n        resultado = num1 - num2;\n        cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n\n    } else if (operador == '*') {\n        resultado = num1 * num2;\n        cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n\n    } else if (operador == '/') {\n        if (num2 == 0) {\n            cout &lt;&lt; \"Error: no se puede dividir entre cero.\" &lt;&lt; endl;\n        } else {\n            resultado = num1 / num2;\n            cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n        }\n\n    } else if (operador == '%') {\n        if (num2 == 0) {\n            cout &lt;&lt; \"Error: no se puede obtener residuo entre cero.\" \n                 &lt;&lt; endl;\n        } else {\n            resultado = num1 % num2;\n            cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n        }\n\n    } else {\n        cout &lt;&lt; \"Operacion no valida.\" &lt;&lt; endl;\n    }\n\n    return 0;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#sintaxis-1",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#sintaxis-1",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "10.1 Sintaxis",
+    "text": "10.1 Sintaxis\nswitch (expresion) {\n    case valor1:\n        // instrucciones\n        break;\n\n    case valor2:\n        // instrucciones\n        break;\n\n    default:\n        // instrucciones\n}",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#código-c",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#código-c",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "10.2 Código C++",
+    "text": "10.2 Código C++\n#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    int num1, num2, resultado;\n    char operador;\n\n    cout &lt;&lt; \"Ingrese el primer numero: \";\n    cin &gt;&gt; num1;\n\n    cout &lt;&lt; \"Ingrese el segundo numero: \";\n    cin &gt;&gt; num2;\n\n    cout &lt;&lt; \"Ingrese la operacion (+, -, *, /, %): \";\n    cin &gt;&gt; operador;\n\n    switch (operador) {\n        case '+':\n            resultado = num1 + num2;\n            cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n            break;\n\n        case '-':\n            resultado = num1 - num2;\n            cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n            break;\n\n        case '*':\n            resultado = num1 * num2;\n            cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n            break;\n\n        case '/':\n            if (num2 == 0) {\n                cout &lt;&lt; \"Error: no se puede dividir entre cero.\" \n                     &lt;&lt; endl;\n            } else {\n                resultado = num1 / num2;\n                cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n            }\n            break;\n\n        case '%':\n            if (num2 == 0) {\n                cout &lt;&lt; \"Error: no se puede obtener residuo entre cero.\" \n                     &lt;&lt; endl;\n            } else {\n                resultado = num1 % num2;\n                cout &lt;&lt; \"Resultado: \" &lt;&lt; resultado &lt;&lt; endl;\n            }\n            break;\n\n        default:\n            cout &lt;&lt; \"Operacion no valida.\" &lt;&lt; endl;\n    }\n\n    return 0;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#requerimiento-1",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#requerimiento-1",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "12.1 Requerimiento",
+    "text": "12.1 Requerimiento\nCrear un programa que:\n\nSolicite el nombre.\nSolicite la edad.\nNo permita una edad igual o menor que cero.\nClasifique:\n\nmenor de edad: menos de 18;\njoven adulto: de 18 a 45;\nadulto: de 46 a 60;\nadulto mayor: más de 60.\n\nMuestre nombre, edad y clasificación.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#diagrama-de-flujo",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#diagrama-de-flujo",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "12.2 Diagrama de flujo",
+    "text": "12.2 Diagrama de flujo\n\n\n\n\n\nflowchart TD\n    A([Inicio]) --&gt; B[/Leer nombre y edad/]\n    B --&gt; C{edad &lt;= 0}\n    C -- Sí --&gt; D[/Mostrar edad inválida/]\n    C -- No --&gt; E{edad &lt; 18}\n    E -- Sí --&gt; F[Menor de edad]\n    E -- No --&gt; G{edad &lt;= 45}\n    G -- Sí --&gt; H[Joven adulto]\n    G -- No --&gt; I{edad &lt;= 60}\n    I -- Sí --&gt; J[Adulto]\n    I -- No --&gt; K[Adulto mayor]\n    F --&gt; L[/Mostrar datos/]\n    H --&gt; L\n    J --&gt; L\n    K --&gt; L\n    D --&gt; M([Fin])\n    L --&gt; M",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#código-c-1",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#código-c-1",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "12.3 Código C++",
+    "text": "12.3 Código C++\n#include &lt;iostream&gt;\n#include &lt;string&gt;\nusing namespace std;\n\nint main() {\n    string nombre;\n    string clasificacion;\n    int edad;\n\n    cout &lt;&lt; \"Ingrese su nombre: \";\n    getline(cin, nombre);\n\n    cout &lt;&lt; \"Ingrese su edad: \";\n    cin &gt;&gt; edad;\n\n    if (edad &lt;= 0) {\n        cout &lt;&lt; \"Edad invalida.\" &lt;&lt; endl;\n\n    } else if (edad &lt; 18) {\n        clasificacion = \"Menor de edad\";\n\n    } else if (edad &lt;= 45) {\n        clasificacion = \"Joven adulto\";\n\n    } else if (edad &lt;= 60) {\n        clasificacion = \"Adulto\";\n\n    } else {\n        clasificacion = \"Adulto mayor\";\n    }\n\n    if (edad &gt; 0) {\n        cout &lt;&lt; \"\\nNombre: \" &lt;&lt; nombre &lt;&lt; endl;\n        cout &lt;&lt; \"Edad: \" &lt;&lt; edad &lt;&lt; endl;\n        cout &lt;&lt; \"Clasificacion: \" &lt;&lt; clasificacion &lt;&lt; endl;\n    }\n\n    return 0;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#usar-en-lugar-de",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#usar-en-lugar-de",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "14.1 Usar = en lugar de ==",
+    "text": "14.1 Usar = en lugar de ==\nIncorrecto:\nif (opcion = 1)\nCorrecto:\nif (opcion == 1)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#colocar-condición-después-de-else",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#colocar-condición-después-de-else",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "14.2 Colocar condición después de else",
+    "text": "14.2 Colocar condición después de else\nIncorrecto:\nelse (edad &gt; 60)\nCorrecto:\nelse",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#olvidar-break",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#olvidar-break",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "14.3 Olvidar break",
+    "text": "14.3 Olvidar break\ncase 1:\n    cout &lt;&lt; \"Opcion 1\";\n    break;",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#usar-switch-para-rangos",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#usar-switch-para-rangos",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "14.4 Usar switch para rangos",
+    "text": "14.4 Usar switch para rangos\nswitch trabaja mejor con valores exactos.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#problema-1.-menú-de-conversión",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#problema-1.-menú-de-conversión",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "16.1 Problema 1. Menú de conversión",
+    "text": "16.1 Problema 1. Menú de conversión\nCrear un programa que solicite una cantidad y muestre este menú:\n1. Convertir metros a centímetros\n2. Convertir centímetros a metros\n3. Convertir kilómetros a metros\n4. Salir\nDebe resolverse utilizando switch.\n\n16.1.1 Entregables\n\nAnálisis:\n\nentradas;\nprocesos;\nsalidas.\n\nDiagrama de flujo.\nPseudocódigo.\nCódigo C++.\nTres casos de prueba.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#problema-2.-clasificación-de-notas",
+    "href": "capitulos/03_expresiones_logicas_estructuras_condicionales.html#problema-2.-clasificación-de-notas",
+    "title": "5  Capítulo 3. Expresiones lógicas y estructuras condicionales",
+    "section": "16.2 Problema 2. Clasificación de notas",
+    "text": "16.2 Problema 2. Clasificación de notas\nSolicitar una nota entre 0 y 100.\nClasificar:\n\n\n\nRango\nResultado\n\n\n\n\n90 a 100\nExcelente\n\n\n80 a 89\nMuy bueno\n\n\n70 a 79\nBueno\n\n\n61 a 69\nAprobado\n\n\n0 a 60\nReprobado\n\n\n\nDebe resolverse utilizando if...else if...else.\n\n16.2.1 Validación\nSi la nota es menor que 0 o mayor que 100, mostrar:\nNota inválida\n\n\n16.2.2 Entregables\n\nAnálisis:\n\nentradas;\nprocesos;\nsalidas.\n\nDiagrama de flujo.\nPseudocódigo.\nCódigo C++.\nCinco casos de prueba.\n\n\n\n\n\n\n\nAdvertenciaCondición de entrega\n\n\n\nNo se calificará únicamente el código. La tarea debe incluir análisis, diagrama, pseudocódigo, programa y pruebas.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Capítulo 3. Expresiones lógicas y estructuras condicionales</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/99_cierre.html",
+    "href": "capitulos/99_cierre.html",
+    "title": "6  Cierre del capítulo",
+    "section": "",
+    "text": "6.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cierre del capítulo</span>"
+    ]
+  }
+]

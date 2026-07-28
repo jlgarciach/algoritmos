@@ -1,0 +1,267 @@
+---
+title: "Cuaderno de Laboratorio No. 1"
+subtitle: "Desarrollo de una solución informática"
+author: "Ing. Jorge Luis García Chacón"
+date: "2026"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    css:
+      - ../styles.css
+  pdf:
+    pdf-engine: xelatex
+    toc: false
+    number-sections: true
+    documentclass: article
+    papersize: letter
+    geometry:
+      - top=2cm
+      - bottom=2cm
+      - left=2.2cm
+      - right=2.2cm
+    colorlinks: true
+    mainfont: Arial
+    monofont: "Courier New"
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \fancyhf{}
+        \lhead{Algoritmos}
+        \chead{Cuaderno de Laboratorio No. 1}
+        \rhead{UMG}
+        \cfoot{Editorial Académica de Ingeniería en Sistemas \quad Página \thepage}
+  docx:
+    toc: true      
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+\thispagestyle{empty}
+
+# Universidad Mariano Gálvez de Guatemala
+
+## Facultad de Ingeniería en Sistemas
+
+# **CUADERNO DE LABORATORIO No. 1**
+
+## Desarrollo de una solución informática
+
+**Curso:** Algoritmos
+
+**Docente:** Ing. Jorge Luis García Chacón
+
+**Tiempo estimado:** 60 minutos
+
+**Modalidad:** Individual
+
+**Herramientas:** Herramienta para diagramar/Papel y lápiz, y compilador de  C++
+
+- Diagrama de flujo: https://app.diagrams.net
+- Compilador de C++: https://www.onlinegdb.com/online_c++_compiler
+
+\newpage
+
+
+# Laboratorio 1
+## Desarrollo de una solución informática
+
+### Objetivo
+
+Aplicar los conocimientos adquiridos durante las primeras clases del curso mediante el análisis, diseño e implementación de una solución informática utilizando pseudocódigo, diagrama de flujo y el lenguaje de programación C++.
+
+::: {.callout-important title="Competencias que se evaluarán"}
+
+Al finalizar este laboratorio el estudiante será capaz de:
+
+- Analizar un requerimiento.
+- Identificar entradas, procesos y salidas.
+- Diseñar un algoritmo mediante pseudocódigo.
+- Representar la solución utilizando un diagrama de flujo.
+- Implementar el algoritmo en C++.
+- Verificar el funcionamiento de la solución mediante casos de prueba.
+
+:::
+
+---
+
+# Requerimiento
+
+Una academia de capacitación desea automatizar el cálculo del promedio de sus estudiantes.
+
+Para ello necesita un programa que solicite la siguiente información:
+
+- Nombre del estudiante.
+- Primera nota.
+- Segunda nota.
+- Tercera nota.
+
+Posteriormente el sistema deberá:
+
+1. Calcular el promedio de las tres notas.
+2. Mostrar el promedio obtenido.
+3. Indicar si el estudiante **Aprobó** o **Reprobó**.
+
+Considere que:
+
+- Un estudiante aprueba con un promedio mayor o igual a **61 puntos**.
+- En cualquier otro caso el estudiante reprueba.
+
+---
+
+# Actividades a desarrollar
+
+## Parte 1. Análisis del requerimiento
+
+Antes de escribir cualquier algoritmo complete la siguiente información.
+
+### Entradas
+
+Escriba las entradas que necesita el sistema.
+
+| No. | Entrada |
+|-----:|----------|
+| 1 | |
+| 2 | |
+| 3 | |
+| 4 | |
+
+---
+
+### Procesos
+
+Describa las operaciones que realizará el algoritmo.
+
+| No. | Proceso |
+|-----:|----------|
+| 1 | |
+| 2 | |
+| 3 | |
+
+---
+
+### Salidas
+
+Indique qué información mostrará el programa.
+
+| No. | Salida |
+|-----:|----------|
+| 1 | |
+| 2 | |
+| 3 | |
+
+---
+
+# Parte 2. Diseño del algoritmo
+
+## Pseudocódigo
+
+Diseñe el algoritmo utilizando pseudocódigo.
+
+\vspace{12cm}
+
+---
+
+## Diagrama de flujo
+
+Diseñe el diagrama de flujo correspondiente.
+
+\vspace{16cm}
+
+---
+
+# Parte 3. Implementación
+
+Desarrolle el programa utilizando el lenguaje **C++**.
+
+El programa debe cumplir con todos los requerimientos indicados anteriormente.
+
+::: {.callout-tip title="Recuerde"}
+
+Utilice únicamente los temas vistos en clase:
+
+- Variables
+- Entrada de datos (`cin`)
+- Salida de datos (`cout`)
+- Operadores aritméticos
+- Operadores relacionales
+- Estructuras de decisión (`if` / `else`)
+
+No es necesario utilizar ciclos.
+
+:::
+
+---
+
+# Parte 4. Casos de prueba
+
+Ejecute el programa al menos dos veces utilizando diferentes datos.
+
+## Caso de prueba No. 1
+
+| Dato | Valor |
+|------|-------|
+| Nombre | |
+| Nota 1 | |
+| Nota 2 | |
+| Nota 3 | |
+| Promedio esperado | |
+| Resultado esperado | |
+
+---
+
+## Caso de prueba No. 2
+
+| Dato | Valor |
+|------|-------|
+| Nombre | |
+| Nota 1 | |
+| Nota 2 | |
+| Nota 3 | |
+| Promedio esperado | |
+| Resultado esperado | |
+
+---
+
+# Evidencia
+
+Adjunte una captura de pantalla del programa en ejecución.
+
+\vspace{9cm}
+
+---
+
+# Criterios de evaluación
+
+| Criterio | Punteo |
+|-------------------------------|---------:|
+| Identificación de entradas, procesos y salidas | 15 |
+| Pseudocódigo | 20 |
+| Diagrama de flujo | 20 |
+| Programa en C++ | 35 |
+| Casos de prueba | 10 |
+| **Total** | **100** |
+
+---
+
+# Conclusión
+
+Describa brevemente qué aprendió durante el desarrollo del laboratorio.
+
+\vspace{5cm}
+
+---
+
+::: {.callout-note title="Reflexión"}
+
+En el desarrollo de software, escribir el código representa únicamente una parte del trabajo.
+
+Antes de programar, un desarrollador debe comprender el requerimiento, analizar la información disponible, diseñar una solución y posteriormente implementarla.
+
+Este laboratorio busca fortalecer esa forma de pensar, la cual será utilizada durante todo el curso.
+
+:::

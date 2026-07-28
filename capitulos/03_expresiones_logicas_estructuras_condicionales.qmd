@@ -1,0 +1,610 @@
+# Capítulo 3. Expresiones lógicas y estructuras condicionales
+
+## Presentación de la clase
+
+En las clases anteriores aprendimos a identificar entradas, procesos y salidas; declarar variables; utilizar operadores aritméticos; trabajar con `DIV` y `MOD`; construir expresiones; y representar una solución mediante pseudocódigo, diagrama de flujo y código C++.
+
+En esta clase daremos continuidad a esos temas incorporando las **expresiones lógicas** y las estructuras de decisión:
+
+- `if`;
+- `if...else`;
+- `if...else if...else`;
+- `switch...case`.
+
+La meta no es memorizar sintaxis. La meta es aprender a decidir **qué estructura conviene usar según el problema**.
+
+::: {.callout-note title="Idea central"}
+Una estructura condicional permite que el algoritmo tome caminos diferentes según el valor de una condición.
+:::
+
+## Distribución de los 80 minutos
+
+| Tiempo | Actividad |
+|---:|---|
+| 12 minutos | Introducción y repaso conceptual |
+| 18 minutos | Ejercicio guiado 1 con `if...else if...else` |
+| 18 minutos | El mismo ejercicio con `switch...case` |
+| 20 minutos | Ejercicio guiado 2: condiciones compuestas |
+| 7 minutos | Comparación, errores frecuentes y cierre |
+| 5 minutos | Explicación de la tarea |
+
+::: {.callout-tip title="Metodología de la clase"}
+La explicación representa aproximadamente el 15 % de la sesión. El resto se dedica a analizar, diseñar, programar y probar soluciones.
+:::
+
+# Objetivos de aprendizaje
+
+Al finalizar la clase, el estudiante será capaz de:
+
+1. Evaluar expresiones lógicas.
+2. Aplicar la precedencia de operadores.
+3. Utilizar `if`, `else if` y `else`.
+4. Utilizar `switch`, `case`, `break` y `default`.
+5. Diferenciar cuándo conviene usar `if` y cuándo `switch`.
+6. Elaborar el análisis de un problema.
+7. Diseñar la solución mediante pseudocódigo y diagrama de flujo.
+8. Implementar y probar la solución en C++.
+
+# Repaso rápido: expresiones y operadores
+
+Una **expresión** es una combinación de variables, constantes y operadores que produce un valor.
+
+```cpp
+int resultado = 3 + 4 * 2;
+```
+
+La multiplicación se evalúa antes que la suma:
+
+```text
+3 + 4 * 2
+3 + 8
+11
+```
+
+## Operadores aritméticos
+
+| Operador | Descripción | Ejemplo |
+|---|---|---|
+| `+` | Suma | `10 + 3 = 13` |
+| `-` | Resta | `10 - 3 = 7` |
+| `*` | Multiplicación | `10 * 3 = 30` |
+| `/` | División | `10 / 3 = 3` si ambas variables son enteras |
+| `%` | Residuo | `10 % 3 = 1` |
+
+## Operadores relacionales
+
+| Operador | Significado |
+|---|---|
+| `>` | Mayor que |
+| `<` | Menor que |
+| `>=` | Mayor o igual que |
+| `<=` | Menor o igual que |
+| `==` | Igual que |
+| `!=` | Diferente de |
+
+## Operadores lógicos
+
+| Operador | Nombre | Uso |
+|---|---|---|
+| `&&` | AND | Todas las condiciones deben ser verdaderas |
+| `||` | OR | Al menos una condición debe ser verdadera |
+| `!` | NOT | Invierte el resultado lógico |
+
+## Precedencia simplificada
+
+| Nivel | Operadores |
+|---:|---|
+| 1 | `()` |
+| 2 | `!` |
+| 3 | `*`, `/`, `%` |
+| 4 | `+`, `-` |
+| 5 | `<`, `>`, `<=`, `>=` |
+| 6 | `==`, `!=` |
+| 7 | `&&` |
+| 8 | `||` |
+| 9 | `=` |
+
+::: {.callout-warning title="Consejo"}
+Cuando una expresión sea larga, utilice paréntesis. Aunque el resultado sea correcto, los paréntesis hacen que la intención sea más clara.
+:::
+
+# Estructura `if...else if...else`
+
+Se utiliza cuando necesitamos evaluar rangos, varias condiciones, operadores relacionales u operadores lógicos.
+
+## Sintaxis
+
+```cpp
+if (condicion1) {
+    // instrucciones
+} else if (condicion2) {
+    // instrucciones
+} else {
+    // instrucciones
+}
+```
+
+# Ejercicio guiado 1: calculadora con `if`
+
+## Requerimiento
+
+Crear un programa que:
+
+1. Solicite dos números.
+2. Solicite una operación: `+`, `-`, `*`, `/` o `%`.
+3. Realice la operación seleccionada.
+4. Evite dividir entre cero.
+5. Muestre un mensaje si la operación no es válida.
+
+## Parte A. Análisis
+
+### Entradas
+
+| Dato | Tipo |
+|---|---|
+| Primer número | Entero |
+| Segundo número | Entero |
+| Operación | Carácter |
+
+### Procesos
+
+1. Leer los dos números.
+2. Leer la operación.
+3. Comparar la operación ingresada.
+4. Ejecutar el cálculo correspondiente.
+5. Validar división y residuo entre cero.
+
+### Salidas
+
+- Resultado de la operación.
+- Mensaje de error cuando corresponda.
+
+## Parte B. Diagrama de flujo
+
+```{mermaid}
+%%| fig-width: 6.2
+%%| fig-height: 8.4
+%%| fig-align: center
+
+flowchart TD
+    A([Inicio]) --> B[/Leer num1, num2 y operador/]
+    B --> C{operador == '+'}
+    C -- Sí --> D[resultado = num1 + num2]
+    C -- No --> E{operador == '-'}
+    E -- Sí --> F[resultado = num1 - num2]
+    E -- No --> G{operador == '*'}
+    G -- Sí --> H[resultado = num1 * num2]
+    G -- No --> I{operador == '/' o '%'}
+    I -- No --> J[/Mostrar operación inválida/]
+    I -- Sí --> K{num2 == 0}
+    K -- Sí --> L[/Mostrar error/]
+    K -- No --> M{operador == '/'}
+    M -- Sí --> N[resultado = num1 / num2]
+    M -- No --> O[resultado = num1 % num2]
+    D --> P[/Mostrar resultado/]
+    F --> P
+    H --> P
+    N --> P
+    O --> P
+    J --> Q([Fin])
+    L --> Q
+    P --> Q
+```
+
+## Parte C. Pseudocódigo
+
+```text
+Algoritmo CalculadoraConIf
+Variables
+    Entero num1, num2, resultado
+    Caracter operador
+
+Inicio
+    Leer num1
+    Leer num2
+    Leer operador
+
+    Si operador == '+' Entonces
+        resultado = num1 + num2
+        Escribir resultado
+    Sino Si operador == '-' Entonces
+        resultado = num1 - num2
+        Escribir resultado
+    Sino Si operador == '*' Entonces
+        resultado = num1 * num2
+        Escribir resultado
+    Sino Si operador == '/' Entonces
+        Si num2 == 0 Entonces
+            Escribir "Error"
+        Sino
+            resultado = num1 / num2
+            Escribir resultado
+        FinSi
+    Sino Si operador == '%' Entonces
+        Si num2 == 0 Entonces
+            Escribir "Error"
+        Sino
+            resultado = num1 % num2
+            Escribir resultado
+        FinSi
+    Sino
+        Escribir "Operación no válida"
+    FinSi
+Fin
+```
+
+## Parte D. Código C++
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num1, num2, resultado;
+    char operador;
+
+    cout << "Ingrese el primer numero: ";
+    cin >> num1;
+
+    cout << "Ingrese el segundo numero: ";
+    cin >> num2;
+
+    cout << "Ingrese la operacion (+, -, *, /, %): ";
+    cin >> operador;
+
+    if (operador == '+') {
+        resultado = num1 + num2;
+        cout << "Resultado: " << resultado << endl;
+
+    } else if (operador == '-') {
+        resultado = num1 - num2;
+        cout << "Resultado: " << resultado << endl;
+
+    } else if (operador == '*') {
+        resultado = num1 * num2;
+        cout << "Resultado: " << resultado << endl;
+
+    } else if (operador == '/') {
+        if (num2 == 0) {
+            cout << "Error: no se puede dividir entre cero." << endl;
+        } else {
+            resultado = num1 / num2;
+            cout << "Resultado: " << resultado << endl;
+        }
+
+    } else if (operador == '%') {
+        if (num2 == 0) {
+            cout << "Error: no se puede obtener residuo entre cero." 
+                 << endl;
+        } else {
+            resultado = num1 % num2;
+            cout << "Resultado: " << resultado << endl;
+        }
+
+    } else {
+        cout << "Operacion no valida." << endl;
+    }
+
+    return 0;
+}
+```
+
+# El mismo ejercicio con `switch...case`
+
+`switch` es apropiado cuando una misma variable se compara contra valores constantes exactos.
+
+## Sintaxis
+
+```cpp
+switch (expresion) {
+    case valor1:
+        // instrucciones
+        break;
+
+    case valor2:
+        // instrucciones
+        break;
+
+    default:
+        // instrucciones
+}
+```
+
+## Código C++
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num1, num2, resultado;
+    char operador;
+
+    cout << "Ingrese el primer numero: ";
+    cin >> num1;
+
+    cout << "Ingrese el segundo numero: ";
+    cin >> num2;
+
+    cout << "Ingrese la operacion (+, -, *, /, %): ";
+    cin >> operador;
+
+    switch (operador) {
+        case '+':
+            resultado = num1 + num2;
+            cout << "Resultado: " << resultado << endl;
+            break;
+
+        case '-':
+            resultado = num1 - num2;
+            cout << "Resultado: " << resultado << endl;
+            break;
+
+        case '*':
+            resultado = num1 * num2;
+            cout << "Resultado: " << resultado << endl;
+            break;
+
+        case '/':
+            if (num2 == 0) {
+                cout << "Error: no se puede dividir entre cero." 
+                     << endl;
+            } else {
+                resultado = num1 / num2;
+                cout << "Resultado: " << resultado << endl;
+            }
+            break;
+
+        case '%':
+            if (num2 == 0) {
+                cout << "Error: no se puede obtener residuo entre cero." 
+                     << endl;
+            } else {
+                resultado = num1 % num2;
+                cout << "Resultado: " << resultado << endl;
+            }
+            break;
+
+        default:
+            cout << "Operacion no valida." << endl;
+    }
+
+    return 0;
+}
+```
+
+# Comparación entre `if` y `switch`
+
+| Característica | `if...else if...else` | `switch...case` |
+|---|---|---|
+| Evalúa rangos | Sí | No directamente |
+| Usa condiciones lógicas | Sí | No |
+| Compara valores exactos | Sí | Sí |
+| Claridad en menús | Buena | Muy buena |
+| Uso recomendado | Rangos y condiciones complejas | Opciones exactas |
+
+::: {.callout-important title="Regla práctica"}
+Use `if` cuando la decisión dependa de rangos o expresiones lógicas. Use `switch` cuando una variable se compare contra opciones exactas.
+:::
+
+# Ejercicio guiado 2: clasificación de edad
+
+## Requerimiento
+
+Crear un programa que:
+
+1. Solicite el nombre.
+2. Solicite la edad.
+3. No permita una edad igual o menor que cero.
+4. Clasifique:
+   - menor de edad: menos de 18;
+   - joven adulto: de 18 a 45;
+   - adulto: de 46 a 60;
+   - adulto mayor: más de 60.
+5. Muestre nombre, edad y clasificación.
+
+## Diagrama de flujo
+
+```{mermaid}
+%%| fig-width: 6.2
+%%| fig-height: 8.4
+%%| fig-align: center
+
+flowchart TD
+    A([Inicio]) --> B[/Leer nombre y edad/]
+    B --> C{edad <= 0}
+    C -- Sí --> D[/Mostrar edad inválida/]
+    C -- No --> E{edad < 18}
+    E -- Sí --> F[Menor de edad]
+    E -- No --> G{edad <= 45}
+    G -- Sí --> H[Joven adulto]
+    G -- No --> I{edad <= 60}
+    I -- Sí --> J[Adulto]
+    I -- No --> K[Adulto mayor]
+    F --> L[/Mostrar datos/]
+    H --> L
+    J --> L
+    K --> L
+    D --> M([Fin])
+    L --> M
+```
+
+## Código C++
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string nombre;
+    string clasificacion;
+    int edad;
+
+    cout << "Ingrese su nombre: ";
+    getline(cin, nombre);
+
+    cout << "Ingrese su edad: ";
+    cin >> edad;
+
+    if (edad <= 0) {
+        cout << "Edad invalida." << endl;
+
+    } else if (edad < 18) {
+        clasificacion = "Menor de edad";
+
+    } else if (edad <= 45) {
+        clasificacion = "Joven adulto";
+
+    } else if (edad <= 60) {
+        clasificacion = "Adulto";
+
+    } else {
+        clasificacion = "Adulto mayor";
+    }
+
+    if (edad > 0) {
+        cout << "\nNombre: " << nombre << endl;
+        cout << "Edad: " << edad << endl;
+        cout << "Clasificacion: " << clasificacion << endl;
+    }
+
+    return 0;
+}
+```
+
+# Actividad rápida en parejas
+
+Modifique la calculadora para que también muestre el nombre de la operación seleccionada.
+
+Cada pareja debe:
+
+1. modificar la versión con `if`;
+2. modificar la versión con `switch`;
+3. probar al menos tres casos;
+4. explicar cuál versión considera más clara.
+
+# Errores frecuentes
+
+## Usar `=` en lugar de `==`
+
+Incorrecto:
+
+```cpp
+if (opcion = 1)
+```
+
+Correcto:
+
+```cpp
+if (opcion == 1)
+```
+
+## Colocar condición después de `else`
+
+Incorrecto:
+
+```cpp
+else (edad > 60)
+```
+
+Correcto:
+
+```cpp
+else
+```
+
+## Olvidar `break`
+
+```cpp
+case 1:
+    cout << "Opcion 1";
+    break;
+```
+
+## Usar `switch` para rangos
+
+`switch` trabaja mejor con valores exactos.
+
+# Resumen de la clase
+
+En esta clase aprendimos que:
+
+- Las expresiones lógicas producen valores verdaderos o falsos.
+- La precedencia determina el orden de evaluación.
+- `if` permite evaluar rangos y condiciones complejas.
+- `switch` facilita la construcción de menús y opciones exactas.
+- El mismo problema puede resolverse con estructuras diferentes.
+- Una buena solución comienza con análisis y diseño.
+- Los casos de prueba permiten verificar el comportamiento del programa.
+
+# Tarea
+
+## Problema 1. Menú de conversión
+
+Crear un programa que solicite una cantidad y muestre este menú:
+
+```text
+1. Convertir metros a centímetros
+2. Convertir centímetros a metros
+3. Convertir kilómetros a metros
+4. Salir
+```
+
+Debe resolverse utilizando `switch`.
+
+### Entregables
+
+1. Análisis:
+   - entradas;
+   - procesos;
+   - salidas.
+2. Diagrama de flujo.
+3. Pseudocódigo.
+4. Código C++.
+5. Tres casos de prueba.
+
+## Problema 2. Clasificación de notas
+
+Solicitar una nota entre 0 y 100.
+
+Clasificar:
+
+| Rango | Resultado |
+|---|---|
+| 90 a 100 | Excelente |
+| 80 a 89 | Muy bueno |
+| 70 a 79 | Bueno |
+| 61 a 69 | Aprobado |
+| 0 a 60 | Reprobado |
+
+Debe resolverse utilizando `if...else if...else`.
+
+### Validación
+
+Si la nota es menor que 0 o mayor que 100, mostrar:
+
+```text
+Nota inválida
+```
+
+### Entregables
+
+1. Análisis:
+   - entradas;
+   - procesos;
+   - salidas.
+2. Diagrama de flujo.
+3. Pseudocódigo.
+4. Código C++.
+5. Cinco casos de prueba.
+
+::: {.callout-warning title="Condición de entrega"}
+No se calificará únicamente el código. La tarea debe incluir análisis, diagrama, pseudocódigo, programa y pruebas.
+:::
+
+# Cierre
+
+::: {.callout-tip title="Consejo final del Ingeniero"}
+Primero comprenda la decisión que debe tomar el algoritmo. Después elija `if` o `switch`. La sintaxis viene al final.
+:::

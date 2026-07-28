@@ -1,0 +1,204 @@
+---
+title: "Laboratorio 1. Desarrollo de una solución informática"
+subtitle: "Análisis, diseño e implementación de algoritmos"
+author: "Ing. Jorge Luis García Chacón"
+---
+
+# Laboratorio 1
+## Desarrollo de una solución informática
+
+### Objetivo
+
+Aplicar los conocimientos adquiridos durante las primeras clases del curso mediante el análisis, diseño e implementación de una solución informática utilizando pseudocódigo, diagrama de flujo y el lenguaje de programación C++.
+
+::: {.callout-important title="Competencias que se evaluarán"}
+
+Al finalizar este laboratorio el estudiante será capaz de:
+
+- Analizar un requerimiento.
+- Identificar entradas, procesos y salidas.
+- Diseñar un algoritmo mediante pseudocódigo.
+- Representar la solución utilizando un diagrama de flujo.
+- Implementar el algoritmo en C++.
+- Verificar el funcionamiento de la solución mediante casos de prueba.
+
+:::
+
+---
+
+# Requerimiento
+
+Una academia de capacitación desea automatizar el cálculo del promedio de sus estudiantes.
+
+Para ello necesita un programa que solicite la siguiente información:
+
+- Nombre del estudiante.
+- Primera nota.
+- Segunda nota.
+- Tercera nota.
+
+Posteriormente el sistema deberá:
+
+1. Calcular el promedio de las tres notas.
+2. Mostrar el promedio obtenido.
+3. Indicar si el estudiante **Aprobó** o **Reprobó**.
+
+Considere que:
+
+- Un estudiante aprueba con un promedio mayor o igual a **61 puntos**.
+- En cualquier otro caso el estudiante reprueba.
+
+---
+
+# Actividades a desarrollar
+
+## Parte 1. Análisis del requerimiento
+
+Antes de escribir cualquier algoritmo complete la siguiente información.
+
+### Entradas
+
+Escriba las entradas que necesita el sistema.
+
+| No. | Entrada |
+|-----:|----------|
+| 1 | |
+| 2 | |
+| 3 | |
+| 4 | |
+
+---
+
+### Procesos
+
+Describa las operaciones que realizará el algoritmo.
+
+| No. | Proceso |
+|-----:|----------|
+| 1 | |
+| 2 | |
+| 3 | |
+
+---
+
+### Salidas
+
+Indique qué información mostrará el programa.
+
+| No. | Salida |
+|-----:|----------|
+| 1 | |
+| 2 | |
+| 3 | |
+
+---
+
+# Parte 2. Diseño del algoritmo
+
+## Pseudocódigo
+
+Diseñe el algoritmo utilizando pseudocódigo.
+
+\vspace{12cm}
+
+---
+
+## Diagrama de flujo
+
+Diseñe el diagrama de flujo correspondiente.
+
+\vspace{16cm}
+
+---
+
+# Parte 3. Implementación
+
+Desarrolle el programa utilizando el lenguaje **C++**.
+
+El programa debe cumplir con todos los requerimientos indicados anteriormente.
+
+::: {.callout-tip title="Recuerde"}
+
+Utilice únicamente los temas vistos en clase:
+
+- Variables
+- Entrada de datos (`cin`)
+- Salida de datos (`cout`)
+- Operadores aritméticos
+- Operadores relacionales
+- Estructuras de decisión (`if` / `else`)
+
+No es necesario utilizar ciclos.
+
+:::
+
+---
+
+# Parte 4. Casos de prueba
+
+Ejecute el programa al menos dos veces utilizando diferentes datos.
+
+## Caso de prueba No. 1
+
+| Dato | Valor |
+|------|-------|
+| Nombre | |
+| Nota 1 | |
+| Nota 2 | |
+| Nota 3 | |
+| Promedio esperado | |
+| Resultado esperado | |
+
+---
+
+## Caso de prueba No. 2
+
+| Dato | Valor |
+|------|-------|
+| Nombre | |
+| Nota 1 | |
+| Nota 2 | |
+| Nota 3 | |
+| Promedio esperado | |
+| Resultado esperado | |
+
+---
+
+# Evidencia
+
+Adjunte una captura de pantalla del programa en ejecución.
+
+\vspace{9cm}
+
+---
+
+# Criterios de evaluación
+
+| Criterio | Punteo |
+|-------------------------------|---------:|
+| Identificación de entradas, procesos y salidas | 15 |
+| Pseudocódigo | 20 |
+| Diagrama de flujo | 20 |
+| Programa en C++ | 35 |
+| Casos de prueba | 10 |
+| **Total** | **100** |
+
+---
+
+# Conclusión
+
+Describa brevemente qué aprendió durante el desarrollo del laboratorio.
+
+\vspace{5cm}
+
+---
+
+::: {.callout-note title="Reflexión"}
+
+En el desarrollo de software, escribir el código representa únicamente una parte del trabajo.
+
+Antes de programar, un desarrollador debe comprender el requerimiento, analizar la información disponible, diseñar una solución y posteriormente implementarla.
+
+Este laboratorio busca fortalecer esa forma de pensar, la cual será utilizada durante todo el curso.
+
+:::

@@ -1,0 +1,929 @@
+
+
+# Presentación del curso
+
+Bienvenidos al curso de **Algoritmos** para estudiantes de Ingeniería en Sistemas.
+
+Este documento inicia una ruta de aprendizaje que busca que el estudiante no solo aprenda instrucciones, símbolos o código, sino que desarrolle una forma ordenada de pensar para resolver problemas.
+
+::: {.callout-note title="Idea central del curso"}
+Al finalizar el curso, el estudiante debe ser capaz de plantear una solución a un problema mediante un algoritmo y, posteriormente, expresarlo como un programa ejecutado por un computador.
+:::
+
+## Objetivo general de la asignatura
+
+Resolver problemas básicos a través de la construcción de programas basados en algoritmos y un lenguaje de programación, generando acciones hacia la búsqueda de propuestas pertinentes.
+
+## Aprendizajes esperados
+
+Al finalizar la asignatura, el estudiante será capaz de:
+
+- Descomponer un problema en subproblemas para resolverlo de forma más sencilla.
+- Interpretar algoritmos y programas para resolver problemas básicos de programación.
+- Construir algoritmos y programas aplicados a problemas matemáticos sencillos.
+- Trabajar colaborativamente, cumpliendo un rol y responsabilizándose de él.
+- Comprender situaciones problemáticas que tienen un componente informático.
+
+::: {.callout-tip title="Consejo del Ingeniero"}
+Antes de escribir código, primero piense cómo resolvería el problema con lápiz y papel. Programar es más fácil cuando el algoritmo ya está claro.
+:::
+
+# ¿Qué es un algoritmo?
+
+Un **algoritmo** es un procedimiento detallado para resolver un problema mediante una serie de pasos ordenados, precisos y finitos.
+
+En términos sencillos:
+
+> Un algoritmo indica qué hacer, en qué orden hacerlo y cuándo terminar.
+
+## Elementos básicos de un algoritmo
+
+Todo algoritmo puede analizarse con la siguiente estructura:
+
+| Elemento | Pregunta que responde | Ejemplo |
+|---|---|---|
+| Entrada | ¿Qué datos necesito? | Dos números |
+| Proceso | ¿Qué operaciones realizo? | Sumar los números |
+| Salida | ¿Qué resultado entrego? | Resultado de la suma |
+
+::: {.callout-important title="Importante"}
+Un algoritmo debe llevarnos desde un **estado inicial** hasta un **estado final**. Si no sabemos dónde empieza o dónde termina, el algoritmo estará incompleto.
+:::
+
+## Ejemplo cotidiano
+
+Pensemos en preparar una taza de café.
+
+**Entrada**
+
+- Agua
+- Café
+- Azúcar
+- Taza
+
+**Proceso**
+
+1. Calentar el agua.
+2. Colocar café en la taza.
+3. Agregar agua caliente.
+4. Agregar azúcar si se desea.
+5. Mezclar.
+
+**Salida**
+
+- Una taza de café lista para tomar.
+
+Aunque este ejemplo parece simple, ya contiene los tres elementos fundamentales: entrada, proceso y salida.
+
+# ¿Cómo desarrollar un algoritmo?
+
+Para desarrollar algoritmos se necesita práctica, imaginación y orden.
+
+Algunas ideas clave son:
+
+- **Imaginación:** buscar una forma de resolver el problema.
+- **No reinventar la rueda:** aprovechar soluciones conocidas cuando sea posible.
+- **Dividir para conquistar:** partir un problema grande en problemas más pequeños.
+- **Practicar constantemente:** la lógica se fortalece con ejercicios.
+
+::: {.callout-tip title="Consejo del Ingeniero"}
+Cuando un problema parezca difícil, no intente resolverlo completo de una vez. Divídalo en partes pequeñas y resuelva una por una.
+:::
+
+# ¿Cómo se describe un algoritmo?
+
+Un algoritmo puede describirse de varias formas.
+
+| Forma | Descripción | Uso principal |
+|---|---|---|
+| Lenguaje natural | Explicación con palabras comunes | Primer análisis del problema |
+| Pseudocódigo | Instrucciones ordenadas parecidas a código | Diseño del algoritmo |
+| Diagrama de flujo | Representación gráfica del algoritmo | Visualizar decisiones y procesos |
+| Lenguaje de programación | Código ejecutable por la computadora | Implementación final |
+
+::: {.callout-warning title="Precisión"}
+Un algoritmo no puede ser ambiguo. Todos deben entender lo mismo: el docente, los estudiantes y, finalmente, el computador.
+:::
+
+# Variables: de neuronas a espacios de memoria
+
+Para entender las variables, imaginemos cómo resolveríamos mentalmente una suma de dos números.
+
+Primero pedimos el primer valor y lo recordamos. Luego pedimos el segundo valor y también lo recordamos. Después sumamos ambos valores y guardamos el resultado.
+
+En nuestro cerebro podríamos imaginar tres espacios:
+
+- Espacio 1: primer número.
+- Espacio 2: segundo número.
+- Espacio 3: resultado.
+
+En programación, esos espacios se llaman **variables**.
+
+::: {.callout-note title="Definición"}
+Una variable es un espacio de memoria que permite almacenar un dato para utilizarlo durante la ejecución de un algoritmo o programa.
+:::
+
+## Algoritmo para sumar dos números
+
+**Problema:** Crear un algoritmo que sume dos números ingresados por el usuario.
+
+**Entrada**
+
+- Primer número.
+- Segundo número.
+
+**Proceso**
+
+- Sumar ambos números.
+
+**Salida**
+
+- Resultado de la suma.
+
+## Pseudocódigo
+
+```text
+Algoritmo SumarDosNumeros
+Variables
+    Entero var1, var2, var3
+Inicio
+    Escribir "Ingrese el primer valor"
+    Leer var1
+
+    Escribir "Ingrese el segundo valor"
+    Leer var2
+
+    var3 = var1 + var2
+
+    Escribir "El resultado es: ", var3
+Fin
+```
+
+## Explicación paso a paso
+
+| Paso | Acción | Resultado |
+|---|---|---|
+| 1 | Definir variables | var1, var2, var3 existen en memoria |
+| 2 | Leer primer valor | var1 almacena el primer número |
+| 3 | Leer segundo valor | var2 almacena el segundo número |
+| 4 | Sumar | var3 almacena var1 + var2 |
+| 5 | Mostrar resultado | Se imprime var3 |
+
+# Ejercicio guiado: multiplicar tres números
+
+**Problema:** Crear un algoritmo que multiplique tres números ingresados por teclado.
+
+## Análisis
+
+**Entrada**
+
+- Primer número.
+- Segundo número.
+- Tercer número.
+
+**Proceso**
+
+- Multiplicar los tres valores.
+
+**Salida**
+
+- Resultado de la multiplicación.
+
+## Pseudocódigo
+
+```text
+Algoritmo MultiplicarTresNumeros
+Variables
+    Entero var1, var2, var3, var4
+Inicio
+    Escribir "Ingrese el primer valor"
+    Leer var1
+
+    Escribir "Ingrese el segundo valor"
+    Leer var2
+
+    Escribir "Ingrese el tercer valor"
+    Leer var3
+
+    var4 = var1 * var2 * var3
+
+    Escribir "El resultado es: ", var4
+Fin
+```
+
+::: {.callout-tip title="Observe"}
+Para multiplicar tres números necesitamos cuatro variables: tres para guardar las entradas y una para guardar el resultado.
+:::
+
+# Diagramas de flujo
+
+Un **diagrama de flujo** es una representación gráfica de la lógica de un algoritmo.
+
+Permite observar el orden de las instrucciones, las entradas, los procesos, las salidas y las decisiones.
+
+## Nomenclatura básica
+
+| Símbolo | Nombre | Significado |
+|:---:|---|---|
+| ◯ | Óvalo | Inicio o fin del algoritmo |
+| ▱ | Paralelogramo | Entrada o salida de datos |
+| ▭ | Rectángulo | Proceso u operación |
+| ◇ | Rombo | Decisión o bifurcación |
+| ↓ / → | Flechas | Dirección del flujo |
+| ● | Círculo pequeño | Conector |
+
+::: {.callout-note title="Nota para el docente"}
+En el PDF se utilizan símbolos simples para que el documento sea liviano y fácil de renderizar. En clase, estos mismos símbolos se explican con dibujos más grandes en la pizarra o en diagramas de flujo.
+:::
+
+## Ejemplo gráfico del flujo para sumar dos números
+
+```{mermaid}
+flowchart TD
+    A([Inicio]) --> B[Definir var1, var2, var3]
+    B --> C[/Leer var1/]
+    C --> D[/Leer var2/]
+    D --> E[var3 = var1 + var2]
+    E --> F[/Mostrar var3/]
+    F --> G([Fin])
+```
+
+## Ejemplo textual del flujo para sumar dos números
+
+```text
+Inicio
+  ↓
+Definir var1, var2, var3
+  ↓
+Leer var1
+  ↓
+Leer var2
+  ↓
+var3 = var1 + var2
+  ↓
+Mostrar var3
+  ↓
+Fin
+```
+
+::: {.callout-note title="Para la clase"}
+Primero puede mostrarse el diagrama gráfico y luego el flujo textual. La idea es que el estudiante relacione cada símbolo con una acción concreta del algoritmo.
+:::
+
+# Bifurcaciones y decisiones
+
+Una **bifurcación** permite que el algoritmo tome caminos diferentes según una condición.
+
+Las condiciones siempre se evalúan como:
+
+- Verdadero.
+- Falso.
+
+## Ejemplo: mayor de edad
+
+**Problema:** Crear un algoritmo donde una persona ingrese su edad y se muestre si es mayor de edad.
+
+```text
+Algoritmo MayorDeEdad
+Variables
+    Entero edad
+Inicio
+    Escribir "Ingrese su edad"
+    Leer edad
+
+    Si edad >= 18 Entonces
+        Escribir "Es mayor de edad"
+    Sino
+        Escribir "Es menor de edad"
+    FinSi
+Fin
+```
+
+## Diagrama de flujo
+
+```{mermaid}
+flowchart TD
+    A([Inicio]) --> B[/Leer edad/]
+    B --> C{¿edad >= 18?}
+    C -- Verdadero --> D[/Mostrar "Es mayor de edad"/]
+    C -- Falso --> E[/Mostrar "Es menor de edad"/]
+    D --> F([Fin])
+    E --> F
+```
+
+## Flujo lógico
+
+```text
+Inicio
+  ↓
+Leer edad
+  ↓
+¿edad >= 18?
+  ├── Verdadero → Mostrar "Es mayor de edad"
+  └── Falso     → Mostrar "Es menor de edad"
+  ↓
+Fin
+```
+
+::: {.callout-important title="Idea clave"}
+En las bifurcaciones, el algoritmo no ejecuta todo. Ejecuta solamente el camino que corresponde al resultado de la condición.
+:::
+
+# Operadores
+
+Las condiciones se construyen utilizando operadores.
+
+En esta primera clase revisaremos tres grupos:
+
+- Operadores aritméticos.
+- Operadores relacionales.
+- Operadores lógicos.
+
+# Operadores aritméticos
+
+| Operador | Significado | Ejemplo | Resultado |
+|---|---|---:|---:|
+| `*` | Multiplicación | `5 * 2` | 10 |
+| `/` | División | `10 / 2` | 5 |
+| `+` | Suma | `4 + 3` | 7 |
+| `-` | Resta | `8 - 5` | 3 |
+| `%` | Módulo o residuo | `5 % 2` | 1 |
+
+## Módulo o residuo
+
+El operador `%` devuelve el residuo de una división entera.
+
+```text
+5 % 2 = 1
+4 % 2 = 0
+```
+
+::: {.callout-tip title="Uso frecuente"}
+El operador módulo se utiliza mucho para saber si un número es par o impar.
+
+Si `numero % 2 == 0`, entonces el número es par.
+:::
+
+# Operadores relacionales
+
+Los operadores relacionales comparan valores y devuelven un resultado lógico: verdadero o falso.
+
+| Operador | Significado | Ejemplo |
+|---|---|---|
+| `>` | Mayor que | `edad > 18` |
+| `<` | Menor que | `edad < 18` |
+| `>=` | Mayor o igual que | `edad >= 18` |
+| `<=` | Menor o igual que | `nota <= 60` |
+| `==` | Igual que | `a == b` |
+| `!=` | Diferente de | `a != b` |
+
+::: {.callout-warning title="Error común"}
+No es lo mismo `=` que `==`.
+
+- `=` se utiliza para asignar.
+- `==` se utiliza para comparar.
+:::
+
+# Operadores lógicos
+
+Los operadores lógicos permiten combinar condiciones.
+
+| Operador | Nombre | Significado práctico |
+|---|---|---|
+| `&&` | Y / AND | Exige que ambas condiciones sean verdaderas |
+| `||` | O / OR | Basta con que una condición sea verdadera |
+| `!` | NO / NOT | Invierte el valor lógico |
+
+## Operador Y: `&&`
+
+El operador `&&` es verdadero solamente cuando ambas condiciones son verdaderas.
+
+| A | B | A `&&` B |
+|---|---|---|
+| V | V | V |
+| V | F | F |
+| F | V | F |
+| F | F | F |
+
+::: {.callout-note title="Forma de recordarlo"}
+El operador `&&` es **exigente**: pide que todo se cumpla.
+:::
+
+## Operador O: `||`
+
+El operador `||` es verdadero cuando al menos una condición es verdadera.
+
+| A | B | A `||` B |
+|---|---|---|
+| V | V | V |
+| V | F | V |
+| F | V | V |
+| F | F | F |
+
+::: {.callout-note title="Forma de recordarlo"}
+El operador `||` es **flexible**: acepta que se cumpla una condición o la otra.
+:::
+
+## Operador NO: `!`
+
+El operador `!` invierte el valor lógico.
+
+| A | `!A` |
+|---|---|
+| V | F |
+| F | V |
+
+::: {.callout-note title="Forma de recordarlo"}
+El operador `!` voltea la respuesta: lo verdadero se vuelve falso y lo falso se vuelve verdadero.
+:::
+
+# Casos de análisis
+
+A continuación se presentan casos para practicar el análisis de expresiones lógicas.
+
+La idea no es memorizar la respuesta, sino resolver paso a paso.
+
+# Caso 1: operador `&&`
+
+Datos iniciales:
+
+```text
+var1 = 2
+var2 = 0
+var3 = 4
+```
+
+Operación:
+
+```text
+var4 = (var1 * var1) / var3
+```
+
+Sustituyendo valores:
+
+```text
+var4 = (2 * 2) / 4
+var4 = 4 / 4
+var4 = 1
+```
+
+Condición:
+
+```text
+var4 >= 1 && var1 != 0
+```
+
+Análisis:
+
+```text
+var4 >= 1  →  1 >= 1  → Verdadero
+var1 != 0  →  2 != 0  → Verdadero
+```
+
+Resultado final:
+
+```text
+Verdadero && Verdadero = Verdadero
+```
+
+::: {.callout-tip title="Conclusión"}
+En este caso, el resultado de la condición es **Verdadero**.
+:::
+
+# Caso 2: combinación de `||` y `&&`
+
+Datos iniciales:
+
+```text
+var1 = 2
+var2 = 0
+var3 = 4
+```
+
+Operación:
+
+```text
+var4 = var3 % var1
+```
+
+Sustituyendo valores:
+
+```text
+var4 = 4 % 2
+var4 = 0
+```
+
+Condición:
+
+```text
+(var4 != 0 || var2 > 0) && (var3 == 4)
+```
+
+Análisis:
+
+```text
+var4 != 0  →  0 != 0  → Falso
+var2 > 0   →  0 > 0   → Falso
+```
+
+Primera parte:
+
+```text
+Falso || Falso = Falso
+```
+
+Segunda parte:
+
+```text
+var3 == 4  →  4 == 4  → Verdadero
+```
+
+Resultado final:
+
+```text
+Falso && Verdadero = Falso
+```
+
+::: {.callout-tip title="Conclusión"}
+En este caso, el resultado de la condición es **Falso**.
+:::
+
+# Caso 3: operador `!`
+
+Datos iniciales:
+
+```text
+var1 = 2
+var4 = 1
+var3 = 4
+```
+
+Operación:
+
+```text
+var4 = var4 + var1
+```
+
+Sustituyendo valores:
+
+```text
+var4 = 1 + 2
+var4 = 3
+```
+
+Condición original:
+
+```text
+!(var1 && (var4 >= var1))
+```
+
+Para estudiantes que están iniciando, conviene escribirla de forma más explícita:
+
+```text
+!(var1 != 0 && (var4 >= var1))
+```
+
+Análisis:
+
+```text
+var1 != 0      →  2 != 0  → Verdadero
+var4 >= var1   →  3 >= 2  → Verdadero
+```
+
+Primera parte:
+
+```text
+Verdadero && Verdadero = Verdadero
+```
+
+Aplicando el operador NO:
+
+```text
+!Verdadero = Falso
+```
+
+::: {.callout-tip title="Conclusión"}
+En este caso, el resultado de la condición es **Falso**.
+:::
+
+::: {.callout-warning title="Nota de C++"}
+En C++:
+
+- `0` se interpreta como falso.
+- Cualquier valor distinto de `0` se interpreta como verdadero.
+
+Por eso una expresión como `if (var1)` puede funcionar, aunque para iniciar es mejor escribir condiciones explícitas como `var1 != 0`.
+:::
+
+# Prioridad de operadores
+
+Es importante notar que existen prioridades entre operadores.
+
+Por ejemplo, no siempre se evalúa de izquierda a derecha sin reglas. Por eso, cuando una expresión tenga varias operaciones, es recomendable usar paréntesis.
+
+::: {.callout-important title="Recomendación"}
+Use paréntesis cuando una condición combine varios operadores. Ayuda al computador y también ayuda a quien lee el algoritmo.
+:::
+
+Ejemplo más claro:
+
+```text
+(var4 != 0 || var2 > 0) && (var3 == 4)
+```
+
+Ejemplo menos claro:
+
+```text
+var4 != 0 || var2 > 0 && var3 == 4
+```
+
+# Introducción a ciclos
+
+Un **ciclo** es la repetición de un conjunto de instrucciones.
+
+El ciclo termina cuando se cumple una condición de finalización.
+
+## ¿Cuándo se aplican los ciclos?
+
+Los ciclos se aplican cuando queremos ejecutar un conjunto de instrucciones varias veces.
+
+Por ejemplo:
+
+- Sumar varios números.
+- Pedir datos de varios estudiantes.
+- Buscar el número mayor de una lista.
+- Repetir un menú hasta que el usuario decida salir.
+
+::: {.callout-note title="Idea clave"}
+Si una acción debe repetirse, probablemente necesitamos un ciclo.
+:::
+
+# Ejemplo: sumar N números
+
+**Problema:** Crear un algoritmo que sume `N` números ingresados por teclado.
+
+## Análisis
+
+**Entrada**
+
+- Cantidad de números a sumar: `N`.
+- Cada uno de los números.
+
+**Proceso**
+
+- Repetir la lectura de números.
+- Acumular la suma.
+
+**Salida**
+
+- Total de la suma.
+
+## Diagrama de flujo
+
+```{mermaid}
+flowchart TD
+    A([Inicio]) --> B[suma = 0<br/>contador = 1]
+    B --> C[/Leer N/]
+    C --> D{¿contador <= N?}
+    D -- Sí --> E[/Leer número/]
+    E --> F[suma = suma + número]
+    F --> G[contador = contador + 1]
+    G --> D
+    D -- No --> H[/Mostrar suma/]
+    H --> I([Fin])
+```
+
+## Pseudocódigo
+
+```text
+Algoritmo SumarNNumeros
+Variables
+    Entero N, contador, numero, suma
+Inicio
+    suma = 0
+    contador = 1
+
+    Escribir "Ingrese cuántos números desea sumar"
+    Leer N
+
+    Mientras contador <= N Hacer
+        Escribir "Ingrese un número"
+        Leer numero
+        suma = suma + numero
+        contador = contador + 1
+    FinMientras
+
+    Escribir "La suma total es: ", suma
+Fin
+```
+
+# Ejemplo en C++: sumar del 1 hasta N
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N, suma = 0, cont = 1;
+
+    cout << "Ingrese hasta qué número desea sumar: ";
+    cin >> N;
+
+    while (cont <= N) {
+        suma += cont;
+        cont++;
+    }
+
+    cout << "El resultado es: " << suma << endl;
+    return 0;
+}
+```
+
+::: {.callout-note title="Nota"}
+En C++, `endl` permite hacer un salto de línea. También puede usarse `"\n"`.
+:::
+
+# Ejemplo en C++: encontrar el mayor de N números
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N, var, mayor, cont = 1;
+
+    cout << "Ingrese cuántos números va a ingresar: ";
+    cin >> N;
+
+    cout << "Ingrese el valor 1: ";
+    cin >> var;
+    mayor = var;
+
+    while (cont < N) {
+        cout << "Ingrese el valor " << cont + 1 << ": ";
+        cin >> var;
+
+        if (var > mayor) {
+            mayor = var;
+        }
+
+        cont++;
+    }
+
+    cout << "El número mayor es: " << mayor << endl;
+
+    return 0;
+}
+```
+
+::: {.callout-tip title="Observe"}
+El primer número se guarda inicialmente como `mayor`. Luego, cada nuevo número se compara contra ese valor.
+:::
+
+# Programa de aplicación: ecuación de primer grado
+
+Resolver una ecuación de primer grado de la forma:
+
+```text
+a x + b = 0
+```
+
+La solución es:
+
+```text
+x = -b / a
+```
+
+Pero existe un caso especial:
+
+```text
+Si a = 0, la división no puede realizarse.
+```
+
+## Diagrama de flujo
+
+```{mermaid}
+flowchart TD
+    A([Inicio]) --> B[/Leer a, b/]
+    B --> C{¿a == 0?}
+    C -- Sí --> D[/Mostrar "Error"/]
+    C -- No --> E[x = -b / a]
+    E --> F[/Mostrar x/]
+    D --> G[/Mostrar "Fin programa"/]
+    F --> G
+    G --> H([Fin])
+```
+
+## Pseudocódigo
+
+```text
+Algoritmo EcuacionPrimerGrado
+Variables
+    Entero a, b, x
+Inicio
+    Escribir "Ingrese valores de a y b"
+    Leer a, b
+
+    Si a == 0 Entonces
+        Escribir "Error: no se puede dividir entre cero"
+    Sino
+        x = -b / a
+        Escribir "La solución es: ", x
+    FinSi
+
+    Escribir "Fin del programa"
+Fin
+```
+
+## Código en C++
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b, x;
+
+    cout << "Ingrese valores de EC (a y b): ";
+    cin >> a >> b;
+
+    if (a == 0) {
+        cout << "Error" << endl;
+    } else {
+        x = -b / a;
+        cout << "La solución es: " << x << endl;
+    }
+
+    cout << "Fin programa" << endl;
+    return 0;
+}
+```
+
+::: {.callout-warning title="Observación importante"}
+En este ejemplo `x` está declarada como entero. Más adelante puede mejorarse usando variables reales para obtener resultados decimales.
+:::
+
+# Ejercicios para resolver en clase
+
+## Ejercicio 1
+
+Cree un algoritmo que multiplique tres números ingresados por teclado y muestre el resultado.
+
+## Ejercicio 2
+
+Cree un algoritmo que divida dos números ingresados por teclado y muestre el resultado.
+
+Tome en cuenta que no se debe dividir entre cero.
+
+## Ejercicio 3
+
+Cree un algoritmo que permita sumar tres números ingresados por teclado y muestre el resultado.
+
+## Ejercicio 4
+
+Cree un algoritmo donde una persona ingrese su edad y muestre si es mayor de edad.
+
+## Ejercicio 5
+
+Cree un algoritmo que muestre en forma ordenada tres números enteros ingresados desde teclado, de mayor a menor.
+
+## Ejercicio 6
+
+Cree un algoritmo que permita sumar `N` números y muestre el resultado. El valor de `N` debe ser ingresado por teclado, al igual que los números que se sumarán.
+
+# Resumen de la clase
+
+En esta clase aprendimos que:
+
+- Un algoritmo es una secuencia finita, ordenada y precisa de pasos.
+- Todo algoritmo trabaja con entradas, procesos y salidas.
+- Las variables permiten almacenar datos en memoria.
+- El pseudocódigo permite expresar soluciones antes de programarlas.
+- Los diagramas de flujo ayudan a visualizar la lógica del algoritmo.
+- Las bifurcaciones permiten tomar decisiones.
+- Los operadores aritméticos, relacionales y lógicos permiten construir condiciones.
+- Los ciclos permiten repetir instrucciones.
+
+::: {.callout-tip title="Consejo final del Ingeniero"}
+Un buen programador no es quien escribe código más rápido, sino quien piensa mejor la solución antes de programarla.
+:::
+
+# Tarea sugerida
+
+Para reforzar la clase, resuelva los siguientes problemas en pseudocódigo y diagrama de flujo:
+
+1. Calcular el área de un rectángulo.
+2. Calcular el promedio de tres notas.
+3. Determinar si un número es par o impar.
+4. Determinar el mayor de dos números.
+5. Sumar los números del 1 hasta `N`.
+
+
+# Cierre
+
+**Algoritmos -- De la lógica a la programación**
+
+Material preparado para el curso de Algoritmos, Ingeniería en Sistemas, Universidad Mariano Gálvez.
+
+**Docente:** Ing. Jorge Luis García Chacón
+

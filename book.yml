@@ -1,0 +1,9 @@
+book:
+  id: "ALG"
+  titulo: "Algoritmos"
+  subtitulo: "De la lógica a la programación"
+  volumen: "I"
+  edicion: "2026.1"
+  semestre: "Segundo semestre"
+  autor: "Ing. Jorge Luis García Chacón"
+  institucion: "Universidad Mariano Gálvez de Guatemala"
