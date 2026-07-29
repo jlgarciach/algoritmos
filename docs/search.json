@@ -750,13 +750,173 @@
     ]
   },
   {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "",
+    "text": "6.1 Propósito del laboratorio\nEn este laboratorio repasaremos brevemente las estructuras que ya conocemos y construiremos un programa completo que combine decisiones, repetición y opciones de menú.\nAl finalizar, el estudiante podrá:",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#propósito-del-laboratorio",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#propósito-del-laboratorio",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "",
+    "text": "reconocer cuándo utilizar if, switch, while, for y do...while;\nconstruir ciclos for para repeticiones conocidas;\nrepresentar opciones mediante un tipo enumerado enum;\nintegrar un menú repetitivo con switch y do...while;\nvalidar depósitos y retiros en una simulación de cajero automático.\n\n\n\n\n\n\n\nNotaDuración total\n\n\n\n80 minutos. El propósito no es estudiar muchas estructuras nuevas, sino aprender a combinarlas en un programa claro y funcional.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#ruta-de-trabajo",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#ruta-de-trabajo",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.2 Ruta de trabajo",
+    "text": "6.2 Ruta de trabajo\n\n\n\nMomento\nActividad\nTiempo\n\n\n\n\n1\nRecordatorio de estructuras básicas\n10 min\n\n\n2\nCiclo for: explicación y ejercicios\n15 min\n\n\n3\nUso de enum\n10 min\n\n\n4\nConstrucción del cajero automático\n40 min\n\n\n5\nPrueba y cierre\n5 min",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#recordatorio-rápido",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#recordatorio-rápido",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.3 Recordatorio rápido",
+    "text": "6.3 Recordatorio rápido\nUn programa puede imaginarse como una persona que sigue instrucciones:\n\nuna secuencia indica qué hacer paso a paso;\nuna decisión permite escoger entre varios caminos;\nun ciclo permite repetir una actividad;\nun menú reúne varias operaciones y espera la selección del usuario.\n\n\n6.3.1 Estructura secuencial\nLas instrucciones se ejecutan en el mismo orden en que aparecen.\n#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    int numero1, numero2, suma;\n\n    cout &lt;&lt; \"Ingrese el primer numero: \";\n    cin &gt;&gt; numero1;\n\n    cout &lt;&lt; \"Ingrese el segundo numero: \";\n    cin &gt;&gt; numero2;\n\n    suma = numero1 + numero2;\n\n    cout &lt;&lt; \"La suma es: \" &lt;&lt; suma &lt;&lt; endl;\n\n    return 0;\n}\nAnalogía: preparar café implica seguir una secuencia: calentar agua, agregar café, servir y endulzar.\n\n\n6.3.2 Decisión con if\nif se utiliza cuando una acción depende de una condición.\nif (edad &gt;= 18) {\n    cout &lt;&lt; \"Es mayor de edad.\" &lt;&lt; endl;\n} else {\n    cout &lt;&lt; \"Es menor de edad.\" &lt;&lt; endl;\n}\nAnalogía: antes de salir, una persona observa el clima. Si está lloviendo, lleva paraguas; de lo contrario, sale sin él.\n\n\n6.3.3 Selección múltiple con switch\nswitch es útil cuando una variable puede representar varias opciones concretas.\nswitch (opcion) {\n    case 1:\n        cout &lt;&lt; \"Consultar saldo\" &lt;&lt; endl;\n        break;\n\n    case 2:\n        cout &lt;&lt; \"Depositar\" &lt;&lt; endl;\n        break;\n\n    case 3:\n        cout &lt;&lt; \"Retirar\" &lt;&lt; endl;\n        break;\n\n    default:\n        cout &lt;&lt; \"Opcion no valida\" &lt;&lt; endl;\n}\n\n\n\n\n\n\nAdvertencia¿Para qué sirve break?\n\n\n\nbreak detiene el switch después de ejecutar el caso seleccionado. Sin él, el programa puede continuar ejecutando los casos siguientes.\n\n\n\n\n6.3.4 Repetición con while\nwhile repite un bloque mientras una condición sea verdadera.\nint contador = 1;\n\nwhile (contador &lt;= 5) {\n    cout &lt;&lt; contador &lt;&lt; endl;\n    contador++;\n}\nAnalogía: mientras todavía haya platos sucios, se continúa lavando.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#ciclo-for",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#ciclo-for",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.4 Ciclo for",
+    "text": "6.4 Ciclo for\nEl ciclo for se utiliza principalmente cuando conocemos cuántas veces debe repetirse una acción.\nfor (inicializacion; condicion; actualizacion) {\n    // instrucciones que se repiten\n}\nEn el siguiente ejemplo:\nfor (int i = 1; i &lt;= 5; i++) {\n    cout &lt;&lt; i &lt;&lt; endl;\n}\nocurre lo siguiente:\n\nint i = 1 crea e inicializa el contador.\ni &lt;= 5 determina si el ciclo continúa.\ni++ aumenta el contador después de cada repetición.\n\nAnalogía: recorrer cinco escritorios para entregar una hoja. Se conoce desde el inicio cuántos escritorios deben visitarse.\n\n6.4.1 Ejercicio 1: mostrar los números del 1 al 10\nComplete y ejecute el siguiente programa:\n#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    for (int i = 1; i &lt;= 10; i++) {\n        cout &lt;&lt; i &lt;&lt; \" \";\n    }\n\n    cout &lt;&lt; endl;\n    return 0;\n}\n\n\n6.4.2 Ejercicio 2: tabla de multiplicar\nConstruya un programa que solicite un número y muestre su tabla de multiplicar del 1 al 10.\n#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    int numero;\n\n    cout &lt;&lt; \"Ingrese un numero: \";\n    cin &gt;&gt; numero;\n\n    for (int i = 1; i &lt;= 10; i++) {\n        cout &lt;&lt; numero &lt;&lt; \" x \" &lt;&lt; i\n             &lt;&lt; \" = \" &lt;&lt; numero * i &lt;&lt; endl;\n    }\n\n    return 0;\n}\n\n\n\n\n\n\nTipPregunta para el grupo\n\n\n\n¿Qué parte del ciclo habría que modificar para mostrar la tabla únicamente del 1 al 5?",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#uso-de-enum",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#uso-de-enum",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.5 Uso de enum",
+    "text": "6.5 Uso de enum\nUn enum permite asignar nombres claros a un conjunto de valores relacionados.\nenum Dia {\n    LUNES = 1,\n    MARTES,\n    MIERCOLES,\n    JUEVES,\n    VIERNES\n};\nInternamente, los valores continúan siendo números, pero el código resulta más fácil de leer.\nAnalogía: en lugar de identificar las luces de un semáforo como 0, 1 y 2, podemos llamarlas ROJO, AMARILLO y VERDE.\n#include &lt;iostream&gt;\nusing namespace std;\n\nenum EstadoSemaforo {\n    ROJO = 1,\n    AMARILLO,\n    VERDE\n};\n\nint main() {\n    int opcion;\n\n    cout &lt;&lt; \"1. Rojo\" &lt;&lt; endl;\n    cout &lt;&lt; \"2. Amarillo\" &lt;&lt; endl;\n    cout &lt;&lt; \"3. Verde\" &lt;&lt; endl;\n    cout &lt;&lt; \"Seleccione el estado: \";\n    cin &gt;&gt; opcion;\n\n    switch (opcion) {\n        case ROJO:\n            cout &lt;&lt; \"Detenerse.\" &lt;&lt; endl;\n            break;\n\n        case AMARILLO:\n            cout &lt;&lt; \"Prepararse para detenerse.\" &lt;&lt; endl;\n            break;\n\n        case VERDE:\n            cout &lt;&lt; \"Puede avanzar.\" &lt;&lt; endl;\n            break;\n\n        default:\n            cout &lt;&lt; \"Estado no valido.\" &lt;&lt; endl;\n    }\n\n    return 0;\n}\n\n6.5.1 Ventaja principal\nCompare estas dos expresiones:\nif (opcion == 3)\nif (opcion == VERDE)\nLa segunda comunica mejor la intención del programa.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#proyecto-del-laboratorio-cajero-automático",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#proyecto-del-laboratorio-cajero-automático",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.6 Proyecto del laboratorio: cajero automático",
+    "text": "6.6 Proyecto del laboratorio: cajero automático\n\n6.6.1 Situación\nUn cajero automático presenta un menú y espera que el usuario seleccione una operación. Después de consultar, depositar o retirar, el menú vuelve a mostrarse. El programa termina únicamente cuando se selecciona Salir.\n\n\n6.6.2 Operaciones requeridas\n\nConsultar saldo.\nDepositar dinero.\nRetirar dinero.\nSalir.\n\nEl saldo inicial será de Q1,000.00.\n\n\n6.6.3 Reglas\n\nLos depósitos deben ser mayores que cero.\nLos retiros deben ser mayores que cero.\nNo se puede retirar una cantidad superior al saldo disponible.\nEl menú debe repetirse hasta seleccionar la opción de salida.\nLas opciones se representarán mediante enum.\nEl menú se controlará con switch.\nLa repetición se realizará con do...while.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#por-qué-utilizar-do...while",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#por-qué-utilizar-do...while",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.7 4.1 ¿Por qué utilizar do...while?",
+    "text": "6.7 4.1 ¿Por qué utilizar do...while?\nEl cajero debe mostrar el menú por lo menos una vez. Por ello, do...while es apropiado: primero ejecuta las instrucciones y luego evalúa si debe repetirlas.\ndo {\n    // instrucciones\n} while (condicion);\nAnalogía: al llegar a un cajero, primero se observa el menú. Después de realizar una operación se decide si se hará otra o si se terminará.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#diseño-previo",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#diseño-previo",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.8 Diseño previo",
+    "text": "6.8 Diseño previo\nAntes de programar, identifique las partes principales:\nInicio\n  Definir saldo inicial\n  Definir las opciones del menu\n\n  Hacer\n    Mostrar menu\n    Leer opcion\n\n    Segun la opcion\n      Consultar saldo\n      Depositar\n      Retirar\n      Salir\n      Informar opcion invalida\n  Mientras la opcion no sea Salir\nFin",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#diagrama-de-flujo",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#diagrama-de-flujo",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.9 Diagrama de flujo",
+    "text": "6.9 Diagrama de flujo\n\n\n\nDiagrama de flujo del cajero automático",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#definición-de-las-opciones-con-enum",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#definición-de-las-opciones-con-enum",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.10 Definición de las opciones con enum",
+    "text": "6.10 Definición de las opciones con enum\nenum OpcionCajero {\n    CONSULTAR_SALDO = 1,\n    DEPOSITAR,\n    RETIRAR,\n    SALIR\n};\nComo el primer valor es 1, los siguientes toman automáticamente los valores 2, 3 y 4.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#construcción-paso-a-paso",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#construcción-paso-a-paso",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.11 Construcción paso a paso",
+    "text": "6.11 Construcción paso a paso\n\n6.11.1 Paso 1: variables principales\ndouble saldo = 1000.00;\ndouble monto;\nint opcion;\n\n\n6.11.2 Paso 2: mostrar el menú\ncout &lt;&lt; \"\\n===== CAJERO AUTOMATICO =====\" &lt;&lt; endl;\ncout &lt;&lt; \"1. Consultar saldo\" &lt;&lt; endl;\ncout &lt;&lt; \"2. Depositar dinero\" &lt;&lt; endl;\ncout &lt;&lt; \"3. Retirar dinero\" &lt;&lt; endl;\ncout &lt;&lt; \"4. Salir\" &lt;&lt; endl;\ncout &lt;&lt; \"Seleccione una opcion: \";\ncin &gt;&gt; opcion;\n\n\n6.11.3 Paso 3: procesar la opción\nswitch (opcion) {\n    case CONSULTAR_SALDO:\n        cout &lt;&lt; \"Saldo disponible: Q\" &lt;&lt; saldo &lt;&lt; endl;\n        break;\n\n    case DEPOSITAR:\n        // solicitar y validar el deposito\n        break;\n\n    case RETIRAR:\n        // solicitar y validar el retiro\n        break;\n\n    case SALIR:\n        cout &lt;&lt; \"Gracias por utilizar el cajero.\" &lt;&lt; endl;\n        break;\n\n    default:\n        cout &lt;&lt; \"Opcion no valida.\" &lt;&lt; endl;\n}\n\n\n6.11.4 Paso 4: repetir el menú\ndo {\n    // mostrar menu y procesar opcion\n} while (opcion != SALIR);",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#programa-completo",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#programa-completo",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.12 5. Programa completo",
+    "text": "6.12 5. Programa completo\n#include &lt;iostream&gt;\n#include &lt;iomanip&gt;\nusing namespace std;\n\nenum OpcionCajero {\n    CONSULTAR_SALDO = 1,\n    DEPOSITAR,\n    RETIRAR,\n    SALIR\n};\n\nint main() {\n    double saldo = 1000.00;\n    double monto;\n    int opcion;\n\n    cout &lt;&lt; fixed &lt;&lt; setprecision(2);\n\n    do {\n        cout &lt;&lt; \"\\n===== CAJERO AUTOMATICO =====\" &lt;&lt; endl;\n        cout &lt;&lt; \"1. Consultar saldo\" &lt;&lt; endl;\n        cout &lt;&lt; \"2. Depositar dinero\" &lt;&lt; endl;\n        cout &lt;&lt; \"3. Retirar dinero\" &lt;&lt; endl;\n        cout &lt;&lt; \"4. Salir\" &lt;&lt; endl;\n        cout &lt;&lt; \"Seleccione una opcion: \";\n        cin &gt;&gt; opcion;\n\n        switch (opcion) {\n            case CONSULTAR_SALDO:\n                cout &lt;&lt; \"Saldo disponible: Q\" &lt;&lt; saldo &lt;&lt; endl;\n                break;\n\n            case DEPOSITAR:\n                cout &lt;&lt; \"Ingrese el monto a depositar: Q\";\n                cin &gt;&gt; monto;\n\n                if (monto &gt; 0) {\n                    saldo = saldo + monto;\n                    cout &lt;&lt; \"Deposito realizado correctamente.\" &lt;&lt; endl;\n                    cout &lt;&lt; \"Nuevo saldo: Q\" &lt;&lt; saldo &lt;&lt; endl;\n                } else {\n                    cout &lt;&lt; \"El monto debe ser mayor que cero.\" &lt;&lt; endl;\n                }\n                break;\n\n            case RETIRAR:\n                cout &lt;&lt; \"Ingrese el monto a retirar: Q\";\n                cin &gt;&gt; monto;\n\n                if (monto &lt;= 0) {\n                    cout &lt;&lt; \"El monto debe ser mayor que cero.\" &lt;&lt; endl;\n                } else if (monto &gt; saldo) {\n                    cout &lt;&lt; \"Fondos insuficientes.\" &lt;&lt; endl;\n                } else {\n                    saldo = saldo - monto;\n                    cout &lt;&lt; \"Retiro realizado correctamente.\" &lt;&lt; endl;\n                    cout &lt;&lt; \"Nuevo saldo: Q\" &lt;&lt; saldo &lt;&lt; endl;\n                }\n                break;\n\n            case SALIR:\n                cout &lt;&lt; \"Gracias por utilizar el cajero automatico.\" &lt;&lt; endl;\n                break;\n\n            default:\n                cout &lt;&lt; \"Opcion no valida. Intente nuevamente.\" &lt;&lt; endl;\n        }\n\n    } while (opcion != SALIR);\n\n    return 0;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#pruebas-del-programa",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#pruebas-del-programa",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.13 Pruebas del programa",
+    "text": "6.13 Pruebas del programa\nAntes de considerar terminado el ejercicio, pruebe por lo menos los siguientes casos:\n\n\n\nPrueba\nAcción\nResultado esperado\n\n\n\n\n1\nConsultar al iniciar\nMostrar Q1,000.00\n\n\n2\nDepositar Q500.00\nNuevo saldo Q1,500.00\n\n\n3\nRetirar Q300.00\nNuevo saldo Q1,200.00\n\n\n4\nRetirar más que el saldo\nMostrar fondos insuficientes\n\n\n5\nDepositar un número negativo\nRechazar el monto\n\n\n6\nSeleccionar una opción inexistente\nMostrar opción no válida\n\n\n7\nSeleccionar Salir\nFinalizar el ciclo\n\n\n\n\n\n\n\n\n\nImportanteIdea clave\n\n\n\nUn programa no está terminado solamente porque compila. También debe probarse con datos correctos, incorrectos y casos límite.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#reto-opcional",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#reto-opcional",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.14 Reto opcional",
+    "text": "6.14 Reto opcional\nCuando el programa básico funcione, agregue una de las siguientes mejoras:\n\nsolicitar un PIN antes de mostrar el menú;\ncontar cuántas operaciones se realizaron;\nestablecer un retiro máximo por operación;\nmostrar un mensaje cuando el saldo sea menor que Q100.00.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/04-laboratorio-ciclos-enum-cajero.html#cierre",
+    "href": "capitulos/04-laboratorio-ciclos-enum-cajero.html#cierre",
+    "title": "6  Laboratorio No. 3: ciclos, enum y simulación de un cajero automático",
+    "section": "6.15 Cierre",
+    "text": "6.15 Cierre\nEn el cajero automático se combinaron varias estructuras:\n\nenum dio nombres a las opciones;\nswitch seleccionó la operación;\nif validó depósitos y retiros;\ndo...while mantuvo activo el menú;\nlas variables almacenaron el saldo y los montos.\n\nEl valor del ejercicio no está únicamente en hacer funcionar un cajero, sino en comprender cómo varias estructuras pequeñas pueden integrarse para resolver un problema completo.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Laboratorio No. 3: ciclos, `enum` y simulación de un cajero automático</span>"
+    ]
+  },
+  {
     "objectID": "capitulos/99_cierre.html",
     "href": "capitulos/99_cierre.html",
-    "title": "6  Cierre del capítulo",
+    "title": "7  Cierre del capítulo",
     "section": "",
-    "text": "6.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
+    "text": "7.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cierre del capítulo</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cierre del capítulo</span>"
     ]
   }
 ]

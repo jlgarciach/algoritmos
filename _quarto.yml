@@ -14,6 +14,7 @@ book:
     - capitulos/02_primeros_pasos_cpp.qmd
     - capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.qmd
     - capitulos/03_expresiones_logicas_estructuras_condicionales.qmd
+    - capitulos/04-laboratorio-ciclos-enum-cajero.qmd
     - capitulos/99_cierre.qmd
   page-footer:
     left: "Editorial Académica de Ingeniería en Sistemas"
