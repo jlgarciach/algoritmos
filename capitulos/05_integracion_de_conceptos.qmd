@@ -1,0 +1,327 @@
+---
+title: "Capítulo 5. Integración de conceptos: construyendo un programa completo"
+subtitle: "Caso de estudio: Sistema de Control de Parqueos"
+format:
+  html:
+    toc: true
+  pdf:
+    toc: true
+---
+
+# Introducción
+
+Este capítulo integra los conceptos estudiados hasta el momento para resolver un problema completo en C++.
+
+# Objetivos
+
+- Integrar variables, operadores y estructuras de control.
+- Analizar un problema antes de programar.
+- Diseñar una solución mediante pseudocódigo y Mermaid.
+
+# Caso de estudio
+
+## Sistema de Control de Parqueos
+
+# Análisis del problema
+
+| Entradas | Procesos | Salidas |
+|---|---|---|
+| Nombre | Determinar tarifa | Total |
+| Placa | Calcular | Resumen |
+| Tipo | Validar | Mensajes |
+| Horas | Operaciones | Información |
+
+# Variables
+
+| Variable | Tipo |
+|---|---|
+| nombreConductor | string |
+| placa | string |
+| tipoVehiculo | int |
+| horas | int |
+| tarifa | double |
+| totalPagar | double |
+
+# Pseudocódigo
+
+```text
+Inicio
+ Declarar variables
+ Leer datos
+ Determinar tarifa
+ Calcular total
+ Mostrar resultados
+Fin
+```
+
+# Diagrama: Sistema de control de parqueos
+
+```{mermaid}
+%%| fig-width: 6.2
+%%| fig-height: 8.4
+%%| fig-align: center
+
+flowchart TD
+A([Inicio])
+B[Declarar variables]
+C[/Leer nombre/]
+D[/Leer placa/]
+E[/Leer horas/]
+F[/Seleccionar tipo de vehículo/]
+G{Tipo de vehículo}
+H[Tarifa = Q10]
+I[Tarifa = Q15]
+J[Tarifa = Q25]
+K[Calcular total]
+L[/Mostrar resultados/]
+M([Fin])
+
+A-->B
+B-->C
+C-->D
+D-->E
+E-->F
+F-->G
+
+G--Moto-->H
+G--Carro-->I
+G--Camioneta-->J
+
+H-->K
+I-->K
+J-->K
+
+K-->L
+L-->M
+```
+
+# Paso 1
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+```
+
+# Paso 2
+
+```cpp
+//--------------------------------------------------
+// Enumeración de los tipos de vehículos
+//--------------------------------------------------
+
+enum TipoVehiculo
+{
+    MOTO = 1,
+    CARRO,
+    CAMIONETA
+};
+
+//--------------------------------------------------
+// Declaración de variables
+//--------------------------------------------------
+
+// En esta sección declaramos todas las variables que
+// utilizaremos durante el programa, aunque algunas
+// todavía no se empleen en los pasos siguientes.
+// Esto mejora la organización y facilita la lectura
+// del código.
+
+string nombreConductor;
+string placa;
+
+int tipoVehiculo;
+int horas;
+
+double tarifa = 0.0;
+double totalPagar = 0.0;
+```
+
+
+# Paso 3. Entrada
+
+```cpp
+cout<<"Nombre: ";
+getline(cin,nombreConductor);
+cout<<"Placa: ";
+getline(cin,placa);
+
+cout<<"Horas: ";
+cin>>horas;
+
+cout << "Tipo de vehículo" << endl;
+cout << "1. Moto" << endl;
+cout << "2. Carro" << endl;
+cout << "3. Camioneta" << endl;
+cout << "\nSeleccione una opción: ";
+cin >> tipoVehiculo;
+
+
+```
+
+# Paso 4. Tarifa
+
+```cpp
+switch(tipoVehiculo){
+case MOTO: tarifa=10; break;
+case CARRO: tarifa=15; break;
+case CAMIONETA: tarifa=25; break;
+default: tarifa=0;
+}
+```
+
+# Paso 5
+
+```cpp
+totalPagar=tarifa*horas;
+```
+
+# Paso 6
+
+```cpp
+cout<<"Total: Q"<<totalPagar<<endl;
+```
+
+# Reflexión
+
+- ¿Por qué `tarifa` es `double`?
+- ¿Qué hace `switch`?
+
+# Resumen
+
+| Tema | Aplicado |
+|---|:---:|
+| Variables | ✅ |
+| Operadores | ✅ |
+| switch | ✅ |
+| if | ⬜ |
+| while | ⬜ |
+| do...while | ⬜ |
+| for | ⬜ |
+
+
+# Paso 7. Mostrando los resultados
+
+Una vez calculado el total a pagar, es momento de presentar la información al usuario de forma clara y ordenada.
+
+```cpp
+//--------------------------------------------------
+// Mostrar resultados
+//--------------------------------------------------
+
+cout << "\n=========================================\n";
+cout << "      SISTEMA DE CONTROL DE PARQUEOS\n";
+cout << "=========================================\n\n";
+
+cout << "Conductor : " << nombreConductor << endl;
+cout << "Placa     : " << placa << endl;
+
+cout << "Tipo de vehículo" << endl;
+cout << "1. Moto" << endl;
+cout << "2. Carro" << endl;
+cout << "3. Camioneta" << endl;
+cout << "\nSeleccione una opción: ";
+cin >> tipoVehiculo;
+
+
+switch(tipoVehiculo)
+{
+    case MOTO: cout << "Moto"; break;
+    case CARRO: cout << "Carro"; break;
+    case CAMIONETA: cout << "Camioneta"; break;
+}
+
+cout << endl;
+cout << "Horas     : " << horas << endl;
+cout << "Tarifa    : Q" << tarifa << endl;
+cout << "-----------------------------------------" << endl;
+cout << "TOTAL A PAGAR : Q" << totalPagar << endl;
+```
+
+## Ejemplo de ejecución
+
+**Entrada**
+
+```text
+Nombre: Jorge García
+Placa: P123ABC
+Tipo de vehículo: 2
+Horas: 3
+```
+
+**Salida**
+
+```text
+=========================================
+      SISTEMA DE CONTROL DE PARQUEOS
+=========================================
+
+Conductor : Jorge García
+Placa     : P123ABC
+Vehículo  : Carro
+Horas     : 3
+Tarifa    : Q15
+
+-----------------------------------------
+TOTAL A PAGAR : Q45
+```
+
+## Reflexionemos
+
+- ¿Por qué es importante presentar la información de forma ordenada?
+- ¿Qué ventajas tiene mostrar el nombre del vehículo en lugar del número seleccionado?
+- ¿Qué parte del programa realiza el cálculo y cuál solamente muestra información?
+
+# Paso 8. Analizando el programa
+
+| Concepto | ¿Dónde aparece? |
+|-----------|-----------------|
+| Variables | Declaración de variables |
+| Operadores | `tarifa * horas` |
+| `switch` | Selección de la tarifa |
+| `cout` | Presentación de resultados |
+
+> **Hasta este punto ya tenemos un programa completamente funcional.**
+
+# Paso 8. ¿Cómo podemos mejorarlo?
+
+Nuestro programa funciona correctamente, pero como ocurre en el desarrollo de software real, siempre podemos incorporar nuevas características.
+
+Cada mejora será la oportunidad perfecta para recordar una estructura de control ya estudiada.
+
+| Necesidad del programa | Concepto que utilizaremos |
+|-------------------------|---------------------------|
+| Validar las horas ingresadas | `if` |
+| Clasificar el tiempo de permanencia | `if...else` |
+| Aplicar descuentos | `if...else if` |
+| Registrar varios vehículos | `while` |
+| Mostrar un menú principal | `do...while` |
+| Mostrar los espacios disponibles | `for` |
+
+## Lo que construiremos a continuación
+
+En la siguiente versión del programa incorporaremos:
+
+1. Validación de datos.
+2. Descuentos según el tiempo de permanencia.
+3. Registro de varios vehículos.
+4. Menú principal.
+5. Visualización de espacios del parqueo.
+
+::: {.callout-tip}
+## Recuerda
+
+Un buen programador no memoriza estructuras de control.
+
+Las utiliza para resolver problemas reales.
+:::
+
+## Preparándonos para la siguiente clase
+
+En la próxima sesión reorganizaremos este mismo programa utilizando:
+
+- Funciones
+- Procedimientos
+- Parámetros
+
+El objetivo será comprobar cómo un programa que ya funciona puede organizarse de una manera más profesional.
