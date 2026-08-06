@@ -910,13 +910,243 @@
     ]
   },
   {
+    "objectID": "capitulos/05_integracion_de_conceptos.html",
+    "href": "capitulos/05_integracion_de_conceptos.html",
+    "title": "7  Capítulo 5. Integración de conceptos: construyendo un programa completo",
+    "section": "",
+    "text": "8 Introducción\nEste capítulo integra los conceptos estudiados hasta el momento para resolver un problema completo en C++.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 5. Integración de conceptos: construyendo un programa completo</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05_integracion_de_conceptos.html#sistema-de-control-de-parqueos",
+    "href": "capitulos/05_integracion_de_conceptos.html#sistema-de-control-de-parqueos",
+    "title": "7  Capítulo 5. Integración de conceptos: construyendo un programa completo",
+    "section": "10.1 Sistema de Control de Parqueos",
+    "text": "10.1 Sistema de Control de Parqueos",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 5. Integración de conceptos: construyendo un programa completo</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05_integracion_de_conceptos.html#ejemplo-de-ejecución",
+    "href": "capitulos/05_integracion_de_conceptos.html#ejemplo-de-ejecución",
+    "title": "7  Capítulo 5. Integración de conceptos: construyendo un programa completo",
+    "section": "23.1 Ejemplo de ejecución",
+    "text": "23.1 Ejemplo de ejecución\nEntrada\nNombre: Jorge García\nPlaca: P123ABC\nTipo de vehículo: 2\nHoras: 3\nSalida\n=========================================\n      SISTEMA DE CONTROL DE PARQUEOS\n=========================================\n\nConductor : Jorge García\nPlaca     : P123ABC\nVehículo  : Carro\nHoras     : 3\nTarifa    : Q15\n\n-----------------------------------------\nTOTAL A PAGAR : Q45",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 5. Integración de conceptos: construyendo un programa completo</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05_integracion_de_conceptos.html#reflexionemos",
+    "href": "capitulos/05_integracion_de_conceptos.html#reflexionemos",
+    "title": "7  Capítulo 5. Integración de conceptos: construyendo un programa completo",
+    "section": "23.2 Reflexionemos",
+    "text": "23.2 Reflexionemos\n\n¿Por qué es importante presentar la información de forma ordenada?\n¿Qué ventajas tiene mostrar el nombre del vehículo en lugar del número seleccionado?\n¿Qué parte del programa realiza el cálculo y cuál solamente muestra información?",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 5. Integración de conceptos: construyendo un programa completo</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05_integracion_de_conceptos.html#lo-que-construiremos-a-continuación",
+    "href": "capitulos/05_integracion_de_conceptos.html#lo-que-construiremos-a-continuación",
+    "title": "7  Capítulo 5. Integración de conceptos: construyendo un programa completo",
+    "section": "25.1 Lo que construiremos a continuación",
+    "text": "25.1 Lo que construiremos a continuación\nEn la siguiente versión del programa incorporaremos:\n\nValidación de datos.\nDescuentos según el tiempo de permanencia.\nRegistro de varios vehículos.\nMenú principal.\nVisualización de espacios del parqueo.\n\n\n\n\n\n\n\nTipRecuerda\n\n\n\nUn buen programador no memoriza estructuras de control.\nLas utiliza para resolver problemas reales.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 5. Integración de conceptos: construyendo un programa completo</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/05_integracion_de_conceptos.html#preparándonos-para-la-siguiente-clase",
+    "href": "capitulos/05_integracion_de_conceptos.html#preparándonos-para-la-siguiente-clase",
+    "title": "7  Capítulo 5. Integración de conceptos: construyendo un programa completo",
+    "section": "25.2 Preparándonos para la siguiente clase",
+    "text": "25.2 Preparándonos para la siguiente clase\nEn la próxima sesión reorganizaremos este mismo programa utilizando:\n\nFunciones\nProcedimientos\nParámetros\n\nEl objetivo será comprobar cómo un programa que ya funciona puede organizarse de una manera más profesional.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 5. Integración de conceptos: construyendo un programa completo</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "",
+    "text": "8.1 Caso de estudio",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#caso-de-estudio",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#caso-de-estudio",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "",
+    "text": "8.1.1 Evolucionando el Sistema de Control de Parqueos",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#objetivo",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#objetivo",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "20.1 Objetivo",
+    "text": "20.1 Objetivo\nCrear un procedimiento que sea el único responsable de mostrar el encabezado del sistema.\n\n\n\n\n\n\nTipPiensa\n\n\n\nSi mañana deseamos cambiar el nombre del sistema o mejorar el diseño del encabezado, ¿en cuántos lugares tendríamos que modificar el programa?\n\n\nDespués de crear el procedimiento, elimina ese código del main() y reemplázalo por una única llamada al procedimiento.\nAnaliza el resultado.\nEl programa continúa funcionando exactamente igual.\nSin embargo, el main() ya es más corto y fácil de leer.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#objetivo-1",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#objetivo-1",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "21.1 Objetivo",
+    "text": "21.1 Objetivo\nCrear un procedimiento encargado de solicitar toda la información al usuario.\nEste procedimiento será responsable de:\n\nLeer el nombre del cliente.\nLeer el tipo de vehículo.\nLeer la cantidad de horas.\n\nUna vez terminado, el main() únicamente deberá llamar al procedimiento.\nObserva cómo comienza a desaparecer el código repetitivo del programa principal.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#objetivo-2",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#objetivo-2",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "22.1 Objetivo",
+    "text": "22.1 Objetivo\nCrear una función que reciba el tipo de vehículo y devuelva la tarifa correspondiente.\nEl programa principal ya no necesitará conocer cómo se calcula la tarifa.\nÚnicamente solicitará el resultado.\n\n\n\n\n\n\nNotaImportante\n\n\n\nUna buena función oculta los detalles del cálculo.\nEl programa principal solamente utiliza el resultado obtenido.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#antes",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#antes",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "36.1 Antes",
+    "text": "36.1 Antes\nmain()\n ├─ Leer nombre\n ├─ Leer placa\n ├─ Leer horas\n ├─ Mostrar menú\n ├─ Leer tipo de vehículo\n ...",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#después",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#después",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "36.2 Después",
+    "text": "36.2 Después\nmain()\n ├─ leerDatos()\n ...\nEl programa sigue haciendo exactamente lo mismo, pero ahora el nombre del procedimiento describe claramente la tarea que realiza.\n\n\n\n\n\n\nTipComprobación\n\n\n\nCompila nuevamente el programa.\nSi todo está correcto, el comportamiento será exactamente el mismo que antes.\n\n\n\n\n\n\n\n\nNota¿Qué aprendimos?\n\n\n\nUn procedimiento puede agrupar varias instrucciones relacionadas en una sola unidad lógica.\nEsto hace que el programa sea más fácil de leer y mantener.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#preparándonos-para-la-siguiente-modificación",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#preparándonos-para-la-siguiente-modificación",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "36.3 Preparándonos para la siguiente modificación",
+    "text": "36.3 Preparándonos para la siguiente modificación\nEn la siguiente sección moveremos el switch encargado de determinar la tarifa hacia una función.\nSerá la primera vez que nuestro programa devolverá un valor utilizando return.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#analicemos-el-encabezado",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#analicemos-el-encabezado",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "39.1 Analicemos el encabezado",
+    "text": "39.1 Analicemos el encabezado\ndouble determinarTarifa(int tipo)\n\n\n\nElemento\nSignificado\n\n\n\n\ndouble\nLa función devolverá un valor decimal.\n\n\ndeterminarTarifa\nNombre de la función.\n\n\nint tipo\nParámetro que recibe el tipo de vehículo.\n\n\n\nA diferencia de un procedimiento, esta función devuelve un resultado mediante la instrucción return.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#antes-1",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#antes-1",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "42.1 Antes",
+    "text": "42.1 Antes\nmain()\n ├─ switch(...)\n ├─ case MOTO\n ├─ case CARRO\n ├─ case CAMIONETA",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#después-1",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#después-1",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "42.2 Después",
+    "text": "42.2 Después\nmain()\n ├─ tarifa = determinarTarifa(tipoVehiculo);\nAhora el programa principal ya no necesita conocer cómo se calcula la tarifa.\nEsa responsabilidad quedó encapsulada dentro de la función.\n\n\n\n\n\n\nTipComprobación\n\n\n\nCompila y ejecuta nuevamente el programa.\nEl resultado debe ser exactamente el mismo que en las modificaciones anteriores.\n\n\n\n\n\n\n\n\nNota¿Qué aprendimos?\n\n\n\nUna función permite ocultar los detalles de un cálculo.\nEl programa principal únicamente solicita el resultado y continúa con la siguiente tarea.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#preparándonos-para-la-siguiente-modificación-1",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#preparándonos-para-la-siguiente-modificación-1",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "42.3 Preparándonos para la siguiente modificación",
+    "text": "42.3 Preparándonos para la siguiente modificación\nEn la siguiente modificación construiremos la función calcularTotal().\nVerás que el main() comienza a parecer una lista de tareas de alto nivel.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#antes-2",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#antes-2",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "48.1 Antes",
+    "text": "48.1 Antes\nmain()\n ├─ tarifa = determinarTarifa(...)\n ├─ totalPagar = tarifa * horas\n ├─ mostrar resultados",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#después-2",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#después-2",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "48.2 Después",
+    "text": "48.2 Después\nmain()\n ├─ tarifa = determinarTarifa(...)\n ├─ totalPagar = calcularTotal(...)\n ├─ mostrar resultados\nAhora el programa principal ya no realiza cálculos directamente.\nÚnicamente coordina la ejecución de las funciones.\n\n\n\n\n\n\nTipComprobación\n\n\n\nCompila nuevamente el programa.\nLa salida debe ser exactamente igual que en las versiones anteriores.\n\n\n\n\n\n\n\n\nNota¿Qué aprendimos?\n\n\n\nCada función debe tener una única responsabilidad.\ndeterminarTarifa() determina la tarifa.\ncalcularTotal() calcula el total.\nSeparar responsabilidades hace que el programa sea más fácil de comprender y mantener.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#preparándonos-para-la-siguiente-modificación-2",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#preparándonos-para-la-siguiente-modificación-2",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "48.3 Preparándonos para la siguiente modificación",
+    "text": "48.3 Preparándonos para la siguiente modificación\nSolo nos queda un paso.\nMoveremos toda la presentación de resultados al procedimiento mostrarResultados().\nCuando terminemos, el main() quedará reducido a unas pocas líneas y describirá claramente el flujo del programa.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#antes-3",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#antes-3",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "54.1 Antes",
+    "text": "54.1 Antes\nmain()\n ├─ Leer datos\n ├─ Determinar tarifa\n ├─ Calcular total\n ├─ Mostrar encabezado\n ├─ Mostrar conductor\n ├─ Mostrar vehículo\n ├─ Mostrar horas\n ├─ Mostrar tarifa\n ├─ Mostrar total",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/06_procedimientos_funciones_parametros.html#después-3",
+    "href": "capitulos/06_procedimientos_funciones_parametros.html#después-3",
+    "title": "8  Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos",
+    "section": "54.2 Después",
+    "text": "54.2 Después\nmain()\n ├─ leerDatos()\n ├─ determinarTarifa()\n ├─ calcularTotal()\n ├─ mostrarResultados()\nObserva que el programa realiza exactamente las mismas tareas.\nLa diferencia es que ahora cada responsabilidad fue trasladada a un módulo independiente.\n\n\n\n\n\nflowchart TD\n\nA([Inicio]) --&gt; B[\"leerDatos()\"]\nB --&gt; C[\"determinarTarifa()\"]\nC --&gt; D[\"calcularTotal()\"]\nD --&gt; E[\"mostrarResultados()\"]\nE --&gt; F([Fin])",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span>"
+    ]
+  },
+  {
     "objectID": "capitulos/99_cierre.html",
     "href": "capitulos/99_cierre.html",
-    "title": "7  Cierre del capítulo",
+    "title": "9  Cierre del capítulo",
     "section": "",
-    "text": "7.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
+    "text": "9.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cierre del capítulo</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cierre del capítulo</span>"
     ]
   }
 ]

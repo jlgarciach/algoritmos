@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos – Algoritmos</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../capitulos/99_cierre.html" rel="next">
+<link href="../capitulos/05_integracion_de_conceptos.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-00cb48ef4f8381ff23467c959274e61b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-663c59e08f2ec96d6b2ddc79a12e8e5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/06_procedimientos_funciones_parametros.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Algoritmos</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Presentación del curso</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/02_primeros_pasos_cpp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Clase 2. Primeros pasos en C++</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Laboratorio 1. Desarrollo de una solución informática</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/03_expresiones_logicas_estructuras_condicionales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Capítulo 3. Expresiones lógicas y estructuras condicionales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/04-laboratorio-ciclos-enum-cajero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Laboratorio No.&nbsp;3: ciclos, <code>enum</code> y simulación de un cajero automático</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/05_integracion_de_conceptos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Capítulo 5. Integración de conceptos: construyendo un programa completo</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/06_procedimientos_funciones_parametros.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/99_cierre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cierre del capítulo</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#caso-de-estudio" id="toc-caso-de-estudio" class="nav-link active" data-scroll-target="#caso-de-estudio"><span class="header-section-number">8.1</span> Caso de estudio</a>
+  <ul class="collapse">
+  <li><a href="#evolucionando-el-sistema-de-control-de-parqueos" id="toc-evolucionando-el-sistema-de-control-de-parqueos" class="nav-link" data-scroll-target="#evolucionando-el-sistema-de-control-de-parqueos"><span class="header-section-number">8.1.1</span> Evolucionando el Sistema de Control de Parqueos</a></li>
+  </ul></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">9</span> Introducción</a></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos"><span class="header-section-number">10</span> Objetivos</a></li>
+  <li><a href="#por-qué-necesitamos-organizar-nuestros-programas" id="toc-por-qué-necesitamos-organizar-nuestros-programas" class="nav-link" data-scroll-target="#por-qué-necesitamos-organizar-nuestros-programas"><span class="header-section-number">11</span> ¿Por qué necesitamos organizar nuestros programas?</a></li>
+  <li><a href="#la-analogía-de-la-construcción-de-una-casa" id="toc-la-analogía-de-la-construcción-de-una-casa" class="nav-link" data-scroll-target="#la-analogía-de-la-construcción-de-una-casa"><span class="header-section-number">12</span> La analogía de la construcción de una casa</a></li>
+  <li><a href="#procedimientos-y-funciones" id="toc-procedimientos-y-funciones" class="nav-link" data-scroll-target="#procedimientos-y-funciones"><span class="header-section-number">13</span> Procedimientos y funciones</a></li>
+  <li><a href="#qué-es-un-procedimiento" id="toc-qué-es-un-procedimiento" class="nav-link" data-scroll-target="#qué-es-un-procedimiento"><span class="header-section-number">14</span> ¿Qué es un procedimiento?</a></li>
+  <li><a href="#qué-es-una-función" id="toc-qué-es-una-función" class="nav-link" data-scroll-target="#qué-es-una-función"><span class="header-section-number">15</span> ¿Qué es una función?</a></li>
+  <li><a href="#procedimiento-o-función" id="toc-procedimiento-o-función" class="nav-link" data-scroll-target="#procedimiento-o-función"><span class="header-section-number">16</span> Procedimiento o función</a></li>
+  <li><a href="#qué-son-los-parámetros" id="toc-qué-son-los-parámetros" class="nav-link" data-scroll-target="#qué-son-los-parámetros"><span class="header-section-number">17</span> ¿Qué son los parámetros?</a></li>
+  <li><a href="#la-analogía-de-la-casa" id="toc-la-analogía-de-la-casa" class="nav-link" data-scroll-target="#la-analogía-de-la-casa"><span class="header-section-number">18</span> La analogía de la casa</a></li>
+  <li><a href="#transformando-nuestro-programa" id="toc-transformando-nuestro-programa" class="nav-link" data-scroll-target="#transformando-nuestro-programa"><span class="header-section-number">19</span> Transformando nuestro programa</a></li>
+  <li><a href="#primera-mejora-mover-el-título-del-programa" id="toc-primera-mejora-mover-el-título-del-programa" class="nav-link" data-scroll-target="#primera-mejora-mover-el-título-del-programa"><span class="header-section-number">20</span> Primera mejora: mover el título del programa</a>
+  <ul class="collapse">
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link" data-scroll-target="#objetivo"><span class="header-section-number">20.1</span> Objetivo</a></li>
+  </ul></li>
+  <li><a href="#segunda-mejora-separar-la-lectura-de-datos" id="toc-segunda-mejora-separar-la-lectura-de-datos" class="nav-link" data-scroll-target="#segunda-mejora-separar-la-lectura-de-datos"><span class="header-section-number">21</span> Segunda mejora: separar la lectura de datos</a>
+  <ul class="collapse">
+  <li><a href="#objetivo-1" id="toc-objetivo-1" class="nav-link" data-scroll-target="#objetivo-1"><span class="header-section-number">21.1</span> Objetivo</a></li>
+  </ul></li>
+  <li><a href="#tercera-mejora-crear-una-función-para-determinar-la-tarifa" id="toc-tercera-mejora-crear-una-función-para-determinar-la-tarifa" class="nav-link" data-scroll-target="#tercera-mejora-crear-una-función-para-determinar-la-tarifa"><span class="header-section-number">22</span> Tercera mejora: crear una función para determinar la tarifa</a>
+  <ul class="collapse">
+  <li><a href="#objetivo-2" id="toc-objetivo-2" class="nav-link" data-scroll-target="#objetivo-2"><span class="header-section-number">22.1</span> Objetivo</a></li>
+  </ul></li>
+  <li><a href="#cuarta-mejora-crear-una-función-para-calcular-el-total" id="toc-cuarta-mejora-crear-una-función-para-calcular-el-total" class="nav-link" data-scroll-target="#cuarta-mejora-crear-una-función-para-calcular-el-total"><span class="header-section-number">23</span> Cuarta mejora: crear una función para calcular el total</a></li>
+  <li><a href="#quinta-mejora-crear-un-procedimiento-para-mostrar-el-reporte" id="toc-quinta-mejora-crear-un-procedimiento-para-mostrar-el-reporte" class="nav-link" data-scroll-target="#quinta-mejora-crear-un-procedimiento-para-mostrar-el-reporte"><span class="header-section-number">24</span> Quinta mejora: crear un procedimiento para mostrar el reporte</a></li>
+  <li><a href="#nuestro-nuevo-programa" id="toc-nuestro-nuevo-programa" class="nav-link" data-scroll-target="#nuestro-nuevo-programa"><span class="header-section-number">25</span> Nuestro nuevo programa</a></li>
+  <li><a href="#qué-ganamos-con-esta-organización" id="toc-qué-ganamos-con-esta-organización" class="nav-link" data-scroll-target="#qué-ganamos-con-esta-organización"><span class="header-section-number">26</span> ¿Qué ganamos con esta organización?</a></li>
+  <li><a href="#primera-modificación-crear-el-procedimiento-mostrartitulo" id="toc-primera-modificación-crear-el-procedimiento-mostrartitulo" class="nav-link" data-scroll-target="#primera-modificación-crear-el-procedimiento-mostrartitulo"><span class="header-section-number">27</span> Primera modificación: crear el procedimiento <code>mostrarTitulo()</code></a></li>
+  <li><a href="#identificamos-el-código-que-vamos-a-mover" id="toc-identificamos-el-código-que-vamos-a-mover" class="nav-link" data-scroll-target="#identificamos-el-código-que-vamos-a-mover"><span class="header-section-number">28</span> 1. Identificamos el código que vamos a mover</a></li>
+  <li><a href="#creamos-el-procedimiento" id="toc-creamos-el-procedimiento" class="nav-link" data-scroll-target="#creamos-el-procedimiento"><span class="header-section-number">29</span> 2. Creamos el procedimiento</a></li>
+  <li><a href="#modificamos-main" id="toc-modificamos-main" class="nav-link" data-scroll-target="#modificamos-main"><span class="header-section-number">30</span> 3. Modificamos <code>main()</code></a></li>
+  <li><a href="#código-después-de-la-primera-modificación" id="toc-código-después-de-la-primera-modificación" class="nav-link" data-scroll-target="#código-después-de-la-primera-modificación"><span class="header-section-number">31</span> 4. Código después de la primera modificación</a></li>
+  <li><a href="#segunda-modificación-crear-el-procedimiento-leerdatos" id="toc-segunda-modificación-crear-el-procedimiento-leerdatos" class="nav-link" data-scroll-target="#segunda-modificación-crear-el-procedimiento-leerdatos"><span class="header-section-number">32</span> Segunda modificación: crear el procedimiento <code>leerDatos()</code></a></li>
+  <li><a href="#identificamos-el-código-que-vamos-a-mover-1" id="toc-identificamos-el-código-que-vamos-a-mover-1" class="nav-link" data-scroll-target="#identificamos-el-código-que-vamos-a-mover-1"><span class="header-section-number">33</span> 1. Identificamos el código que vamos a mover</a></li>
+  <li><a href="#creamos-el-procedimiento-1" id="toc-creamos-el-procedimiento-1" class="nav-link" data-scroll-target="#creamos-el-procedimiento-1"><span class="header-section-number">34</span> 2. Creamos el procedimiento</a></li>
+  <li><a href="#modificamos-main-1" id="toc-modificamos-main-1" class="nav-link" data-scroll-target="#modificamos-main-1"><span class="header-section-number">35</span> 3. Modificamos <code>main()</code></a></li>
+  <li><a href="#qué-ganamos" id="toc-qué-ganamos" class="nav-link" data-scroll-target="#qué-ganamos"><span class="header-section-number">36</span> 4. ¿Qué ganamos?</a>
+  <ul class="collapse">
+  <li><a href="#antes" id="toc-antes" class="nav-link" data-scroll-target="#antes"><span class="header-section-number">36.1</span> Antes</a></li>
+  <li><a href="#después" id="toc-después" class="nav-link" data-scroll-target="#después"><span class="header-section-number">36.2</span> Después</a></li>
+  <li><a href="#preparándonos-para-la-siguiente-modificación" id="toc-preparándonos-para-la-siguiente-modificación" class="nav-link" data-scroll-target="#preparándonos-para-la-siguiente-modificación"><span class="header-section-number">36.3</span> Preparándonos para la siguiente modificación</a></li>
+  </ul></li>
+  <li><a href="#tercera-modificación-crear-la-función-determinartarifa" id="toc-tercera-modificación-crear-la-función-determinartarifa" class="nav-link" data-scroll-target="#tercera-modificación-crear-la-función-determinartarifa"><span class="header-section-number">37</span> Tercera modificación: crear la función <code>determinarTarifa()</code></a></li>
+  <li><a href="#identificamos-el-código-que-vamos-a-mover-2" id="toc-identificamos-el-código-que-vamos-a-mover-2" class="nav-link" data-scroll-target="#identificamos-el-código-que-vamos-a-mover-2"><span class="header-section-number">38</span> 1. Identificamos el código que vamos a mover</a></li>
+  <li><a href="#creamos-la-función" id="toc-creamos-la-función" class="nav-link" data-scroll-target="#creamos-la-función"><span class="header-section-number">39</span> 2. Creamos la función</a>
+  <ul class="collapse">
+  <li><a href="#analicemos-el-encabezado" id="toc-analicemos-el-encabezado" class="nav-link" data-scroll-target="#analicemos-el-encabezado"><span class="header-section-number">39.1</span> Analicemos el encabezado</a></li>
+  </ul></li>
+  <li><a href="#modificamos-main-2" id="toc-modificamos-main-2" class="nav-link" data-scroll-target="#modificamos-main-2"><span class="header-section-number">40</span> 3. Modificamos <code>main()</code></a></li>
+  <li><a href="#qué-sucede-internamente" id="toc-qué-sucede-internamente" class="nav-link" data-scroll-target="#qué-sucede-internamente"><span class="header-section-number">41</span> 4. ¿Qué sucede internamente?</a></li>
+  <li><a href="#qué-ganamos-1" id="toc-qué-ganamos-1" class="nav-link" data-scroll-target="#qué-ganamos-1"><span class="header-section-number">42</span> 5. ¿Qué ganamos?</a>
+  <ul class="collapse">
+  <li><a href="#antes-1" id="toc-antes-1" class="nav-link" data-scroll-target="#antes-1"><span class="header-section-number">42.1</span> Antes</a></li>
+  <li><a href="#después-1" id="toc-después-1" class="nav-link" data-scroll-target="#después-1"><span class="header-section-number">42.2</span> Después</a></li>
+  <li><a href="#preparándonos-para-la-siguiente-modificación-1" id="toc-preparándonos-para-la-siguiente-modificación-1" class="nav-link" data-scroll-target="#preparándonos-para-la-siguiente-modificación-1"><span class="header-section-number">42.3</span> Preparándonos para la siguiente modificación</a></li>
+  </ul></li>
+  <li><a href="#cuarta-modificación-crear-la-función-calculartotal" id="toc-cuarta-modificación-crear-la-función-calculartotal" class="nav-link" data-scroll-target="#cuarta-modificación-crear-la-función-calculartotal"><span class="header-section-number">43</span> Cuarta modificación: crear la función <code>calcularTotal()</code></a></li>
+  <li><a href="#identificamos-el-código-que-vamos-a-mover-3" id="toc-identificamos-el-código-que-vamos-a-mover-3" class="nav-link" data-scroll-target="#identificamos-el-código-que-vamos-a-mover-3"><span class="header-section-number">44</span> 1. Identificamos el código que vamos a mover</a></li>
+  <li><a href="#creamos-la-función-1" id="toc-creamos-la-función-1" class="nav-link" data-scroll-target="#creamos-la-función-1"><span class="header-section-number">45</span> 2. Creamos la función</a></li>
+  <li><a href="#modificamos-main-3" id="toc-modificamos-main-3" class="nav-link" data-scroll-target="#modificamos-main-3"><span class="header-section-number">46</span> 3. Modificamos <code>main()</code></a></li>
+  <li><a href="#qué-sucede-internamente-1" id="toc-qué-sucede-internamente-1" class="nav-link" data-scroll-target="#qué-sucede-internamente-1"><span class="header-section-number">47</span> 4. ¿Qué sucede internamente?</a></li>
+  <li><a href="#qué-ganamos-2" id="toc-qué-ganamos-2" class="nav-link" data-scroll-target="#qué-ganamos-2"><span class="header-section-number">48</span> 5. ¿Qué ganamos?</a>
+  <ul class="collapse">
+  <li><a href="#antes-2" id="toc-antes-2" class="nav-link" data-scroll-target="#antes-2"><span class="header-section-number">48.1</span> Antes</a></li>
+  <li><a href="#después-2" id="toc-después-2" class="nav-link" data-scroll-target="#después-2"><span class="header-section-number">48.2</span> Después</a></li>
+  <li><a href="#preparándonos-para-la-siguiente-modificación-2" id="toc-preparándonos-para-la-siguiente-modificación-2" class="nav-link" data-scroll-target="#preparándonos-para-la-siguiente-modificación-2"><span class="header-section-number">48.3</span> Preparándonos para la siguiente modificación</a></li>
+  </ul></li>
+  <li><a href="#quinta-modificación-crear-el-procedimiento-mostrarresultados" id="toc-quinta-modificación-crear-el-procedimiento-mostrarresultados" class="nav-link" data-scroll-target="#quinta-modificación-crear-el-procedimiento-mostrarresultados"><span class="header-section-number">49</span> Quinta modificación: crear el procedimiento <code>mostrarResultados()</code></a></li>
+  <li><a href="#identificamos-el-código-que-vamos-a-mover-4" id="toc-identificamos-el-código-que-vamos-a-mover-4" class="nav-link" data-scroll-target="#identificamos-el-código-que-vamos-a-mover-4"><span class="header-section-number">50</span> 1. Identificamos el código que vamos a mover</a></li>
+  <li><a href="#creamos-el-procedimiento-2" id="toc-creamos-el-procedimiento-2" class="nav-link" data-scroll-target="#creamos-el-procedimiento-2"><span class="header-section-number">51</span> 2. Creamos el procedimiento</a></li>
+  <li><a href="#modificamos-main-4" id="toc-modificamos-main-4" class="nav-link" data-scroll-target="#modificamos-main-4"><span class="header-section-number">52</span> 3. Modificamos <code>main()</code></a></li>
+  <li><a href="#nuestro-nuevo-main" id="toc-nuestro-nuevo-main" class="nav-link" data-scroll-target="#nuestro-nuevo-main"><span class="header-section-number">53</span> 4. Nuestro nuevo <code>main()</code></a></li>
+  <li><a href="#qué-cambió-1" id="toc-qué-cambió-1" class="nav-link" data-scroll-target="#qué-cambió-1"><span class="header-section-number">54</span> 5. ¿Qué cambió?</a>
+  <ul class="collapse">
+  <li><a href="#antes-3" id="toc-antes-3" class="nav-link" data-scroll-target="#antes-3"><span class="header-section-number">54.1</span> Antes</a></li>
+  <li><a href="#después-3" id="toc-después-3" class="nav-link" data-scroll-target="#después-3"><span class="header-section-number">54.2</span> Después</a></li>
+  </ul></li>
+  <li><a href="#comprobación-final" id="toc-comprobación-final" class="nav-link" data-scroll-target="#comprobación-final"><span class="header-section-number">55</span> Comprobación final</a></li>
+  <li><a href="#lo-que-aprendimos" id="toc-lo-que-aprendimos" class="nav-link" data-scroll-target="#lo-que-aprendimos"><span class="header-section-number">56</span> Lo que aprendimos</a></li>
+  <li><a href="#preparándonos-para-el-siguiente-capítulo" id="toc-preparándonos-para-el-siguiente-capítulo" class="nav-link" data-scroll-target="#preparándonos-para-el-siguiente-capítulo"><span class="header-section-number">57</span> Preparándonos para el siguiente capítulo</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="caso-de-estudio" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="caso-de-estudio"><span class="header-section-number">8.1</span> Caso de estudio</h2>
+<section id="evolucionando-el-sistema-de-control-de-parqueos" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="evolucionando-el-sistema-de-control-de-parqueos"><span class="header-section-number">8.1.1</span> Evolucionando el Sistema de Control de Parqueos</h3>
+</section>
+</section>
+<section id="introducción" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Introducción</h1>
+<p>En el capítulo anterior desarrollamos un programa completo para calcular el cobro de un parqueo. El programa resolvía correctamente el problema planteado y nos permitió integrar variables, operadores y estructuras de control.</p>
+<p>Ahora el programa funciona, pero ha crecido. Cuando un programa aumenta de tamaño también aumenta la dificultad para leerlo, comprenderlo y modificarlo.</p>
+<p>En el desarrollo profesional del software es poco común escribir todo dentro de <code>main()</code>. En su lugar, el programa se divide en pequeños módulos donde cada uno realiza una única responsabilidad.</p>
+</section>
+<section id="objetivos" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Objetivos</h1>
+<ul>
+<li>Comprender por qué organizamos un programa.</li>
+<li>Diferenciar funciones y procedimientos.</li>
+<li>Comprender el uso de parámetros.</li>
+<li>Reorganizar el Sistema de Control de Parqueos.</li>
+</ul>
+</section>
+<section id="por-qué-necesitamos-organizar-nuestros-programas" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> ¿Por qué necesitamos organizar nuestros programas?</h1>
+<p>Antes de escribir una sola línea de código, observa nuevamente el programa de la clase anterior.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Pregunta para discutir
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>¿Les parece fácil leer un programa donde todo está escrito dentro del <code>main()</code>?</p>
+</div>
+</div>
+<p>Permite que los estudiantes expresen sus ideas y luego introduce el concepto de modularidad.</p>
+</section>
+<section id="la-analogía-de-la-construcción-de-una-casa" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> La analogía de la construcción de una casa</h1>
+<p>Una casa no es construida por una sola persona.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Profesional</th>
+<th>Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Arquitecto</td>
+<td>Diseñar la casa</td>
+</tr>
+<tr class="even">
+<td>Albañil</td>
+<td>Construir la estructura</td>
+</tr>
+<tr class="odd">
+<td>Electricista</td>
+<td>Instalar el sistema eléctrico</td>
+</tr>
+<tr class="even">
+<td>Plomero</td>
+<td>Instalar las tuberías</td>
+</tr>
+<tr class="odd">
+<td>Pintor</td>
+<td>Realizar el acabado final</td>
+</tr>
+</tbody>
+</table>
+<p>Cada uno tiene una única responsabilidad.</p>
+<p>Un programa bien diseñado funciona exactamente igual: cada módulo realiza una tarea específica.</p>
+</section>
+<section id="procedimientos-y-funciones" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Procedimientos y funciones</h1>
+</section>
+<section id="qué-es-un-procedimiento" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> ¿Qué es un procedimiento?</h1>
+<p>Un procedimiento es un bloque de código que realiza una tarea específica y <strong>no devuelve un valor</strong>.</p>
+<p>Las siguientes tareas de nuestro sistema pueden convertirse en procedimientos:</p>
+<ul>
+<li>Mostrar el título.</li>
+<li>Leer información.</li>
+<li>Mostrar resultados.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Recuerda
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un procedimiento ejecuta acciones.</p>
+</div>
+</div>
+</section>
+<section id="qué-es-una-función" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> ¿Qué es una función?</h1>
+<p>Algunas tareas necesitan calcular un resultado.</p>
+<p>Por ejemplo:</p>
+<ul>
+<li>Determinar la tarifa.</li>
+<li>Calcular el total a pagar.</li>
+</ul>
+<p>En estos casos utilizaremos una función.</p>
+<blockquote class="blockquote">
+<p>Una función realiza una tarea específica y devuelve un valor al programa que la llamó.</p>
+</blockquote>
+</section>
+<section id="procedimiento-o-función" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Procedimiento o función</h1>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th style="text-align: center;">Procedimiento</th>
+<th style="text-align: center;">Función</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Realiza una tarea</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr class="even">
+<td>Devuelve un valor</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr class="odd">
+<td>Utiliza <code>return</code></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Reflexiona
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>¿Cuáles tareas del Sistema de Control de Parqueos implementarías mediante procedimientos y cuáles mediante funciones?</p>
+</div>
+</div>
+</section>
+<section id="qué-son-los-parámetros" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> ¿Qué son los parámetros?</h1>
+<p>Una función sabe <strong>qué debe hacer</strong>, pero necesita información para poder trabajar.</p>
+<p>A esa información la llamamos <strong>parámetros</strong>.</p>
+</section>
+<section id="la-analogía-de-la-casa" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> La analogía de la casa</h1>
+<p>Cada trabajador necesita materiales para realizar su trabajo.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Profesional</th>
+<th>¿Qué necesita?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Electricista</td>
+<td>Cables e interruptores</td>
+</tr>
+<tr class="even">
+<td>Albañil</td>
+<td>Ladrillos y cemento</td>
+</tr>
+<tr class="odd">
+<td>Pintor</td>
+<td>Pintura</td>
+</tr>
+</tbody>
+</table>
+<p>De la misma manera, una función necesita recibir datos para realizar su tarea.</p>
+<blockquote class="blockquote">
+<p>Un parámetro es un dato que se envía a una función o procedimiento para que pueda realizar su trabajo.</p>
+</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Idea importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las funciones siempre realizan la misma tarea.</p>
+<p>Lo único que cambia son los datos que reciben.</p>
+</div>
+</div>
+<p>La siguiente sección transformará paso a paso nuestro Sistema de Control de Parqueos utilizando procedimientos, funciones y parámetros.</p>
+</section>
+<section id="transformando-nuestro-programa" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> Transformando nuestro programa</h1>
+<p>Hasta este momento ya conocemos los conceptos de <strong>procedimientos</strong>, <strong>funciones</strong> y <strong>parámetros</strong>.</p>
+<p>Ahora llegó el momento de aplicarlos sobre el programa desarrollado en la clase anterior.</p>
+<p>Nuestro objetivo <strong>no es cambiar el funcionamiento del Sistema de Control de Parqueos</strong>.</p>
+<p>El objetivo es <strong>organizar mejor el código</strong>.</p>
+<p>Al finalizar esta sección, el programa realizará exactamente las mismas tareas, pero será mucho más fácil de leer, comprender y mantener.</p>
+<hr>
+</section>
+<section id="primera-mejora-mover-el-título-del-programa" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> Primera mejora: mover el título del programa</h1>
+<section id="objetivo" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="objetivo"><span class="header-section-number">20.1</span> Objetivo</h2>
+<p>Crear un procedimiento que sea el único responsable de mostrar el encabezado del sistema.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Piensa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si mañana deseamos cambiar el nombre del sistema o mejorar el diseño del encabezado, ¿en cuántos lugares tendríamos que modificar el programa?</p>
+</div>
+</div>
+<p>Después de crear el procedimiento, elimina ese código del <code>main()</code> y reemplázalo por una única llamada al procedimiento.</p>
+<p>Analiza el resultado.</p>
+<p>El programa continúa funcionando exactamente igual.</p>
+<p>Sin embargo, el <code>main()</code> ya es más corto y fácil de leer.</p>
+<hr>
+</section>
+</section>
+<section id="segunda-mejora-separar-la-lectura-de-datos" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> Segunda mejora: separar la lectura de datos</h1>
+<section id="objetivo-1" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="objetivo-1"><span class="header-section-number">21.1</span> Objetivo</h2>
+<p>Crear un procedimiento encargado de solicitar toda la información al usuario.</p>
+<p>Este procedimiento será responsable de:</p>
+<ul>
+<li>Leer el nombre del cliente.</li>
+<li>Leer el tipo de vehículo.</li>
+<li>Leer la cantidad de horas.</li>
+</ul>
+<p>Una vez terminado, el <code>main()</code> únicamente deberá llamar al procedimiento.</p>
+<p>Observa cómo comienza a desaparecer el código repetitivo del programa principal.</p>
+<hr>
+</section>
+</section>
+<section id="tercera-mejora-crear-una-función-para-determinar-la-tarifa" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> Tercera mejora: crear una función para determinar la tarifa</h1>
+<p>Hasta este momento el programa determina la tarifa utilizando una estructura de decisión.</p>
+<p>Ahora esa responsabilidad será trasladada a una función.</p>
+<section id="objetivo-2" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="objetivo-2"><span class="header-section-number">22.1</span> Objetivo</h2>
+<p>Crear una función que reciba el tipo de vehículo y devuelva la tarifa correspondiente.</p>
+<p>El programa principal ya no necesitará conocer cómo se calcula la tarifa.</p>
+<p>Únicamente solicitará el resultado.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una buena función oculta los detalles del cálculo.</p>
+<p>El programa principal solamente utiliza el resultado obtenido.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="cuarta-mejora-crear-una-función-para-calcular-el-total" class="level1" data-number="23">
+<h1 data-number="23"><span class="header-section-number">23</span> Cuarta mejora: crear una función para calcular el total</h1>
+<p>Una vez conocida la tarifa, podemos crear otra función cuya única responsabilidad sea calcular el total a pagar.</p>
+<p>Esta función recibirá:</p>
+<ul>
+<li>La tarifa.</li>
+<li>La cantidad de horas.</li>
+</ul>
+<p>Y devolverá el monto total.</p>
+<p>Observa que ahora cada función tiene una única responsabilidad.</p>
+<hr>
+</section>
+<section id="quinta-mejora-crear-un-procedimiento-para-mostrar-el-reporte" class="level1" data-number="24">
+<h1 data-number="24"><span class="header-section-number">24</span> Quinta mejora: crear un procedimiento para mostrar el reporte</h1>
+<p>Finalmente trasladaremos toda la salida del programa a un procedimiento.</p>
+<p>Este procedimiento mostrará:</p>
+<ul>
+<li>Nombre del cliente.</li>
+<li>Tipo de vehículo.</li>
+<li>Horas.</li>
+<li>Tarifa.</li>
+<li>Total a pagar.</li>
+</ul>
+<p>El programa principal dejará de preocuparse por la presentación de la información.</p>
+<p>Su única responsabilidad será coordinar la ejecución del programa.</p>
+<hr>
+</section>
+<section id="nuestro-nuevo-programa" class="level1" data-number="25">
+<h1 data-number="25"><span class="header-section-number">25</span> Nuestro nuevo programa</h1>
+<p>Al finalizar las mejoras, el <code>main()</code> será mucho más pequeño y mucho más fácil de comprender.</p>
+<p>Su lectura se parece más a una lista de tareas que a un bloque de instrucciones.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+
+A[Inicio] --&gt; B[mostrarTitulo()]
+B --&gt; C[leerDatos()]
+C --&gt; D[determinarTarifa()]
+D --&gt; E[calcularTotal()]
+E --&gt; F[mostrarResultados()]
+F --&gt; G[Fin]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Reflexiona
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observa el diagrama anterior.</p>
+<p>Cada bloque realiza una única responsabilidad.</p>
+<p>Esta es una de las principales características de un programa bien organizado.</p>
+</div>
+</div>
+</section>
+<section id="qué-ganamos-con-esta-organización" class="level1" data-number="26">
+<h1 data-number="26"><span class="header-section-number">26</span> ¿Qué ganamos con esta organización?</h1>
+<p>Al reorganizar nuestro programa obtenemos varias ventajas:</p>
+<ul>
+<li>El código es más fácil de leer.</li>
+<li>Cada módulo tiene una responsabilidad específica.</li>
+<li>Las modificaciones futuras serán más sencillas.</li>
+<li>Es posible reutilizar funciones en otros programas.</li>
+<li>El trabajo en equipo resulta más simple, ya que diferentes programadores pueden trabajar sobre módulos distintos.</li>
+</ul>
+<p>En el siguiente apartado compararemos la primera versión del programa con esta nueva versión organizada para identificar las mejoras obtenidas.</p>
+</section>
+<section id="primera-modificación-crear-el-procedimiento-mostrartitulo" class="level1" data-number="27">
+<h1 data-number="27"><span class="header-section-number">27</span> Primera modificación: crear el procedimiento <code>mostrarTitulo()</code></h1>
+<p>Hasta este momento, el encabezado del sistema se encuentra escrito directamente dentro de <code>main()</code>.</p>
+<p>El primer cambio será mover únicamente esas instrucciones a un procedimiento independiente.</p>
+</section>
+<section id="identificamos-el-código-que-vamos-a-mover" class="level1" data-number="28">
+<h1 data-number="28"><span class="header-section-number">28</span> 1. Identificamos el código que vamos a mover</h1>
+<p>Localiza dentro de <code>main()</code> las siguientes instrucciones:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">=========================================</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> <span class="st">"   SISTEMA DE CONTROL DE PARQUEOS</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> <span class="st">"=========================================</span><span class="sc">\n\n</span><span class="st">"</span><span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Estas líneas cumplen una sola responsabilidad: mostrar el título del sistema.</p>
+</section>
+<section id="creamos-el-procedimiento" class="level1" data-number="29">
+<h1 data-number="29"><span class="header-section-number">29</span> 2. Creamos el procedimiento</h1>
+<p>Antes de <code>main()</code>, escribe:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Muestra el encabezado del sistema</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarTitulo<span class="op">()</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">=========================================</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"   SISTEMA DE CONTROL DE PARQUEOS</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"=========================================</span><span class="sc">\n\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La palabra <code>void</code> indica que el procedimiento realiza una acción, pero no devuelve ningún valor.</p>
+</section>
+<section id="modificamos-main" class="level1" data-number="30">
+<h1 data-number="30"><span class="header-section-number">30</span> 3. Modificamos <code>main()</code></h1>
+<p>Elimina del <code>main()</code> las tres instrucciones originales y reemplázalas por:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mostrarTitulo<span class="op">();</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="código-después-de-la-primera-modificación" class="level1" data-number="31">
+<h1 data-number="31"><span class="header-section-number">31</span> 4. Código después de la primera modificación</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Enumeración de los tipos de vehículos</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> TipoVehiculo</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    MOTO <span class="op">=</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    CARRO<span class="op">,</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    CAMIONETA</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">// Declaración de variables</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>string nombreConductor<span class="op">;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>string placa<span class="op">;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> tipoVehiculo<span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> horas<span class="op">;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> tarifa <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> totalPagar <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">// Muestra el encabezado del sistema</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarTitulo<span class="op">()</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">=========================================</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"   SISTEMA DE CONTROL DE PARQUEOS</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"=========================================</span><span class="sc">\n\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Nombre: "</span><span class="op">;</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    getline<span class="op">(</span>cin<span class="op">,</span> nombreConductor<span class="op">);</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Placa: "</span><span class="op">;</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    getline<span class="op">(</span>cin<span class="op">,</span> placa<span class="op">);</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Horas: "</span><span class="op">;</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> horas<span class="op">;</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Tipo de vehículo"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"1. Moto"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"2. Carro"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"3. Camioneta"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Seleccione una opción: "</span><span class="op">;</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> tipoVehiculo<span class="op">;</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span> <span class="op">(</span>tipoVehiculo<span class="op">)</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> MOTO<span class="op">:</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>            tarifa <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> CARRO<span class="op">:</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>            tarifa <span class="op">=</span> <span class="dv">15</span><span class="op">;</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> CAMIONETA<span class="op">:</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>            tarifa <span class="op">=</span> <span class="dv">25</span><span class="op">;</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>            tarifa <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>    totalPagar <span class="op">=</span> tarifa <span class="op">*</span> horas<span class="op">;</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>    mostrarTitulo<span class="op">();</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Conductor : "</span> <span class="op">&lt;&lt;</span> nombreConductor <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Placa     : "</span> <span class="op">&lt;&lt;</span> placa <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Vehículo  : "</span><span class="op">;</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span> <span class="op">(</span>tipoVehiculo<span class="op">)</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> MOTO<span class="op">:</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Moto"</span><span class="op">;</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> CARRO<span class="op">:</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Carro"</span><span class="op">;</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> CAMIONETA<span class="op">:</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Camioneta"</span><span class="op">;</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"No válido"</span><span class="op">;</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Horas     : "</span> <span class="op">&lt;&lt;</span> horas <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Tarifa    : Q"</span> <span class="op">&lt;&lt;</span> tarifa <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"-----------------------------------------"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"TOTAL A PAGAR: Q"</span> <span class="op">&lt;&lt;</span> totalPagar <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Comprobación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compila y ejecuta el programa.</p>
+<p>La salida debe ser exactamente la misma que antes.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>¿Qué cambió?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El encabezado ya no está escrito directamente dentro de <code>main()</code>.</p>
+<p>Ahora esa tarea pertenece al procedimiento <code>mostrarTitulo()</code>.</p>
+</div>
+</div>
+</section>
+<section id="segunda-modificación-crear-el-procedimiento-leerdatos" class="level1" data-number="32">
+<h1 data-number="32"><span class="header-section-number">32</span> Segunda modificación: crear el procedimiento <code>leerDatos()</code></h1>
+<p>En la modificación anterior organizamos el encabezado del sistema.</p>
+<p>Ahora haremos lo mismo con la entrada de datos.</p>
+<p>Nuestro objetivo será que <strong>todo el proceso de captura de información</strong> quede dentro de un solo procedimiento.</p>
+</section>
+<section id="identificamos-el-código-que-vamos-a-mover-1" class="level1" data-number="33">
+<h1 data-number="33"><span class="header-section-number">33</span> 1. Identificamos el código que vamos a mover</h1>
+<p>Dentro de <code>main()</code> localiza todas las instrucciones utilizadas para leer:</p>
+<ul>
+<li>Nombre del conductor.</li>
+<li>Placa.</li>
+<li>Horas.</li>
+<li>Tipo de vehículo.</li>
+</ul>
+<p>Todo ese bloque pertenece a una misma responsabilidad: <strong>leer los datos del usuario</strong>.</p>
+</section>
+<section id="creamos-el-procedimiento-1" class="level1" data-number="34">
+<h1 data-number="34"><span class="header-section-number">34</span> 2. Creamos el procedimiento</h1>
+<p>Antes de <code>main()</code> agrega el siguiente procedimiento:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Solicita la información del conductor</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> leerDatos<span class="op">()</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Nombre: "</span><span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    getline<span class="op">(</span>cin<span class="op">,</span> nombreConductor<span class="op">);</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Placa: "</span><span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    getline<span class="op">(</span>cin<span class="op">,</span> placa<span class="op">);</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Horas: "</span><span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> horas<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Tipo de vehículo"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"1. Moto"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"2. Carro"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"3. Camioneta"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Seleccione una opción: "</span><span class="op">;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> tipoVehiculo<span class="op">;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Observa que el procedimiento únicamente realiza una tarea: solicitar información al usuario.</p>
+</section>
+<section id="modificamos-main-1" class="level1" data-number="35">
+<h1 data-number="35"><span class="header-section-number">35</span> 3. Modificamos <code>main()</code></h1>
+<p>Ahora elimina todas las instrucciones de entrada de datos y reemplázalas por una sola línea:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>leerDatos<span class="op">();</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El inicio del programa principal ahora queda mucho más limpio.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    leerDatos<span class="op">();</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// El resto del programa continúa aquí...</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="qué-ganamos" class="level1" data-number="36">
+<h1 data-number="36"><span class="header-section-number">36</span> 4. ¿Qué ganamos?</h1>
+<p>Comparemos ambas versiones.</p>
+<section id="antes" class="level2" data-number="36.1">
+<h2 data-number="36.1" class="anchored" data-anchor-id="antes"><span class="header-section-number">36.1</span> Antes</h2>
+<pre class="text"><code>main()
+ ├─ Leer nombre
+ ├─ Leer placa
+ ├─ Leer horas
+ ├─ Mostrar menú
+ ├─ Leer tipo de vehículo
+ ...</code></pre>
+</section>
+<section id="después" class="level2" data-number="36.2">
+<h2 data-number="36.2" class="anchored" data-anchor-id="después"><span class="header-section-number">36.2</span> Después</h2>
+<pre class="text"><code>main()
+ ├─ leerDatos()
+ ...</code></pre>
+<p>El programa sigue haciendo exactamente lo mismo, pero ahora el nombre del procedimiento describe claramente la tarea que realiza.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Comprobación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compila nuevamente el programa.</p>
+<p>Si todo está correcto, el comportamiento será exactamente el mismo que antes.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>¿Qué aprendimos?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un procedimiento puede agrupar varias instrucciones relacionadas en una sola unidad lógica.</p>
+<p>Esto hace que el programa sea más fácil de leer y mantener.</p>
+</div>
+</div>
+</section>
+<section id="preparándonos-para-la-siguiente-modificación" class="level2" data-number="36.3">
+<h2 data-number="36.3" class="anchored" data-anchor-id="preparándonos-para-la-siguiente-modificación"><span class="header-section-number">36.3</span> Preparándonos para la siguiente modificación</h2>
+<p>En la siguiente sección moveremos el <code>switch</code> encargado de determinar la tarifa hacia una <strong>función</strong>.</p>
+<p>Será la primera vez que nuestro programa devolverá un valor utilizando <code>return</code>.</p>
+</section>
+</section>
+<section id="tercera-modificación-crear-la-función-determinartarifa" class="level1" data-number="37">
+<h1 data-number="37"><span class="header-section-number">37</span> Tercera modificación: crear la función <code>determinarTarifa()</code></h1>
+<p>Hasta este momento nuestro programa utiliza un bloque <code>switch</code> dentro de <code>main()</code> para determinar la tarifa según el tipo de vehículo.</p>
+<p>En esta modificación moveremos esa responsabilidad hacia una función.</p>
+</section>
+<section id="identificamos-el-código-que-vamos-a-mover-2" class="level1" data-number="38">
+<h1 data-number="38"><span class="header-section-number">38</span> 1. Identificamos el código que vamos a mover</h1>
+<p>Localiza el siguiente bloque dentro de <code>main()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span> <span class="op">(</span>tipoVehiculo<span class="op">)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> MOTO<span class="op">:</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        tarifa <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> CARRO<span class="op">:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        tarifa <span class="op">=</span> <span class="dv">15</span><span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> CAMIONETA<span class="op">:</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        tarifa <span class="op">=</span> <span class="dv">25</span><span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        tarifa <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Observa que este bloque realiza una única tarea: <strong>determinar la tarifa</strong>.</p>
+</section>
+<section id="creamos-la-función" class="level1" data-number="39">
+<h1 data-number="39"><span class="header-section-number">39</span> 2. Creamos la función</h1>
+<p>Antes de <code>main()</code> agrega la siguiente función:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Determina la tarifa según el tipo de vehículo</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> determinarTarifa<span class="op">(</span><span class="dt">int</span> tipo<span class="op">)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span> <span class="op">(</span>tipo<span class="op">)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> MOTO<span class="op">:</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> CARRO<span class="op">:</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">15</span><span class="op">;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> CAMIONETA<span class="op">:</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">25</span><span class="op">;</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="analicemos-el-encabezado" class="level2" data-number="39.1">
+<h2 data-number="39.1" class="anchored" data-anchor-id="analicemos-el-encabezado"><span class="header-section-number">39.1</span> Analicemos el encabezado</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> determinarTarifa<span class="op">(</span><span class="dt">int</span> tipo<span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Elemento</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>double</code></td>
+<td>La función devolverá un valor decimal.</td>
+</tr>
+<tr class="even">
+<td><code>determinarTarifa</code></td>
+<td>Nombre de la función.</td>
+</tr>
+<tr class="odd">
+<td><code>int tipo</code></td>
+<td>Parámetro que recibe el tipo de vehículo.</td>
+</tr>
+</tbody>
+</table>
+<p>A diferencia de un procedimiento, esta función <strong>devuelve un resultado</strong> mediante la instrucción <code>return</code>.</p>
+</section>
+</section>
+<section id="modificamos-main-2" class="level1" data-number="40">
+<h1 data-number="40"><span class="header-section-number">40</span> 3. Modificamos <code>main()</code></h1>
+<p>Elimina el bloque <code>switch</code> y reemplázalo por una única línea:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tarifa <span class="op">=</span> determinarTarifa<span class="op">(</span>tipoVehiculo<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lee esa instrucción en voz alta:</p>
+<blockquote class="blockquote">
+<p>“La variable <strong>tarifa</strong> recibirá el valor que devuelva la función <strong>determinarTarifa()</strong>.”</p>
+</blockquote>
+</section>
+<section id="qué-sucede-internamente" class="level1" data-number="41">
+<h1 data-number="41"><span class="header-section-number">41</span> 4. ¿Qué sucede internamente?</h1>
+<pre class="text"><code>main()
+      │
+      │ envía tipoVehiculo
+      ▼
+determinarTarifa()
+      │
+      │ calcula la tarifa
+      ▼
+return tarifa
+      │
+      ▼
+main() guarda el resultado en la variable tarifa</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+A["main()"] --&gt;|"tipoVehiculo"| B["determinarTarifa()"]
+B --&gt;|"return tarifa"| C["tarifa"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-ganamos-1" class="level1" data-number="42">
+<h1 data-number="42"><span class="header-section-number">42</span> 5. ¿Qué ganamos?</h1>
+<section id="antes-1" class="level2" data-number="42.1">
+<h2 data-number="42.1" class="anchored" data-anchor-id="antes-1"><span class="header-section-number">42.1</span> Antes</h2>
+<pre class="text"><code>main()
+ ├─ switch(...)
+ ├─ case MOTO
+ ├─ case CARRO
+ ├─ case CAMIONETA</code></pre>
+</section>
+<section id="después-1" class="level2" data-number="42.2">
+<h2 data-number="42.2" class="anchored" data-anchor-id="después-1"><span class="header-section-number">42.2</span> Después</h2>
+<pre class="text"><code>main()
+ ├─ tarifa = determinarTarifa(tipoVehiculo);</code></pre>
+<p>Ahora el programa principal ya no necesita conocer cómo se calcula la tarifa.</p>
+<p>Esa responsabilidad quedó encapsulada dentro de la función.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Comprobación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compila y ejecuta nuevamente el programa.</p>
+<p>El resultado debe ser exactamente el mismo que en las modificaciones anteriores.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>¿Qué aprendimos?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una función permite ocultar los detalles de un cálculo.</p>
+<p>El programa principal únicamente solicita el resultado y continúa con la siguiente tarea.</p>
+</div>
+</div>
+</section>
+<section id="preparándonos-para-la-siguiente-modificación-1" class="level2" data-number="42.3">
+<h2 data-number="42.3" class="anchored" data-anchor-id="preparándonos-para-la-siguiente-modificación-1"><span class="header-section-number">42.3</span> Preparándonos para la siguiente modificación</h2>
+<p>En la siguiente modificación construiremos la función <code>calcularTotal()</code>.</p>
+<p>Verás que el <code>main()</code> comienza a parecer una lista de tareas de alto nivel.</p>
+</section>
+</section>
+<section id="cuarta-modificación-crear-la-función-calculartotal" class="level1" data-number="43">
+<h1 data-number="43"><span class="header-section-number">43</span> Cuarta modificación: crear la función <code>calcularTotal()</code></h1>
+<p>En la modificación anterior logramos que el programa determinara la tarifa utilizando una función.</p>
+<p>Ahora haremos exactamente lo mismo con el cálculo del total a pagar.</p>
+</section>
+<section id="identificamos-el-código-que-vamos-a-mover-3" class="level1" data-number="44">
+<h1 data-number="44"><span class="header-section-number">44</span> 1. Identificamos el código que vamos a mover</h1>
+<p>Dentro de <code>main()</code> localiza la siguiente instrucción:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>totalPagar <span class="op">=</span> tarifa <span class="op">*</span> horas<span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aunque únicamente es una línea de código, representa una responsabilidad muy importante del programa: <strong>calcular el monto que deberá pagar el cliente</strong>.</p>
+</section>
+<section id="creamos-la-función-1" class="level1" data-number="45">
+<h1 data-number="45"><span class="header-section-number">45</span> 2. Creamos la función</h1>
+<p>Antes de <code>main()</code> agrega la siguiente función:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Calcula el total a pagar</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> calcularTotal<span class="op">(</span><span class="dt">double</span> tarifaHora<span class="op">,</span> <span class="dt">int</span> cantidadHoras<span class="op">)</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tarifaHora <span class="op">*</span> cantidadHoras<span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Observa que esta función recibe dos parámetros:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tarifaHora</code></td>
+<td>Tarifa correspondiente al vehículo</td>
+</tr>
+<tr class="even">
+<td><code>cantidadHoras</code></td>
+<td>Horas que permaneció estacionado</td>
+</tr>
+</tbody>
+</table>
+<p>Después realiza el cálculo y devuelve el resultado mediante <code>return</code>.</p>
+</section>
+<section id="modificamos-main-3" class="level1" data-number="46">
+<h1 data-number="46"><span class="header-section-number">46</span> 3. Modificamos <code>main()</code></h1>
+<p>Elimina la instrucción original y reemplázala por:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>totalPagar <span class="op">=</span> calcularTotal<span class="op">(</span>tarifa<span class="op">,</span> horas<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lee la instrucción como si fuera una frase:</p>
+<blockquote class="blockquote">
+<p><strong>“TotalPagar recibirá el valor que devuelva la función <code>calcularTotal()</code> utilizando la tarifa y las horas.”</strong></p>
+</blockquote>
+</section>
+<section id="qué-sucede-internamente-1" class="level1" data-number="47">
+<h1 data-number="47"><span class="header-section-number">47</span> 4. ¿Qué sucede internamente?</h1>
+<pre class="text"><code>main()
+      │
+      │ envía tarifa y horas
+      ▼
+calcularTotal()
+      │
+      │ realiza el cálculo
+      ▼
+return total
+      │
+      ▼
+main() guarda el resultado</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+
+A["main()"] --&gt;|"tarifa, horas"| B["calcularTotal()"]
+B --&gt;|"return total"| C["totalPagar"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-ganamos-2" class="level1" data-number="48">
+<h1 data-number="48"><span class="header-section-number">48</span> 5. ¿Qué ganamos?</h1>
+<section id="antes-2" class="level2" data-number="48.1">
+<h2 data-number="48.1" class="anchored" data-anchor-id="antes-2"><span class="header-section-number">48.1</span> Antes</h2>
+<pre class="text"><code>main()
+ ├─ tarifa = determinarTarifa(...)
+ ├─ totalPagar = tarifa * horas
+ ├─ mostrar resultados</code></pre>
+</section>
+<section id="después-2" class="level2" data-number="48.2">
+<h2 data-number="48.2" class="anchored" data-anchor-id="después-2"><span class="header-section-number">48.2</span> Después</h2>
+<pre class="text"><code>main()
+ ├─ tarifa = determinarTarifa(...)
+ ├─ totalPagar = calcularTotal(...)
+ ├─ mostrar resultados</code></pre>
+<p>Ahora el programa principal ya no realiza cálculos directamente.</p>
+<p>Únicamente coordina la ejecución de las funciones.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Comprobación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compila nuevamente el programa.</p>
+<p>La salida debe ser exactamente igual que en las versiones anteriores.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>¿Qué aprendimos?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada función debe tener una única responsabilidad.</p>
+<p><code>determinarTarifa()</code> determina la tarifa.</p>
+<p><code>calcularTotal()</code> calcula el total.</p>
+<p>Separar responsabilidades hace que el programa sea más fácil de comprender y mantener.</p>
+</div>
+</div>
+</section>
+<section id="preparándonos-para-la-siguiente-modificación-2" class="level2" data-number="48.3">
+<h2 data-number="48.3" class="anchored" data-anchor-id="preparándonos-para-la-siguiente-modificación-2"><span class="header-section-number">48.3</span> Preparándonos para la siguiente modificación</h2>
+<p>Solo nos queda un paso.</p>
+<p>Moveremos toda la presentación de resultados al procedimiento <code>mostrarResultados()</code>.</p>
+<p>Cuando terminemos, el <code>main()</code> quedará reducido a unas pocas líneas y describirá claramente el flujo del programa.</p>
+</section>
+</section>
+<section id="quinta-modificación-crear-el-procedimiento-mostrarresultados" class="level1" data-number="49">
+<h1 data-number="49"><span class="header-section-number">49</span> Quinta modificación: crear el procedimiento <code>mostrarResultados()</code></h1>
+<p>Ya organizamos la entrada de datos y los cálculos del programa.</p>
+<p>Solo nos queda una última responsabilidad: presentar la información al usuario.</p>
+<p>En esta modificación moveremos todo el reporte final hacia un procedimiento independiente.</p>
+</section>
+<section id="identificamos-el-código-que-vamos-a-mover-4" class="level1" data-number="50">
+<h1 data-number="50"><span class="header-section-number">50</span> 1. Identificamos el código que vamos a mover</h1>
+<p>Localiza dentro de <code>main()</code> todas las instrucciones utilizadas para mostrar:</p>
+<ul>
+<li>El encabezado.</li>
+<li>El nombre del conductor.</li>
+<li>La placa.</li>
+<li>El tipo de vehículo.</li>
+<li>Las horas.</li>
+<li>La tarifa.</li>
+<li>El total a pagar.</li>
+</ul>
+<p>Todo ese bloque tiene una única responsabilidad: <strong>mostrar el resultado del proceso</strong>.</p>
+</section>
+<section id="creamos-el-procedimiento-2" class="level1" data-number="51">
+<h1 data-number="51"><span class="header-section-number">51</span> 2. Creamos el procedimiento</h1>
+<p>Antes de <code>main()</code> agrega el siguiente procedimiento.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Muestra el reporte final</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">//--------------------------------------------------</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarResultados<span class="op">()</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    mostrarTitulo<span class="op">();</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Conductor : "</span> <span class="op">&lt;&lt;</span> nombreConductor <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Placa     : "</span> <span class="op">&lt;&lt;</span> placa <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Vehículo  : "</span><span class="op">;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span> <span class="op">(</span>tipoVehiculo<span class="op">)</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> MOTO<span class="op">:</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Moto"</span><span class="op">;</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> CARRO<span class="op">:</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Carro"</span><span class="op">;</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> CAMIONETA<span class="op">:</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Camioneta"</span><span class="op">;</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"No válido"</span><span class="op">;</span></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Horas     : "</span> <span class="op">&lt;&lt;</span> horas <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Tarifa    : Q"</span> <span class="op">&lt;&lt;</span> tarifa <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"-----------------------------------------"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"TOTAL A PAGAR: Q"</span> <span class="op">&lt;&lt;</span> totalPagar <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Observa algo interesante.</p>
+<p>Dentro de este procedimiento estamos llamando nuevamente a:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mostrarTitulo<span class="op">();</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esto demuestra que un procedimiento puede utilizar otro procedimiento.</p>
+</section>
+<section id="modificamos-main-4" class="level1" data-number="52">
+<h1 data-number="52"><span class="header-section-number">52</span> 3. Modificamos <code>main()</code></h1>
+<p>Elimina todo el bloque de salida y reemplázalo por una sola instrucción.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mostrarResultados<span class="op">();</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="nuestro-nuevo-main" class="level1" data-number="53">
+<h1 data-number="53"><span class="header-section-number">53</span> 4. Nuestro nuevo <code>main()</code></h1>
+<p>Después de todas las modificaciones, el programa principal queda reducido a unas pocas líneas.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    leerDatos<span class="op">();</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    tarifa <span class="op">=</span> determinarTarifa<span class="op">(</span>tipoVehiculo<span class="op">);</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    totalPagar <span class="op">=</span> calcularTotal<span class="op">(</span>tarifa<span class="op">,</span> horas<span class="op">);</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    mostrarResultados<span class="op">();</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ahora el <code>main()</code> puede leerse casi como un algoritmo escrito en lenguaje natural.</p>
+<ol type="1">
+<li>Leer datos.</li>
+<li>Determinar la tarifa.</li>
+<li>Calcular el total.</li>
+<li>Mostrar resultados.</li>
+</ol>
+</section>
+<section id="qué-cambió-1" class="level1" data-number="54">
+<h1 data-number="54"><span class="header-section-number">54</span> 5. ¿Qué cambió?</h1>
+<p>Comparemos ambas versiones.</p>
+<section id="antes-3" class="level2" data-number="54.1">
+<h2 data-number="54.1" class="anchored" data-anchor-id="antes-3"><span class="header-section-number">54.1</span> Antes</h2>
+<pre class="text"><code>main()
+ ├─ Leer datos
+ ├─ Determinar tarifa
+ ├─ Calcular total
+ ├─ Mostrar encabezado
+ ├─ Mostrar conductor
+ ├─ Mostrar vehículo
+ ├─ Mostrar horas
+ ├─ Mostrar tarifa
+ ├─ Mostrar total</code></pre>
+</section>
+<section id="después-3" class="level2" data-number="54.2">
+<h2 data-number="54.2" class="anchored" data-anchor-id="después-3"><span class="header-section-number">54.2</span> Después</h2>
+<pre class="text"><code>main()
+ ├─ leerDatos()
+ ├─ determinarTarifa()
+ ├─ calcularTotal()
+ ├─ mostrarResultados()</code></pre>
+<p>Observa que el programa realiza exactamente las mismas tareas.</p>
+<p>La diferencia es que ahora cada responsabilidad fue trasladada a un módulo independiente.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+
+A([Inicio]) --&gt; B["leerDatos()"]
+B --&gt; C["determinarTarifa()"]
+C --&gt; D["calcularTotal()"]
+D --&gt; E["mostrarResultados()"]
+E --&gt; F([Fin])
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="comprobación-final" class="level1" data-number="55">
+<h1 data-number="55"><span class="header-section-number">55</span> Comprobación final</h1>
+<p>Compila nuevamente el programa.</p>
+<p>Utiliza los mismos datos empleados en el capítulo anterior.</p>
+<p>El resultado obtenido debe ser exactamente el mismo.</p>
+<p>Si el comportamiento no cambió, significa que la reorganización fue realizada correctamente.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Felicitaciones
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Has transformado un programa funcional en un programa mucho mejor organizado.</p>
+<p>Eso es precisamente lo que ocurre durante el desarrollo profesional del software.</p>
+</div>
+</div>
+</section>
+<section id="lo-que-aprendimos" class="level1" data-number="56">
+<h1 data-number="56"><span class="header-section-number">56</span> Lo que aprendimos</h1>
+<p>Durante este capítulo reorganizamos un programa completo utilizando procedimientos, funciones y parámetros.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Responsabilidad</th>
+<th>Módulo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mostrar el encabezado</td>
+<td><code>mostrarTitulo()</code></td>
+</tr>
+<tr class="even">
+<td>Leer información</td>
+<td><code>leerDatos()</code></td>
+</tr>
+<tr class="odd">
+<td>Determinar la tarifa</td>
+<td><code>determinarTarifa()</code></td>
+</tr>
+<tr class="even">
+<td>Calcular el total</td>
+<td><code>calcularTotal()</code></td>
+</tr>
+<tr class="odd">
+<td>Mostrar resultados</td>
+<td><code>mostrarResultados()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Observa que cada módulo tiene una única responsabilidad.</p>
+<p>Gracias a ello, el programa principal quedó reducido a unas pocas líneas fáciles de leer.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Idea clave
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Programar mejor no significa escribir más código.</p>
+<p>Programar mejor significa organizar el código de manera que cualquier persona pueda comprenderlo y mantenerlo.</p>
+</div>
+</div>
+</section>
+<section id="preparándonos-para-el-siguiente-capítulo" class="level1" data-number="57">
+<h1 data-number="57"><span class="header-section-number">57</span> Preparándonos para el siguiente capítulo</h1>
+<p>Nuestro Sistema de Control de Parqueos ya está organizado.</p>
+<p>En el siguiente capítulo comenzaremos a trabajar con <strong>arreglos</strong>, lo que permitirá registrar y administrar la información de varios vehículos en lugar de procesar únicamente uno.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../capitulos/05_integracion_de_conceptos.html" class="pagination-link" aria-label="Capítulo 5. Integración de conceptos: construyendo un programa completo">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Capítulo 5. Integración de conceptos: construyendo un programa completo</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../capitulos/99_cierre.html" class="pagination-link" aria-label="Cierre del capítulo">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cierre del capítulo</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Editorial Académica de Ingeniería en Sistemas</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Diseñar una vez. Enseñar toda la vida.</p>
+</div>
+    <div class="nav-footer-right">
+<p>Ing. Jorge Luis García Chacón</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

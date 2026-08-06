@@ -15,6 +15,8 @@ book:
     - capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.qmd
     - capitulos/03_expresiones_logicas_estructuras_condicionales.qmd
     - capitulos/04-laboratorio-ciclos-enum-cajero.qmd
+    - capitulos/05_integracion_de_conceptos.qmd
+    - capitulos/06_procedimientos_funciones_parametros.qmd
     - capitulos/99_cierre.qmd
   page-footer:
     left: "Editorial Académica de Ingeniería en Sistemas"
