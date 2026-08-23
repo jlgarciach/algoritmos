@@ -449,7 +449,7 @@ Y nuestra regla de oro:
 
 > **Si hay `n` elementos, los índices válidos van de `0` a `n - 1`.**
 
-# Resumen visual del capítulo
+# Síntesis visual del capítulo
 
 A continuación se presenta una síntesis visual de los conceptos fundamentales
 que hemos trabajado sobre arreglos y vectores.
