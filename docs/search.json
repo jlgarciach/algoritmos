@@ -1140,13 +1140,203 @@
     ]
   },
   {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "",
+    "text": "10 El reto de hoy\nUna pequeña empresa necesita un programa en C++ para controlar el acceso a un sistema y registrar información básica de una persona.\nPara ingresar, el usuario deberá proporcionar un nombre de usuario y una contraseña. El sistema deberá comprobar que las credenciales sean correctas y permitirá un máximo de tres intentos. Si los tres intentos son incorrectos, el acceso será bloqueado y el programa finalizará.\nCuando el acceso sea correcto, el sistema mostrará un menú con las siguientes opciones:\nPara registrar a una persona se solicitará:\nEl programa deberá validar las entradas para evitar datos incorrectos. Por ejemplo, no deberá aceptar texto cuando se espera un número ni valores diferentes a los permitidos en las opciones que correspondan.\nPara calcular el bono se utilizarán las siguientes reglas:\nEl menú deberá permanecer disponible hasta que el usuario decida salir.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#veamos-el-problema-completo",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#veamos-el-problema-completo",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "11.1 Veamos el problema completo",
+    "text": "11.1 Veamos el problema completo\n\n\n\n\n\n\n\nNotaComparemos\n\n\n\nObservemos la infografía y revisemos nuestras respuestas:\n\n¿Identificamos todos los datos que necesita el programa?\n¿Reconocimos que necesitaremos validaciones?\n¿Detectamos que habrá un menú?\n¿Pensamos en funciones y procedimientos?\n¿Qué elemento no habíamos considerado?",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#ahora-veamos-el-flujo-de-la-solución",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#ahora-veamos-el-flujo-de-la-solución",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "11.2 Ahora veamos el flujo de la solución",
+    "text": "11.2 Ahora veamos el flujo de la solución\nLa infografía nos muestra qué construiremos.\nEl diagrama de flujo nos ayudará ahora a comprender cómo funcionará.\n\n\n\n\n\n\n\nTipObservemos el diagrama\n\n\n\nAntes de continuar, identifiquemos:\n\ndónde inicia el programa;\nqué debe ocurrir antes de mostrar el menú;\ndónde existen decisiones;\nqué partes se repiten;\ncuándo termina el programa.\n\nCon el problema entendido, ahora sí comenzamos a construir código.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#probemos-este-primer-bloque",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#probemos-este-primer-bloque",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "13.1 Probemos este primer bloque",
+    "text": "13.1 Probemos este primer bloque\nCompilemos y ejecutemos.\n\n¿Se repite el menú?\n¿Funciona cada case?\n¿Qué ocurre si escribimos 9?\n¿Qué ocurre al seleccionar 5?\n\nTodavía no hace mucho, pero ya tenemos una base funcional.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#actualicemos-las-librerías",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#actualicemos-las-librerías",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "16.1 6.1 Actualicemos las librerías",
+    "text": "16.1 6.1 Actualicemos las librerías\nPara las validaciones necesitaremos dos librerías nuevas:\n#include &lt;limits&gt;   // numeric_limits: ayuda a limpiar el buffer\n#include &lt;cctype&gt;   // toupper: permite convertir caracteres a mayúscula\nHasta este momento, la cabecera de nuestro programa debe quedar así:\n#include &lt;iostream&gt;\n#include &lt;string&gt;\n#include &lt;limits&gt;\n#include &lt;cctype&gt;\n\nusing namespace std;\n\n\n\n\n\n\nNotaPregunta para el grupo\n\n\n\nSi las funciones de validación estarán escritas después de main(), ¿cómo sabrá C++ que existen cuando las llamemos desde el programa principal?\n\n\nNecesitamos declarar sus prototipos antes de main().\nUn prototipo le informa al compilador:\n\nel nombre de la función;\nel tipo de dato que devuelve;\nlos parámetros que recibe.\n\nAgregamos debajo de using namespace std;:\n// Prototipos de validación\nvoid limpiarBuffer();\nint leerEntero(string mensaje);\ndouble leerDecimal(string mensaje);\nstring leerTexto(string mensaje);\nchar leerCaracter(string mensaje);\nbool leerBooleano(string mensaje);\nNuestra estructura, por ahora, debe verse así:\n#include &lt;iostream&gt;\n#include &lt;string&gt;\n#include &lt;limits&gt;\n#include &lt;cctype&gt;\n\nusing namespace std;\n\n// Prototipos de validación\nvoid limpiarBuffer();\nint leerEntero(string mensaje);\ndouble leerDecimal(string mensaje);\nstring leerTexto(string mensaje);\nchar leerCaracter(string mensaje);\nbool leerBooleano(string mensaje);\n\nint main() {\n\n    // Variables y menú...\n\n    return 0;\n}\n\n// Aquí escribiremos las funciones completas\n\n\n\n\n\n\nImportanteRegla que utilizaremos desde ahora\n\n\n\nCada vez que creemos una nueva función o procedimiento que estará escrito después de main(), primero agregaremos su prototipo en la parte superior.\nAsí podremos compilar y probar cada bloque antes de continuar.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#procedimiento-para-limpiar-el-buffer",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#procedimiento-para-limpiar-el-buffer",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "16.2 6.2 Procedimiento para limpiar el buffer",
+    "text": "16.2 6.2 Procedimiento para limpiar el buffer\nvoid limpiarBuffer() {\n    cin.clear();\n    cin.ignore((numeric_limits&lt;streamsize&gt;::max)(), '\\n');\n}\nPreguntemos:\n\n¿Recibe parámetros? → No.\n¿Devuelve un valor? → No.\n¿Realiza una tarea? → Sí.\n\nPor eso utilizamos void.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#validar-un-entero",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#validar-un-entero",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "16.3 6.3 Validar un entero",
+    "text": "16.3 6.3 Validar un entero\nint leerEntero(string mensaje) {\n    int valor;\n\n    while (true) {\n        cout &lt;&lt; mensaje;\n\n        if (cin &gt;&gt; valor) {\n            limpiarBuffer();\n            return valor;\n        }\n\n        cout &lt;&lt; \"Error: debe ingresar un numero entero.\" &lt;&lt; endl;\n        limpiarBuffer();\n    }\n}\nPreguntemos:\n\n¿Qué recibe? → un string.\n¿Cómo se llama ese dato recibido? → parámetro.\n¿Qué devuelve? → un int.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#validar-un-decimal",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#validar-un-decimal",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "16.4 6.4 Validar un decimal",
+    "text": "16.4 6.4 Validar un decimal\ndouble leerDecimal(string mensaje) {\n    double valor;\n\n    while (true) {\n        cout &lt;&lt; mensaje;\n\n        if (cin &gt;&gt; valor) {\n            limpiarBuffer();\n            return valor;\n        }\n\n        cout &lt;&lt; \"Error: debe ingresar un numero valido.\" &lt;&lt; endl;\n        limpiarBuffer();\n    }\n}",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#validar-texto",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#validar-texto",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "16.5 6.5 Validar texto",
+    "text": "16.5 6.5 Validar texto\nstring leerTexto(string mensaje) {\n    string texto;\n\n    do {\n        cout &lt;&lt; mensaje;\n        getline(cin, texto);\n\n        if (texto.empty()) {\n            cout &lt;&lt; \"Error: el texto no puede estar vacio.\" &lt;&lt; endl;\n        }\n\n    } while (texto.empty());\n\n    return texto;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#validar-un-carácter",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#validar-un-carácter",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "16.6 6.6 Validar un carácter",
+    "text": "16.6 6.6 Validar un carácter\nchar leerCaracter(string mensaje) {\n    char valor;\n\n    while (true) {\n        cout &lt;&lt; mensaje;\n        cin &gt;&gt; valor;\n        limpiarBuffer();\n\n        valor = toupper(valor);\n\n        if (valor == 'M' || valor == 'F') {\n            return valor;\n        }\n\n        cout &lt;&lt; \"Error: ingrese M o F.\" &lt;&lt; endl;\n    }\n}",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#validar-un-valor-lógico",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#validar-un-valor-lógico",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "16.7 6.7 Validar un valor lógico",
+    "text": "16.7 6.7 Validar un valor lógico\nEn lugar de pedir al usuario que escriba true o false, utilizaremos una entrada más natural: S/N.\nbool leerBooleano(string mensaje) {\n    char respuesta;\n\n    do {\n        cout &lt;&lt; mensaje &lt;&lt; \" (S/N): \";\n        cin &gt;&gt; respuesta;\n        limpiarBuffer();\n\n        respuesta = toupper(respuesta);\n\n        if (respuesta != 'S' && respuesta != 'N') {\n            cout &lt;&lt; \"Error: ingrese S o N.\" &lt;&lt; endl;\n        }\n\n    } while (respuesta != 'S' && respuesta != 'N');\n\n    return respuesta == 'S';\n}\n\n\n\n\n\n\nTipObservemos algo importante\n\n\n\nleerBooleano() recibe un string, internamente utiliza un char y finalmente devuelve un bool.\n¡Estamos conectando varios conceptos en una sola función!",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#probemos-otra-vez",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#probemos-otra-vez",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "17.1 Probemos otra vez",
+    "text": "17.1 Probemos otra vez\nIntentemos deliberadamente:\n\nescribir letras en la edad;\ndejar vacío el nombre;\nescribir X en género;\nescribir texto en salario;\nresponder algo diferente de S o N.\n\nNuestro programa ya empieza a defenderse de entradas incorrectas.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#validar-usuario",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#validar-usuario",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "21.1 11.1 Validar usuario",
+    "text": "21.1 11.1 Validar usuario\nbool validarUsuario(string usuario) {\n    return usuario == \"mariojdi3\" ||\n           usuario == \"jorgeg4\" ||\n           usuario == \"raulc13\";\n}",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#validar-usuario-y-contraseña-juntos",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#validar-usuario-y-contraseña-juntos",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "21.2 11.2 Validar usuario y contraseña juntos",
+    "text": "21.2 11.2 Validar usuario y contraseña juntos\nbool validarPassword(string usuario, string password) {\n\n    if (usuario == \"mariojdi3\" &&\n        password == \"myHouseisntalone1289\") {\n        return true;\n    }\n\n    if (usuario == \"jorgeg4\" &&\n        password == \"aSushiRestaurant3456\") {\n        return true;\n    }\n\n    if (usuario == \"raulc13\" &&\n        password == \"watermelonandOrange\") {\n        return true;\n    }\n\n    return false;\n}\n\n\n\n\n\n\nImportante¿Por qué enviamos usuario y contraseña?\n\n\n\nNo basta con comprobar que la contraseña existe.\nDebemos comprobar que esa contraseña corresponde a ese usuario.\nAquí tenemos una función que recibe dos parámetros.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#de-una-variable-a-un-programa-completo",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#de-una-variable-a-un-programa-completo",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "26.1 De una variable a un programa completo",
+    "text": "26.1 De una variable a un programa completo\nComenzamos preguntándonos qué necesitábamos para controlar un menú:\nint opcion;\nY terminamos construyendo un programa que integra análisis, variables, decisiones, ciclos, validaciones, procedimientos, funciones, parámetros y valores de retorno.\nEl objetivo no era memorizar código. El objetivo era comprobar que podemos analizar un problema, dividirlo y construir la solución paso a paso.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/07_laboratorio_guiado_integrador.html#reto-rápido",
+    "href": "capitulos/07_laboratorio_guiado_integrador.html#reto-rápido",
+    "title": "9  Laboratorio guiado: desarrollo de una solución",
+    "section": "26.2 Reto rápido",
+    "text": "26.2 Reto rápido\nSi terminaste antes:\n\nvalida que la edad esté entre 18 y 100 años;\nevita salarios negativos;\nmuestra cuántos intentos de autenticación le quedaron al usuario;\nagrega una sexta opción al menú sin modificar las funciones existentes.\n\n\nNo intentes resolver todo al mismo tiempo. Haz un cambio, compila y prueba antes de continuar.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laboratorio guiado: desarrollo de una solución</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/08_arreglos_y_vectores.html",
+    "href": "capitulos/08_arreglos_y_vectores.html",
+    "title": "10  Arreglos y vectores: muchas casillas, una sola estructura",
+    "section": "",
+    "text": "11 El reto de hoy\nHasta ahora hemos trabajado con variables individuales:\nEsto funciona cuando tenemos pocos datos.\nPero imaginemos que necesitamos guardar las notas de 10, 50 o 100 estudiantes.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Arreglos y vectores: muchas casillas, una sola estructura</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/08_arreglos_y_vectores.html#la-conexión-importante",
+    "href": "capitulos/08_arreglos_y_vectores.html#la-conexión-importante",
+    "title": "10  Arreglos y vectores: muchas casillas, una sola estructura",
+    "section": "18.1 La conexión importante",
+    "text": "18.1 La conexión importante\nEl ciclo for no está haciendo algo mágico.\nEstá automatizando exactamente el recorrido que primero hicimos manualmente.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Arreglos y vectores: muchas casillas, una sola estructura</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/08_arreglos_y_vectores.html#si-comprendimos-esto-estamos-listos-para-el-laboratorio",
+    "href": "capitulos/08_arreglos_y_vectores.html#si-comprendimos-esto-estamos-listos-para-el-laboratorio",
+    "title": "10  Arreglos y vectores: muchas casillas, una sola estructura",
+    "section": "25.1 Si comprendimos esto, estamos listos para el laboratorio",
+    "text": "25.1 Si comprendimos esto, estamos listos para el laboratorio\nEn el laboratorio podremos trabajar con problemas donde el arreglo ya no solo almacene datos, sino que tengamos que:\n\nbuscar valores;\nencontrar máximos y mínimos;\ncontar elementos que cumplan una condición;\ncalcular promedios;\nmodificar posiciones;\ncombinar arreglos con funciones y procedimientos.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Arreglos y vectores: muchas casillas, una sola estructura</span>"
+    ]
+  },
+  {
     "objectID": "capitulos/99_cierre.html",
     "href": "capitulos/99_cierre.html",
-    "title": "9  Cierre del capítulo",
+    "title": "11  Cierre del capítulo",
     "section": "",
-    "text": "9.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
+    "text": "11.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cierre del capítulo</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Cierre del capítulo</span>"
     ]
   }
 ]
