@@ -458,3 +458,27 @@ que hemos trabajado sobre arreglos y vectores.
   fig-alt="Resumen visual sobre arreglos y vectores en C++"
   width="100%"
 }
+
+**Nota: ** para los programas de clase en C++, especialmente en windows, puedes colocar: 
+
+```
+#include <iostream>
+
+#include <clocale>
+
+using namespace std;
+
+int main() {
+
+    setlocale(LC_ALL, "");
+
+    cout << "Ingrese la calificación del estudiante:" << endl;
+
+    cout << "Número de posición: 0" << endl;
+
+    cout << "Promedio académico" << endl;
+
+    return 0;
+
+}
+```

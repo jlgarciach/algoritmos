@@ -17,6 +17,8 @@ book:
     - capitulos/04-laboratorio-ciclos-enum-cajero.qmd
     - capitulos/05_integracion_de_conceptos.qmd
     - capitulos/06_procedimientos_funciones_parametros.qmd
+    - capitulos/07_laboratorio_guiado_integrador.qmd
+    - capitulos/08_arreglos_y_vectores.qmd
     - capitulos/99_cierre.qmd
   page-footer:
     left: "Editorial Académica de Ingeniería en Sistemas"

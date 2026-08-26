@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Laboratorio guiado: desarrollo de una solución – Algoritmos</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../capitulos/08_arreglos_y_vectores.html" rel="next">
+<link href="../capitulos/06_procedimientos_funciones_parametros.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-00cb48ef4f8381ff23467c959274e61b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-663c59e08f2ec96d6b2ddc79a12e8e5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/07_laboratorio_guiado_integrador.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laboratorio guiado: desarrollo de una solución</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Algoritmos</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Presentación del curso</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/02_primeros_pasos_cpp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Clase 2. Primeros pasos en C++</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Laboratorio 1. Desarrollo de una solución informática</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/03_expresiones_logicas_estructuras_condicionales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Capítulo 3. Expresiones lógicas y estructuras condicionales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/04-laboratorio-ciclos-enum-cajero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Laboratorio No.&nbsp;3: ciclos, <code>enum</code> y simulación de un cajero automático</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/05_integracion_de_conceptos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Capítulo 5. Integración de conceptos: construyendo un programa completo</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/06_procedimientos_funciones_parametros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/07_laboratorio_guiado_integrador.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laboratorio guiado: desarrollo de una solución</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/08_arreglos_y_vectores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arreglos y vectores: muchas casillas, una sola estructura</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/99_cierre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cierre del capítulo</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#el-reto-de-hoy" id="toc-el-reto-de-hoy" class="nav-link active" data-scroll-target="#el-reto-de-hoy"><span class="header-section-number">10</span> El reto de hoy</a></li>
+  <li><a href="#comprobemos-nuestro-análisis" id="toc-comprobemos-nuestro-análisis" class="nav-link" data-scroll-target="#comprobemos-nuestro-análisis"><span class="header-section-number">11</span> 1. Comprobemos nuestro análisis</a>
+  <ul class="collapse">
+  <li><a href="#veamos-el-problema-completo" id="toc-veamos-el-problema-completo" class="nav-link" data-scroll-target="#veamos-el-problema-completo"><span class="header-section-number">11.1</span> Veamos el problema completo</a></li>
+  <li><a href="#ahora-veamos-el-flujo-de-la-solución" id="toc-ahora-veamos-el-flujo-de-la-solución" class="nav-link" data-scroll-target="#ahora-veamos-el-flujo-de-la-solución"><span class="header-section-number">11.2</span> Ahora veamos el flujo de la solución</a></li>
+  </ul></li>
+  <li><a href="#primer-código-qué-necesitamos-para-controlar-el-menú" id="toc-primer-código-qué-necesitamos-para-controlar-el-menú" class="nav-link" data-scroll-target="#primer-código-qué-necesitamos-para-controlar-el-menú"><span class="header-section-number">12</span> 2. Primer código: ¿qué necesitamos para controlar el menú?</a></li>
+  <li><a href="#construyamos-el-menú" id="toc-construyamos-el-menú" class="nav-link" data-scroll-target="#construyamos-el-menú"><span class="header-section-number">13</span> 3. Construyamos el menú</a>
+  <ul class="collapse">
+  <li><a href="#probemos-este-primer-bloque" id="toc-probemos-este-primer-bloque" class="nav-link" data-scroll-target="#probemos-este-primer-bloque"><span class="header-section-number">13.1</span> Probemos este primer bloque</a></li>
+  </ul></li>
+  <li><a href="#qué-datos-necesita-la-persona" id="toc-qué-datos-necesita-la-persona" class="nav-link" data-scroll-target="#qué-datos-necesita-la-persona"><span class="header-section-number">14</span> 4. ¿Qué datos necesita la persona?</a></li>
+  <li><a href="#provocamos-un-problema" id="toc-provocamos-un-problema" class="nav-link" data-scroll-target="#provocamos-un-problema"><span class="header-section-number">15</span> 5. Provocamos un problema</a></li>
+  <li><a href="#construyamos-nuestras-validaciones" id="toc-construyamos-nuestras-validaciones" class="nav-link" data-scroll-target="#construyamos-nuestras-validaciones"><span class="header-section-number">16</span> 6. Construyamos nuestras validaciones</a>
+  <ul class="collapse">
+  <li><a href="#actualicemos-las-librerías" id="toc-actualicemos-las-librerías" class="nav-link" data-scroll-target="#actualicemos-las-librerías"><span class="header-section-number">16.1</span> 6.1 Actualicemos las librerías</a></li>
+  <li><a href="#procedimiento-para-limpiar-el-buffer" id="toc-procedimiento-para-limpiar-el-buffer" class="nav-link" data-scroll-target="#procedimiento-para-limpiar-el-buffer"><span class="header-section-number">16.2</span> 6.2 Procedimiento para limpiar el buffer</a></li>
+  <li><a href="#validar-un-entero" id="toc-validar-un-entero" class="nav-link" data-scroll-target="#validar-un-entero"><span class="header-section-number">16.3</span> 6.3 Validar un entero</a></li>
+  <li><a href="#validar-un-decimal" id="toc-validar-un-decimal" class="nav-link" data-scroll-target="#validar-un-decimal"><span class="header-section-number">16.4</span> 6.4 Validar un decimal</a></li>
+  <li><a href="#validar-texto" id="toc-validar-texto" class="nav-link" data-scroll-target="#validar-texto"><span class="header-section-number">16.5</span> 6.5 Validar texto</a></li>
+  <li><a href="#validar-un-carácter" id="toc-validar-un-carácter" class="nav-link" data-scroll-target="#validar-un-carácter"><span class="header-section-number">16.6</span> 6.6 Validar un carácter</a></li>
+  <li><a href="#validar-un-valor-lógico" id="toc-validar-un-valor-lógico" class="nav-link" data-scroll-target="#validar-un-valor-lógico"><span class="header-section-number">16.7</span> 6.7 Validar un valor lógico</a></li>
+  </ul></li>
+  <li><a href="#hagamos-funcionar-la-opción-registrar" id="toc-hagamos-funcionar-la-opción-registrar" class="nav-link" data-scroll-target="#hagamos-funcionar-la-opción-registrar"><span class="header-section-number">17</span> 7. Hagamos funcionar la opción Registrar</a>
+  <ul class="collapse">
+  <li><a href="#probemos-otra-vez" id="toc-probemos-otra-vez" class="nav-link" data-scroll-target="#probemos-otra-vez"><span class="header-section-number">17.1</span> Probemos otra vez</a></li>
+  </ul></li>
+  <li><a href="#llenamos-main-de-instrucciones" id="toc-llenamos-main-de-instrucciones" class="nav-link" data-scroll-target="#llenamos-main-de-instrucciones"><span class="header-section-number">18</span> 8. ¿Llenamos <code>main()</code> de instrucciones?</a></li>
+  <li><a href="#ahora-necesitamos-obtener-un-resultado" id="toc-ahora-necesitamos-obtener-un-resultado" class="nav-link" data-scroll-target="#ahora-necesitamos-obtener-un-resultado"><span class="header-section-number">19</span> 9. Ahora necesitamos obtener un resultado</a></li>
+  <li><a href="#consultemos-el-estado" id="toc-consultemos-el-estado" class="nav-link" data-scroll-target="#consultemos-el-estado"><span class="header-section-number">20</span> 10. Consultemos el estado</a></li>
+  <li><a href="#nuestro-programa-funciona-pero-cualquiera-puede-entrar" id="toc-nuestro-programa-funciona-pero-cualquiera-puede-entrar" class="nav-link" data-scroll-target="#nuestro-programa-funciona-pero-cualquiera-puede-entrar"><span class="header-section-number">21</span> 11. Nuestro programa funciona… ¿pero cualquiera puede entrar?</a>
+  <ul class="collapse">
+  <li><a href="#validar-usuario" id="toc-validar-usuario" class="nav-link" data-scroll-target="#validar-usuario"><span class="header-section-number">21.1</span> 11.1 Validar usuario</a></li>
+  <li><a href="#validar-usuario-y-contraseña-juntos" id="toc-validar-usuario-y-contraseña-juntos" class="nav-link" data-scroll-target="#validar-usuario-y-contraseña-juntos"><span class="header-section-number">21.2</span> 11.2 Validar usuario y contraseña juntos</a></li>
+  </ul></li>
+  <li><a href="#control-de-intentos" id="toc-control-de-intentos" class="nav-link" data-scroll-target="#control-de-intentos"><span class="header-section-number">22</span> 12. Control de intentos</a></li>
+  <li><a href="#cómo-quedó-organizado-nuestro-programa" id="toc-cómo-quedó-organizado-nuestro-programa" class="nav-link" data-scroll-target="#cómo-quedó-organizado-nuestro-programa"><span class="header-section-number">23</span> 13. ¿Cómo quedó organizado nuestro programa?</a></li>
+  <li><a href="#código-completo-del-laboratorio" id="toc-código-completo-del-laboratorio" class="nav-link" data-scroll-target="#código-completo-del-laboratorio"><span class="header-section-number">24</span> 14. Código completo del laboratorio</a></li>
+  <li><a href="#qué-acabamos-de-utilizar" id="toc-qué-acabamos-de-utilizar" class="nav-link" data-scroll-target="#qué-acabamos-de-utilizar"><span class="header-section-number">25</span> 15. ¿Qué acabamos de utilizar?</a></li>
+  <li><a href="#cierre-del-laboratorio" id="toc-cierre-del-laboratorio" class="nav-link" data-scroll-target="#cierre-del-laboratorio"><span class="header-section-number">26</span> 16. Cierre del laboratorio</a>
+  <ul class="collapse">
+  <li><a href="#de-una-variable-a-un-programa-completo" id="toc-de-una-variable-a-un-programa-completo" class="nav-link" data-scroll-target="#de-una-variable-a-un-programa-completo"><span class="header-section-number">26.1</span> De una variable a un programa completo</a></li>
+  <li><a href="#reto-rápido" id="toc-reto-rápido" class="nav-link" data-scroll-target="#reto-rápido"><span class="header-section-number">26.2</span> Reto rápido</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laboratorio guiado: desarrollo de una solución</span></h1>
+<p class="subtitle lead">Repaso integrador: variables, decisiones, ciclos, procedimientos, funciones, parámetros y validaciones</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="el-reto-de-hoy" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> El reto de hoy</h1>
+<p>Una pequeña empresa necesita un programa en C++ para <strong>controlar el acceso a un sistema y registrar información básica de una persona</strong>.</p>
+<p>Para ingresar, el usuario deberá proporcionar un <strong>nombre de usuario y una contraseña</strong>. El sistema deberá comprobar que las credenciales sean correctas y permitirá un máximo de <strong>tres intentos</strong>. Si los tres intentos son incorrectos, el acceso será bloqueado y el programa finalizará.</p>
+<p>Cuando el acceso sea correcto, el sistema mostrará un menú con las siguientes opciones:</p>
+<ol type="1">
+<li>Registrar datos.</li>
+<li>Mostrar los datos registrados.</li>
+<li>Calcular un bono.</li>
+<li>Consultar el estado de la persona.</li>
+<li>Salir.</li>
+</ol>
+<p>Para registrar a una persona se solicitará:</p>
+<ul>
+<li>nombre completo;</li>
+<li>edad;</li>
+<li>género;</li>
+<li>salario;</li>
+<li>estado activo o inactivo.</li>
+</ul>
+<p>El programa deberá <strong>validar las entradas</strong> para evitar datos incorrectos. Por ejemplo, no deberá aceptar texto cuando se espera un número ni valores diferentes a los permitidos en las opciones que correspondan.</p>
+<p>Para calcular el bono se utilizarán las siguientes reglas:</p>
+<ul>
+<li>si la persona tiene menos de 50 años, el bono será del <strong>5 % del salario</strong>;</li>
+<li>si tiene 50 años o más, el bono será del <strong>10 % del salario</strong>.</li>
+</ul>
+<p>El menú deberá permanecer disponible hasta que el usuario decida salir.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Antes de escribir código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Leamos el problema y respondamos entre todos:</p>
+<ol type="1">
+<li>¿Cuáles son las <strong>entradas</strong>?</li>
+<li>¿Cuáles son los <strong>procesos</strong>?</li>
+<li>¿Cuáles son las <strong>salidas</strong>?</li>
+<li>¿Qué <strong>tipos de variables</strong> necesitaremos?</li>
+<li>¿Dónde tendremos que tomar <strong>decisiones</strong>?</li>
+<li>¿Qué partes deberán <strong>repetirse</strong>?</li>
+</ol>
+<p><strong>Todavía no programemos. Primero entendamos qué debemos construir.</strong></p>
+</div>
+</div>
+</section>
+<section id="comprobemos-nuestro-análisis" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> 1. Comprobemos nuestro análisis</h1>
+<p>Ahora sí, comparemos nuestras respuestas con una representación general de la solución.</p>
+<p><strong>¿Contemplamos todo? ¿Qué nos hizo falta?</strong></p>
+<section id="veamos-el-problema-completo" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="veamos-el-problema-completo"><span class="header-section-number">11.1</span> Veamos el problema completo</h2>
+<p><img src="img/laboratorio_guiado_panorama.png" class="img-fluid" style="width:95.0%" alt="Panorama visual del laboratorio guiado de Algoritmos"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Comparemos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observemos la infografía y revisemos nuestras respuestas:</p>
+<ul>
+<li>¿Identificamos todos los datos que necesita el programa?</li>
+<li>¿Reconocimos que necesitaremos validaciones?</li>
+<li>¿Detectamos que habrá un menú?</li>
+<li>¿Pensamos en funciones y procedimientos?</li>
+<li>¿Qué elemento no habíamos considerado?</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="ahora-veamos-el-flujo-de-la-solución" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="ahora-veamos-el-flujo-de-la-solución"><span class="header-section-number">11.2</span> Ahora veamos el flujo de la solución</h2>
+<p>La infografía nos muestra <strong>qué construiremos</strong>.</p>
+<p>El diagrama de flujo nos ayudará ahora a comprender <strong>cómo funcionará</strong>.</p>
+<p><img src="img/flujo_general.svg" class="img-fluid" style="width:92.0%" alt="Flujo general del sistema desde autenticación hasta las opciones del menú"></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Observemos el diagrama
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Antes de continuar, identifiquemos:</p>
+<ul>
+<li>dónde inicia el programa;</li>
+<li>qué debe ocurrir antes de mostrar el menú;</li>
+<li>dónde existen decisiones;</li>
+<li>qué partes se repiten;</li>
+<li>cuándo termina el programa.</li>
+</ul>
+<p>Con el problema entendido, <strong>ahora sí comenzamos a construir código</strong>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="primer-código-qué-necesitamos-para-controlar-el-menú" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> 2. Primer código: ¿qué necesitamos para controlar el menú?</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Pregunta para el grupo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si todavía no hemos construido ninguna funcionalidad, ¿qué variable necesitamos como mínimo para saber qué opción seleccionó el usuario?</p>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> opcion<span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Recordemos:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>int</code></td>
+<td>números enteros</td>
+</tr>
+<tr class="even">
+<td><code>double</code></td>
+<td>números con decimales</td>
+</tr>
+<tr class="odd">
+<td><code>char</code></td>
+<td>un carácter</td>
+</tr>
+<tr class="even">
+<td><code>string</code></td>
+<td>texto</td>
+</tr>
+<tr class="odd">
+<td><code>bool</code></td>
+<td>verdadero o falso</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="construyamos-el-menú" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> 3. Construyamos el menú</h1>
+<p><strong>Preguntemos:</strong></p>
+<ol type="1">
+<li>¿Qué estructura permite repetir instrucciones?</li>
+<li>¿Qué estructura permite elegir entre varias opciones?</li>
+<li>¿Cuándo debe terminar nuestro menú?</li>
+</ol>
+<p>Primera versión:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> opcion<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span> <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"        MENU PRINCIPAL"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"1. Registrar datos"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"2. Mostrar datos"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"3. Realizar calculo (bono)"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"4. Ver estado"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"5. Salir"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"Seleccione una opcion: "</span><span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        cin <span class="op">&gt;&gt;</span> opcion<span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        limpiarBuffer<span class="op">();</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">switch</span> <span class="op">(</span>opcion<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">1</span><span class="op">:</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Opcion en construccion..."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">2</span><span class="op">:</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Opcion en construccion..."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">3</span><span class="op">:</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Opcion en construccion..."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">4</span><span class="op">:</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Opcion en construccion..."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">5</span><span class="op">:</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Gracias por usar el sistema."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Opcion invalida."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">while</span> <span class="op">(</span>opcion <span class="op">!=</span> <span class="dv">5</span><span class="op">);</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="probemos-este-primer-bloque" class="level2 callout-success" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="probemos-este-primer-bloque"><span class="header-section-number">13.1</span> Probemos este primer bloque</h2>
+<p>Compilemos y ejecutemos.</p>
+<ul>
+<li>¿Se repite el menú?</li>
+<li>¿Funciona cada <code>case</code>?</li>
+<li>¿Qué ocurre si escribimos <code>9</code>?</li>
+<li>¿Qué ocurre al seleccionar <code>5</code>?</li>
+</ul>
+<p>Todavía no hace mucho, pero <strong>ya tenemos una base funcional</strong>.</p>
+</section>
+</section>
+<section id="qué-datos-necesita-la-persona" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> 4. ¿Qué datos necesita la persona?</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Pregunta para el grupo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si la opción 1 debe registrar información, ¿qué variables necesitamos y de qué tipo debería ser cada una?</p>
+</div>
+</div>
+<p>Como ahora utilizaremos variables de tipo <code>string</code>, agregamos una nueva librería <strong>al inicio del programa</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Nuestra cabecera queda así:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ahora, <strong>dentro de <code>main()</code> y antes del <code>do...while</code> del menú</strong>, agregamos las variables de la persona:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>string nombre<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> edad<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> genero<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> salario<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> activo<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> datosRegistrados <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>¿Para qué sirve <code>datosRegistrados</code>?</strong></p>
+<p>Nos permitirá evitar que el usuario intente mostrar o calcular información antes de haber registrado los datos.</p>
+</section>
+<section id="provocamos-un-problema" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> 5. Provocamos un problema</h1>
+<p>Supongamos que hacemos esto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese edad: "</span><span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cin <span class="op">&gt;&gt;</span> edad<span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ahora escribamos:</p>
+<pre class="text"><code>Ingrese edad: Jorge</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>¿Qué ocurrió?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El programa esperaba un entero y recibió texto.</p>
+<p>Entonces aparece una nueva necesidad:</p>
+<p><strong>no podemos confiar en que todas las entradas serán correctas.</strong></p>
+</div>
+</div>
+</section>
+<section id="construyamos-nuestras-validaciones" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> 6. Construyamos nuestras validaciones</h1>
+<p>Antes de escribir las funciones de validación debemos preparar correctamente la parte superior de nuestro programa.</p>
+<section id="actualicemos-las-librerías" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="actualicemos-las-librerías"><span class="header-section-number">16.1</span> 6.1 Actualicemos las librerías</h2>
+<p>Para las validaciones necesitaremos dos librerías nuevas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;limits&gt;</span><span class="pp">   </span><span class="co">// numeric_limits: ayuda a limpiar el buffer</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cctype&gt;</span><span class="pp">   </span><span class="co">// toupper: permite convertir caracteres a mayúscula</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Hasta este momento, la cabecera de nuestro programa debe quedar así:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;limits&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cctype&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Pregunta para el grupo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si las funciones de validación estarán escritas <strong>después de <code>main()</code></strong>, ¿cómo sabrá C++ que existen cuando las llamemos desde el programa principal?</p>
+</div>
+</div>
+<p>Necesitamos declarar sus <strong>prototipos</strong> antes de <code>main()</code>.</p>
+<p>Un prototipo le informa al compilador:</p>
+<ul>
+<li>el nombre de la función;</li>
+<li>el tipo de dato que devuelve;</li>
+<li>los parámetros que recibe.</li>
+</ul>
+<p>Agregamos debajo de <code>using namespace std;</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Prototipos de validación</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> limpiarBuffer<span class="op">();</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> leerEntero<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> leerDecimal<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>string leerTexto<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> leerCaracter<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> leerBooleano<span class="op">(</span>string mensaje<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Nuestra estructura, por ahora, debe verse así:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;limits&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cctype&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Prototipos de validación</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> limpiarBuffer<span class="op">();</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> leerEntero<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> leerDecimal<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>string leerTexto<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> leerCaracter<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> leerBooleano<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Variables y menú...</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">// Aquí escribiremos las funciones completas</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Regla que utilizaremos desde ahora
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada vez que creemos una nueva función o procedimiento que estará escrito después de <code>main()</code>, primero agregaremos su <strong>prototipo</strong> en la parte superior.</p>
+<p>Así podremos <strong>compilar y probar cada bloque</strong> antes de continuar.</p>
+</div>
+</div>
+</section>
+<section id="procedimiento-para-limpiar-el-buffer" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="procedimiento-para-limpiar-el-buffer"><span class="header-section-number">16.2</span> 6.2 Procedimiento para limpiar el buffer</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> limpiarBuffer<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    cin<span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    cin<span class="op">.</span>ignore<span class="op">((</span>numeric_limits<span class="op">&lt;</span>streamsize<span class="op">&gt;::</span>max<span class="op">)(),</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">);</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Preguntemos:</strong></p>
+<ul>
+<li>¿Recibe parámetros? → No.</li>
+<li>¿Devuelve un valor? → No.</li>
+<li>¿Realiza una tarea? → Sí.</li>
+</ul>
+<p>Por eso utilizamos <code>void</code>.</p>
+</section>
+<section id="validar-un-entero" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="validar-un-entero"><span class="header-section-number">16.3</span> 6.3 Validar un entero</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> leerEntero<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> valor<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje<span class="op">;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>cin <span class="op">&gt;&gt;</span> valor<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            limpiarBuffer<span class="op">();</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> valor<span class="op">;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"Error: debe ingresar un numero entero."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        limpiarBuffer<span class="op">();</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Preguntemos:</strong></p>
+<ul>
+<li>¿Qué recibe? → un <code>string</code>.</li>
+<li>¿Cómo se llama ese dato recibido? → <strong>parámetro</strong>.</li>
+<li>¿Qué devuelve? → un <code>int</code>.</li>
+</ul>
+</section>
+<section id="validar-un-decimal" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="validar-un-decimal"><span class="header-section-number">16.4</span> 6.4 Validar un decimal</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> leerDecimal<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> valor<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>cin <span class="op">&gt;&gt;</span> valor<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            limpiarBuffer<span class="op">();</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> valor<span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"Error: debe ingresar un numero valido."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        limpiarBuffer<span class="op">();</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="validar-texto" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="validar-texto"><span class="header-section-number">16.5</span> 6.5 Validar texto</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>string leerTexto<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    string texto<span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span> <span class="op">{</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje<span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        getline<span class="op">(</span>cin<span class="op">,</span> texto<span class="op">);</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>texto<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Error: el texto no puede estar vacio."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">while</span> <span class="op">(</span>texto<span class="op">.</span>empty<span class="op">());</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> texto<span class="op">;</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="validar-un-carácter" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="validar-un-carácter"><span class="header-section-number">16.6</span> 6.6 Validar un carácter</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> leerCaracter<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> valor<span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje<span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        cin <span class="op">&gt;&gt;</span> valor<span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        limpiarBuffer<span class="op">();</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        valor <span class="op">=</span> toupper<span class="op">(</span>valor<span class="op">);</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>valor <span class="op">==</span> <span class="ch">'M'</span> <span class="op">||</span> valor <span class="op">==</span> <span class="ch">'F'</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> valor<span class="op">;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"Error: ingrese M o F."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="validar-un-valor-lógico" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="validar-un-valor-lógico"><span class="header-section-number">16.7</span> 6.7 Validar un valor lógico</h2>
+<p>En lugar de pedir al usuario que escriba <code>true</code> o <code>false</code>, utilizaremos una entrada más natural: <strong>S/N</strong>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> leerBooleano<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> respuesta<span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span> <span class="op">{</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje <span class="op">&lt;&lt;</span> <span class="st">" (S/N): "</span><span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        cin <span class="op">&gt;&gt;</span> respuesta<span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        limpiarBuffer<span class="op">();</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        respuesta <span class="op">=</span> toupper<span class="op">(</span>respuesta<span class="op">);</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>respuesta <span class="op">!=</span> <span class="ch">'S'</span> <span class="op">&amp;&amp;</span> respuesta <span class="op">!=</span> <span class="ch">'N'</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Error: ingrese S o N."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">while</span> <span class="op">(</span>respuesta <span class="op">!=</span> <span class="ch">'S'</span> <span class="op">&amp;&amp;</span> respuesta <span class="op">!=</span> <span class="ch">'N'</span><span class="op">);</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> respuesta <span class="op">==</span> <span class="ch">'S'</span><span class="op">;</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Observemos algo importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>leerBooleano()</code> recibe un <code>string</code>, internamente utiliza un <code>char</code> y finalmente devuelve un <code>bool</code>.</p>
+<p>¡Estamos conectando varios conceptos en una sola función!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="hagamos-funcionar-la-opción-registrar" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> 7. Hagamos funcionar la opción Registrar</h1>
+<p>Ya tenemos:</p>
+<ul>
+<li>las librerías necesarias;</li>
+<li>las variables;</li>
+<li>los prototipos de validación;</li>
+<li>y las funciones completas escritas después de <code>main()</code>.</li>
+</ul>
+<p>Ahora sí podemos utilizarlas desde el menú sin que el compilador indique que son funciones desconocidas.</p>
+<p>Reemplazamos el mensaje <code>"Opcion en construccion..."</code> del <code>case 1</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="dv">1</span><span class="op">:</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    nombre <span class="op">=</span> leerTexto<span class="op">(</span><span class="st">"Nombre completo: "</span><span class="op">);</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    edad <span class="op">=</span> leerEntero<span class="op">(</span><span class="st">"Edad: "</span><span class="op">);</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    genero <span class="op">=</span> leerCaracter<span class="op">(</span><span class="st">"Genero (M/F): "</span><span class="op">);</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    salario <span class="op">=</span> leerDecimal<span class="op">(</span><span class="st">"Salario: Q"</span><span class="op">);</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    activo <span class="op">=</span> leerBooleano<span class="op">(</span><span class="st">"Usuario activo"</span><span class="op">);</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    datosRegistrados <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Datos registrados correctamente."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span><span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="probemos-otra-vez" class="level2 callout-success" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="probemos-otra-vez"><span class="header-section-number">17.1</span> Probemos otra vez</h2>
+<p>Intentemos deliberadamente:</p>
+<ul>
+<li>escribir letras en la edad;</li>
+<li>dejar vacío el nombre;</li>
+<li>escribir <code>X</code> en género;</li>
+<li>escribir texto en salario;</li>
+<li>responder algo diferente de <code>S</code> o <code>N</code>.</li>
+</ul>
+<p>Nuestro programa ya empieza a defenderse de entradas incorrectas.</p>
+</section>
+</section>
+<section id="llenamos-main-de-instrucciones" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> 8. ¿Llenamos <code>main()</code> de instrucciones?</h1>
+<p>Podríamos colocar todos los <code>cout</code> dentro del <code>case 2</code>.</p>
+<p>Pero acabamos de aprender otra forma de organizar el programa.</p>
+<p>Como vamos a crear un nuevo procedimiento y lo escribiremos después de <code>main()</code>, primero agregamos su prototipo junto a los anteriores:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarDatos<span class="op">(</span>string nombre<span class="op">,</span> <span class="dt">int</span> edad<span class="op">,</span> <span class="dt">char</span> genero<span class="op">,</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">double</span> salario<span class="op">,</span> <span class="dt">bool</span> activo<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Sigamos la misma regla
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Primero el prototipo → luego usamos el procedimiento → después escribimos su implementación completa.</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Pregunta para el grupo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si una tarea solamente debe <strong>mostrar información</strong> y no necesitamos recibir un resultado, ¿podemos convertirla en un procedimiento?</p>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarDatos<span class="op">(</span>string nombre<span class="op">,</span> <span class="dt">int</span> edad<span class="op">,</span> <span class="dt">char</span> genero<span class="op">,</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">double</span> salario<span class="op">,</span> <span class="dt">bool</span> activo<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"       DATOS REGISTRADOS"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Nombre : "</span> <span class="op">&lt;&lt;</span> nombre <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Edad   : "</span> <span class="op">&lt;&lt;</span> edad <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Genero : "</span> <span class="op">&lt;&lt;</span> genero <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Salario: Q"</span> <span class="op">&lt;&lt;</span> salario <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Activo : "</span> <span class="op">&lt;&lt;</span> <span class="op">(</span>activo <span class="op">?</span> <span class="st">"Si"</span> <span class="op">:</span> <span class="st">"No"</span><span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Y nuestro <code>case 2</code> queda mucho más limpio:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="dv">2</span><span class="op">:</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>datosRegistrados<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        mostrarDatos<span class="op">(</span>nombre<span class="op">,</span> edad<span class="op">,</span> genero<span class="op">,</span> salario<span class="op">,</span> activo<span class="op">);</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Primero debe registrar los datos."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span><span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ahora-necesitamos-obtener-un-resultado" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> 9. Ahora necesitamos obtener un resultado</h1>
+<p>La opción 3 calculará un bono.</p>
+<p>Antes de utilizar la nueva función agregamos su prototipo en la parte superior:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> calcularBono<span class="op">(</span><span class="dt">double</span> salario<span class="op">,</span> <span class="dt">int</span> edad<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Regla sencilla:</p>
+<ul>
+<li>edad menor de 50 años → 5 %;</li>
+<li>edad de 50 años o más → 10 %.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Pregunta para el grupo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>¿Procedimiento o función?</p>
+<p>Necesitamos que el cálculo nos <strong>devuelva un valor</strong>, por lo que construiremos una función.</p>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> calcularBono<span class="op">(</span><span class="dt">double</span> salario<span class="op">,</span> <span class="dt">int</span> edad<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> porcentaje<span class="op">;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>edad <span class="op">&gt;=</span> <span class="dv">50</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        porcentaje <span class="op">=</span> <span class="fl">0.10</span><span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        porcentaje <span class="op">=</span> <span class="fl">0.05</span><span class="op">;</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> salario <span class="op">*</span> porcentaje<span class="op">;</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ahora el <code>case 3</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="dv">3</span><span class="op">:</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>datosRegistrados<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> bono <span class="op">=</span> calcularBono<span class="op">(</span>salario<span class="op">,</span> edad<span class="op">);</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Bono calculado: Q"</span> <span class="op">&lt;&lt;</span> bono <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Primero debe registrar los datos."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span><span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="consultemos-el-estado" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> 10. Consultemos el estado</h1>
+<p>Primero declaramos su prototipo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarEstado<span class="op">(</span><span class="dt">bool</span> activo<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Luego construimos el procedimiento completo después de <code>main()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarEstado<span class="op">(</span><span class="dt">bool</span> activo<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>activo<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">El usuario se encuentra ACTIVO."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">El usuario se encuentra INACTIVO."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Y completamos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="dv">4</span><span class="op">:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>datosRegistrados<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        mostrarEstado<span class="op">(</span>activo<span class="op">);</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Primero debe registrar los datos."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span><span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="nuestro-programa-funciona-pero-cualquiera-puede-entrar" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> 11. Nuestro programa funciona… ¿pero cualquiera puede entrar?</h1>
+<p>Ahora agregaremos seguridad.</p>
+<p>Primero agregamos los prototipos de las funciones de autenticación:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarUsuario<span class="op">(</span>string usuario<span class="op">);</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarPassword<span class="op">(</span>string usuario<span class="op">,</span> string password<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Luego agregamos, dentro de <code>main()</code>, las variables necesarias:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>string usuario<span class="op">;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>string password<span class="op">;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> intentos <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> acceso <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="validar-usuario" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="validar-usuario"><span class="header-section-number">21.1</span> 11.1 Validar usuario</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarUsuario<span class="op">(</span>string usuario<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> usuario <span class="op">==</span> <span class="st">"mariojdi3"</span> <span class="op">||</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>           usuario <span class="op">==</span> <span class="st">"jorgeg4"</span> <span class="op">||</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>           usuario <span class="op">==</span> <span class="st">"raulc13"</span><span class="op">;</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="validar-usuario-y-contraseña-juntos" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="validar-usuario-y-contraseña-juntos"><span class="header-section-number">21.2</span> 11.2 Validar usuario y contraseña juntos</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarPassword<span class="op">(</span>string usuario<span class="op">,</span> string password<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>usuario <span class="op">==</span> <span class="st">"mariojdi3"</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        password <span class="op">==</span> <span class="st">"myHouseisntalone1289"</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>usuario <span class="op">==</span> <span class="st">"jorgeg4"</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>        password <span class="op">==</span> <span class="st">"aSushiRestaurant3456"</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>usuario <span class="op">==</span> <span class="st">"raulc13"</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>        password <span class="op">==</span> <span class="st">"watermelonandOrange"</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>¿Por qué enviamos usuario y contraseña?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No basta con comprobar que la contraseña existe.</p>
+<p>Debemos comprobar que <strong>esa contraseña corresponde a ese usuario</strong>.</p>
+<p>Aquí tenemos una función que recibe <strong>dos parámetros</strong>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="control-de-intentos" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> 12. Control de intentos</h1>
+<p>Antes de agregar la autenticación al flujo principal, nuestra zona de prototipos ya debe verse así:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Prototipos de validación</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> limpiarBuffer<span class="op">();</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> leerEntero<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> leerDecimal<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>string leerTexto<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> leerCaracter<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> leerBooleano<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Prototipos de autenticación</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarUsuario<span class="op">(</span>string usuario<span class="op">);</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarPassword<span class="op">(</span>string usuario<span class="op">,</span> string password<span class="op">);</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Prototipos de procesos</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarDatos<span class="op">(</span>string nombre<span class="op">,</span> <span class="dt">int</span> edad<span class="op">,</span> <span class="dt">char</span> genero<span class="op">,</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">double</span> salario<span class="op">,</span> <span class="dt">bool</span> activo<span class="op">);</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> calcularBono<span class="op">(</span><span class="dt">double</span> salario<span class="op">,</span> <span class="dt">int</span> edad<span class="op">);</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarEstado<span class="op">(</span><span class="dt">bool</span> activo<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ahora sí, <strong>antes de mostrar el menú</strong>, agregamos el control de intentos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>intentos <span class="op">&lt;</span> <span class="dv">3</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>acceso<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"       SISTEMA DE ACCESO"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    usuario <span class="op">=</span> leerTexto<span class="op">(</span><span class="st">"Usuario: "</span><span class="op">);</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    password <span class="op">=</span> leerTexto<span class="op">(</span><span class="st">"Contrasena: "</span><span class="op">);</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>validarUsuario<span class="op">(</span>usuario<span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>        validarPassword<span class="op">(</span>usuario<span class="op">,</span> password<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>        acceso <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Bienvenido al sistema, "</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>             <span class="op">&lt;&lt;</span> usuario <span class="op">&lt;&lt;</span> <span class="st">"."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>        intentos<span class="op">++;</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Usuario o contrasena incorrectos."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"Intento "</span> <span class="op">&lt;&lt;</span> intentos <span class="op">&lt;&lt;</span> <span class="st">" de 3."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(!</span>acceso<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Usuario bloqueado. Fin del programa."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="cómo-quedó-organizado-nuestro-programa" class="level1" data-number="23">
+<h1 data-number="23"><span class="header-section-number">23</span> 13. ¿Cómo quedó organizado nuestro programa?</h1>
+<p><img src="img/mapa_funciones.svg" class="img-fluid" style="width:94.0%" alt="Mapa de las funciones y procedimientos utilizados por el programa principal"></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Idea clave
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un programa grande no tiene que escribirse como un enorme bloque de instrucciones.</p>
+<p>Podemos dividir el problema en <strong>pequeñas tareas</strong>, resolver cada una y luego hacer que trabajen juntas.</p>
+</div>
+</div>
+</section>
+<section id="código-completo-del-laboratorio" class="level1" data-number="24">
+<h1 data-number="24"><span class="header-section-number">24</span> 14. Código completo del laboratorio</h1>
+<p>Para la versión final agregaremos una última librería:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iomanip&gt;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La utilizaremos con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> fixed <span class="op">&lt;&lt;</span> setprecision<span class="op">(</span><span class="dv">2</span><span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>para mostrar los valores monetarios con <strong>dos decimales</strong>.</p>
+<p>Este es el programa integrado para probarlo antes o después de construirlo paso a paso.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;limits&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cctype&gt;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iomanip&gt;</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Prototipos</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> limpiarBuffer<span class="op">();</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> leerEntero<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> leerDecimal<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>string leerTexto<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> leerCaracter<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> leerBooleano<span class="op">(</span>string mensaje<span class="op">);</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarUsuario<span class="op">(</span>string usuario<span class="op">);</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarPassword<span class="op">(</span>string usuario<span class="op">,</span> string password<span class="op">);</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarDatos<span class="op">(</span>string nombre<span class="op">,</span> <span class="dt">int</span> edad<span class="op">,</span> <span class="dt">char</span> genero<span class="op">,</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">double</span> salario<span class="op">,</span> <span class="dt">bool</span> activo<span class="op">);</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> calcularBono<span class="op">(</span><span class="dt">double</span> salario<span class="op">,</span> <span class="dt">int</span> edad<span class="op">);</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarEstado<span class="op">(</span><span class="dt">bool</span> activo<span class="op">);</span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Variables de autenticacion</span></span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>    string usuario<span class="op">;</span></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>    string password<span class="op">;</span></span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> intentos <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> acceso <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Variables del menu y registro</span></span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> opcion<span class="op">;</span></span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>    string nombre<span class="op">;</span></span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> edad <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> genero <span class="op">=</span> <span class="ch">' '</span><span class="op">;</span></span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> salario <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> activo <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> datosRegistrados <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> fixed <span class="op">&lt;&lt;</span> setprecision<span class="op">(</span><span class="dv">2</span><span class="op">);</span></span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Autenticacion</span></span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>intentos <span class="op">&lt;</span> <span class="dv">3</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>acceso<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"       SISTEMA DE ACCESO"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a>        usuario <span class="op">=</span> leerTexto<span class="op">(</span><span class="st">"Usuario: "</span><span class="op">);</span></span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a>        password <span class="op">=</span> leerTexto<span class="op">(</span><span class="st">"Contrasena: "</span><span class="op">);</span></span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>validarUsuario<span class="op">(</span>usuario<span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a>            validarPassword<span class="op">(</span>usuario<span class="op">,</span> password<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>            acceso <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Bienvenido al sistema, "</span></span>
+<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a>                 <span class="op">&lt;&lt;</span> usuario <span class="op">&lt;&lt;</span> <span class="st">"."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a>            intentos<span class="op">++;</span></span>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Usuario o contrasena incorrectos."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Intento "</span> <span class="op">&lt;&lt;</span> intentos <span class="op">&lt;&lt;</span> <span class="st">" de 3."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>acceso<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Usuario bloqueado. Fin del programa."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Menu principal</span></span>
+<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span> <span class="op">{</span></span>
+<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"        MENU PRINCIPAL"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"1. Registrar datos"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"2. Mostrar datos"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"3. Realizar calculo (bono)"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"4. Ver estado"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"5. Salir"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a>        opcion <span class="op">=</span> leerEntero<span class="op">(</span><span class="st">"Seleccione una opcion: "</span><span class="op">);</span></span>
+<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">switch</span> <span class="op">(</span>opcion<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">1</span><span class="op">:</span></span>
+<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a>                cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">--- REGISTRO DE DATOS ---"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a>                nombre <span class="op">=</span> leerTexto<span class="op">(</span><span class="st">"Nombre completo: "</span><span class="op">);</span></span>
+<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a>                edad <span class="op">=</span> leerEntero<span class="op">(</span><span class="st">"Edad: "</span><span class="op">);</span></span>
+<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a>                genero <span class="op">=</span> leerCaracter<span class="op">(</span><span class="st">"Genero (M/F): "</span><span class="op">);</span></span>
+<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a>                salario <span class="op">=</span> leerDecimal<span class="op">(</span><span class="st">"Salario: Q"</span><span class="op">);</span></span>
+<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a>                activo <span class="op">=</span> leerBooleano<span class="op">(</span><span class="st">"Usuario activo"</span><span class="op">);</span></span>
+<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-102"><a href="#cb36-102" aria-hidden="true" tabindex="-1"></a>                datosRegistrados <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb36-103"><a href="#cb36-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-104"><a href="#cb36-104" aria-hidden="true" tabindex="-1"></a>                cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Datos registrados correctamente."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">2</span><span class="op">:</span></span>
+<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>datosRegistrados<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a>                    mostrarDatos<span class="op">(</span>nombre<span class="op">,</span> edad<span class="op">,</span> genero<span class="op">,</span></span>
+<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a>                                 salario<span class="op">,</span> activo<span class="op">);</span></span>
+<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb36-113"><a href="#cb36-113" aria-hidden="true" tabindex="-1"></a>                    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Primero debe registrar los datos."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-117"><a href="#cb36-117" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">3</span><span class="op">:</span></span>
+<span id="cb36-118"><a href="#cb36-118" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>datosRegistrados<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">double</span> bono <span class="op">=</span> calcularBono<span class="op">(</span>salario<span class="op">,</span> edad<span class="op">);</span></span>
+<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-122"><a href="#cb36-122" aria-hidden="true" tabindex="-1"></a>                    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Bono calculado: Q"</span></span>
+<span id="cb36-123"><a href="#cb36-123" aria-hidden="true" tabindex="-1"></a>                         <span class="op">&lt;&lt;</span> bono <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb36-126"><a href="#cb36-126" aria-hidden="true" tabindex="-1"></a>                    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Primero debe registrar los datos."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-127"><a href="#cb36-127" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">4</span><span class="op">:</span></span>
+<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>datosRegistrados<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a>                    mostrarEstado<span class="op">(</span>activo<span class="op">);</span></span>
+<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a>                    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Primero debe registrar los datos."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">5</span><span class="op">:</span></span>
+<span id="cb36-140"><a href="#cb36-140" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>leerBooleano<span class="op">(</span><span class="st">"Realmente desea salir"</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb36-141"><a href="#cb36-141" aria-hidden="true" tabindex="-1"></a>                    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Gracias por usar el sistema."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-142"><a href="#cb36-142" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb36-143"><a href="#cb36-143" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb36-144"><a href="#cb36-144" aria-hidden="true" tabindex="-1"></a>                    opcion <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb36-145"><a href="#cb36-145" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb36-146"><a href="#cb36-146" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb36-147"><a href="#cb36-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-148"><a href="#cb36-148" aria-hidden="true" tabindex="-1"></a>            <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb36-149"><a href="#cb36-149" aria-hidden="true" tabindex="-1"></a>                cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Opcion invalida. Intente nuevamente."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-150"><a href="#cb36-150" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-151"><a href="#cb36-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-152"><a href="#cb36-152" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">while</span> <span class="op">(</span>opcion <span class="op">!=</span> <span class="dv">5</span><span class="op">);</span></span>
+<span id="cb36-153"><a href="#cb36-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-154"><a href="#cb36-154" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb36-155"><a href="#cb36-155" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-156"><a href="#cb36-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-157"><a href="#cb36-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-158"><a href="#cb36-158" aria-hidden="true" tabindex="-1"></a><span class="co">// ======================================================</span></span>
+<span id="cb36-159"><a href="#cb36-159" aria-hidden="true" tabindex="-1"></a><span class="co">// VALIDACIONES</span></span>
+<span id="cb36-160"><a href="#cb36-160" aria-hidden="true" tabindex="-1"></a><span class="co">// ======================================================</span></span>
+<span id="cb36-161"><a href="#cb36-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-162"><a href="#cb36-162" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> limpiarBuffer<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb36-163"><a href="#cb36-163" aria-hidden="true" tabindex="-1"></a>    cin<span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb36-164"><a href="#cb36-164" aria-hidden="true" tabindex="-1"></a>    cin<span class="op">.</span>ignore<span class="op">((</span>numeric_limits<span class="op">&lt;</span>streamsize<span class="op">&gt;::</span>max<span class="op">)(),</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">);</span></span>
+<span id="cb36-165"><a href="#cb36-165" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-166"><a href="#cb36-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-167"><a href="#cb36-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-168"><a href="#cb36-168" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> leerEntero<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-169"><a href="#cb36-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-170"><a href="#cb36-170" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> valor<span class="op">;</span></span>
+<span id="cb36-171"><a href="#cb36-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-172"><a href="#cb36-172" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-173"><a href="#cb36-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-174"><a href="#cb36-174" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje<span class="op">;</span></span>
+<span id="cb36-175"><a href="#cb36-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-176"><a href="#cb36-176" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>cin <span class="op">&gt;&gt;</span> valor<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-177"><a href="#cb36-177" aria-hidden="true" tabindex="-1"></a>            limpiarBuffer<span class="op">();</span></span>
+<span id="cb36-178"><a href="#cb36-178" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> valor<span class="op">;</span></span>
+<span id="cb36-179"><a href="#cb36-179" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-180"><a href="#cb36-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-181"><a href="#cb36-181" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"Error: debe ingresar un numero entero."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-182"><a href="#cb36-182" aria-hidden="true" tabindex="-1"></a>        limpiarBuffer<span class="op">();</span></span>
+<span id="cb36-183"><a href="#cb36-183" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-184"><a href="#cb36-184" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-185"><a href="#cb36-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-186"><a href="#cb36-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-187"><a href="#cb36-187" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> leerDecimal<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-188"><a href="#cb36-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-189"><a href="#cb36-189" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> valor<span class="op">;</span></span>
+<span id="cb36-190"><a href="#cb36-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-191"><a href="#cb36-191" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-192"><a href="#cb36-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-193"><a href="#cb36-193" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje<span class="op">;</span></span>
+<span id="cb36-194"><a href="#cb36-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-195"><a href="#cb36-195" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>cin <span class="op">&gt;&gt;</span> valor<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-196"><a href="#cb36-196" aria-hidden="true" tabindex="-1"></a>            limpiarBuffer<span class="op">();</span></span>
+<span id="cb36-197"><a href="#cb36-197" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> valor<span class="op">;</span></span>
+<span id="cb36-198"><a href="#cb36-198" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-199"><a href="#cb36-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-200"><a href="#cb36-200" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"Error: debe ingresar un numero valido."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-201"><a href="#cb36-201" aria-hidden="true" tabindex="-1"></a>        limpiarBuffer<span class="op">();</span></span>
+<span id="cb36-202"><a href="#cb36-202" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-203"><a href="#cb36-203" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-204"><a href="#cb36-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-205"><a href="#cb36-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-206"><a href="#cb36-206" aria-hidden="true" tabindex="-1"></a>string leerTexto<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-207"><a href="#cb36-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-208"><a href="#cb36-208" aria-hidden="true" tabindex="-1"></a>    string texto<span class="op">;</span></span>
+<span id="cb36-209"><a href="#cb36-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-210"><a href="#cb36-210" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span> <span class="op">{</span></span>
+<span id="cb36-211"><a href="#cb36-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-212"><a href="#cb36-212" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje<span class="op">;</span></span>
+<span id="cb36-213"><a href="#cb36-213" aria-hidden="true" tabindex="-1"></a>        getline<span class="op">(</span>cin<span class="op">,</span> texto<span class="op">);</span></span>
+<span id="cb36-214"><a href="#cb36-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-215"><a href="#cb36-215" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>texto<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb36-216"><a href="#cb36-216" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Error: el texto no puede estar vacio."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-217"><a href="#cb36-217" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-218"><a href="#cb36-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-219"><a href="#cb36-219" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">while</span> <span class="op">(</span>texto<span class="op">.</span>empty<span class="op">());</span></span>
+<span id="cb36-220"><a href="#cb36-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-221"><a href="#cb36-221" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> texto<span class="op">;</span></span>
+<span id="cb36-222"><a href="#cb36-222" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-223"><a href="#cb36-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-224"><a href="#cb36-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-225"><a href="#cb36-225" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> leerCaracter<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-226"><a href="#cb36-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-227"><a href="#cb36-227" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> valor<span class="op">;</span></span>
+<span id="cb36-228"><a href="#cb36-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-229"><a href="#cb36-229" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-230"><a href="#cb36-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-231"><a href="#cb36-231" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje<span class="op">;</span></span>
+<span id="cb36-232"><a href="#cb36-232" aria-hidden="true" tabindex="-1"></a>        cin <span class="op">&gt;&gt;</span> valor<span class="op">;</span></span>
+<span id="cb36-233"><a href="#cb36-233" aria-hidden="true" tabindex="-1"></a>        limpiarBuffer<span class="op">();</span></span>
+<span id="cb36-234"><a href="#cb36-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-235"><a href="#cb36-235" aria-hidden="true" tabindex="-1"></a>        valor <span class="op">=</span> toupper<span class="op">(</span>valor<span class="op">);</span></span>
+<span id="cb36-236"><a href="#cb36-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-237"><a href="#cb36-237" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>valor <span class="op">==</span> <span class="ch">'M'</span> <span class="op">||</span> valor <span class="op">==</span> <span class="ch">'F'</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-238"><a href="#cb36-238" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> valor<span class="op">;</span></span>
+<span id="cb36-239"><a href="#cb36-239" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-240"><a href="#cb36-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-241"><a href="#cb36-241" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"Error: ingrese M o F."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-242"><a href="#cb36-242" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-243"><a href="#cb36-243" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-244"><a href="#cb36-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-245"><a href="#cb36-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-246"><a href="#cb36-246" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> leerBooleano<span class="op">(</span>string mensaje<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-247"><a href="#cb36-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-248"><a href="#cb36-248" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> respuesta<span class="op">;</span></span>
+<span id="cb36-249"><a href="#cb36-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-250"><a href="#cb36-250" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span> <span class="op">{</span></span>
+<span id="cb36-251"><a href="#cb36-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-252"><a href="#cb36-252" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> mensaje <span class="op">&lt;&lt;</span> <span class="st">" (S/N): "</span><span class="op">;</span></span>
+<span id="cb36-253"><a href="#cb36-253" aria-hidden="true" tabindex="-1"></a>        cin <span class="op">&gt;&gt;</span> respuesta<span class="op">;</span></span>
+<span id="cb36-254"><a href="#cb36-254" aria-hidden="true" tabindex="-1"></a>        limpiarBuffer<span class="op">();</span></span>
+<span id="cb36-255"><a href="#cb36-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-256"><a href="#cb36-256" aria-hidden="true" tabindex="-1"></a>        respuesta <span class="op">=</span> toupper<span class="op">(</span>respuesta<span class="op">);</span></span>
+<span id="cb36-257"><a href="#cb36-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-258"><a href="#cb36-258" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>respuesta <span class="op">!=</span> <span class="ch">'S'</span> <span class="op">&amp;&amp;</span> respuesta <span class="op">!=</span> <span class="ch">'N'</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-259"><a href="#cb36-259" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Error: ingrese S o N."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-260"><a href="#cb36-260" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-261"><a href="#cb36-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-262"><a href="#cb36-262" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">while</span> <span class="op">(</span>respuesta <span class="op">!=</span> <span class="ch">'S'</span> <span class="op">&amp;&amp;</span> respuesta <span class="op">!=</span> <span class="ch">'N'</span><span class="op">);</span></span>
+<span id="cb36-263"><a href="#cb36-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-264"><a href="#cb36-264" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> respuesta <span class="op">==</span> <span class="ch">'S'</span><span class="op">;</span></span>
+<span id="cb36-265"><a href="#cb36-265" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-266"><a href="#cb36-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-267"><a href="#cb36-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-268"><a href="#cb36-268" aria-hidden="true" tabindex="-1"></a><span class="co">// ======================================================</span></span>
+<span id="cb36-269"><a href="#cb36-269" aria-hidden="true" tabindex="-1"></a><span class="co">// AUTENTICACION</span></span>
+<span id="cb36-270"><a href="#cb36-270" aria-hidden="true" tabindex="-1"></a><span class="co">// ======================================================</span></span>
+<span id="cb36-271"><a href="#cb36-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-272"><a href="#cb36-272" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarUsuario<span class="op">(</span>string usuario<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-273"><a href="#cb36-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-274"><a href="#cb36-274" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> usuario <span class="op">==</span> <span class="st">"mariojdi3"</span> <span class="op">||</span></span>
+<span id="cb36-275"><a href="#cb36-275" aria-hidden="true" tabindex="-1"></a>           usuario <span class="op">==</span> <span class="st">"jorgeg4"</span> <span class="op">||</span></span>
+<span id="cb36-276"><a href="#cb36-276" aria-hidden="true" tabindex="-1"></a>           usuario <span class="op">==</span> <span class="st">"raulc13"</span><span class="op">;</span></span>
+<span id="cb36-277"><a href="#cb36-277" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-278"><a href="#cb36-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-279"><a href="#cb36-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-280"><a href="#cb36-280" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> validarPassword<span class="op">(</span>string usuario<span class="op">,</span> string password<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-281"><a href="#cb36-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-282"><a href="#cb36-282" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>usuario <span class="op">==</span> <span class="st">"mariojdi3"</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb36-283"><a href="#cb36-283" aria-hidden="true" tabindex="-1"></a>        password <span class="op">==</span> <span class="st">"myHouseisntalone1289"</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-284"><a href="#cb36-284" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb36-285"><a href="#cb36-285" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-286"><a href="#cb36-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-287"><a href="#cb36-287" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>usuario <span class="op">==</span> <span class="st">"jorgeg4"</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb36-288"><a href="#cb36-288" aria-hidden="true" tabindex="-1"></a>        password <span class="op">==</span> <span class="st">"aSushiRestaurant3456"</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-289"><a href="#cb36-289" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb36-290"><a href="#cb36-290" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-291"><a href="#cb36-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-292"><a href="#cb36-292" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>usuario <span class="op">==</span> <span class="st">"raulc13"</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb36-293"><a href="#cb36-293" aria-hidden="true" tabindex="-1"></a>        password <span class="op">==</span> <span class="st">"watermelonandOrange"</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-294"><a href="#cb36-294" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb36-295"><a href="#cb36-295" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-296"><a href="#cb36-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-297"><a href="#cb36-297" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb36-298"><a href="#cb36-298" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-299"><a href="#cb36-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-300"><a href="#cb36-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-301"><a href="#cb36-301" aria-hidden="true" tabindex="-1"></a><span class="co">// ======================================================</span></span>
+<span id="cb36-302"><a href="#cb36-302" aria-hidden="true" tabindex="-1"></a><span class="co">// PROCESOS</span></span>
+<span id="cb36-303"><a href="#cb36-303" aria-hidden="true" tabindex="-1"></a><span class="co">// ======================================================</span></span>
+<span id="cb36-304"><a href="#cb36-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-305"><a href="#cb36-305" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarDatos<span class="op">(</span>string nombre<span class="op">,</span> <span class="dt">int</span> edad<span class="op">,</span> <span class="dt">char</span> genero<span class="op">,</span></span>
+<span id="cb36-306"><a href="#cb36-306" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">double</span> salario<span class="op">,</span> <span class="dt">bool</span> activo<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-307"><a href="#cb36-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-308"><a href="#cb36-308" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-309"><a href="#cb36-309" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"       DATOS REGISTRADOS"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-310"><a href="#cb36-310" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"=============================="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-311"><a href="#cb36-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-312"><a href="#cb36-312" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Nombre : "</span> <span class="op">&lt;&lt;</span> nombre <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-313"><a href="#cb36-313" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Edad   : "</span> <span class="op">&lt;&lt;</span> edad <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-314"><a href="#cb36-314" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Genero : "</span> <span class="op">&lt;&lt;</span> genero <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-315"><a href="#cb36-315" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Salario: Q"</span> <span class="op">&lt;&lt;</span> salario <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-316"><a href="#cb36-316" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Activo : "</span> <span class="op">&lt;&lt;</span> <span class="op">(</span>activo <span class="op">?</span> <span class="st">"Si"</span> <span class="op">:</span> <span class="st">"No"</span><span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-317"><a href="#cb36-317" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-318"><a href="#cb36-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-319"><a href="#cb36-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-320"><a href="#cb36-320" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> calcularBono<span class="op">(</span><span class="dt">double</span> salario<span class="op">,</span> <span class="dt">int</span> edad<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-321"><a href="#cb36-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-322"><a href="#cb36-322" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> porcentaje<span class="op">;</span></span>
+<span id="cb36-323"><a href="#cb36-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-324"><a href="#cb36-324" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>edad <span class="op">&gt;=</span> <span class="dv">50</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-325"><a href="#cb36-325" aria-hidden="true" tabindex="-1"></a>        porcentaje <span class="op">=</span> <span class="fl">0.10</span><span class="op">;</span></span>
+<span id="cb36-326"><a href="#cb36-326" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-327"><a href="#cb36-327" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb36-328"><a href="#cb36-328" aria-hidden="true" tabindex="-1"></a>        porcentaje <span class="op">=</span> <span class="fl">0.05</span><span class="op">;</span></span>
+<span id="cb36-329"><a href="#cb36-329" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-330"><a href="#cb36-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-331"><a href="#cb36-331" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> salario <span class="op">*</span> porcentaje<span class="op">;</span></span>
+<span id="cb36-332"><a href="#cb36-332" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb36-333"><a href="#cb36-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-334"><a href="#cb36-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-335"><a href="#cb36-335" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarEstado<span class="op">(</span><span class="dt">bool</span> activo<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-336"><a href="#cb36-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-337"><a href="#cb36-337" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>activo<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-338"><a href="#cb36-338" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">El usuario se encuentra ACTIVO."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-339"><a href="#cb36-339" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-340"><a href="#cb36-340" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb36-341"><a href="#cb36-341" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">El usuario se encuentra INACTIVO."</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb36-342"><a href="#cb36-342" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-343"><a href="#cb36-343" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="qué-acabamos-de-utilizar" class="level1" data-number="25">
+<h1 data-number="25"><span class="header-section-number">25</span> 15. ¿Qué acabamos de utilizar?</h1>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>Aplicación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>int</code></td>
+<td>edad, opción, intentos</td>
+</tr>
+<tr class="even">
+<td><code>double</code></td>
+<td>salario y bono</td>
+</tr>
+<tr class="odd">
+<td><code>char</code></td>
+<td>género y respuestas S/N</td>
+</tr>
+<tr class="even">
+<td><code>string</code></td>
+<td>nombre, usuario y contraseña</td>
+</tr>
+<tr class="odd">
+<td><code>bool</code></td>
+<td>acceso, estado y datos registrados</td>
+</tr>
+<tr class="even">
+<td><code>if / else</code></td>
+<td>decisiones y validaciones</td>
+</tr>
+<tr class="odd">
+<td><code>switch</code></td>
+<td>opciones del menú</td>
+</tr>
+<tr class="even">
+<td><code>while</code></td>
+<td>validaciones y autenticación</td>
+</tr>
+<tr class="odd">
+<td><code>do-while</code></td>
+<td>repetición del menú</td>
+</tr>
+<tr class="even">
+<td>procedimientos</td>
+<td>limpiar, mostrar información y estado</td>
+</tr>
+<tr class="odd">
+<td>funciones</td>
+<td>leer, validar y calcular</td>
+</tr>
+<tr class="even">
+<td>parámetros</td>
+<td>enviar información entre funciones</td>
+</tr>
+<tr class="odd">
+<td><code>return</code></td>
+<td>devolver resultados</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cierre-del-laboratorio" class="level1" data-number="26">
+<h1 data-number="26"><span class="header-section-number">26</span> 16. Cierre del laboratorio</h1>
+<section id="de-una-variable-a-un-programa-completo" class="level2 callout-success" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="de-una-variable-a-un-programa-completo"><span class="header-section-number">26.1</span> De una variable a un programa completo</h2>
+<p>Comenzamos preguntándonos qué necesitábamos para controlar un menú:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> opcion<span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Y terminamos construyendo un programa que integra <strong>análisis, variables, decisiones, ciclos, validaciones, procedimientos, funciones, parámetros y valores de retorno</strong>.</p>
+<p>El objetivo no era memorizar código. El objetivo era comprobar que podemos <strong>analizar un problema, dividirlo y construir la solución paso a paso</strong>.</p>
+</section>
+<section id="reto-rápido" class="level2" data-number="26.2">
+<h2 data-number="26.2" class="anchored" data-anchor-id="reto-rápido"><span class="header-section-number">26.2</span> Reto rápido</h2>
+<p>Si terminaste antes:</p>
+<ol type="1">
+<li>valida que la edad esté entre 18 y 100 años;</li>
+<li>evita salarios negativos;</li>
+<li>muestra cuántos intentos de autenticación le quedaron al usuario;</li>
+<li>agrega una sexta opción al menú sin modificar las funciones existentes.</li>
+</ol>
+<blockquote class="blockquote">
+<p>No intentes resolver todo al mismo tiempo. Haz <strong>un cambio, compila y prueba</strong> antes de continuar.</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../capitulos/06_procedimientos_funciones_parametros.html" class="pagination-link" aria-label="Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../capitulos/08_arreglos_y_vectores.html" class="pagination-link" aria-label="Arreglos y vectores: muchas casillas, una sola estructura">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arreglos y vectores: muchas casillas, una sola estructura</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Editorial Académica de Ingeniería en Sistemas</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Diseñar una vez. Enseñar toda la vida.</p>
+</div>
+    <div class="nav-footer-right">
+<p>Ing. Jorge Luis García Chacón</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
