@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Laboratorio: Arreglos y Vectores</title>
+<title>11&nbsp; Laboratorio: Arreglos y Vectores – Algoritmos</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -61,30 +61,233 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="09_laboratorio_arreglos_vectores_files/libs/clipboard/clipboard.min.js"></script>
-<script src="09_laboratorio_arreglos_vectores_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="09_laboratorio_arreglos_vectores_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="09_laboratorio_arreglos_vectores_files/libs/quarto-html/popper.min.js"></script>
-<script src="09_laboratorio_arreglos_vectores_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="09_laboratorio_arreglos_vectores_files/libs/quarto-html/anchor.min.js"></script>
-<link href="09_laboratorio_arreglos_vectores_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="09_laboratorio_arreglos_vectores_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="09_laboratorio_arreglos_vectores_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="09_laboratorio_arreglos_vectores_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="09_laboratorio_arreglos_vectores_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../capitulos/10_laboratorio_modularizacion.html" rel="next">
+<link href="../capitulos/08_arreglos_y_vectores.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-00cb48ef4f8381ff23467c959274e61b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-663c59e08f2ec96d6b2ddc79a12e8e5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/09_laboratorio_arreglos_vectores.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laboratorio: Arreglos y Vectores</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Algoritmos</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Presentación del curso</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/02_primeros_pasos_cpp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Clase 2. Primeros pasos en C++</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Laboratorio 1. Desarrollo de una solución informática</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/03_expresiones_logicas_estructuras_condicionales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Capítulo 3. Expresiones lógicas y estructuras condicionales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/04-laboratorio-ciclos-enum-cajero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Laboratorio No.&nbsp;3: ciclos, <code>enum</code> y simulación de un cajero automático</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/05_integracion_de_conceptos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Capítulo 5. Integración de conceptos: construyendo un programa completo</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/06_procedimientos_funciones_parametros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/07_laboratorio_guiado_integrador.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laboratorio guiado: desarrollo de una solución</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/08_arreglos_y_vectores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arreglos y vectores: muchas casillas, una sola estructura</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/09_laboratorio_arreglos_vectores.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laboratorio: Arreglos y Vectores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/10_laboratorio_modularizacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Laboratorio: Modularización del analizador de notas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/11_vectores_cpp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vectores en C++</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/99_cierre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Cierre del capítulo</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#laboratorio-analizador-de-notas" id="toc-laboratorio-analizador-de-notas" class="nav-link active" data-scroll-target="#laboratorio-analizador-de-notas"><span class="header-section-number">12</span> Laboratorio: Analizador de notas</a></li>
+  <li><a href="#situación" id="toc-situación" class="nav-link" data-scroll-target="#situación"><span class="header-section-number">13</span> 1. Situación</a></li>
+  <li><a href="#requerimiento" id="toc-requerimiento" class="nav-link" data-scroll-target="#requerimiento"><span class="header-section-number">14</span> 2. Requerimiento</a></li>
+  <li><a href="#ejemplo-de-funcionamiento" id="toc-ejemplo-de-funcionamiento" class="nav-link" data-scroll-target="#ejemplo-de-funcionamiento"><span class="header-section-number">15</span> 3. Ejemplo de funcionamiento</a></li>
+  <li><a href="#antes-de-programar" id="toc-antes-de-programar" class="nav-link" data-scroll-target="#antes-de-programar"><span class="header-section-number">16</span> 4. Antes de programar</a>
+  <ul class="collapse">
+  <li><a href="#qué-necesitamos-almacenar" id="toc-qué-necesitamos-almacenar" class="nav-link" data-scroll-target="#qué-necesitamos-almacenar"><span class="header-section-number">16.1</span> ¿Qué necesitamos almacenar?</a></li>
+  <li><a href="#cuántos-recorridos-necesitamos" id="toc-cuántos-recorridos-necesitamos" class="nav-link" data-scroll-target="#cuántos-recorridos-necesitamos"><span class="header-section-number">16.2</span> ¿Cuántos recorridos necesitamos?</a></li>
+  </ul></li>
+  <li><a href="#plan-de-trabajo-sugerido" id="toc-plan-de-trabajo-sugerido" class="nav-link" data-scroll-target="#plan-de-trabajo-sugerido"><span class="header-section-number">17</span> 5. Plan de trabajo sugerido</a>
+  <ul class="collapse">
+  <li><a href="#etapa-1-registrar-las-notas" id="toc-etapa-1-registrar-las-notas" class="nav-link" data-scroll-target="#etapa-1-registrar-las-notas"><span class="header-section-number">17.1</span> Etapa 1 — Registrar las notas</a></li>
+  <li><a href="#etapa-2-mostrar-el-arreglo" id="toc-etapa-2-mostrar-el-arreglo" class="nav-link" data-scroll-target="#etapa-2-mostrar-el-arreglo"><span class="header-section-number">17.2</span> Etapa 2 — Mostrar el arreglo</a></li>
+  <li><a href="#etapa-3-suma-y-promedio" id="toc-etapa-3-suma-y-promedio" class="nav-link" data-scroll-target="#etapa-3-suma-y-promedio"><span class="header-section-number">17.3</span> Etapa 3 — Suma y promedio</a></li>
+  <li><a href="#etapa-4-mayor-y-menor" id="toc-etapa-4-mayor-y-menor" class="nav-link" data-scroll-target="#etapa-4-mayor-y-menor"><span class="header-section-number">17.4</span> Etapa 4 — Mayor y menor</a></li>
+  <li><a href="#etapa-5-aprobados-y-reprobados" id="toc-etapa-5-aprobados-y-reprobados" class="nav-link" data-scroll-target="#etapa-5-aprobados-y-reprobados"><span class="header-section-number">17.5</span> Etapa 5 — Aprobados y reprobados</a></li>
+  </ul></li>
+  <li><a href="#tiempo-de-desarrollo" id="toc-tiempo-de-desarrollo" class="nav-link" data-scroll-target="#tiempo-de-desarrollo"><span class="header-section-number">18</span> 6. Tiempo de desarrollo</a></li>
+  <li><a href="#casos-de-prueba" id="toc-casos-de-prueba" class="nav-link" data-scroll-target="#casos-de-prueba"><span class="header-section-number">19</span> 7. Casos de prueba</a>
+  <ul class="collapse">
+  <li><a href="#prueba-1" id="toc-prueba-1" class="nav-link" data-scroll-target="#prueba-1"><span class="header-section-number">19.1</span> Prueba 1</a></li>
+  <li><a href="#prueba-2" id="toc-prueba-2" class="nav-link" data-scroll-target="#prueba-2"><span class="header-section-number">19.2</span> Prueba 2</a></li>
+  </ul></li>
+  <li><a href="#preparémonos-para-explicar" id="toc-preparémonos-para-explicar" class="nav-link" data-scroll-target="#preparémonos-para-explicar"><span class="header-section-number">20</span> 8. Preparémonos para explicar</a></li>
+  <li><a href="#reto-adicional" id="toc-reto-adicional" class="nav-link" data-scroll-target="#reto-adicional"><span class="header-section-number">21</span> 9. Reto adicional</a></li>
+  <li><a href="#alto-aquí" id="toc-alto-aquí" class="nav-link" data-scroll-target="#alto-aquí"><span class="header-section-number">22</span> 10. Alto aquí</a></li>
+  <li><a href="#solución-propuesta" id="toc-solución-propuesta" class="nav-link" data-scroll-target="#solución-propuesta"><span class="header-section-number">23</span> Solución propuesta</a></li>
+  <li><a href="#analicemos-la-solución" id="toc-analicemos-la-solución" class="nav-link" data-scroll-target="#analicemos-la-solución"><span class="header-section-number">24</span> 11. Analicemos la solución</a>
+  <ul class="collapse">
+  <li><a href="#el-arreglo" id="toc-el-arreglo" class="nav-link" data-scroll-target="#el-arreglo"><span class="header-section-number">24.1</span> El arreglo</a></li>
+  <li><a href="#el-ingreso" id="toc-el-ingreso" class="nav-link" data-scroll-target="#el-ingreso"><span class="header-section-number">24.2</span> El ingreso</a></li>
+  <li><a href="#mayor-y-menor" id="toc-mayor-y-menor" class="nav-link" data-scroll-target="#mayor-y-menor"><span class="header-section-number">24.3</span> Mayor y menor</a></li>
+  <li><a href="#aprobados-y-reprobados" id="toc-aprobados-y-reprobados" class="nav-link" data-scroll-target="#aprobados-y-reprobados"><span class="header-section-number">24.4</span> Aprobados y reprobados</a></li>
+  </ul></li>
+  <li><a href="#pregunta-final" id="toc-pregunta-final" class="nav-link" data-scroll-target="#pregunta-final"><span class="header-section-number">25</span> 12. Pregunta final</a></li>
+  <li><a href="#cierre-del-laboratorio" id="toc-cierre-del-laboratorio" class="nav-link" data-scroll-target="#cierre-del-laboratorio"><span class="header-section-number">26</span> 13. Cierre del laboratorio</a>
+  <ul class="collapse">
+  <li><a href="#misión-cumplida" id="toc-misión-cumplida" class="nav-link" data-scroll-target="#misión-cumplida"><span class="header-section-number">26.1</span> Misión cumplida</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Laboratorio: Arreglos y Vectores</h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laboratorio: Arreglos y Vectores</span></h1>
 <p class="subtitle lead">Del registro de notas al análisis de resultados</p>
 </div>
 
@@ -102,8 +305,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="laboratorio-analizador-de-notas" class="level1">
-<h1>Laboratorio: Analizador de notas</h1>
+<section id="laboratorio-analizador-de-notas" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Laboratorio: Analizador de notas</h1>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -121,8 +324,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="situación" class="level1">
-<h1>1. Situación</h1>
+<section id="situación" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> 1. Situación</h1>
 <p>Un docente necesita un pequeño programa para registrar las notas de <strong>5 estudiantes</strong> y obtener información básica del grupo.</p>
 <p>El programa deberá almacenar todas las notas en un <strong>arreglo</strong> y utilizar ciclos para recorrerlo.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -131,18 +334,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Regla principal
+<span class="screen-reader-only">Importante</span>Regla principal
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>No debes crear variables como:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nota1<span class="op">,</span> nota2<span class="op">,</span> nota3<span class="op">,</span> nota4<span class="op">,</span> nota5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nota1<span class="op">,</span> nota2<span class="op">,</span> nota3<span class="op">,</span> nota4<span class="op">,</span> nota5</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Las cinco notas deben almacenarse en <strong>un solo arreglo</strong>.</p>
 </div>
 </div>
 </section>
-<section id="requerimiento" class="level1">
-<h1>2. Requerimiento</h1>
+<section id="requerimiento" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> 2. Requerimiento</h1>
 <p>Construye un programa en C++ que permita:</p>
 <ol type="1">
 <li>Crear un arreglo para almacenar <strong>5 notas</strong>.</li>
@@ -159,8 +362,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>Aprobado   → nota &gt;= 61
 Reprobado  → nota &lt; 61</code></pre>
 </section>
-<section id="ejemplo-de-funcionamiento" class="level1">
-<h1>3. Ejemplo de funcionamiento</h1>
+<section id="ejemplo-de-funcionamiento" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> 3. Ejemplo de funcionamiento</h1>
 <p>El resultado de tu programa podría verse aproximadamente así:</p>
 <pre class="text"><code>================================
       ANALIZADOR DE NOTAS
@@ -198,7 +401,7 @@ Reprobados: 2</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Importante
+<span class="screen-reader-only">Nota</span>Importante
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -207,11 +410,11 @@ Reprobados: 2</code></pre>
 </div>
 </div>
 </section>
-<section id="antes-de-programar" class="level1">
-<h1>4. Antes de programar</h1>
+<section id="antes-de-programar" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> 4. Antes de programar</h1>
 <p>Dedica unos minutos a pensar.</p>
-<section id="qué-necesitamos-almacenar" class="level2">
-<h2 class="anchored" data-anchor-id="qué-necesitamos-almacenar">¿Qué necesitamos almacenar?</h2>
+<section id="qué-necesitamos-almacenar" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="qué-necesitamos-almacenar"><span class="header-section-number">16.1</span> ¿Qué necesitamos almacenar?</h2>
 <p>Completa mentalmente o en tu cuaderno:</p>
 <table class="caption-top table">
 <thead>
@@ -260,8 +463,8 @@ Reprobados: 2</code></pre>
 </tbody>
 </table>
 </section>
-<section id="cuántos-recorridos-necesitamos" class="level2">
-<h2 class="anchored" data-anchor-id="cuántos-recorridos-necesitamos">¿Cuántos recorridos necesitamos?</h2>
+<section id="cuántos-recorridos-necesitamos" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="cuántos-recorridos-necesitamos"><span class="header-section-number">16.2</span> ¿Cuántos recorridos necesitamos?</h2>
 <p>Piensa:</p>
 <ul>
 <li>¿Podemos ingresar las notas utilizando un <code>for</code>?</li>
@@ -274,7 +477,7 @@ Reprobados: 2</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>No comiences escribiendo todo el programa
+<span class="screen-reader-only">Advertencia</span>No comiences escribiendo todo el programa
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -285,10 +488,10 @@ Reprobados: 2</code></pre>
 </div>
 </section>
 </section>
-<section id="plan-de-trabajo-sugerido" class="level1">
-<h1>5. Plan de trabajo sugerido</h1>
-<section id="etapa-1-registrar-las-notas" class="level2">
-<h2 class="anchored" data-anchor-id="etapa-1-registrar-las-notas">Etapa 1 — Registrar las notas</h2>
+<section id="plan-de-trabajo-sugerido" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> 5. Plan de trabajo sugerido</h1>
+<section id="etapa-1-registrar-las-notas" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="etapa-1-registrar-las-notas"><span class="header-section-number">17.1</span> Etapa 1 — Registrar las notas</h2>
 <p>Primero consigue que tu programa:</p>
 <ul>
 <li>declare el arreglo;</li>
@@ -298,24 +501,24 @@ Reprobados: 2</code></pre>
 </ul>
 <p>Cuando funcione, continúa.</p>
 </section>
-<section id="etapa-2-mostrar-el-arreglo" class="level2">
-<h2 class="anchored" data-anchor-id="etapa-2-mostrar-el-arreglo">Etapa 2 — Mostrar el arreglo</h2>
+<section id="etapa-2-mostrar-el-arreglo" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="etapa-2-mostrar-el-arreglo"><span class="header-section-number">17.2</span> Etapa 2 — Mostrar el arreglo</h2>
 <p>Recorre nuevamente las posiciones y muestra:</p>
 <pre class="text"><code>Indice 0 -&gt; ...
 Indice 1 -&gt; ...
 Indice 2 -&gt; ...</code></pre>
 <p>Comprueba que los datos coincidan con lo que ingresaste.</p>
 </section>
-<section id="etapa-3-suma-y-promedio" class="level2">
-<h2 class="anchored" data-anchor-id="etapa-3-suma-y-promedio">Etapa 3 — Suma y promedio</h2>
+<section id="etapa-3-suma-y-promedio" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="etapa-3-suma-y-promedio"><span class="header-section-number">17.3</span> Etapa 3 — Suma y promedio</h2>
 <p>Utiliza los valores almacenados para obtener:</p>
 <ul>
 <li>suma;</li>
 <li>promedio.</li>
 </ul>
 </section>
-<section id="etapa-4-mayor-y-menor" class="level2">
-<h2 class="anchored" data-anchor-id="etapa-4-mayor-y-menor">Etapa 4 — Mayor y menor</h2>
+<section id="etapa-4-mayor-y-menor" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="etapa-4-mayor-y-menor"><span class="header-section-number">17.4</span> Etapa 4 — Mayor y menor</h2>
 <p>Ahora determina:</p>
 <ul>
 <li>la nota más alta;</li>
@@ -340,15 +543,15 @@ Indice 2 -&gt; ...</code></pre>
 </div>
 </div>
 </section>
-<section id="etapa-5-aprobados-y-reprobados" class="level2">
-<h2 class="anchored" data-anchor-id="etapa-5-aprobados-y-reprobados">Etapa 5 — Aprobados y reprobados</h2>
+<section id="etapa-5-aprobados-y-reprobados" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="etapa-5-aprobados-y-reprobados"><span class="header-section-number">17.5</span> Etapa 5 — Aprobados y reprobados</h2>
 <p>Durante el recorrido analiza cada nota:</p>
 <pre class="text"><code>¿La nota es mayor o igual a 61?</code></pre>
 <p>Necesitarás llevar dos contadores.</p>
 </section>
 </section>
-<section id="tiempo-de-desarrollo" class="level1">
-<h1>6. Tiempo de desarrollo</h1>
+<section id="tiempo-de-desarrollo" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> 6. Tiempo de desarrollo</h1>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -381,7 +584,7 @@ Indice 2 -&gt; ...</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Durante estos 30 minutos
+<span class="screen-reader-only">Importante</span>Durante estos 30 minutos
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -396,11 +599,11 @@ Indice 2 -&gt; ...</code></pre>
 </div>
 </div>
 </section>
-<section id="casos-de-prueba" class="level1">
-<h1>7. Casos de prueba</h1>
+<section id="casos-de-prueba" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> 7. Casos de prueba</h1>
 <p>Antes de considerar terminado el programa, realiza al menos estas pruebas.</p>
-<section id="prueba-1" class="level2">
-<h2 class="anchored" data-anchor-id="prueba-1">Prueba 1</h2>
+<section id="prueba-1" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="prueba-1"><span class="header-section-number">19.1</span> Prueba 1</h2>
 <pre class="text"><code>75
 60
 90
@@ -408,8 +611,8 @@ Indice 2 -&gt; ...</code></pre>
 80</code></pre>
 <p>Comprueba manualmente los resultados.</p>
 </section>
-<section id="prueba-2" class="level2">
-<h2 class="anchored" data-anchor-id="prueba-2">Prueba 2</h2>
+<section id="prueba-2" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="prueba-2"><span class="header-section-number">19.2</span> Prueba 2</h2>
 <p>Utiliza cinco notas elegidas por ti.</p>
 <p>Antes de ejecutar el programa, calcula en papel:</p>
 <ul>
@@ -423,8 +626,8 @@ Indice 2 -&gt; ...</code></pre>
 <p>Luego compara tus resultados con los del programa.</p>
 </section>
 </section>
-<section id="preparémonos-para-explicar" class="level1">
-<h1>8. Preparémonos para explicar</h1>
+<section id="preparémonos-para-explicar" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> 8. Preparémonos para explicar</h1>
 <p>Al finalizar el tiempo de desarrollo, algunos estudiantes presentarán su solución.</p>
 <p>No basta con que el programa funcione.</p>
 <p>Debes poder explicar:</p>
@@ -444,7 +647,7 @@ Indice 2 -&gt; ...</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Regla de la exposición
+<span class="screen-reader-only">Advertencia</span>Regla de la exposición
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -453,8 +656,8 @@ Indice 2 -&gt; ...</code></pre>
 </div>
 </div>
 </section>
-<section id="reto-adicional" class="level1">
-<h1>9. Reto adicional</h1>
+<section id="reto-adicional" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> 9. Reto adicional</h1>
 <p>Si terminaste antes de los 30 minutos, agrega una búsqueda.</p>
 <p>El programa deberá solicitar una nota:</p>
 <pre class="text"><code>Ingrese la nota que desea buscar: 90</code></pre>
@@ -478,15 +681,15 @@ Indice 2 -&gt; ...</code></pre>
 </div>
 </div>
 </section>
-<section id="alto-aquí" class="level1">
-<h1>10. Alto aquí</h1>
+<section id="alto-aquí" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> 10. Alto aquí</h1>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>No continúes todavía
+<span class="screen-reader-only">Importante</span>No continúes todavía
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -497,8 +700,8 @@ Indice 2 -&gt; ...</code></pre>
 </div>
 </div>
 </section>
-<section id="solución-propuesta" class="level1">
-<h1>Solución propuesta</h1>
+<section id="solución-propuesta" class="level1" data-number="23">
+<h1 data-number="23"><span class="header-section-number">23</span> Solución propuesta</h1>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -582,17 +785,17 @@ Indice 2 -&gt; ...</code></pre>
 <span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Reprobados: "</span> <span class="op">&lt;&lt;</span> reprobados <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
 <span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </section>
-<section id="analicemos-la-solución" class="level1">
-<h1>11. Analicemos la solución</h1>
-<section id="el-arreglo" class="level2">
-<h2 class="anchored" data-anchor-id="el-arreglo">El arreglo</h2>
+<section id="analicemos-la-solución" class="level1" data-number="24">
+<h1 data-number="24"><span class="header-section-number">24</span> 11. Analicemos la solución</h1>
+<section id="el-arreglo" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="el-arreglo"><span class="header-section-number">24.1</span> El arreglo</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> TAM <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> notas<span class="op">[</span>TAM<span class="op">];</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> notas<span class="op">[</span>TAM<span class="op">];</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Tenemos cinco casillas:</p>
 <pre class="text"><code>notas[0]
 notas[1]
@@ -600,41 +803,41 @@ notas[2]
 notas[3]
 notas[4]</code></pre>
 </section>
-<section id="el-ingreso" class="level2">
-<h2 class="anchored" data-anchor-id="el-ingreso">El ingreso</h2>
+<section id="el-ingreso" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="el-ingreso"><span class="header-section-number">24.2</span> El ingreso</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> TAM<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> notas<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>El mismo <code>cin</code> trabaja cada vez con una posición diferente.</p>
 </section>
-<section id="mayor-y-menor" class="level2">
-<h2 class="anchored" data-anchor-id="mayor-y-menor">Mayor y menor</h2>
+<section id="mayor-y-menor" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="mayor-y-menor"><span class="header-section-number">24.3</span> Mayor y menor</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> mayor <span class="op">=</span> notas<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> menor <span class="op">=</span> notas<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> menor <span class="op">=</span> notas<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>En lugar de inventar un valor inicial, utilizamos un dato que sabemos que pertenece al arreglo.</p>
 <p>Después comparamos:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>notas<span class="op">[</span>i<span class="op">]</span> <span class="op">&gt;</span> mayor<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    mayor <span class="op">=</span> notas<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>y:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>notas<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> menor<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    menor <span class="op">=</span> notas<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="aprobados-y-reprobados" class="level2">
-<h2 class="anchored" data-anchor-id="aprobados-y-reprobados">Aprobados y reprobados</h2>
+<section id="aprobados-y-reprobados" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="aprobados-y-reprobados"><span class="header-section-number">24.4</span> Aprobados y reprobados</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>notas<span class="op">[</span>i<span class="op">]</span> <span class="op">&gt;=</span> <span class="dv">61</span><span class="op">)</span> <span class="op">{</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    aprobados<span class="op">++;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="op">{</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    reprobados<span class="op">++;</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Aquí combinamos tres conocimientos:</p>
 <p><strong>arreglos + ciclos + decisiones</strong>.</p>
 </section>
 </section>
-<section id="pregunta-final" class="level1">
-<h1>12. Pregunta final</h1>
+<section id="pregunta-final" class="level1" data-number="25">
+<h1 data-number="25"><span class="header-section-number">25</span> 12. Pregunta final</h1>
 <p>Observa todo el programa.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -659,8 +862,8 @@ nota5</code></pre>
 </div>
 </div>
 </section>
-<section id="cierre-del-laboratorio" class="level1">
-<h1>13. Cierre del laboratorio</h1>
+<section id="cierre-del-laboratorio" class="level1" data-number="26">
+<h1 data-number="26"><span class="header-section-number">26</span> 13. Cierre del laboratorio</h1>
 <p>Hoy comprobamos que un arreglo no sirve únicamente para guardar muchos datos.</p>
 <p>Al combinar:</p>
 <pre class="text"><code>Arreglo
@@ -676,15 +879,16 @@ Condiciones</code></pre>
 <li>conteos;</li>
 <li>búsquedas.</li>
 </ul>
-<section id="misión-cumplida" class="level2 callout-success">
-<h2 class="anchored" data-anchor-id="misión-cumplida">Misión cumplida</h2>
+<section id="misión-cumplida" class="level2 callout-success" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="misión-cumplida"><span class="header-section-number">26.1</span> Misión cumplida</h2>
 <p>Si pudiste construir y explicar este programa, ya no estás simplemente utilizando arreglos.</p>
 <p>Estás comenzando a <strong>procesar colecciones de datos mediante algoritmos</strong>.</p>
 </section>
+
+
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -710,12 +914,12 @@ Condiciones</code></pre>
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiado");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiado");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -1085,9 +1289,35 @@ Condiciones</code></pre>
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../capitulos/08_arreglos_y_vectores.html" class="pagination-link" aria-label="Arreglos y vectores: muchas casillas, una sola estructura">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arreglos y vectores: muchas casillas, una sola estructura</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../capitulos/10_laboratorio_modularizacion.html" class="pagination-link" aria-label="Laboratorio: Modularización del analizador de notas">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Laboratorio: Modularización del analizador de notas</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Editorial Académica de Ingeniería en Sistemas</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Diseñar una vez. Enseñar toda la vida.</p>
+</div>
+    <div class="nav-footer-right">
+<p>Ing. Jorge Luis García Chacón</p>
+</div>
+  </div>
+</footer>
 
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

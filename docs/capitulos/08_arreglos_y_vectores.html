@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../capitulos/99_cierre.html" rel="next">
+<link href="../capitulos/09_laboratorio_arreglos_vectores.html" rel="next">
 <link href="../capitulos/07_laboratorio_guiado_integrador.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -208,8 +208,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../capitulos/09_laboratorio_arreglos_vectores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laboratorio: Arreglos y Vectores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/10_laboratorio_modularizacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Laboratorio: Modularización del analizador de notas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/11_vectores_cpp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vectores en C++</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../capitulos/99_cierre.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cierre del capítulo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Cierre del capítulo</span></span></a>
   </div>
 </li>
     </ul>
@@ -244,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#si-comprendimos-esto-estamos-listos-para-el-laboratorio" id="toc-si-comprendimos-esto-estamos-listos-para-el-laboratorio" class="nav-link" data-scroll-target="#si-comprendimos-esto-estamos-listos-para-el-laboratorio"><span class="header-section-number">25.1</span> Si comprendimos esto, estamos listos para el laboratorio</a></li>
   </ul></li>
   <li><a href="#para-recordar" id="toc-para-recordar" class="nav-link" data-scroll-target="#para-recordar"><span class="header-section-number">26</span> 15. Para recordar</a></li>
-  <li><a href="#resumen-visual-del-capítulo" id="toc-resumen-visual-del-capítulo" class="nav-link" data-scroll-target="#resumen-visual-del-capítulo"><span class="header-section-number">27</span> Resumen visual del capítulo</a></li>
+  <li><a href="#síntesis-visual-del-capítulo" id="toc-síntesis-visual-del-capítulo" class="nav-link" data-scroll-target="#síntesis-visual-del-capítulo"><span class="header-section-number">27</span> Síntesis visual del capítulo</a></li>
   </ul>
 </nav>
     </div>
@@ -904,10 +922,30 @@ Podemos leer, modificar y procesar todos los datos</code></pre>
 <p><strong>Si hay <code>n</code> elementos, los índices válidos van de <code>0</code> a <code>n - 1</code>.</strong></p>
 </blockquote>
 </section>
-<section id="resumen-visual-del-capítulo" class="level1" data-number="27">
-<h1 data-number="27"><span class="header-section-number">27</span> Resumen visual del capítulo</h1>
+<section id="síntesis-visual-del-capítulo" class="level1" data-number="27">
+<h1 data-number="27"><span class="header-section-number">27</span> Síntesis visual del capítulo</h1>
 <p>A continuación se presenta una síntesis visual de los conceptos fundamentales que hemos trabajado sobre arreglos y vectores.</p>
 <p><img src="img/resumen_arreglos_vectores.png" class="img-fluid" style="width:100.0%" alt="Resumen visual sobre arreglos y vectores en C++"></p>
+<p><strong>Nota: </strong> para los programas de clase en C++, especialmente en windows, puedes colocar:</p>
+<pre><code>#include &lt;iostream&gt;
+
+#include &lt;clocale&gt;
+
+using namespace std;
+
+int main() {
+
+    setlocale(LC_ALL, "");
+
+    cout &lt;&lt; "Ingrese la calificación del estudiante:" &lt;&lt; endl;
+
+    cout &lt;&lt; "Número de posición: 0" &lt;&lt; endl;
+
+    cout &lt;&lt; "Promedio académico" &lt;&lt; endl;
+
+    return 0;
+
+}</code></pre>
 
 
 </section>
@@ -1320,8 +1358,8 @@ Podemos leer, modificar y procesar todos los datos</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../capitulos/99_cierre.html" class="pagination-link" aria-label="Cierre del capítulo">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cierre del capítulo</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../capitulos/09_laboratorio_arreglos_vectores.html" class="pagination-link" aria-label="Laboratorio: Arreglos y Vectores">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laboratorio: Arreglos y Vectores</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

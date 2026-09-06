@@ -1,0 +1,765 @@
+---
+title: "Vectores en C++"
+subtitle: "De un arreglo de tamaño fijo a una colección dinámica"
+---
+
+# El reto de hoy
+
+En las últimas clases construimos un **Analizador de notas**. Primero utilizamos un arreglo tradicional y después modularizamos el programa mediante procedimientos, funciones, parámetros y valores de retorno.
+
+::: {.callout-important}
+## Pregunta para el grupo
+
+¿Qué ocurriría si **no sabemos de antemano cuántos estudiantes** tendremos?
+
+Hoy pasaremos de un arreglo de tamaño fijo a una estructura que puede crecer durante la ejecución:
+
+**`vector`**
+:::
+
+# 1. Recordemos el arreglo tradicional
+
+Hasta ahora hemos trabajado con:
+
+```cpp
+const int TAM = 5;
+int notas[TAM];
+```
+
+| Índice | 0 | 1 | 2 | 3 | 4 |
+|---|---:|---:|---:|---:|---:|
+| Valor | 51 | 85 | 95 | 64 | 100 |
+
+Ya sabemos que cada dato ocupa una posición, los índices comienzan en `0` y podemos recorrer los elementos con un ciclo.
+
+::: {.callout-tip}
+## Lo que ya sabemos no se pierde
+
+Seguimos trabajando con:
+
+**casilla → índice → valor → recorrido → procesamiento**
+
+Lo nuevo será administrar una cantidad variable de elementos.
+:::
+
+# 2. ¿Por qué necesitamos otra estructura?
+
+Cuando escribimos:
+
+```cpp
+int notas[5];
+```
+
+establecemos desde el principio cinco posiciones.
+
+Pero imaginemos que el programa debe registrar una cantidad de estudiantes que solamente conoceremos durante la ejecución.
+
+Necesitamos una estructura que pueda **crecer conforme agregamos datos**.
+
+# 3. ¿Qué es `vector`?
+
+Un `vector` de C++ almacena elementos del mismo tipo y puede cambiar de tamaño durante la ejecución.
+
+Necesitamos:
+
+```cpp
+#include <vector>
+```
+
+y podemos declarar:
+
+```cpp
+vector<int> notas;
+```
+
+Inicialmente:
+
+```text
+notas = [ ]
+```
+
+# 4. Arreglo y vector
+
+| Característica | Arreglo tradicional | `vector` |
+|---|---|---|
+| Declaración | `int notas[5];` | `vector<int> notas;` |
+| Índices | Desde `0` | Desde `0` |
+| Acceso | `notas[i]` | `notas[i]` |
+| Recorrido | `for` | `for` |
+| Tamaño | Fijo | Puede cambiar |
+| Agregar | No directamente | `push_back()` |
+| Consultar cantidad | Debemos conocerla | `size()` |
+| Librería | — | `<vector>` |
+
+::: {.callout-important}
+## Diferencia fundamental
+
+El arreglo tradicional parte de un tamaño establecido.
+
+El `vector` puede **crecer o reducirse durante la ejecución**.
+:::
+
+# 5. `push_back()`: agregar elementos
+
+```cpp
+vector<int> notas;
+
+notas.push_back(51);
+notas.push_back(85);
+notas.push_back(95);
+```
+
+Conceptualmente:
+
+```text
+Índice     0      1      2
+         ┌────┬────┬────┐
+Valor    │ 51 │ 85 │ 95 │
+         └────┴────┴────┘
+```
+
+Si hacemos:
+
+```cpp
+notas.push_back(64);
+```
+
+`64` queda al final.
+
+# 6. `size()`: conocer la cantidad
+
+```cpp
+cout << notas.size();
+```
+
+Si tenemos cinco elementos:
+
+```text
+size() = 5
+índices = 0, 1, 2, 3, 4
+```
+
+::: {.callout-note}
+## Recuerda
+
+El tamaño no es el último índice.
+
+El último índice válido es:
+
+```text
+size() - 1
+```
+:::
+
+# 7. Acceder y recorrer
+
+El acceso sigue siendo conocido:
+
+```cpp
+cout << notas[0];
+```
+
+Y podemos recorrer:
+
+```cpp
+for (int i = 0; i < notas.size(); i++)
+{
+    cout << notas[i] << endl;
+}
+```
+
+Ya no necesitamos `TAM`: el vector conoce su cantidad de elementos.
+
+# 8. Agregar datos ingresados por el usuario
+
+```cpp
+vector<int> notas;
+int cantidad;
+
+cout << "Cuantas notas desea ingresar: ";
+cin >> cantidad;
+
+for (int i = 0; i < cantidad; i++)
+{
+    int nota;
+
+    cout << "Ingrese nota [" << (i + 1) << "]: ";
+    cin >> nota;
+
+    notas.push_back(nota);
+}
+```
+
+Ahora el mismo programa puede registrar 3, 5, 8 o 20 notas sin cambiar la declaración del vector.
+
+# 9. Primera prueba
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    vector<int> notas;
+    int cantidad;
+
+    cout << "Cuantas notas desea ingresar: ";
+    cin >> cantidad;
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        int nota;
+        cout << "Ingrese nota [" << (i + 1) << "]: ";
+        cin >> nota;
+        notas.push_back(nota);
+    }
+
+    cout << "\nNotas registradas:" << endl;
+
+    for (int i = 0; i < notas.size(); i++)
+    {
+        cout << "Indice " << i
+             << " -> " << notas[i] << endl;
+    }
+
+    return 0;
+}
+```
+
+::: {.callout-important}
+## Probemos
+
+Ejecuta el programa con 3, luego 5 y finalmente 8 notas.
+
+¿Qué línea del código tuvimos que modificar entre ejecuciones?
+
+**Ninguna.**
+:::
+
+# 10. Regresemos al Analizador de notas modularizado
+
+Nuestro programa anterior tenía conceptualmente:
+
+```cpp
+int main()
+{
+    const int TAM = 5;
+    int notas[TAM];
+
+    ingresarNotas(notas, TAM);
+    mostrarNotas(notas, TAM);
+
+    promedio = calcularPromedio(notas, TAM);
+    mayor = buscarMayor(notas, TAM);
+    menor = buscarMenor(notas, TAM);
+    aprobados = contarAprobados(notas, TAM);
+    reprobados = contarReprobados(notas, TAM);
+
+    mostrarResultados(promedio, mayor, menor,
+                      aprobados, reprobados);
+}
+```
+
+::: {.callout-note}
+## ¿Tenemos que comenzar nuevamente?
+
+No.
+
+La modularización permite cambiar la forma de almacenar los datos sin destruir toda la solución.
+:::
+
+# 11. El arreglo se convierte en vector
+
+Antes:
+
+```cpp
+const int TAM = 5;
+int notas[TAM];
+```
+
+Ahora:
+
+```cpp
+vector<int> notas;
+```
+
+# 12. Pasar el vector a una función
+
+`ingresarNotas()` necesita modificar el vector original agregando elementos:
+
+```cpp
+void ingresarNotas(vector<int>& notas)
+```
+
+::: {.callout-important}
+## ¿Qué significa `&`?
+
+Por ahora leeremos `&` de esta manera:
+
+> La función trabajará con el **vector original**, no con una copia.
+
+Así, los elementos agregados dentro de la función permanecen disponibles en `main()`.
+
+Más adelante profundizaremos en el paso por referencia.
+:::
+
+```cpp
+void ingresarNotas(vector<int>& notas)
+{
+    int cantidad;
+
+    cout << "Cuantas notas desea ingresar: ";
+    cin >> cantidad;
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        int nota;
+
+        cout << "Ingrese nota [" << (i + 1) << "]: ";
+        cin >> nota;
+
+        notas.push_back(nota);
+    }
+}
+```
+
+# 13. Funciones que solamente consultan
+
+Para una función que no debe modificar las notas utilizaremos:
+
+```cpp
+const vector<int>& notas
+```
+
+Por ahora podemos interpretarlo como:
+
+> “Recibe el vector para consultarlo, pero no lo modifica”.
+
+Ejemplo:
+
+```cpp
+void mostrarNotas(const vector<int>& notas)
+{
+    for (int i = 0; i < notas.size(); i++)
+    {
+        cout << "Indice " << (i + 1)
+             << " -> " << notas[i] << endl;
+    }
+}
+```
+
+# 14. Transformemos las funciones
+
+## Promedio
+
+```cpp
+double calcularPromedio(const vector<int>& notas)
+{
+    int suma = 0;
+
+    for (int i = 0; i < notas.size(); i++)
+        suma = suma + notas[i];
+
+    return suma / static_cast<double>(notas.size());
+}
+```
+
+## Mayor
+
+```cpp
+int buscarMayor(const vector<int>& notas)
+{
+    int mayor = notas[0];
+
+    for (int i = 1; i < notas.size(); i++)
+        if (notas[i] > mayor)
+            mayor = notas[i];
+
+    return mayor;
+}
+```
+
+## Menor
+
+```cpp
+int buscarMenor(const vector<int>& notas)
+{
+    int menor = notas[0];
+
+    for (int i = 1; i < notas.size(); i++)
+        if (notas[i] < menor)
+            menor = notas[i];
+
+    return menor;
+}
+```
+
+## Aprobados
+
+```cpp
+int contarAprobados(const vector<int>& notas)
+{
+    int aprobados = 0;
+
+    for (int i = 0; i < notas.size(); i++)
+        if (notas[i] >= 61)
+            aprobados++;
+
+    return aprobados;
+}
+```
+
+## Reprobados
+
+```cpp
+int contarReprobados(const vector<int>& notas)
+{
+    int reprobados = 0;
+
+    for (int i = 0; i < notas.size(); i++)
+        if (notas[i] < 61)
+            reprobados++;
+
+    return reprobados;
+}
+```
+
+# 15. El nuevo `main()`
+
+```cpp
+int main()
+{
+    vector<int> notas;
+
+    double promedio;
+    int mayor, menor;
+    int aprobados, reprobados;
+
+    ingresarNotas(notas);
+    mostrarNotas(notas);
+
+    promedio = calcularPromedio(notas);
+    mayor = buscarMayor(notas);
+    menor = buscarMenor(notas);
+    aprobados = contarAprobados(notas);
+    reprobados = contarReprobados(notas);
+
+    mostrarResultados(promedio, mayor, menor,
+                      aprobados, reprobados);
+
+    return 0;
+}
+```
+
+::: {.callout-success}
+## Observa
+
+Antes:
+
+```cpp
+ingresarNotas(notas, TAM);
+```
+
+Ahora:
+
+```cpp
+ingresarNotas(notas);
+```
+
+El vector conoce su tamaño mediante `size()`.
+:::
+
+# 16. Resultado esperado
+
+```text
+Cuantas notas desea ingresar: 5
+
+Ingrese nota [1]: 51
+Ingrese nota [2]: 85
+Ingrese nota [3]: 95
+Ingrese nota [4]: 64
+Ingrese nota [5]: 100
+
+================================
+ NOTAS REGISTRADAS
+================================
+Indice 1 -> 51
+Indice 2 -> 85
+Indice 3 -> 95
+Indice 4 -> 64
+Indice 5 -> 100
+
+================================
+ RESULTADOS
+================================
+Promedio..: 79
+Mayor.....: 100
+Menor.....: 51
+Aprobaron.: 4
+Reprobaron: 1
+```
+
+Ahora podemos volver a ejecutarlo con una cantidad diferente sin cambiar el código.
+
+# 17. Solución completa
+
+<details>
+<summary><strong>💡 Mostrar programa completo con vector</strong></summary>
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void ingresarNotas(vector<int>& notas);
+void mostrarNotas(const vector<int>& notas);
+double calcularPromedio(const vector<int>& notas);
+int buscarMayor(const vector<int>& notas);
+int buscarMenor(const vector<int>& notas);
+int contarAprobados(const vector<int>& notas);
+int contarReprobados(const vector<int>& notas);
+void mostrarResultados(double promedio, int mayor, int menor,
+                       int aprobados, int reprobados);
+
+int main()
+{
+    vector<int> notas;
+
+    double promedio;
+    int mayor, menor;
+    int aprobados, reprobados;
+
+    ingresarNotas(notas);
+    mostrarNotas(notas);
+
+    promedio = calcularPromedio(notas);
+    mayor = buscarMayor(notas);
+    menor = buscarMenor(notas);
+    aprobados = contarAprobados(notas);
+    reprobados = contarReprobados(notas);
+
+    mostrarResultados(promedio, mayor, menor,
+                      aprobados, reprobados);
+
+    return 0;
+}
+
+void ingresarNotas(vector<int>& notas)
+{
+    int cantidad;
+    cout << "Cuantas notas desea ingresar: ";
+    cin >> cantidad;
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        int nota;
+        cout << "Ingrese nota [" << (i + 1) << "]: ";
+        cin >> nota;
+        notas.push_back(nota);
+    }
+}
+
+void mostrarNotas(const vector<int>& notas)
+{
+    cout << "\n================================" << endl;
+    cout << " NOTAS REGISTRADAS" << endl;
+    cout << "================================" << endl;
+
+    for (int i = 0; i < notas.size(); i++)
+        cout << "Indice " << (i + 1)
+             << " -> " << notas[i] << endl;
+}
+
+double calcularPromedio(const vector<int>& notas)
+{
+    int suma = 0;
+
+    for (int i = 0; i < notas.size(); i++)
+        suma += notas[i];
+
+    return suma / static_cast<double>(notas.size());
+}
+
+int buscarMayor(const vector<int>& notas)
+{
+    int mayor = notas[0];
+
+    for (int i = 1; i < notas.size(); i++)
+        if (notas[i] > mayor)
+            mayor = notas[i];
+
+    return mayor;
+}
+
+int buscarMenor(const vector<int>& notas)
+{
+    int menor = notas[0];
+
+    for (int i = 1; i < notas.size(); i++)
+        if (notas[i] < menor)
+            menor = notas[i];
+
+    return menor;
+}
+
+int contarAprobados(const vector<int>& notas)
+{
+    int aprobados = 0;
+
+    for (int i = 0; i < notas.size(); i++)
+        if (notas[i] >= 61)
+            aprobados++;
+
+    return aprobados;
+}
+
+int contarReprobados(const vector<int>& notas)
+{
+    int reprobados = 0;
+
+    for (int i = 0; i < notas.size(); i++)
+        if (notas[i] < 61)
+            reprobados++;
+
+    return reprobados;
+}
+
+void mostrarResultados(double promedio, int mayor, int menor,
+                       int aprobados, int reprobados)
+{
+    cout << "\n================================" << endl;
+    cout << " RESULTADOS" << endl;
+    cout << "================================" << endl;
+    cout << "Promedio..: " << promedio << endl;
+    cout << "Mayor.....: " << mayor << endl;
+    cout << "Menor.....: " << menor << endl;
+    cout << "Aprobaron.: " << aprobados << endl;
+    cout << "Reprobaron: " << reprobados << endl;
+}
+```
+
+</details>
+
+# 18. La evolución de nuestra solución
+
+```text
+Variables individuales
+        ↓
+Arreglo de tamaño fijo
+        ↓
+Arreglo + ciclos
+        ↓
+Arreglo + funciones
+        ↓
+Vector + funciones
+        ↓
+Cantidad dinámica de datos
+```
+
+El algoritmo para promedio, mayor, menor y conteos prácticamente no cambió.
+
+Cambió nuestra forma de administrar la colección.
+
+# 19. Cinco instrucciones para recordar
+
+```cpp
+vector<int> notas;       // declarar
+
+notas.push_back(75);     // agregar
+
+notas.size();            // cantidad
+
+notas[i];                // acceder
+
+for (int i = 0; i < notas.size(); i++)
+{
+    // recorrer
+}
+```
+
+# 20. Mini reto
+
+Agrega al resultado:
+
+```text
+Cantidad de notas registradas: 5
+```
+
+utilizando `notas.size()`.
+
+Después prueba nuevamente con una cantidad diferente.
+
+# 21. Tarea para el viernes
+
+## Sistema de registro de temperaturas
+
+Una estación meteorológica necesita registrar una cantidad variable de temperaturas tomadas durante el día.
+
+El programa deberá utilizar:
+
+```cpp
+vector<double>
+```
+
+y estar modularizado mediante funciones y procedimientos.
+
+### Requerimientos
+
+El programa deberá:
+
+1. preguntar cuántas temperaturas se registrarán;
+2. almacenar las temperaturas en un `vector<double>`;
+3. mostrar todas las temperaturas;
+4. calcular la temperatura promedio;
+5. encontrar la temperatura más alta;
+6. encontrar la temperatura más baja;
+7. contar cuántas temperaturas son mayores que el promedio;
+8. contar cuántas son menores que el promedio;
+9. mostrar todos los resultados.
+
+::: {.callout-important}
+## Condición
+
+No se permite colocar toda la lógica dentro de `main()`.
+
+Utiliza como mínimo:
+
+```text
+ingresarTemperaturas()
+mostrarTemperaturas()
+calcularPromedio()
+buscarMayor()
+buscarMenor()
+contarMayoresPromedio()
+contarMenoresPromedio()
+mostrarResultados()
+```
+:::
+
+## Entregables
+
+1. Análisis de entradas, procesos y salidas.
+2. Código fuente en C++.
+3. Evidencia de dos ejecuciones con diferente cantidad de temperaturas.
+4. Breve explicación de:
+   - por qué utilizó un `vector`;
+   - qué funciones retornan valores;
+   - qué procedimientos utilizan `void`;
+   - para qué se utilizan los parámetros.
+
+# 22. Cierre
+
+::: {.callout-success}
+## De tamaño fijo a tamaño dinámico
+
+Con el arreglo aprendimos a trabajar con muchas casillas.
+
+Con las funciones aprendimos a dividir el problema.
+
+Con `vector` agregamos una nueva capacidad:
+
+**la cantidad de datos puede cambiar sin rediseñar el programa.**
+
+> No buscamos memorizar instrucciones; buscamos aprender a combinar herramientas para construir mejores soluciones.
+:::

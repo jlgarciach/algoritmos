@@ -1,0 +1,1053 @@
+---
+title: "Laboratorio: Modularización del analizador de notas"
+subtitle: "Funciones, procedimientos, parámetros y arreglos"
+---
+
+# 1. El reto de hoy
+
+En el laboratorio anterior construimos un programa capaz de:
+
+- registrar cinco notas;
+- almacenar las notas en un arreglo;
+- mostrar los valores registrados;
+- calcular el promedio;
+- encontrar la nota mayor;
+- encontrar la nota menor;
+- contar estudiantes aprobados;
+- contar estudiantes reprobados.
+
+El programa funciona.
+
+Ahora tenemos un nuevo reto:
+
+> **No construiremos un programa nuevo. Aprenderemos a construir mejor un programa que ya sabemos resolver.**
+
+::: {.callout-tip}
+## Meta del laboratorio
+
+Reestructurar el **Analizador de notas** utilizando:
+
+- arreglos;
+- funciones;
+- procedimientos;
+- parámetros;
+- valores de retorno.
+
+El resultado del programa deberá ser el mismo. Lo que cambiará será la **organización del código**.
+:::
+
+# 2. Del programa completo a un programa modular
+
+Hasta ahora hemos colocado gran parte de las instrucciones dentro de:
+
+::: {.callout-note}
+## Nuestro punto de partida
+
+Este programa **ya funciona** y resuelve correctamente el problema.
+
+No vamos a cambiar lo que hace.
+
+Nuestro objetivo será descubrir cómo podemos **dividirlo en módulos más pequeños**, utilizando procedimientos, funciones y parámetros.
+:::
+
+<details>
+<summary><strong>📌 Ver programa completo del laboratorio anterior</strong></summary>
+
+```cpp
+// código anterior...
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    // muchas instrucciones...
+    const int TAM = 5;
+    int notas[TAM];
+    int suma = 0;
+    double promedio;
+    int aprobados = 0;
+    int reprobados = 0;
+
+    // Ingreso de las notas
+    cout << "\n================================" << endl;
+    cout << " RESULTADOS" << endl;
+    cout << "================================" << endl;
+    for (int i = 0; i < TAM; i++)
+    {
+        cout << "Ingrese nota [" << (1 + i) << "]: ";
+        cin >> notas[i];
+    }
+
+    // Inicializamos mayor y menor con un valor real del arreglo
+    int mayor = notas[0];
+    int menor = notas[0];
+
+    // Procesamiento
+    for (int i = 0; i < TAM; i++)
+    {
+        suma = suma + notas[i];
+        if (notas[i] > mayor) mayor = notas[i];
+        if (notas[i] < menor) menor = notas[i];
+        if (notas[i] >= 61) aprobados++;
+        else reprobados++;
+    }
+
+    promedio = suma / static_cast<double>(TAM);
+    // Mostrar las notas
+    cout << "\n================================" << endl;
+    cout << " NOTAS REGISTRADAS" << endl;
+    cout << "================================" << endl;
+    for (int i = 0; i < TAM; i++)
+    {
+        cout << "Indice " << (1+i)
+             << " -> " << notas[i] << endl;
+    }
+
+    // Resultados
+    cout << "\n================================" << endl;
+    cout << " RESULTADOS" << endl;
+    cout << "================================" << endl;
+    cout << "Suma: " << suma << endl;
+    cout << "Promedio: " << promedio << endl;
+    cout << "Nota mayor: " << mayor << endl;
+    cout << "Nota menor: " << menor << endl;
+    cout << "Aprobados: " << aprobados << endl;
+    cout << "Reprobados: " << reprobados << endl;
+    
+    return 0;
+}
+```
+
+Pero si observamos nuestro programa, podemos identificar tareas diferentes:
+
+```text
+Ingresar notas
+Mostrar notas
+Calcular promedio
+Buscar mayor
+Buscar menor
+Contar aprobados
+Contar reprobados
+Mostrar resultados
+```
+
+Cada una de estas tareas puede convertirse en una parte independiente del programa.
+
+A esto lo llamamos **modularización**.
+
+::: {.callout-note}
+## Idea central
+
+Modularizar no significa cambiar el algoritmo.
+
+Significa **dividir un problema grande en tareas más pequeñas**, de manera que el programa resulte más fácil de leer, comprender, probar y mantener.
+:::
+
+# 3. La estructura que queremos alcanzar
+
+Nuestro objetivo será transformar el programa anterior hasta conseguir que `main()` se parezca a la siguiente estructura:
+
+```cpp
+int main()
+{
+    const int TAM = 5;
+    int notas[TAM];
+
+    double promedio;
+    int mayor;
+    int menor;
+    int aprobados;
+    int reprobados;
+
+    ingresarNotas(notas, TAM);
+    mostrarNotas(notas, TAM);
+
+    promedio = calcularPromedio(notas, TAM);
+    mayor = buscarMayor(notas, TAM);
+    menor = buscarMenor(notas, TAM);
+    aprobados = contarAprobados(notas, TAM);
+    reprobados = contarReprobados(notas, TAM);
+
+    mostrarResultados(promedio, mayor, menor,
+                      aprobados, reprobados);
+
+    return 0;
+}
+```
+
+::: {.callout-important}
+## Observa antes de programar
+
+Todavía no sabemos cómo está construida cada función.
+
+Eso es precisamente lo que desarrollaremos juntos.
+
+Por ahora observa algo importante:
+
+**¿Puedes comprender qué hace el programa únicamente leyendo `main()`?**
+:::
+
+# 4. Resultado esperado
+
+Utilizando los siguientes datos:
+
+```text
+51
+85
+95
+64
+100
+```
+
+el programa deberá producir un resultado similar al siguiente:
+
+```text
+================================
+ REGISTRO DE NOTAS
+================================
+Ingrese nota [1]: 51
+Ingrese nota [2]: 85
+Ingrese nota [3]: 95
+Ingrese nota [4]: 64
+Ingrese nota [5]: 100
+
+================================
+ NOTAS REGISTRADAS
+================================
+Indice 1 -> 51
+Indice 2 -> 85
+Indice 3 -> 95
+Indice 4 -> 64
+Indice 5 -> 100
+
+================================
+ RESULTADOS
+================================
+Promedio..: 79
+Mayor.....: 100
+Menor.....: 51
+Aprobaron.: 4
+Reprobaron: 1
+```
+
+::: {.callout-note}
+## Importante
+
+Ya conocemos el resultado que debe producir el programa.
+
+El reto de hoy no consiste en descubrir nuevamente el algoritmo, sino en **reorganizarlo utilizando módulos**.
+:::
+
+# 5. Antes de escribir código
+
+Observa nuevamente las tareas:
+
+| Módulo | ¿Qué debería hacer? | ¿Necesita recibir datos? | ¿Debe devolver un valor? |
+|---|---|---|---|
+| `ingresarNotas` | Registrar las notas | | |
+| `mostrarNotas` | Mostrar el arreglo | | |
+| `calcularPromedio` | Calcular el promedio | | |
+| `buscarMayor` | Encontrar la nota mayor | | |
+| `buscarMenor` | Encontrar la nota menor | | |
+| `contarAprobados` | Contar notas `>= 61` | | |
+| `contarReprobados` | Contar notas `< 61` | | |
+| `mostrarResultados` | Mostrar resultados finales | | |
+
+Completa las dos últimas columnas antes de continuar.
+
+::: {.callout-warning}
+## No pienses todavía en toda la sintaxis
+
+Primero responde para cada módulo:
+
+1. ¿Qué tarea realiza?
+2. ¿Qué información necesita?
+3. ¿Debe devolver algún resultado?
+
+Después decidiremos si necesitamos un **procedimiento** o una **función**.
+:::
+
+# 6. Procedimientos y funciones
+
+Durante el laboratorio utilizaremos dos tipos de módulos.
+
+## Procedimiento
+
+Realiza una tarea, pero no devuelve un valor mediante `return`.
+
+Su tipo será:
+
+```cpp
+void
+```
+
+## Función
+
+Realiza un proceso y devuelve un resultado.
+
+Por ejemplo, conceptualmente:
+
+```text
+calcular algo
+        ↓
+devolver resultado
+        ↓
+guardar resultado en una variable
+```
+
+::: {.callout-tip}
+## Pregunta para el grupo
+
+Observa:
+
+```cpp
+promedio = calcularPromedio(notas, TAM);
+```
+
+¿Por qué `calcularPromedio()` parece comportarse diferente de:
+
+```cpp
+mostrarNotas(notas, TAM);
+```
+
+¿Qué está devolviendo una y qué está haciendo la otra?
+:::
+
+# 7. ¿Qué información debe viajar entre los módulos?
+
+Las variables principales serán declaradas dentro de `main()`.
+
+Por ejemplo:
+
+```cpp
+const int TAM = 5;
+int notas[TAM];
+```
+
+Estas variables son **locales de `main()`**.
+
+Para que otra función pueda trabajar con ellas, tendremos que enviar la información mediante **parámetros**.
+
+Observa:
+
+```cpp
+ingresarNotas(notas, TAM);
+```
+
+Aquí estamos enviando:
+
+```text
+notas → arreglo con las notas
+TAM   → cantidad de elementos
+```
+
+::: {.callout-important}
+## Recuerda
+
+Pasar una variable como parámetro **no la convierte en una variable global**.
+
+La función recibe la información que necesita para realizar su tarea.
+:::
+
+# 8. Plan de construcción
+
+No intentaremos modularizar todo el programa al mismo tiempo.
+
+Lo construiremos y probaremos por etapas.
+
+## Etapa 1 — `ingresarNotas()`
+
+El primer módulo deberá:
+
+- recibir el arreglo;
+- recibir su tamaño;
+- recorrer las posiciones;
+- solicitar las cinco notas;
+- almacenarlas correctamente.
+
+Cuando funcione:
+
+**compila → ejecuta → verifica → continúa.**
+
+## Etapa 2 — `mostrarNotas()`
+
+Ahora separaremos la tarea de mostrar el contenido del arreglo.
+
+Debe producir:
+
+```text
+================================
+ NOTAS REGISTRADAS
+================================
+Indice 1 -> ...
+Indice 2 -> ...
+Indice 3 -> ...
+Indice 4 -> ...
+Indice 5 -> ...
+```
+
+::: {.callout-tip}
+## Pregunta
+
+¿`mostrarNotas()` necesita devolver un resultado?
+
+¿O solamente necesita realizar una tarea?
+:::
+
+## Etapa 3 — `calcularPromedio()`
+
+Esta será una función.
+
+Deberá:
+
+1. recibir el arreglo;
+2. recorrer sus elementos;
+3. calcular la suma;
+4. obtener el promedio;
+5. devolver el resultado.
+
+El `main()` deberá poder utilizarla así:
+
+```cpp
+promedio = calcularPromedio(notas, TAM);
+```
+
+## Etapa 4 — `buscarMayor()`
+
+Deberá analizar el arreglo y devolver la nota más alta.
+
+```cpp
+mayor = buscarMayor(notas, TAM);
+```
+
+::: {.callout-tip}
+## Pista
+
+Ya resolvimos este problema en el laboratorio anterior.
+
+No inventes un valor inicial para `mayor`.
+
+Utiliza un valor que realmente exista dentro del arreglo.
+:::
+
+## Etapa 5 — `buscarMenor()`
+
+Aplicaremos la misma estrategia:
+
+```cpp
+menor = buscarMenor(notas, TAM);
+```
+
+Pregúntate:
+
+> ¿Qué cambia realmente entre buscar el mayor y buscar el menor?
+
+## Etapa 6 — `contarAprobados()`
+
+Recuerda nuestra regla:
+
+```text
+Aprobado → nota >= 61
+```
+
+La función deberá devolver la cantidad encontrada:
+
+```cpp
+aprobados = contarAprobados(notas, TAM);
+```
+
+## Etapa 7 — `contarReprobados()`
+
+Ahora aplicaremos:
+
+```text
+Reprobado → nota < 61
+```
+
+y guardaremos el resultado:
+
+```cpp
+reprobados = contarReprobados(notas, TAM);
+```
+
+## Etapa 8 — `mostrarResultados()`
+
+Finalmente construiremos un procedimiento encargado únicamente de presentar:
+
+```text
+Promedio
+Mayor
+Menor
+Aprobados
+Reprobados
+```
+
+El `main()` deberá llamarlo enviándole los resultados obtenidos.
+
+# 9. Prototipos: el mapa de nuestros módulos
+
+Antes de utilizar una función, C++ necesita conocer su existencia.
+
+Construiremos los prototipos correspondientes a nuestros módulos.
+
+Completa los espacios durante el laboratorio:
+
+```cpp
+_____ ingresarNotas(____________________________);
+
+_____ mostrarNotas(_____________________________);
+
+_____ calcularPromedio(_________________________);
+
+_____ buscarMayor(______________________________);
+
+_____ buscarMenor(______________________________);
+
+_____ contarAprobados(__________________________);
+
+_____ contarReprobados(_________________________);
+
+_____ mostrarResultados(_________________________);
+```
+
+::: {.callout-warning}
+## Atención
+
+En una función deben ser coherentes:
+
+```text
+PROTOTIPO
+    ↓
+LLAMADA
+    ↓
+IMPLEMENTACIÓN
+```
+
+El nombre, el tipo de retorno y los parámetros deben corresponder.
+:::
+
+# 10. Construyamos y probemos
+
+La regla durante este laboratorio será:
+
+```text
+Construir un módulo
+        ↓
+Compilar
+        ↓
+Probar
+        ↓
+Verificar
+        ↓
+Continuar
+```
+
+No esperes hasta terminar todo el programa para compilar.
+
+::: {.callout-important}
+## Si aparece un error
+
+Antes de modificar código al azar:
+
+1. lee el mensaje del compilador;
+2. identifica el nombre de la función involucrada;
+3. compara el prototipo;
+4. compara la llamada;
+5. compara la implementación;
+6. verifica los parámetros;
+7. vuelve a compilar.
+:::
+
+# 11. Caso de prueba
+
+Utiliza:
+
+| Posición mostrada | Nota |
+|---:|---:|
+| 1 | 51 |
+| 2 | 85 |
+| 3 | 95 |
+| 4 | 64 |
+| 5 | 100 |
+
+Antes de ejecutar el programa, verifica manualmente:
+
+| Resultado | Valor esperado |
+|---|---:|
+| Promedio | 79 |
+| Mayor | 100 |
+| Menor | 51 |
+| Aprobados | 4 |
+| Reprobados | 1 |
+
+Después compara estos valores con los obtenidos por cada función.
+
+# 12. Preparémonos para explicar
+
+Al finalizar, debes poder responder:
+
+1. ¿Qué significa modularizar un programa?
+2. ¿Qué diferencia existe entre un procedimiento `void` y una función que retorna un valor?
+3. ¿Para qué utilizamos los parámetros?
+4. ¿Por qué enviamos `notas` y `TAM` a varias funciones?
+5. ¿Las variables declaradas dentro de `main()` son globales?
+6. ¿Qué hace `return`?
+7. ¿Qué función devuelve el promedio?
+8. ¿Qué funciones devuelven valores enteros?
+9. ¿Qué procedimientos solamente muestran o registran información?
+10. ¿Por qué el nuevo `main()` resulta más fácil de leer?
+
+::: {.callout-warning}
+## Regla de la exposición
+
+No basta con decir:
+
+> “La función sirve porque funciona.”
+
+Debes poder explicar:
+
+**qué recibe → qué procesa → qué devuelve o qué tarea realiza.**
+:::
+
+# 13. Compare los dos programas
+
+Cuando terminemos, observa el programa de la semana pasada y el programa modularizado.
+
+Pregúntate:
+
+```text
+¿Cambió el problema?
+¿Cambió el resultado?
+¿Cambió el algoritmo?
+¿Cambió la organización?
+```
+
+::: {.callout-success}
+## La idea que buscamos descubrir
+
+El programa anterior y el nuevo pueden producir exactamente el mismo resultado.
+
+La diferencia es que ahora cada módulo tiene una **responsabilidad específica**.
+
+Y nuestro `main()` comienza a parecerse a la descripción del algoritmo.
+:::
+
+# 14. Alto aquí
+
+::: {.callout-important}
+## No abras la solución todavía
+
+La siguiente sección contiene una posible implementación completa.
+
+Primero construye el programa junto con el grupo:
+
+**analiza → modulariza → programa → compila → prueba → explica**
+
+Utiliza la solución únicamente después de haber trabajado el ejercicio.
+:::
+
+\newpage
+
+# 15. Solución propuesta
+
+::: {.content-visible when-format="html"}
+
+<details>
+<summary><strong>💡 Mostrar solución completa</strong></summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Prototipos
+void ingresarNotas(int notas[], int TAM);
+void mostrarNotas(int notas[], int TAM);
+double calcularPromedio(int notas[], int TAM);
+int buscarMayor(int notas[], int TAM);
+int buscarMenor(int notas[], int TAM);
+int contarAprobados(int notas[], int TAM);
+int contarReprobados(int notas[], int TAM);
+void mostrarResultados(double promedio, int mayor, int menor,
+                       int aprobados, int reprobados);
+
+int main()
+{
+    const int TAM = 5;
+    int notas[TAM];
+
+    double promedio = 0;
+    int mayor, menor;
+    int aprobados = 0;
+    int reprobados = 0;
+
+    ingresarNotas(notas, TAM);
+    mostrarNotas(notas, TAM);
+
+    promedio = calcularPromedio(notas, TAM);
+    mayor = buscarMayor(notas, TAM);
+    menor = buscarMenor(notas, TAM);
+    aprobados = contarAprobados(notas, TAM);
+    reprobados = contarReprobados(notas, TAM);
+
+    mostrarResultados(promedio, mayor, menor,
+                      aprobados, reprobados);
+
+    return 0;
+}
+
+
+// ======================================================
+// IMPLEMENTACIONES
+// ======================================================
+
+void ingresarNotas(int notas[], int TAM)
+{
+    for (int i = 0; i < TAM; i++)
+    {
+        cout << "Ingrese nota [" << (i + 1) << "]: ";
+        cin >> notas[i];
+    }
+}
+
+
+void mostrarNotas(int notas[], int TAM)
+{
+    cout << "\n================================" << endl;
+    cout << " NOTAS REGISTRADAS" << endl;
+    cout << "================================" << endl;
+
+    for (int i = 0; i < TAM; i++)
+    {
+        cout << "Indice " << (i + 1)
+             << " -> " << notas[i] << endl;
+    }
+}
+
+
+double calcularPromedio(int notas[], int TAM)
+{
+    int suma = 0;
+
+    for (int i = 0; i < TAM; i++)
+    {
+        suma = suma + notas[i];
+    }
+
+    return suma / static_cast<double>(TAM);
+}
+
+
+int buscarMayor(int notas[], int TAM)
+{
+    int mayor = notas[0];
+
+    for (int i = 0; i < TAM; i++)
+    {
+        if (notas[i] > mayor)
+            mayor = notas[i];
+    }
+
+    return mayor;
+}
+
+
+int buscarMenor(int notas[], int TAM)
+{
+    int menor = notas[0];
+
+    for (int i = 0; i < TAM; i++)
+    {
+        if (notas[i] < menor)
+            menor = notas[i];
+    }
+
+    return menor;
+}
+
+
+int contarAprobados(int notas[], int TAM)
+{
+    int aprobados = 0;
+
+    for (int i = 0; i < TAM; i++)
+    {
+        if (notas[i] >= 61)
+            aprobados++;
+    }
+
+    return aprobados;
+}
+
+
+int contarReprobados(int notas[], int TAM)
+{
+    int reprobados = 0;
+
+    for (int i = 0; i < TAM; i++)
+    {
+        if (notas[i] < 61)
+            reprobados++;
+    }
+
+    return reprobados;
+}
+
+
+void mostrarResultados(double promedio, int mayor, int menor,
+                       int aprobados, int reprobados)
+{
+    cout << "\n================================" << endl;
+    cout << " RESULTADOS" << endl;
+    cout << "================================" << endl;
+
+    cout << "Promedio..: " << promedio << endl;
+    cout << "Mayor.....: " << mayor << endl;
+    cout << "Menor.....: " << menor << endl;
+    cout << "Aprobaron.: " << aprobados << endl;
+    cout << "Reprobaron: " << reprobados << endl;
+}
+```
+
+</details>
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+::: {.callout-note}
+## Solución de referencia
+
+En la versión HTML la solución se encuentra oculta y puede desplegarse al finalizar el laboratorio.
+
+En la versión PDF se presenta a continuación como material de consulta posterior.
+:::
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Prototipos
+void ingresarNotas(int notas[], int TAM);
+void mostrarNotas(int notas[], int TAM);
+double calcularPromedio(int notas[], int TAM);
+int buscarMayor(int notas[], int TAM);
+int buscarMenor(int notas[], int TAM);
+int contarAprobados(int notas[], int TAM);
+int contarReprobados(int notas[], int TAM);
+void mostrarResultados(double promedio, int mayor, int menor,
+                       int aprobados, int reprobados);
+
+int main()
+{
+    const int TAM = 5;
+    int notas[TAM];
+
+    double promedio = 0;
+    int mayor, menor;
+    int aprobados = 0;
+    int reprobados = 0;
+
+    ingresarNotas(notas, TAM);
+    mostrarNotas(notas, TAM);
+
+    promedio = calcularPromedio(notas, TAM);
+    mayor = buscarMayor(notas, TAM);
+    menor = buscarMenor(notas, TAM);
+    aprobados = contarAprobados(notas, TAM);
+    reprobados = contarReprobados(notas, TAM);
+
+    mostrarResultados(promedio, mayor, menor,
+                      aprobados, reprobados);
+
+    return 0;
+}
+
+void ingresarNotas(int notas[], int TAM)
+{
+    for (int i = 0; i < TAM; i++)
+    {
+        cout << "Ingrese nota [" << (i + 1) << "]: ";
+        cin >> notas[i];
+    }
+}
+
+void mostrarNotas(int notas[], int TAM)
+{
+    cout << "\n================================" << endl;
+    cout << " NOTAS REGISTRADAS" << endl;
+    cout << "================================" << endl;
+
+    for (int i = 0; i < TAM; i++)
+    {
+        cout << "Indice " << (i + 1)
+             << " -> " << notas[i] << endl;
+    }
+}
+
+double calcularPromedio(int notas[], int TAM)
+{
+    int suma = 0;
+
+    for (int i = 0; i < TAM; i++)
+        suma = suma + notas[i];
+
+    return suma / static_cast<double>(TAM);
+}
+
+int buscarMayor(int notas[], int TAM)
+{
+    int mayor = notas[0];
+
+    for (int i = 0; i < TAM; i++)
+        if (notas[i] > mayor)
+            mayor = notas[i];
+
+    return mayor;
+}
+
+int buscarMenor(int notas[], int TAM)
+{
+    int menor = notas[0];
+
+    for (int i = 0; i < TAM; i++)
+        if (notas[i] < menor)
+            menor = notas[i];
+
+    return menor;
+}
+
+int contarAprobados(int notas[], int TAM)
+{
+    int aprobados = 0;
+
+    for (int i = 0; i < TAM; i++)
+        if (notas[i] >= 61)
+            aprobados++;
+
+    return aprobados;
+}
+
+int contarReprobados(int notas[], int TAM)
+{
+    int reprobados = 0;
+
+    for (int i = 0; i < TAM; i++)
+        if (notas[i] < 61)
+            reprobados++;
+
+    return reprobados;
+}
+
+void mostrarResultados(double promedio, int mayor, int menor,
+                       int aprobados, int reprobados)
+{
+    cout << "\n================================" << endl;
+    cout << " RESULTADOS" << endl;
+    cout << "================================" << endl;
+    cout << "Promedio..: " << promedio << endl;
+    cout << "Mayor.....: " << mayor << endl;
+    cout << "Menor.....: " << menor << endl;
+    cout << "Aprobaron.: " << aprobados << endl;
+    cout << "Reprobaron: " << reprobados << endl;
+}
+```
+
+:::
+
+# 16. Analicemos la solución
+
+## Procedimientos
+
+Estos módulos realizan una tarea y utilizan `void`:
+
+```cpp
+void ingresarNotas(...);
+void mostrarNotas(...);
+void mostrarResultados(...);
+```
+
+No utilizamos su resultado dentro de una asignación.
+
+## Funciones
+
+Estos módulos procesan información y devuelven un valor:
+
+```cpp
+double calcularPromedio(...);
+
+int buscarMayor(...);
+int buscarMenor(...);
+int contarAprobados(...);
+int contarReprobados(...);
+```
+
+Por eso podemos escribir:
+
+```cpp
+promedio = calcularPromedio(notas, TAM);
+mayor = buscarMayor(notas, TAM);
+```
+
+## Parámetros
+
+Varias funciones reciben:
+
+```cpp
+int notas[], int TAM
+```
+
+Esto les permite conocer:
+
+- los datos que deben procesar;
+- la cantidad de elementos que deben recorrer.
+
+No necesitan depender de variables globales.
+
+# 17. Cierre del laboratorio
+
+Antes teníamos:
+
+```text
+Un programa
+    ↓
+Muchas instrucciones dentro de main()
+```
+
+Ahora tenemos:
+
+```text
+             main()
+                |
+    ---------------------------
+    |       |       |         |
+ ingresar mostrar calcular   buscar...
+ notas    notas   promedio
+```
+
+Cada módulo tiene una responsabilidad.
+
+::: {.callout-success}
+## Lo más importante de hoy
+
+No aprendimos solamente a escribir funciones.
+
+Aprendimos a **dividir una solución en partes pequeñas y comprensibles**.
+
+Podemos resumirlo así:
+
+```text
+Problema grande
+      ↓
+Identificar tareas
+      ↓
+Crear módulos
+      ↓
+Enviar datos mediante parámetros
+      ↓
+Devolver resultados cuando sea necesario
+      ↓
+Construir un main() más claro
+```
+
+**Modularizar es organizar la solución, no cambiar el problema.**
+:::

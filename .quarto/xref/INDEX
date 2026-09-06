@@ -34,5 +34,14 @@
   },
   "capitulos/08_arreglos_y_vectores.qmd": {
     "08_arreglos_y_vectores.html": "adabc473"
+  },
+  "capitulos/09_laboratorio_arreglos_vectores.qmd": {
+    "09_laboratorio_arreglos_vectores.html": "18612744"
+  },
+  "capitulos/10_laboratorio_modularizacion.qmd": {
+    "10_laboratorio_modularizacion.html": "9adf43ca"
+  },
+  "capitulos/11_vectores_cpp.qmd": {
+    "11_vectores_cpp.html": "c88d556b"
   }
 }

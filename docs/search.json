@@ -1330,13 +1330,423 @@
     ]
   },
   {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "",
+    "text": "12 Laboratorio: Analizador de notas",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#qué-necesitamos-almacenar",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#qué-necesitamos-almacenar",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "16.1 ¿Qué necesitamos almacenar?",
+    "text": "16.1 ¿Qué necesitamos almacenar?\nCompleta mentalmente o en tu cuaderno:\n\n\n\nElemento\n¿Variable o arreglo?\nTipo sugerido\n\n\n\n\n5 notas\n\n\n\n\nsuma\n\n\n\n\npromedio\n\n\n\n\nnota mayor\n\n\n\n\nnota menor\n\n\n\n\ncantidad de aprobados\n\n\n\n\ncantidad de reprobados",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#cuántos-recorridos-necesitamos",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#cuántos-recorridos-necesitamos",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "16.2 ¿Cuántos recorridos necesitamos?",
+    "text": "16.2 ¿Cuántos recorridos necesitamos?\nPiensa:\n\n¿Podemos ingresar las notas utilizando un for?\n¿Podemos mostrar las notas con otro for?\n¿Podemos calcular varios resultados durante un mismo recorrido?\n\n\n\n\n\n\n\nAdvertenciaNo comiences escribiendo todo el programa\n\n\n\nPrimero identifica:\nEntradas → Procesos → Salidas\nDespués programa una parte, compila, prueba y continúa.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-1-registrar-las-notas",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-1-registrar-las-notas",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "17.1 Etapa 1 — Registrar las notas",
+    "text": "17.1 Etapa 1 — Registrar las notas\nPrimero consigue que tu programa:\n\ndeclare el arreglo;\nrecorra sus posiciones;\nsolicite las cinco notas;\nalmacene correctamente cada valor.\n\nCuando funcione, continúa.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-2-mostrar-el-arreglo",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-2-mostrar-el-arreglo",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "17.2 Etapa 2 — Mostrar el arreglo",
+    "text": "17.2 Etapa 2 — Mostrar el arreglo\nRecorre nuevamente las posiciones y muestra:\nIndice 0 -&gt; ...\nIndice 1 -&gt; ...\nIndice 2 -&gt; ...\nComprueba que los datos coincidan con lo que ingresaste.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-3-suma-y-promedio",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-3-suma-y-promedio",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "17.3 Etapa 3 — Suma y promedio",
+    "text": "17.3 Etapa 3 — Suma y promedio\nUtiliza los valores almacenados para obtener:\n\nsuma;\npromedio.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-4-mayor-y-menor",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-4-mayor-y-menor",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "17.4 Etapa 4 — Mayor y menor",
+    "text": "17.4 Etapa 4 — Mayor y menor\nAhora determina:\n\nla nota más alta;\nla nota más baja.\n\n\n\n\n\n\n\nTipUna pista, no la solución\n\n\n\nYa tienes cinco valores almacenados.\nPregúntate:\n\n¿Con qué valor existente del arreglo podría comenzar la variable que guardará el mayor y el menor?\n\nEvita inventar valores arbitrarios.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-5-aprobados-y-reprobados",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#etapa-5-aprobados-y-reprobados",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "17.5 Etapa 5 — Aprobados y reprobados",
+    "text": "17.5 Etapa 5 — Aprobados y reprobados\nDurante el recorrido analiza cada nota:\n¿La nota es mayor o igual a 61?\nNecesitarás llevar dos contadores.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#prueba-1",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#prueba-1",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "19.1 Prueba 1",
+    "text": "19.1 Prueba 1\n75\n60\n90\n45\n80\nComprueba manualmente los resultados.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#prueba-2",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#prueba-2",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "19.2 Prueba 2",
+    "text": "19.2 Prueba 2\nUtiliza cinco notas elegidas por ti.\nAntes de ejecutar el programa, calcula en papel:\n\nsuma;\npromedio;\nmayor;\nmenor;\naprobados;\nreprobados.\n\nLuego compara tus resultados con los del programa.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#el-arreglo",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#el-arreglo",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "24.1 El arreglo",
+    "text": "24.1 El arreglo\nconst int TAM = 5;\nint notas[TAM];\nTenemos cinco casillas:\nnotas[0]\nnotas[1]\nnotas[2]\nnotas[3]\nnotas[4]",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#el-ingreso",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#el-ingreso",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "24.2 El ingreso",
+    "text": "24.2 El ingreso\nfor (int i = 0; i &lt; TAM; i++) {\n    cin &gt;&gt; notas[i];\n}\nEl mismo cin trabaja cada vez con una posición diferente.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#mayor-y-menor",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#mayor-y-menor",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "24.3 Mayor y menor",
+    "text": "24.3 Mayor y menor\nint mayor = notas[0];\nint menor = notas[0];\nEn lugar de inventar un valor inicial, utilizamos un dato que sabemos que pertenece al arreglo.\nDespués comparamos:\nif (notas[i] &gt; mayor) {\n    mayor = notas[i];\n}\ny:\nif (notas[i] &lt; menor) {\n    menor = notas[i];\n}",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#aprobados-y-reprobados",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#aprobados-y-reprobados",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "24.4 Aprobados y reprobados",
+    "text": "24.4 Aprobados y reprobados\nif (notas[i] &gt;= 61) {\n    aprobados++;\n}\nelse {\n    reprobados++;\n}\nAquí combinamos tres conocimientos:\narreglos + ciclos + decisiones.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/09_laboratorio_arreglos_vectores.html#misión-cumplida",
+    "href": "capitulos/09_laboratorio_arreglos_vectores.html#misión-cumplida",
+    "title": "11  Laboratorio: Arreglos y Vectores",
+    "section": "26.1 Misión cumplida",
+    "text": "26.1 Misión cumplida\nSi pudiste construir y explicar este programa, ya no estás simplemente utilizando arreglos.\nEstás comenzando a procesar colecciones de datos mediante algoritmos.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Laboratorio: Arreglos y Vectores</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html",
+    "href": "capitulos/10_laboratorio_modularizacion.html",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "",
+    "text": "13 1. El reto de hoy\nEn el laboratorio anterior construimos un programa capaz de:\nEl programa funciona.\nAhora tenemos un nuevo reto:",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#procedimiento",
+    "href": "capitulos/10_laboratorio_modularizacion.html#procedimiento",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "18.1 Procedimiento",
+    "text": "18.1 Procedimiento\nRealiza una tarea, pero no devuelve un valor mediante return.\nSu tipo será:\nvoid",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#función",
+    "href": "capitulos/10_laboratorio_modularizacion.html#función",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "18.2 Función",
+    "text": "18.2 Función\nRealiza un proceso y devuelve un resultado.\nPor ejemplo, conceptualmente:\ncalcular algo\n        ↓\ndevolver resultado\n        ↓\nguardar resultado en una variable\n\n\n\n\n\n\nTipPregunta para el grupo\n\n\n\nObserva:\npromedio = calcularPromedio(notas, TAM);\n¿Por qué calcularPromedio() parece comportarse diferente de:\nmostrarNotas(notas, TAM);\n¿Qué está devolviendo una y qué está haciendo la otra?",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#etapa-1-ingresarnotas",
+    "href": "capitulos/10_laboratorio_modularizacion.html#etapa-1-ingresarnotas",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "20.1 Etapa 1 — ingresarNotas()",
+    "text": "20.1 Etapa 1 — ingresarNotas()\nEl primer módulo deberá:\n\nrecibir el arreglo;\nrecibir su tamaño;\nrecorrer las posiciones;\nsolicitar las cinco notas;\nalmacenarlas correctamente.\n\nCuando funcione:\ncompila → ejecuta → verifica → continúa.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#etapa-2-mostrarnotas",
+    "href": "capitulos/10_laboratorio_modularizacion.html#etapa-2-mostrarnotas",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "20.2 Etapa 2 — mostrarNotas()",
+    "text": "20.2 Etapa 2 — mostrarNotas()\nAhora separaremos la tarea de mostrar el contenido del arreglo.\nDebe producir:\n================================\n NOTAS REGISTRADAS\n================================\nIndice 1 -&gt; ...\nIndice 2 -&gt; ...\nIndice 3 -&gt; ...\nIndice 4 -&gt; ...\nIndice 5 -&gt; ...\n\n\n\n\n\n\nTipPregunta\n\n\n\n¿mostrarNotas() necesita devolver un resultado?\n¿O solamente necesita realizar una tarea?",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#etapa-3-calcularpromedio",
+    "href": "capitulos/10_laboratorio_modularizacion.html#etapa-3-calcularpromedio",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "20.3 Etapa 3 — calcularPromedio()",
+    "text": "20.3 Etapa 3 — calcularPromedio()\nEsta será una función.\nDeberá:\n\nrecibir el arreglo;\nrecorrer sus elementos;\ncalcular la suma;\nobtener el promedio;\ndevolver el resultado.\n\nEl main() deberá poder utilizarla así:\npromedio = calcularPromedio(notas, TAM);",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#etapa-4-buscarmayor",
+    "href": "capitulos/10_laboratorio_modularizacion.html#etapa-4-buscarmayor",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "20.4 Etapa 4 — buscarMayor()",
+    "text": "20.4 Etapa 4 — buscarMayor()\nDeberá analizar el arreglo y devolver la nota más alta.\nmayor = buscarMayor(notas, TAM);\n\n\n\n\n\n\nTipPista\n\n\n\nYa resolvimos este problema en el laboratorio anterior.\nNo inventes un valor inicial para mayor.\nUtiliza un valor que realmente exista dentro del arreglo.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#etapa-5-buscarmenor",
+    "href": "capitulos/10_laboratorio_modularizacion.html#etapa-5-buscarmenor",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "20.5 Etapa 5 — buscarMenor()",
+    "text": "20.5 Etapa 5 — buscarMenor()\nAplicaremos la misma estrategia:\nmenor = buscarMenor(notas, TAM);\nPregúntate:\n\n¿Qué cambia realmente entre buscar el mayor y buscar el menor?",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#etapa-6-contaraprobados",
+    "href": "capitulos/10_laboratorio_modularizacion.html#etapa-6-contaraprobados",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "20.6 Etapa 6 — contarAprobados()",
+    "text": "20.6 Etapa 6 — contarAprobados()\nRecuerda nuestra regla:\nAprobado → nota &gt;= 61\nLa función deberá devolver la cantidad encontrada:\naprobados = contarAprobados(notas, TAM);",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#etapa-7-contarreprobados",
+    "href": "capitulos/10_laboratorio_modularizacion.html#etapa-7-contarreprobados",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "20.7 Etapa 7 — contarReprobados()",
+    "text": "20.7 Etapa 7 — contarReprobados()\nAhora aplicaremos:\nReprobado → nota &lt; 61\ny guardaremos el resultado:\nreprobados = contarReprobados(notas, TAM);",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#etapa-8-mostrarresultados",
+    "href": "capitulos/10_laboratorio_modularizacion.html#etapa-8-mostrarresultados",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "20.8 Etapa 8 — mostrarResultados()",
+    "text": "20.8 Etapa 8 — mostrarResultados()\nFinalmente construiremos un procedimiento encargado únicamente de presentar:\nPromedio\nMayor\nMenor\nAprobados\nReprobados\nEl main() deberá llamarlo enviándole los resultados obtenidos.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#la-idea-que-buscamos-descubrir",
+    "href": "capitulos/10_laboratorio_modularizacion.html#la-idea-que-buscamos-descubrir",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "25.1 La idea que buscamos descubrir",
+    "text": "25.1 La idea que buscamos descubrir\nEl programa anterior y el nuevo pueden producir exactamente el mismo resultado.\nLa diferencia es que ahora cada módulo tiene una responsabilidad específica.\nY nuestro main() comienza a parecerse a la descripción del algoritmo.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#procedimientos",
+    "href": "capitulos/10_laboratorio_modularizacion.html#procedimientos",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "28.1 Procedimientos",
+    "text": "28.1 Procedimientos\nEstos módulos realizan una tarea y utilizan void:\nvoid ingresarNotas(...);\nvoid mostrarNotas(...);\nvoid mostrarResultados(...);\nNo utilizamos su resultado dentro de una asignación.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#funciones",
+    "href": "capitulos/10_laboratorio_modularizacion.html#funciones",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "28.2 Funciones",
+    "text": "28.2 Funciones\nEstos módulos procesan información y devuelven un valor:\ndouble calcularPromedio(...);\n\nint buscarMayor(...);\nint buscarMenor(...);\nint contarAprobados(...);\nint contarReprobados(...);\nPor eso podemos escribir:\npromedio = calcularPromedio(notas, TAM);\nmayor = buscarMayor(notas, TAM);",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#parámetros",
+    "href": "capitulos/10_laboratorio_modularizacion.html#parámetros",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "28.3 Parámetros",
+    "text": "28.3 Parámetros\nVarias funciones reciben:\nint notas[], int TAM\nEsto les permite conocer:\n\nlos datos que deben procesar;\nla cantidad de elementos que deben recorrer.\n\nNo necesitan depender de variables globales.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/10_laboratorio_modularizacion.html#lo-más-importante-de-hoy",
+    "href": "capitulos/10_laboratorio_modularizacion.html#lo-más-importante-de-hoy",
+    "title": "12  Laboratorio: Modularización del analizador de notas",
+    "section": "29.1 Lo más importante de hoy",
+    "text": "29.1 Lo más importante de hoy\nNo aprendimos solamente a escribir funciones.\nAprendimos a dividir una solución en partes pequeñas y comprensibles.\nPodemos resumirlo así:\nProblema grande\n      ↓\nIdentificar tareas\n      ↓\nCrear módulos\n      ↓\nEnviar datos mediante parámetros\n      ↓\nDevolver resultados cuando sea necesario\n      ↓\nConstruir un main() más claro\nModularizar es organizar la solución, no cambiar el problema.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Laboratorio: Modularización del analizador de notas</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html",
+    "href": "capitulos/11_vectores_cpp.html",
+    "title": "13  Vectores en C++",
+    "section": "",
+    "text": "14 El reto de hoy\nEn las últimas clases construimos un Analizador de notas. Primero utilizamos un arreglo tradicional y después modularizamos el programa mediante procedimientos, funciones, parámetros y valores de retorno.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html#promedio",
+    "href": "capitulos/11_vectores_cpp.html#promedio",
+    "title": "13  Vectores en C++",
+    "section": "28.1 Promedio",
+    "text": "28.1 Promedio\ndouble calcularPromedio(const vector&lt;int&gt;& notas)\n{\n    int suma = 0;\n\n    for (int i = 0; i &lt; notas.size(); i++)\n        suma = suma + notas[i];\n\n    return suma / static_cast&lt;double&gt;(notas.size());\n}",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html#mayor",
+    "href": "capitulos/11_vectores_cpp.html#mayor",
+    "title": "13  Vectores en C++",
+    "section": "28.2 Mayor",
+    "text": "28.2 Mayor\nint buscarMayor(const vector&lt;int&gt;& notas)\n{\n    int mayor = notas[0];\n\n    for (int i = 1; i &lt; notas.size(); i++)\n        if (notas[i] &gt; mayor)\n            mayor = notas[i];\n\n    return mayor;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html#menor",
+    "href": "capitulos/11_vectores_cpp.html#menor",
+    "title": "13  Vectores en C++",
+    "section": "28.3 Menor",
+    "text": "28.3 Menor\nint buscarMenor(const vector&lt;int&gt;& notas)\n{\n    int menor = notas[0];\n\n    for (int i = 1; i &lt; notas.size(); i++)\n        if (notas[i] &lt; menor)\n            menor = notas[i];\n\n    return menor;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html#aprobados",
+    "href": "capitulos/11_vectores_cpp.html#aprobados",
+    "title": "13  Vectores en C++",
+    "section": "28.4 Aprobados",
+    "text": "28.4 Aprobados\nint contarAprobados(const vector&lt;int&gt;& notas)\n{\n    int aprobados = 0;\n\n    for (int i = 0; i &lt; notas.size(); i++)\n        if (notas[i] &gt;= 61)\n            aprobados++;\n\n    return aprobados;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html#reprobados",
+    "href": "capitulos/11_vectores_cpp.html#reprobados",
+    "title": "13  Vectores en C++",
+    "section": "28.5 Reprobados",
+    "text": "28.5 Reprobados\nint contarReprobados(const vector&lt;int&gt;& notas)\n{\n    int reprobados = 0;\n\n    for (int i = 0; i &lt; notas.size(); i++)\n        if (notas[i] &lt; 61)\n            reprobados++;\n\n    return reprobados;\n}",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html#observa",
+    "href": "capitulos/11_vectores_cpp.html#observa",
+    "title": "13  Vectores en C++",
+    "section": "29.1 Observa",
+    "text": "29.1 Observa\nAntes:\ningresarNotas(notas, TAM);\nAhora:\ningresarNotas(notas);\nEl vector conoce su tamaño mediante size().",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html#sistema-de-registro-de-temperaturas",
+    "href": "capitulos/11_vectores_cpp.html#sistema-de-registro-de-temperaturas",
+    "title": "13  Vectores en C++",
+    "section": "35.1 Sistema de registro de temperaturas",
+    "text": "35.1 Sistema de registro de temperaturas\nUna estación meteorológica necesita registrar una cantidad variable de temperaturas tomadas durante el día.\nEl programa deberá utilizar:\nvector&lt;double&gt;\ny estar modularizado mediante funciones y procedimientos.\n\n35.1.1 Requerimientos\nEl programa deberá:\n\npreguntar cuántas temperaturas se registrarán;\nalmacenar las temperaturas en un vector&lt;double&gt;;\nmostrar todas las temperaturas;\ncalcular la temperatura promedio;\nencontrar la temperatura más alta;\nencontrar la temperatura más baja;\ncontar cuántas temperaturas son mayores que el promedio;\ncontar cuántas son menores que el promedio;\nmostrar todos los resultados.\n\n\n\n\n\n\n\nImportanteCondición\n\n\n\nNo se permite colocar toda la lógica dentro de main().\nUtiliza como mínimo:\ningresarTemperaturas()\nmostrarTemperaturas()\ncalcularPromedio()\nbuscarMayor()\nbuscarMenor()\ncontarMayoresPromedio()\ncontarMenoresPromedio()\nmostrarResultados()",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html#entregables",
+    "href": "capitulos/11_vectores_cpp.html#entregables",
+    "title": "13  Vectores en C++",
+    "section": "35.2 Entregables",
+    "text": "35.2 Entregables\n\nAnálisis de entradas, procesos y salidas.\nCódigo fuente en C++.\nEvidencia de dos ejecuciones con diferente cantidad de temperaturas.\nBreve explicación de:\n\npor qué utilizó un vector;\nqué funciones retornan valores;\nqué procedimientos utilizan void;\npara qué se utilizan los parámetros.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/11_vectores_cpp.html#de-tamaño-fijo-a-tamaño-dinámico",
+    "href": "capitulos/11_vectores_cpp.html#de-tamaño-fijo-a-tamaño-dinámico",
+    "title": "13  Vectores en C++",
+    "section": "36.1 De tamaño fijo a tamaño dinámico",
+    "text": "36.1 De tamaño fijo a tamaño dinámico\nCon el arreglo aprendimos a trabajar con muchas casillas.\nCon las funciones aprendimos a dividir el problema.\nCon vector agregamos una nueva capacidad:\nla cantidad de datos puede cambiar sin rediseñar el programa.\n\nNo buscamos memorizar instrucciones; buscamos aprender a combinar herramientas para construir mejores soluciones.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Vectores en C++</span>"
+    ]
+  },
+  {
     "objectID": "capitulos/99_cierre.html",
     "href": "capitulos/99_cierre.html",
-    "title": "11  Cierre del capítulo",
+    "title": "14  Cierre del capítulo",
     "section": "",
-    "text": "11.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
+    "text": "14.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Cierre del capítulo</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Cierre del capítulo</span>"
     ]
   }
 ]
