@@ -1,0 +1,781 @@
+---
+title: "Matrices y arreglos multidimensionales en C++"
+subtitle: "De los vectores paralelos a la organización de datos en filas y columnas"
+author: "Ing. Jorge L. García"
+date: "2026-09-07"
+---
+
+# Antes de comenzar
+
+En la clase anterior aprendimos que varios vectores pueden trabajar de forma paralela.
+
+Por ejemplo, podemos tener:
+
+```cpp
+string carnet[35];
+string nombre[35];
+float nota[35];
+```
+
+Si utilizamos la misma posición en los tres arreglos, los datos están relacionados:
+
+```text
+Posición       carnet          nombre           nota
+   0           2026001         Ana               85
+   1           2026002         Carlos            62
+   2           2026003         María             94
+```
+
+Así:
+
+```cpp
+nombre[2]
+```
+
+y:
+
+```cpp
+nota[2]
+```
+
+pertenecen al mismo estudiante.
+
+::: {.callout-tip}
+## Idea importante
+
+Un vector nos permite organizar una **lista** de elementos.
+
+Pero, ¿qué sucede cuando necesitamos organizar información utilizando **filas y columnas**?
+:::
+
+# El nuevo requerimiento
+
+Supongamos que ahora necesitamos almacenar las notas de varios cursos.
+
+Podríamos crear:
+
+```cpp
+float algoritmos[35];
+float matematica[35];
+float fisica[35];
+```
+
+Esto funciona.
+
+Pero imaginemos que posteriormente necesitamos 5, 10 o incluso 20 cursos.
+
+Tendríamos que crear cada vez más vectores.
+
+```cpp
+float algoritmos[35];
+float matematica[35];
+float fisica[35];
+float estadistica[35];
+float programacion[35];
+// ...
+```
+
+Entonces aparece una pregunta:
+
+> **¿Existe una forma de organizar todas las notas utilizando una sola estructura?**
+
+Sí.
+
+Podemos utilizar una **matriz**.
+
+# Pensemos primero en Excel
+
+Antes de escribir código, pensemos en una hoja de cálculo.
+
+Una tabla de calificaciones podría verse así:
+
+| Estudiante | Algoritmos | Matemática | Física |
+|---|---:|---:|---:|
+| Ana | 85 | 78 | 90 |
+| Carlos | 62 | 71 | 68 |
+| María | 94 | 89 | 92 |
+| José | 71 | 65 | 77 |
+
+¿Qué observamos?
+
+- Cada **fila** representa un estudiante.
+- Cada **columna** representa un curso.
+- Cada celda contiene una nota.
+- Para localizar una nota necesitamos saber **dos posiciones**: fila y columna.
+
+Por ejemplo, si numeramos desde cero:
+
+|   | Columna 0 | Columna 1 | Columna 2 |
+|---|---:|---:|---:|
+| **Fila 0** | 85 | 78 | 90 |
+| **Fila 1** | 62 | 71 | 68 |
+| **Fila 2** | 94 | 89 | 92 |
+| **Fila 3** | 71 | 65 | 77 |
+
+La nota `89` está ubicada en:
+
+```text
+fila = 2
+columna = 1
+```
+
+En C++ podríamos acceder a ella mediante:
+
+```cpp
+notas[2][1]
+```
+
+::: {.callout-note}
+## El cambio fundamental
+
+En un vector utilizábamos **un índice**:
+
+```cpp
+nota[i]
+```
+
+En una matriz utilizaremos **dos índices**:
+
+```cpp
+nota[i][j]
+```
+
+El primero identifica la **fila** y el segundo la **columna**.
+:::
+
+# ¿Qué es una matriz?
+
+Una matriz es un **arreglo bidimensional** que organiza elementos del mismo tipo en filas y columnas.
+
+Por ejemplo:
+
+```cpp
+int matriz[3][3];
+```
+
+crea una estructura de:
+
+- 3 filas
+- 3 columnas
+- 9 posiciones en total
+
+Podemos imaginarla así:
+
+```text
+          columnas
+           0   1   2
+         +---+---+---+
+fila 0   |   |   |   |
+         +---+---+---+
+fila 1   |   |   |   |
+         +---+---+---+
+fila 2   |   |   |   |
+         +---+---+---+
+```
+
+Cada elemento tiene una posición formada por dos índices:
+
+```cpp
+matriz[fila][columna]
+```
+
+# Comparación con un vector
+
+Un vector:
+
+```cpp
+int numeros[5];
+```
+
+puede visualizarse como:
+
+```text
+[ 10 ][ 20 ][ 30 ][ 40 ][ 50 ]
+   0     1     2     3     4
+```
+
+Para obtener `30` utilizamos:
+
+```cpp
+numeros[2]
+```
+
+Una matriz:
+
+```cpp
+int numeros[3][3];
+```
+
+puede visualizarse como:
+
+```text
+        0    1    2
+      +----+----+----+
+  0   |  5 |  8 |  6 |
+      +----+----+----+
+  1   |  7 |  9 |  4 |
+      +----+----+----+
+  2   |  3 |  2 |  1 |
+      +----+----+----+
+```
+
+Para obtener el valor `9` utilizamos:
+
+```cpp
+numeros[1][1]
+```
+
+Porque está en la fila `1` y columna `1`.
+
+# Recordemos: los índices comienzan en cero
+
+Una matriz de:
+
+```cpp
+int matriz[3][3];
+```
+
+tiene índices válidos:
+
+```text
+Filas:     0, 1, 2
+Columnas:  0, 1, 2
+```
+
+Por lo tanto:
+
+```cpp
+matriz[0][0]
+```
+
+es la primera posición.
+
+Mientras que:
+
+```cpp
+matriz[2][2]
+```
+
+es la última.
+
+::: {.callout-warning}
+## Cuidado
+
+En una matriz `3 x 3` no existe:
+
+```cpp
+matriz[3][3]
+```
+
+porque los índices comienzan en cero.
+:::
+
+# Inicialización de una matriz
+
+Al igual que con los arreglos que ya conocemos, podemos asignar valores desde la declaración.
+
+```cpp
+int matriz[3][3] = {
+    {5, 8, 6},
+    {7, 9, 4},
+    {3, 2, 1}
+};
+```
+
+Cada grupo representa una fila.
+
+```text
+{5, 8, 6}  -> fila 0
+{7, 9, 4}  -> fila 1
+{3, 2, 1}  -> fila 2
+```
+
+También podemos modificar una posición individual:
+
+```cpp
+matriz[1][2] = 10;
+```
+
+# ¿Cómo llenamos una matriz con datos del usuario?
+
+Con un vector utilizábamos un ciclo:
+
+```cpp
+for (int i = 0; i < 5; i++) {
+    cin >> notas[i];
+}
+```
+
+Pero ahora necesitamos recorrer **filas y columnas**.
+
+Por eso utilizamos dos ciclos.
+
+```cpp
+for (int i = 0; i < 3; i++) {
+
+    for (int j = 0; j < 3; j++) {
+
+        cin >> matriz[i][j];
+
+    }
+}
+```
+
+Podemos interpretarlo así:
+
+```text
+i = controla las filas
+j = controla las columnas
+```
+
+El ciclo exterior selecciona una fila.
+
+El ciclo interior recorre todas las columnas de esa fila.
+
+# Sigamos el recorrido paso a paso
+
+Para una matriz `2 x 3`:
+
+```cpp
+int tabla[2][3];
+```
+
+el recorrido será:
+
+```text
+i = 0, j = 0   -> tabla[0][0]
+i = 0, j = 1   -> tabla[0][1]
+i = 0, j = 2   -> tabla[0][2]
+
+i = 1, j = 0   -> tabla[1][0]
+i = 1, j = 1   -> tabla[1][1]
+i = 1, j = 2   -> tabla[1][2]
+```
+
+Observe que primero se recorren todas las columnas de la fila `0`.
+
+Después se pasa a la fila `1`.
+
+::: {.callout-tip}
+## Relación con lo que ya sabemos
+
+No estamos aprendiendo un ciclo nuevo.
+
+Seguimos utilizando `for`.
+
+La diferencia es que ahora **un ciclo está dentro de otro**, porque necesitamos controlar dos dimensiones.
+:::
+
+# Mostrar una matriz como una tabla
+
+Podemos mostrarla conservando visualmente las filas y columnas:
+
+```cpp
+for (int i = 0; i < 3; i++) {
+
+    for (int j = 0; j < 3; j++) {
+        cout << matriz[i][j] << "\t";
+    }
+
+    cout << endl;
+}
+```
+
+Si los valores son:
+
+```cpp
+int matriz[3][3] = {
+    {5, 8, 6},
+    {7, 9, 4},
+    {3, 2, 1}
+};
+```
+
+obtendremos:
+
+```text
+5       8       6
+7       9       4
+3       2       1
+```
+
+# Caso de la vida real: registro de calificaciones
+
+Retomemos el problema con el que terminamos vectores.
+
+Tenemos estudiantes y ahora necesitamos almacenar las notas de **tres cursos**.
+
+Podemos conservar información como el nombre en un vector:
+
+```cpp
+string nombres[3] = {"Ana", "Carlos", "Maria"};
+```
+
+Y utilizar una matriz para las notas:
+
+```cpp
+float notas[3][3] = {
+    {85, 70, 66},
+    {77, 40, 91},
+    {60, 100, 89}
+};
+```
+
+Podemos interpretar la matriz así:
+
+| Alumno | Algoritmos | Contabilidad | Otro curso |
+|---|---:|---:|---:|
+| Ana | 85 | 70 | 66 |
+| Carlos | 77 | 40 | 91 |
+| María | 60 | 100 | 89 |
+
+Observe algo importante:
+
+```cpp
+nombres[1]
+```
+
+representa a Carlos.
+
+Y:
+
+```cpp
+notas[1][0]
+notas[1][1]
+notas[1][2]
+```
+
+son las tres notas de Carlos.
+
+La **fila 1** de la matriz está relacionada con la **posición 1** del vector de nombres.
+
+# Ejemplo 1: promedio por estudiante
+
+Queremos calcular el promedio de cada alumno.
+
+Para cada fila debemos sumar sus columnas.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+
+    const int ALUMNOS = 3;
+    const int CURSOS = 3;
+
+    string nombres[ALUMNOS] = {
+        "Ana",
+        "Carlos",
+        "Maria"
+    };
+
+    float notas[ALUMNOS][CURSOS] = {
+        {85, 70, 66},
+        {77, 40, 91},
+        {60, 100, 89}
+    };
+
+    for (int i = 0; i < ALUMNOS; i++) {
+
+        float suma = 0;
+
+        for (int j = 0; j < CURSOS; j++) {
+            suma += notas[i][j];
+        }
+
+        float promedio = suma / CURSOS;
+
+        cout << nombres[i]
+             << " - Promedio: "
+             << promedio << endl;
+    }
+
+    return 0;
+}
+```
+
+Observe dónde se coloca:
+
+```cpp
+float suma = 0;
+```
+
+Debe reiniciarse para cada estudiante.
+
+# Pensemos antes de continuar
+
+Para la siguiente matriz:
+
+```cpp
+int datos[4][5];
+```
+
+responda:
+
+1. ¿Cuántas filas tiene?
+2. ¿Cuántas columnas tiene?
+3. ¿Cuántos elementos puede almacenar?
+4. ¿Cuál es la primera posición?
+5. ¿Cuál es la última posición?
+
+::: {.callout-note collapse="true"}
+## Respuesta
+
+- Filas: `4`
+- Columnas: `5`
+- Elementos: `20`
+- Primera posición: `datos[0][0]`
+- Última posición: `datos[3][4]`
+:::
+
+# Comparación: arreglo, vector y matriz
+
+| Estructura | Organización | Tamaño | Acceso |
+|---|---|---|---|
+| Arreglo | Una dimensión | Fijo | `datos[i]` |
+| `vector` de C++ | Una dimensión | Puede cambiar | `datos[i]` |
+| Matriz tradicional | Dos dimensiones | Fijo | `datos[i][j]` |
+
+Todos permiten almacenar elementos del mismo tipo.
+
+La matriz puede entenderse como una extensión natural de los arreglos: ahora organizamos los elementos utilizando más de una dimensión.
+
+# Ejercicio guiado
+
+Construya un programa que permita ingresar una matriz de `3 x 3`.
+
+Después deberá calcular:
+
+- suma de todos los elementos;
+- promedio de todos los elementos;
+- valor máximo;
+- valor mínimo.
+
+Antes de programar, responda:
+
+> ¿Cuántas veces tendremos que visitar cada posición de la matriz?
+
+La respuesta es importante: para realizar estos cálculos basta con recorrer cada posición una vez.
+
+## Paso 1: declarar la matriz
+
+```cpp
+const int FILAS = 3;
+const int COLUMNAS = 3;
+
+int matriz[FILAS][COLUMNAS];
+```
+
+## Paso 2: ingresar los datos
+
+```cpp
+for (int i = 0; i < FILAS; i++) {
+
+    for (int j = 0; j < COLUMNAS; j++) {
+
+        cout << "Ingrese [" << i << "][" << j << "]: ";
+        cin >> matriz[i][j];
+
+    }
+}
+```
+
+## Paso 3: procesar los datos
+
+```cpp
+int suma = 0;
+int mayor = matriz[0][0];
+int menor = matriz[0][0];
+
+for (int i = 0; i < FILAS; i++) {
+
+    for (int j = 0; j < COLUMNAS; j++) {
+
+        suma += matriz[i][j];
+
+        if (matriz[i][j] > mayor) {
+            mayor = matriz[i][j];
+        }
+
+        if (matriz[i][j] < menor) {
+            menor = matriz[i][j];
+        }
+    }
+}
+```
+
+## Paso 4: calcular el promedio
+
+```cpp
+float promedio = (float)suma / (FILAS * COLUMNAS);
+```
+
+## Paso 5: mostrar resultados
+
+```cpp
+cout << "Suma: " << suma << endl;
+cout << "Promedio: " << promedio << endl;
+cout << "Mayor: " << mayor << endl;
+cout << "Menor: " << menor << endl;
+```
+
+# Buenas prácticas
+
+Cuando trabajemos con matrices procuraremos:
+
+- utilizar constantes para definir tamaños;
+- utilizar nombres que indiquen qué representa cada dimensión;
+- validar los datos ingresados cuando el problema lo requiera;
+- presentar los resultados en forma de tabla cuando sea posible;
+- evitar números escritos repetidamente dentro de los ciclos.
+
+En lugar de:
+
+```cpp
+int notas[35][5];
+```
+
+podemos utilizar:
+
+```cpp
+const int ALUMNOS = 35;
+const int CURSOS = 5;
+
+int notas[ALUMNOS][CURSOS];
+```
+
+Así el código explica mejor lo que representa cada dimensión.
+
+# Más de dos dimensiones
+
+Una matriz bidimensional utiliza:
+
+```cpp
+datos[fila][columna]
+```
+
+Pero C++ también permite arreglos de más dimensiones.
+
+Por ejemplo:
+
+```cpp
+int datos[3][3][3];
+```
+
+En este caso necesitamos tres índices:
+
+```cpp
+datos[i][j][k]
+```
+
+Un ejemplo puede ser la representación de información que depende de tres coordenadas o dimensiones, como ciertos mapas, simulaciones o videojuegos.
+
+::: {.callout-warning}
+## Por ahora...
+
+No necesitamos complicarnos con arreglos de tres o más dimensiones.
+
+Primero debemos dominar completamente:
+
+```cpp
+matriz[i][j]
+```
+
+y el uso de ciclos anidados.
+:::
+
+# Comprobemos la comprensión
+
+Sin ejecutar código, observe:
+
+```cpp
+int matriz[2][4] = {
+    {10, 20, 30, 40},
+    {50, 60, 70, 80}
+};
+```
+
+Responda:
+
+1. ¿Qué valor contiene `matriz[0][2]`?
+2. ¿Qué valor contiene `matriz[1][0]`?
+3. ¿En qué posición se encuentra el valor `80`?
+4. ¿Cuántos elementos tiene la matriz?
+5. ¿Qué sucede conceptualmente si intercambiamos los índices?
+
+::: {.callout-note collapse="true"}
+## Respuestas
+
+1. `30`
+2. `50`
+3. `matriz[1][3]`
+4. `8`
+5. Cambiamos la fila por la columna; no estamos señalando necesariamente la misma posición.
+:::
+
+# El reto para el laboratorio
+
+Ya sabemos representar:
+
+```text
+               Curso 0   Curso 1   Curso 2
+Estudiante 0      85        70        66
+Estudiante 1      77        40        91
+Estudiante 2      60       100        89
+```
+
+El siguiente paso será construir un programa que permita trabajar con una tabla de calificaciones de forma más completa.
+
+En el laboratorio podremos incorporar operaciones como:
+
+- ingreso de datos;
+- promedio por estudiante;
+- promedio por curso;
+- estudiante con mejor promedio;
+- búsqueda y presentación de información.
+
+Todo parte de una sola idea:
+
+```cpp
+notas[estudiante][curso]
+```
+
+# Cierre
+
+En esta clase avanzamos desde una estructura de una dimensión hacia una estructura de dos dimensiones.
+
+```text
+Variable
+   ↓
+Arreglo / Vector
+   ↓
+Vectores paralelos
+   ↓
+Necesidad de filas y columnas
+   ↓
+Matriz
+```
+
+Una matriz no aparece como un concepto aislado.
+
+Es una solución natural cuando nuestros datos ya no pueden representarse cómodamente como una sola lista.
+
+::: {.callout-tip}
+## Idea para recordar
+
+**Vector:** necesito una posición.
+
+```cpp
+datos[i]
+```
+
+**Matriz:** necesito dos posiciones.
+
+```cpp
+datos[i][j]
+```
+
+Primero ubicamos la fila. Después, la columna.
+:::

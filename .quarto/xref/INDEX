@@ -43,5 +43,14 @@
   },
   "capitulos/11_vectores_cpp.qmd": {
     "11_vectores_cpp.html": "c88d556b"
+  },
+  "capitulos/12_vectores_paralelos_transicion_matrices.qmd": {
+    "12_vectores_paralelos_transicion_matrices.html": "59e78ecf"
+  },
+  "capitulos/13_laboratorio_del_problema_al_programa.qmd": {
+    "13_laboratorio_del_problema_al_programa.html": "76384627"
+  },
+  "capitulos/13_matrices_arreglos_bidimensionales.qmd": {
+    "13_matrices_arreglos_bidimensionales.html": "4de60e98"
   }
 }

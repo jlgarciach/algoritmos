@@ -1,0 +1,697 @@
+---
+title: "Vectores paralelos: del control de estudiantes a las matrices"
+subtitle: "Último ejercicio de arreglos y vectores"
+author: "Ing. Jorge Luis García Chacón"
+date: "2026-09-07"
+---
+
+# Antes de comenzar
+
+Hasta ahora hemos utilizado arreglos y vectores para almacenar **varios datos del mismo tipo**. Por ejemplo, un vector puede guardar las notas de varios estudiantes:
+
+```cpp
+float notas[5] = {85, 62, 94, 71, 78};
+```
+
+Pero en un problema real rara vez necesitamos almacenar un solo dato.
+
+Pensemos en un estudiante. Para identificarlo podríamos necesitar, como mínimo:
+
+- número de carnet;
+- nombre;
+- nota obtenida en un curso.
+
+Entonces aparece una nueva pregunta:
+
+> **¿Cómo podemos mantener relacionados esos datos utilizando lo que ya sabemos de arreglos y vectores?**
+
+En esta clase resolveremos el problema utilizando **vectores paralelos**. Al final descubriremos una situación que nos llevará naturalmente hacia nuestro siguiente tema: **las matrices**.
+
+::: {.callout-tip title="Idea central de la clase"}
+No aprenderemos una estructura completamente nueva. Utilizaremos varios vectores y descubriremos que **la posición o índice puede relacionar información almacenada en estructuras diferentes**.
+:::
+
+# Objetivos de aprendizaje
+
+Al finalizar esta clase, el estudiante será capaz de:
+
+1. Utilizar varios vectores para representar información relacionada.
+2. Comprender la importancia de mantener correspondencia entre las posiciones de los vectores.
+3. Recorrer simultáneamente varios vectores mediante ciclos.
+4. Buscar información en un vector y utilizar la posición encontrada para consultar otros vectores.
+5. Identificar una limitación de los vectores cuando un problema necesita representar información en dos dimensiones.
+6. Reconocer la necesidad que da origen al uso de matrices.
+
+# El problema: control de estudiantes
+
+La universidad necesita un pequeño programa que permita registrar información de cinco estudiantes de un curso.
+
+Por cada estudiante necesitamos almacenar:
+
+- carnet;
+- nombre;
+- nota final.
+
+Podríamos pensar visualmente los datos de esta manera:
+
+| Posición | Carnet | Nombre | Nota |
+|---:|---|---|---:|
+| 0 | 2026001 | Ana | 85 |
+| 1 | 2026002 | Carlos | 62 |
+| 2 | 2026003 | María | 94 |
+| 3 | 2026004 | José | 71 |
+| 4 | 2026005 | Andrea | 78 |
+
+Observemos algo importante: cada fila representa a un estudiante, pero todavía no conocemos una estructura que almacene conjuntamente datos de tipos diferentes.
+
+Sin embargo, **sí sabemos utilizar vectores**.
+
+# Primera solución: vectores paralelos
+
+Podemos crear tres vectores:
+
+```cpp
+string carnet[5];
+string nombre[5];
+float nota[5];
+```
+
+Los llamaremos **vectores paralelos** porque utilizaremos la misma posición para representar al mismo estudiante en todos ellos.
+
+```text
+Índice        0           1           2           3           4
+          +-----------+-----------+-----------+-----------+-----------+
+Carnet    | 2026001   | 2026002   | 2026003   | 2026004   | 2026005   |
+          +-----------+-----------+-----------+-----------+-----------+
+Nombre    | Ana       | Carlos    | María     | José      | Andrea    |
+          +-----------+-----------+-----------+-----------+-----------+
+Nota      | 85        | 62        | 94        | 71        | 78        |
+          +-----------+-----------+-----------+-----------+-----------+
+```
+
+Por ejemplo:
+
+```cpp
+carnet[2]  // 2026003
+nombre[2]  // María
+nota[2]    // 94
+```
+
+Los tres valores pertenecen a **María**, porque se encuentran en la misma posición: `2`.
+
+::: {.callout-important title="Regla fundamental"}
+Cuando trabajamos con vectores paralelos, **el índice establece la relación entre los datos**.
+
+Si modificamos el orden de uno de los vectores sin modificar los demás, perdemos esa relación.
+:::
+
+# Paso 1. Registrar estudiantes
+
+Utilizaremos un solo ciclo `for` para llenar los tres vectores.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    const int CANTIDAD = 5;
+
+    string carnet[CANTIDAD];
+    string nombre[CANTIDAD];
+    float nota[CANTIDAD];
+
+    for (int i = 0; i < CANTIDAD; i++) {
+        cout << "\nEstudiante " << i + 1 << endl;
+
+        cout << "Carnet: ";
+        cin >> carnet[i];
+
+        cout << "Nombre: ";
+        cin >> nombre[i];
+
+        cout << "Nota: ";
+        cin >> nota[i];
+    }
+
+    return 0;
+}
+```
+
+## ¿Qué está ocurriendo?
+
+Cuando `i` vale `0`, el programa almacena los datos del primer estudiante en:
+
+```cpp
+carnet[0]
+nombre[0]
+nota[0]
+```
+
+Cuando `i` vale `1`, almacena los datos del segundo estudiante en:
+
+```cpp
+carnet[1]
+nombre[1]
+nota[1]
+```
+
+Y así sucesivamente.
+
+**El mismo contador controla simultáneamente los tres vectores.**
+
+# Paso 2. Mostrar el listado completo
+
+Después de registrar la información, podemos recorrer nuevamente los vectores:
+
+```cpp
+cout << "\nLISTADO DE ESTUDIANTES\n";
+cout << "-------------------------------\n";
+
+for (int i = 0; i < CANTIDAD; i++) {
+    cout << carnet[i] << "  "
+         << nombre[i] << "  "
+         << nota[i] << endl;
+}
+```
+
+Observe que no necesitamos tres ciclos. Un solo índice `i` nos permite acceder a toda la información relacionada con cada estudiante.
+
+# Paso 3. Buscar un estudiante por carnet
+
+Ahora queremos localizar a un estudiante utilizando su número de carnet.
+
+El algoritmo será:
+
+1. solicitar el carnet;
+2. recorrer el vector `carnet`;
+3. comparar cada elemento con el carnet buscado;
+4. guardar la posición donde fue encontrado;
+5. utilizar esa posición para consultar `nombre` y `nota`.
+
+```cpp
+string carnetBuscado;
+int posicion = -1;
+
+cout << "\nIngrese el carnet que desea buscar: ";
+cin >> carnetBuscado;
+
+for (int i = 0; i < CANTIDAD; i++) {
+    if (carnet[i] == carnetBuscado) {
+        posicion = i;
+        break;
+    }
+}
+
+if (posicion != -1) {
+    cout << "\nEstudiante encontrado\n";
+    cout << "Carnet: " << carnet[posicion] << endl;
+    cout << "Nombre: " << nombre[posicion] << endl;
+    cout << "Nota: " << nota[posicion] << endl;
+} else {
+    cout << "\nEl carnet no fue encontrado.\n";
+}
+```
+
+## El detalle más importante
+
+La búsqueda se realizó únicamente en:
+
+```cpp
+carnet[i]
+```
+
+Pero una vez encontrada la posición podemos consultar:
+
+```cpp
+nombre[posicion]
+nota[posicion]
+```
+
+Por tanto, **la posición encontrada se convierte en el vínculo entre los vectores**.
+
+::: {.callout-note title="Pregunta para discutir en clase"}
+Si encontramos el carnet en la posición `3`, ¿en qué posición debemos buscar el nombre y la nota del estudiante?
+:::
+
+# Paso 4. Mostrar estudiantes aprobados
+
+Consideremos que la nota mínima de aprobación es `61`.
+
+```cpp
+cout << "\nESTUDIANTES APROBADOS\n";
+
+for (int i = 0; i < CANTIDAD; i++) {
+    if (nota[i] >= 61) {
+        cout << carnet[i] << "  "
+             << nombre[i] << "  "
+             << nota[i] << endl;
+    }
+}
+```
+
+La condición se evalúa utilizando el vector `nota`, pero cuando se cumple utilizamos el mismo índice para mostrar el carnet y el nombre.
+
+# Paso 5. Calcular el promedio del grupo
+
+Para obtener el promedio necesitamos sumar todas las notas y dividirlas entre la cantidad de estudiantes.
+
+```cpp
+float suma = 0;
+float promedio;
+
+for (int i = 0; i < CANTIDAD; i++) {
+    suma = suma + nota[i];
+}
+
+promedio = suma / CANTIDAD;
+
+cout << "\nPromedio del grupo: " << promedio << endl;
+```
+
+Aquí trabajamos principalmente con el vector `nota`, porque el cálculo no necesita los demás datos.
+
+# Paso 6. Encontrar al estudiante con la nota más alta
+
+Ahora queremos determinar quién obtuvo la nota mayor.
+
+Una estrategia consiste en guardar **la posición** de la nota más alta encontrada.
+
+```cpp
+int posicionMayor = 0;
+
+for (int i = 1; i < CANTIDAD; i++) {
+    if (nota[i] > nota[posicionMayor]) {
+        posicionMayor = i;
+    }
+}
+```
+
+Al finalizar el ciclo, `posicionMayor` no contiene la nota. Contiene **el índice donde está la nota mayor**.
+
+Eso nos permite hacer lo siguiente:
+
+```cpp
+cout << "\nMEJOR RESULTADO DEL GRUPO\n";
+cout << "Carnet: " << carnet[posicionMayor] << endl;
+cout << "Nombre: " << nombre[posicionMayor] << endl;
+cout << "Nota: " << nota[posicionMayor] << endl;
+```
+
+::: {.callout-tip title="Comprensión antes que memorización"}
+No necesitamos buscar nuevamente el nombre del estudiante. Si conocemos la posición de la nota mayor, esa misma posición identifica sus datos en los demás vectores.
+:::
+
+# Programa integrador
+
+El siguiente programa reúne las operaciones anteriores. Puede utilizarse como base durante la clase y completarse progresivamente con los estudiantes.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    const int CANTIDAD = 5;
+
+    string carnet[CANTIDAD];
+    string nombre[CANTIDAD];
+    float nota[CANTIDAD];
+
+    // 1. Registro de estudiantes
+    for (int i = 0; i < CANTIDAD; i++) {
+        cout << "\nEstudiante " << i + 1 << endl;
+
+        cout << "Carnet: ";
+        cin >> carnet[i];
+
+        cout << "Nombre: ";
+        cin >> nombre[i];
+
+        cout << "Nota: ";
+        cin >> nota[i];
+    }
+
+    // 2. Mostrar estudiantes
+    cout << "\n\nLISTADO DE ESTUDIANTES\n";
+    cout << "--------------------------------\n";
+
+    for (int i = 0; i < CANTIDAD; i++) {
+        cout << carnet[i] << "  "
+             << nombre[i] << "  "
+             << nota[i] << endl;
+    }
+
+    // 3. Buscar estudiante por carnet
+    string carnetBuscado;
+    int posicion = -1;
+
+    cout << "\nIngrese carnet a buscar: ";
+    cin >> carnetBuscado;
+
+    for (int i = 0; i < CANTIDAD; i++) {
+        if (carnet[i] == carnetBuscado) {
+            posicion = i;
+            break;
+        }
+    }
+
+    if (posicion != -1) {
+        cout << "Nombre: " << nombre[posicion] << endl;
+        cout << "Nota: " << nota[posicion] << endl;
+    } else {
+        cout << "Carnet no encontrado.\n";
+    }
+
+    // 4. Estudiantes aprobados
+    cout << "\nESTUDIANTES APROBADOS\n";
+
+    for (int i = 0; i < CANTIDAD; i++) {
+        if (nota[i] >= 61) {
+            cout << carnet[i] << "  "
+                 << nombre[i] << "  "
+                 << nota[i] << endl;
+        }
+    }
+
+    // 5. Promedio
+    float suma = 0;
+
+    for (int i = 0; i < CANTIDAD; i++) {
+        suma += nota[i];
+    }
+
+    float promedio = suma / CANTIDAD;
+    cout << "\nPromedio del grupo: " << promedio << endl;
+
+    // 6. Nota más alta
+    int posicionMayor = 0;
+
+    for (int i = 1; i < CANTIDAD; i++) {
+        if (nota[i] > nota[posicionMayor]) {
+            posicionMayor = i;
+        }
+    }
+
+    cout << "\nMEJOR RESULTADO\n";
+    cout << "Carnet: " << carnet[posicionMayor] << endl;
+    cout << "Nombre: " << nombre[posicionMayor] << endl;
+    cout << "Nota: " << nota[posicionMayor] << endl;
+
+    return 0;
+}
+```
+
+# Detengámonos a pensar
+
+Hasta aquí nuestra solución funciona bien:
+
+```cpp
+string carnet[5];
+string nombre[5];
+float nota[5];
+```
+
+Tenemos cinco estudiantes y una nota por estudiante.
+
+Pero ahora la universidad cambia el requerimiento.
+
+> Ya no desea almacenar solamente la nota de Algoritmos. Necesita almacenar también las notas de Matemática y Física.
+
+¿Cómo podríamos resolverlo utilizando únicamente lo que conocemos?
+
+Una primera posibilidad sería:
+
+```cpp
+float notaAlgoritmos[5];
+float notaMatematica[5];
+float notaFisica[5];
+```
+
+Funciona.
+
+Pero después nos solicitan agregar Programación:
+
+```cpp
+float notaProgramacion[5];
+```
+
+Y posteriormente Estadística:
+
+```cpp
+float notaEstadistica[5];
+```
+
+La solución sigue siendo posible, pero comienza a crecer.
+
+# El problema cambia de forma
+
+Observemos cómo realmente estamos pensando la información:
+
+| Estudiante | Algoritmos | Matemática | Física |
+|---|---:|---:|---:|
+| Ana | 85 | 78 | 90 |
+| Carlos | 62 | 71 | 68 |
+| María | 94 | 89 | 92 |
+| José | 71 | 65 | 77 |
+| Andrea | 78 | 84 | 80 |
+
+Ahora tenemos dos preguntas para localizar una nota:
+
+1. **¿De qué estudiante?**
+2. **¿De qué curso?**
+
+Con un vector utilizábamos una posición:
+
+```cpp
+nota[2]
+```
+
+Pero conceptualmente ahora necesitamos algo parecido a:
+
+```text
+nota[estudiante][curso]
+```
+
+Por ejemplo:
+
+```text
+nota[2][0]
+```
+
+podría significar:
+
+> Nota del estudiante ubicado en la posición 2, para el curso ubicado en la posición 0.
+
+::: {.callout-warning title="Aquí nace una nueva necesidad"}
+Nuestros vectores nos han servido muy bien, pero el problema ahora tiene **dos dimensiones**: estudiantes y cursos.
+
+Necesitamos una estructura capaz de organizar información utilizando **filas y columnas**.
+:::
+
+# De una dimensión a dos dimensiones
+
+Hasta ahora hemos trabajado así:
+
+```text
+Vector de notas
+
+        0      1      2      3      4
+      +------+------+------+------+------+
+nota  |  85  |  62  |  94  |  71  |  78  |
+      +------+------+------+------+------+
+
+              una dimensión
+```
+
+Ahora nuestro problema se parece más a esto:
+
+```text
+                    CURSOS
+              0        1        2
+           Algorit.  Matem.   Física
+         +---------+--------+--------+
+      0  |   85    |   78   |   90   |
+         +---------+--------+--------+
+      1  |   62    |   71   |   68   |
+EST.    +---------+--------+--------+
+      2  |   94    |   89   |   92   |
+         +---------+--------+--------+
+      3  |   71    |   65   |   77   |
+         +---------+--------+--------+
+      4  |   78    |   84   |   80   |
+         +---------+--------+--------+
+```
+
+Cada valor necesita ahora **dos posiciones**:
+
+```text
+[fila][columna]
+```
+
+Todavía no desarrollaremos su implementación completa. Ese será nuestro siguiente paso.
+
+# La puerta hacia las matrices
+
+En C++, una estructura de este tipo puede representarse de la siguiente manera:
+
+```cpp
+float notas[5][3];
+```
+
+Por ahora solamente observemos la diferencia:
+
+```cpp
+float nota[5];       // una dimensión
+float notas[5][3];   // dos dimensiones
+```
+
+Y una posición podría consultarse así:
+
+```cpp
+notas[2][1]
+```
+
+¿Qué significan esos dos números?
+
+- `2`: fila, correspondiente a un estudiante;
+- `1`: columna, correspondiente a un curso.
+
+A esta estructura bidimensional la llamaremos **matriz**.
+
+::: {.callout-note title="No adelantemos el laboratorio"}
+Por ahora nuestro objetivo no es dominar las matrices. Es comprender **por qué las necesitamos**.
+
+En el próximo laboratorio aprenderemos a declararlas, llenarlas, recorrerlas y procesarlas utilizando ciclos anidados.
+:::
+
+# Conexión con los vectores paralelos
+
+Aunque incorporemos una matriz para las notas, los demás datos pueden continuar almacenándose en vectores:
+
+```cpp
+string carnet[5];
+string nombre[5];
+float notas[5][3];
+```
+
+Visualmente:
+
+```text
+VECTOR                          MATRIZ DE NOTAS
+
+Índice   Nombre           Algoritmos   Matemática   Física
+  0      Ana                  85           78         90
+  1      Carlos               62           71         68
+  2      María                94           89         92
+  3      José                 71           65         77
+  4      Andrea               78           84         80
+```
+
+La fila `2` de la matriz sigue correspondiendo al estudiante almacenado en la posición `2` del vector.
+
+Por ejemplo:
+
+```cpp
+nombre[2]
+notas[2][0]
+notas[2][1]
+notas[2][2]
+```
+
+Todos esos datos están relacionados con el mismo estudiante.
+
+# Actividad de comprensión
+
+Sin programar todavía una matriz, responda las siguientes preguntas:
+
+1. ¿Qué característica permite relacionar varios vectores paralelos?
+2. Si `carnet[3]` pertenece a un estudiante, ¿dónde se encuentra su nombre?
+3. Si encontramos la nota más alta en `nota[4]`, ¿cómo podemos obtener el nombre del estudiante?
+4. ¿Qué problema aparece si cambiamos de posición los nombres pero no cambiamos los carnets y notas?
+5. Si queremos almacenar cinco estudiantes y una nota por estudiante, ¿es suficiente un vector de notas?
+6. Si queremos almacenar cinco estudiantes y tres notas por estudiante, ¿cuántos vectores de notas necesitaríamos con la solución actual?
+7. ¿Qué representan las filas en nuestra futura matriz?
+8. ¿Qué representan las columnas?
+9. ¿Por qué una matriz puede ser más conveniente que crear un vector diferente para cada curso?
+
+# Reto final de la clase
+
+Imagine que debemos controlar **40 estudiantes** y las notas de **10 cursos**.
+
+Con la solución basada exclusivamente en vectores separados tendríamos algo parecido a:
+
+```cpp
+float curso1[40];
+float curso2[40];
+float curso3[40];
+// ...
+float curso10[40];
+```
+
+Ahora observe esta alternativa:
+
+```cpp
+float notas[40][10];
+```
+
+Analice antes de responder:
+
+> **¿Cuál de las dos representaciones se parece más a la forma real en que visualizamos una tabla de estudiantes y cursos?**
+
+Esa pregunta será el punto de partida de nuestro próximo laboratorio.
+
+# Lo que hemos construido
+
+Nuestra ruta de aprendizaje ha sido progresiva:
+
+```text
+Variable
+   |
+   v
+Arreglo / Vector
+   |
+   v
+Varios vectores relacionados
+   |
+   v
+Vectores paralelos
+   |
+   v
+Necesidad de representar filas y columnas
+   |
+   v
+MATRICES
+```
+
+::: {.callout-tip title="Idea para llevarse de esta clase"}
+Una matriz no aparece porque queramos aprender una nueva sintaxis.
+
+**Aparece porque algunos problemas necesitan organizar datos en más de una dimensión.**
+:::
+
+# Próxima clase: matrices
+
+En el laboratorio continuaremos exactamente desde este problema y aprenderemos:
+
+- qué es una matriz;
+- cómo declararla en C++;
+- cómo interpretar filas y columnas;
+- cómo ingresar datos;
+- cómo recorrerla mediante ciclos `for` anidados;
+- cómo mostrar una matriz;
+- cómo calcular resultados por estudiante y por curso.
+
+Nuestro control de estudiantes será el puente para comenzar.
+
+# Cierre
+
+Antes de avanzar, asegúrese de poder explicar con sus propias palabras:
+
+> **¿Por qué tres vectores pueden trabajar juntos si utilizan el mismo índice?**
+
+Y después:
+
+> **¿Qué cambia cuando un estudiante ya no tiene una sola nota, sino varias notas correspondientes a diferentes cursos?**
+
+Si puede responder ambas preguntas, está listo para comenzar a trabajar con **matrices**.

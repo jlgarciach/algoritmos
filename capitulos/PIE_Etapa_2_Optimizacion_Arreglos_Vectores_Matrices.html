@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Curso de Algoritmos">
+
+<title>Proyecto Integrador Evolutivo - PIE</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/clipboard/clipboard.min.js"></script>
+<script src="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/quarto-html/popper.min.js"></script>
+<script src="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/quarto-html/anchor.min.js"></script>
+<link href="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="PIE_Etapa_2_Optimizacion_Arreglos_Vectores_Matrices_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Proyecto Integrador Evolutivo - PIE</h1>
+<p class="subtitle lead">Etapa II — Optimización del sistema mediante Arreglos, Vectores y Matrices</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Curso de Algoritmos </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="etapa-ii-optimización-del-sistema" class="level1">
+<h1>Etapa II — Optimización del Sistema</h1>
+<section id="propósito-de-la-segunda-etapa" class="level2">
+<h2 class="anchored" data-anchor-id="propósito-de-la-segunda-etapa">Propósito de la segunda etapa</h2>
+<p>En la <strong>Etapa I</strong> del Proyecto Integrador Evolutivo se desarrolló la primera versión funcional del sistema utilizando los conocimientos estudiados hasta ese momento:</p>
+<ul>
+<li>variables;</li>
+<li>operadores;</li>
+<li>estructuras de decisión;</li>
+<li>estructuras repetitivas;</li>
+<li>procedimientos;</li>
+<li>funciones;</li>
+<li>parámetros.</li>
+</ul>
+<p>En esta <strong>Etapa II</strong>, el mismo proyecto deberá evolucionar mediante la incorporación de estructuras que permitan organizar y procesar una mayor cantidad de información.</p>
+<p>El estudiante deberá <strong>modificar y ampliar el sistema desarrollado en la Etapa I</strong>, incorporando de manera justificada uno o más de los siguientes recursos:</p>
+<ul>
+<li><strong>arreglos</strong>;</li>
+<li><strong>vectores</strong>;</li>
+<li><strong>matrices</strong>.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="El proyecto continúa">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>El proyecto continúa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>No debe desarrollarse un proyecto nuevo.</strong></p>
+<p>La Etapa II consiste en tomar el sistema construido en la Etapa I y mejorarlo utilizando los nuevos conocimientos adquiridos durante el curso.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="objetivo-de-la-etapa-ii" class="level1">
+<h1>Objetivo de la Etapa II</h1>
+<p>Optimizar y ampliar el sistema desarrollado en la Etapa I mediante el uso adecuado de arreglos, vectores o matrices, integrándolos con variables, decisiones, ciclos, procedimientos, funciones y parámetros.</p>
+<p>Al finalizar esta etapa, el estudiante deberá demostrar que su sistema puede <strong>manejar conjuntos de datos</strong>, realizar operaciones sobre ellos y presentar resultados de manera organizada.</p>
+</section>
+<section id="qué-debe-cambiar-respecto-a-la-etapa-i" class="level1">
+<h1>¿Qué debe cambiar respecto a la Etapa I?</h1>
+<p>En la primera versión era posible trabajar con información individual.</p>
+<p>Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>string nombre<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> nota<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En esta etapa el sistema deberá ser capaz de manejar <strong>varios registros o varios valores relacionados</strong>.</p>
+<p>Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>string nombres<span class="op">[</span><span class="dv">35</span><span class="op">];</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> notas<span class="op">[</span><span class="dv">35</span><span class="op">];</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>o, cuando el problema requiera dos dimensiones:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> notas<span class="op">[</span><span class="dv">35</span><span class="op">][</span><span class="dv">3</span><span class="op">];</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La estructura seleccionada dependerá de las necesidades reales del proyecto.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="No se trata de agregar un vector solamente para cumplir">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>No se trata de agregar un vector solamente para cumplir
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El uso de arreglos, vectores o matrices debe resolver una necesidad concreta del sistema.</p>
+<p>El estudiante deberá ser capaz de explicar:</p>
+<blockquote class="blockquote">
+<p><strong>¿Qué problema de la Etapa I estoy resolviendo o mejorando mediante esta estructura?</strong></p>
+</blockquote>
+</div>
+</div>
+</section>
+<section id="ejemplos-de-evolución" class="level1">
+<h1>Ejemplos de evolución</h1>
+<p>Estos ejemplos son únicamente orientativos.</p>
+<section id="registro-de-estudiantes" class="level2">
+<h2 class="anchored" data-anchor-id="registro-de-estudiantes">Registro de estudiantes</h2>
+<p><strong>Etapa I</strong></p>
+<p>El sistema podía trabajar con los datos de un estudiante.</p>
+<p><strong>Etapa II</strong></p>
+<p>Puede almacenar varios estudiantes utilizando arreglos o vectores paralelos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>string carnet<span class="op">[</span><span class="dv">35</span><span class="op">];</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>string nombre<span class="op">[</span><span class="dv">35</span><span class="op">];</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> nota<span class="op">[</span><span class="dv">35</span><span class="op">];</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>También podría utilizar una matriz cuando necesite almacenar varias notas por estudiante:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> notas<span class="op">[</span><span class="dv">35</span><span class="op">][</span><span class="dv">3</span><span class="op">];</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="inventario-de-equipos" class="level2">
+<h2 class="anchored" data-anchor-id="inventario-de-equipos">Inventario de equipos</h2>
+<p><strong>Etapa I</strong></p>
+<p>Se ingresaban y procesaban los datos de un equipo.</p>
+<p><strong>Etapa II</strong></p>
+<p>El sistema puede mantener varios equipos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>string codigo<span class="op">[</span><span class="dv">50</span><span class="op">];</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>string descripcion<span class="op">[</span><span class="dv">50</span><span class="op">];</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> existencia<span class="op">[</span><span class="dv">50</span><span class="op">];</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esto permitiría realizar búsquedas, actualizar existencias o generar listados.</p>
+</section>
+<section id="control-de-herramientas" class="level2">
+<h2 class="anchored" data-anchor-id="control-de-herramientas">Control de herramientas</h2>
+<p>El sistema podría utilizar estructuras paralelas para relacionar:</p>
+<pre class="text"><code>Código
+Nombre de herramienta
+Cantidad
+Estado</code></pre>
+<p>y posteriormente recorrer, buscar o procesar los registros almacenados.</p>
+</section>
+</section>
+<section id="requerimientos-de-la-etapa-ii" class="level1">
+<h1>Requerimientos de la Etapa II</h1>
+<p>El sistema deberá conservar los conocimientos utilizados en la Etapa I e incorporar los nuevos contenidos.</p>
+<p>Como mínimo deberá evidenciar:</p>
+<ul>
+<li>variables y constantes cuando correspondan;</li>
+<li>operadores;</li>
+<li>estructuras de decisión;</li>
+<li>estructuras repetitivas;</li>
+<li>procedimientos;</li>
+<li>funciones;</li>
+<li>parámetros;</li>
+<li><strong>arreglos, vectores o matrices</strong>;</li>
+<li>validación de datos;</li>
+<li>organización modular del programa.</li>
+</ul>
+<p>No es obligatorio utilizar simultáneamente arreglos, vectores y matrices.</p>
+<p>La estructura utilizada deberá ser <strong>adecuada al problema que resuelve el proyecto</strong>.</p>
+</section>
+<section id="fase-1.-actualización-del-análisis" class="level1">
+<h1>Fase 1. Actualización del análisis</h1>
+<p>No es necesario rehacer completamente el análisis de la Etapa I.</p>
+<p>El estudiante deberá conservar la descripción original del proyecto y agregar una sección denominada:</p>
+<section id="evolución-del-sistema-etapa-ii" class="level2">
+<h2 class="anchored" data-anchor-id="evolución-del-sistema-etapa-ii">Evolución del sistema — Etapa II</h2>
+<p>Esta sección deberá explicar:</p>
+<ol type="1">
+<li>¿Qué podía hacer el sistema en la Etapa I?</li>
+<li>¿Qué limitaciones tenía?</li>
+<li>¿Qué nueva necesidad se desea resolver?</li>
+<li>¿Qué funcionalidad nueva se incorporará?</li>
+<li>¿Qué estructura se utilizará: arreglo, vector o matriz?</li>
+<li>¿Por qué esa estructura es adecuada para el problema?</li>
+</ol>
+</section>
+<section id="actualización-de-entradas-procesos-y-salidas" class="level2">
+<h2 class="anchored" data-anchor-id="actualización-de-entradas-procesos-y-salidas">Actualización de entradas, procesos y salidas</h2>
+<p>Deberán identificarse las nuevas entradas, procesos y salidas.</p>
+<p>Ejemplo:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Elemento</th>
+<th>Etapa I</th>
+<th>Etapa II</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Entrada</td>
+<td>Datos de un estudiante</td>
+<td>Datos de varios estudiantes</td>
+</tr>
+<tr class="even">
+<td>Proceso</td>
+<td>Calcular resultado individual</td>
+<td>Registrar, buscar y procesar varios registros</td>
+</tr>
+<tr class="odd">
+<td>Salida</td>
+<td>Resultado individual</td>
+<td>Listados, búsquedas y resultados consolidados</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="fase-2.-actualización-del-diseño" class="level1">
+<h1>Fase 2. Actualización del diseño</h1>
+<section id="pseudocódigo" class="level2">
+<h2 class="anchored" data-anchor-id="pseudocódigo">Pseudocódigo</h2>
+<p>El pseudocódigo deberá actualizarse para reflejar las nuevas funcionalidades.</p>
+<p>Debe mostrar de manera general:</p>
+<ul>
+<li>declaración de las estructuras;</li>
+<li>ingreso o inicialización de datos;</li>
+<li>recorridos;</li>
+<li>búsquedas o cálculos;</li>
+<li>llamadas a procedimientos y funciones.</li>
+</ul>
+<p>No es necesario convertir cada línea de C++ en pseudocódigo.</p>
+<p>El objetivo es representar la <strong>lógica de la solución</strong>.</p>
+</section>
+<section id="diagrama-de-flujo-actualizado" class="level2">
+<h2 class="anchored" data-anchor-id="diagrama-de-flujo-actualizado">Diagrama de flujo actualizado</h2>
+<p>El diagrama de flujo de la Etapa I deberá actualizarse.</p>
+<p>En esta etapa se busca que el diagrama represente el funcionamiento <strong>general y modular</strong> del sistema.</p>
+<p>No es necesario dibujar internamente toda la lógica de cada función.</p>
+<p>Por ejemplo:</p>
+<pre class="text"><code>┌───────────────┐
+│    INICIO     │
+└───────┬───────┘
+        ↓
+┌───────────────────┐
+│ Mostrar menú      │
+│ principal         │
+└────────┬──────────┘
+         ↓
+┌───────────────────┐
+│ Leer opción       │
+└────────┬──────────┘
+         ↓
+     ¿Opción?
+     /   |   \
+    /    |    \
+   ↓     ↓     ↓
+Registrar Buscar  Mostrar
+   │      │       │
+   ↓      ↓       ↓
+[Llamar] [Llamar] [Llamar]
+función  función  procedimiento
+   \      |       /
+    \     |      /
+     └────┴─────┘
+          ↓
+     Volver al menú</code></pre>
+<div class="callout callout-style-default callout-note callout-titled" title="Importante sobre el diagrama">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Importante sobre el diagrama
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cuando una opción del menú utiliza una función o procedimiento, el diagrama puede representar simplemente la <strong>llamada al módulo</strong>.</p>
+<p>No es necesario convertir el diagrama general en un dibujo enorme que contenga internamente todo el código.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="fase-3.-implementación" class="level1">
+<h1>Fase 3. Implementación</h1>
+<p>Esta es la parte principal de la Etapa II.</p>
+<p>El estudiante deberá modificar el código fuente de la Etapa I e incorporar las nuevas estructuras de datos.</p>
+<section id="uso-de-arreglos-vectores-o-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="uso-de-arreglos-vectores-o-matrices">Uso de arreglos, vectores o matrices</h2>
+<p>La implementación deberá demostrar que la estructura seleccionada realmente participa en la solución.</p>
+<p>No será suficiente declarar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> datos<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>si posteriormente el arreglo no se utiliza.</p>
+<p>La estructura deberá permitir realizar operaciones propias del sistema, por ejemplo:</p>
+<ul>
+<li>registrar varios elementos;</li>
+<li>recorrer información;</li>
+<li>buscar un registro;</li>
+<li>contar elementos;</li>
+<li>acumular valores;</li>
+<li>calcular promedios;</li>
+<li>determinar máximos o mínimos;</li>
+<li>mostrar listados;</li>
+<li>relacionar varios vectores mediante la misma posición;</li>
+<li>organizar información mediante filas y columnas.</li>
+</ul>
+</section>
+<section id="integración-con-funciones-y-procedimientos" class="level2">
+<h2 class="anchored" data-anchor-id="integración-con-funciones-y-procedimientos">Integración con funciones y procedimientos</h2>
+<p>Los arreglos, vectores o matrices deberán integrarse con la modularización aprendida anteriormente.</p>
+<p>Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarNotas<span class="op">(</span><span class="dt">float</span> notas<span class="op">[],</span> <span class="dt">int</span> cantidad<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>o:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> buscarEstudiante<span class="op">(</span>string carnet<span class="op">[],</span> <span class="dt">int</span> cantidad<span class="op">,</span> string buscado<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La idea es evitar concentrar toda la lógica dentro de <code>main()</code>.</p>
+<p><code>main()</code> deberá funcionar principalmente como coordinador del programa:</p>
+<pre class="text"><code>mostrar menú
+leer opción
+llamar procedimiento o función
+continuar</code></pre>
+</section>
+</section>
+<section id="fase-4.-pruebas-de-la-etapa-ii" class="level1">
+<h1>Fase 4. Pruebas de la Etapa II</h1>
+<p>La segunda etapa deberá incluir <strong>nuevas pruebas</strong>, enfocadas especialmente en las funcionalidades incorporadas.</p>
+<p>El estudiante deberá documentar como mínimo <strong>cinco escenarios de prueba</strong>.</p>
+<p>Cada prueba deberá incluir:</p>
+<ul>
+<li>objetivo de la prueba;</li>
+<li>datos utilizados;</li>
+<li>resultado esperado;</li>
+<li>resultado obtenido;</li>
+<li>evidencia de ejecución;</li>
+<li>conclusión de la prueba.</li>
+</ul>
+<p>Puede utilizarse una tabla como la siguiente:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">No.</th>
+<th>Prueba</th>
+<th>Datos utilizados</th>
+<th>Resultado esperado</th>
+<th>Resultado obtenido</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td>Registro</td>
+<td>Datos válidos</td>
+<td>Registro almacenado</td>
+<td>Registro almacenado</td>
+<td>Correcto</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td>Búsqueda existente</td>
+<td>Código registrado</td>
+<td>Mostrar información</td>
+<td>Información encontrada</td>
+<td>Correcto</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td>Búsqueda inexistente</td>
+<td>Código no registrado</td>
+<td>Mostrar mensaje</td>
+<td>Mensaje mostrado</td>
+<td>Correcto</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td>Capacidad</td>
+<td>Límite de registros</td>
+<td>No exceder capacidad</td>
+<td>Sistema controla límite</td>
+<td>Correcto</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td>Validación</td>
+<td>Dato inválido</td>
+<td>Rechazar dato</td>
+<td>Solicita nuevamente</td>
+<td>Correcto</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled" title="Las capturas no sustituyen la explicación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Las capturas no sustituyen la explicación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No basta con colocar cinco imágenes del programa funcionando.</p>
+<p>Cada evidencia deberá indicar <strong>qué se estaba probando y cuál fue el resultado</strong>.</p>
+</div>
+</div>
+</section>
+<section id="fase-5.-documentación-del-código" class="level1">
+<h1>Fase 5. Documentación del código</h1>
+<p>Se mantienen los requisitos de documentación de la Etapa I.</p>
+<p>Cada procedimiento y función deberá incluir comentarios que indiquen:</p>
+<ul>
+<li>propósito;</li>
+<li>parámetros;</li>
+<li>valor de retorno, cuando corresponda.</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Busca un carnet dentro del arreglo.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Parámetros:</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">//   carnet[]: arreglo que contiene los carnets registrados.</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">//   cantidad: número de registros utilizados.</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">//   buscado: carnet que se desea localizar.</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Retorna:</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">//   posición donde fue encontrado o -1 si no existe.</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> buscarCarnet<span class="op">(</span>string carnet<span class="op">[],</span> <span class="dt">int</span> cantidad<span class="op">,</span> string buscado<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>También deberán comentarse los bloques principales cuando sea necesario para facilitar la comprensión del programa.</p>
+</section>
+<section id="código-fuente-que-debe-entregarse" class="level1">
+<h1>Código fuente que debe entregarse</h1>
+<p>La Etapa II deberá incluir el <strong>programa completo actualizado</strong>, no únicamente las líneas nuevas.</p>
+<p>El docente debe poder observar claramente:</p>
+<pre class="text"><code>ETAPA I
+Variables + decisiones + ciclos
++ procedimientos + funciones + parámetros
+
+                  ↓ EVOLUCIÓN
+
+ETAPA II
+Todo lo anterior
++ arreglos / vectores / matrices
++ nuevas operaciones
++ pruebas actualizadas</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled" title="Lo más importante de esta etapa">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Lo más importante de esta etapa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El código debe demostrar que el estudiante comprendió cómo pasar de trabajar con <strong>datos individuales</strong> a trabajar con <strong>conjuntos de datos organizados</strong>.</p>
+</div>
+</div>
+</section>
+<section id="restricciones-de-la-etapa-ii" class="level1">
+<h1>Restricciones de la Etapa II</h1>
+<p>Se mantienen las restricciones relacionadas con temas que todavía no han sido estudiados.</p>
+<p>No utilizar:</p>
+<ul>
+<li>variables globales;</li>
+<li>librerías no explicadas en clase;</li>
+<li>programación orientada a objetos;</li>
+<li>punteros;</li>
+<li>estructuras (<code>struct</code>);</li>
+<li>archivos;</li>
+<li>temas o funciones no estudiadas.</li>
+</ul>
+<p>A diferencia de la Etapa I, <strong>sí está permitido y requerido</strong>, según las necesidades del proyecto, utilizar:</p>
+<ul>
+<li>arreglos;</li>
+<li>vectores;</li>
+<li>matrices.</li>
+</ul>
+</section>
+<section id="buenas-prácticas-de-programación" class="level1">
+<h1>Buenas prácticas de programación</h1>
+<p>El programa deberá:</p>
+<ul>
+<li>utilizar nombres descriptivos;</li>
+<li>mantener una adecuada indentación;</li>
+<li>evitar código repetido;</li>
+<li>validar datos ingresados;</li>
+<li>utilizar constantes para tamaños cuando corresponda;</li>
+<li>controlar la cantidad de posiciones utilizadas;</li>
+<li>evitar acceder a posiciones fuera de los límites;</li>
+<li>mantener funciones y procedimientos con responsabilidades claras;</li>
+<li>mantener <code>main()</code> organizado y legible.</li>
+</ul>
+</section>
+<section id="introducción-del-informe" class="level1">
+<h1>Introducción del informe</h1>
+<p>La introducción deberá actualizarse.</p>
+<p>No debe entregarse exactamente la misma introducción de la Etapa I.</p>
+<p>Debe explicar que el proyecto continúa evolucionando y mencionar brevemente las modificaciones realizadas.</p>
+<p>Un ejemplo de orientación sería:</p>
+<blockquote class="blockquote">
+<p>En la primera etapa del Proyecto Integrador Evolutivo se desarrolló una versión funcional del sistema utilizando variables, estructuras de decisión, ciclos, procedimientos y funciones. En esta segunda etapa se amplía la solución mediante el uso de arreglos, vectores o matrices, permitiendo administrar múltiples registros y realizar operaciones sobre conjuntos de datos. La modificación conserva las funcionalidades desarrolladas anteriormente e incorpora nuevas capacidades de almacenamiento temporal, búsqueda, procesamiento y presentación de información.</p>
+</blockquote>
+<p>El estudiante deberá adaptar esta idea a <strong>su propio proyecto</strong>.</p>
+</section>
+<section id="conclusiones-de-la-etapa-ii" class="level1">
+<h1>Conclusiones de la Etapa II</h1>
+<p>Las conclusiones deberán corresponder específicamente a lo realizado en esta etapa.</p>
+<p>No deben limitarse a frases generales como:</p>
+<blockquote class="blockquote">
+<p>“Aprendimos mucho sobre C++.”</p>
+</blockquote>
+<p>Las conclusiones deberán reflexionar sobre aspectos como:</p>
+<ul>
+<li>qué mejoró respecto a la Etapa I;</li>
+<li>qué problema permitió resolver el arreglo, vector o matriz;</li>
+<li>cómo cambió la organización del programa;</li>
+<li>qué dificultades aparecieron;</li>
+<li>qué demostraron las pruebas;</li>
+<li>qué limitaciones mantiene todavía el sistema.</li>
+</ul>
+<p>Como mínimo deberán presentarse <strong>tres conclusiones</strong>.</p>
+</section>
+<section id="estructura-de-entrega" class="level1">
+<h1>Estructura de entrega</h1>
+<p>El documento de la Etapa II deberá presentarse en el siguiente orden:</p>
+<ol type="1">
+<li>Carátula.</li>
+<li>Introducción actualizada.</li>
+<li>Objetivos.</li>
+<li>Descripción del proyecto.</li>
+<li><strong>Evolución del sistema — Etapa II.</strong></li>
+<li>Entradas, procesos y salidas actualizados.</li>
+<li>Pseudocódigo actualizado.</li>
+<li>Diagrama de flujo actualizado.</li>
+<li>Código fuente completo y comentado.</li>
+<li><strong>Pruebas de la Etapa II.</strong></li>
+<li>Evidencias de ejecución.</li>
+<li><strong>Conclusiones de la Etapa II.</strong></li>
+</ol>
+</section>
+<section id="criterios-de-evaluación" class="level1">
+<h1>Criterios de evaluación</h1>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Criterio</th>
+<th style="text-align: right;">Puntos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Actualización del análisis y evolución del sistema</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td>Pseudocódigo actualizado</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td>Diagrama de flujo modular actualizado</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td>Implementación y uso correcto de arreglos, vectores o matrices</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="odd">
+<td>Integración con procedimientos, funciones y parámetros</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td>Pruebas y validaciones</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td>Documentación del código</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td>Presentación del informe y conclusiones</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td><strong>TOTAL</strong></td>
+<td style="text-align: right;"><strong>100</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="Criterio fundamental de evaluación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Criterio fundamental de evaluación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un programa más grande no necesariamente obtendrá una mejor calificación.</p>
+<p>Se evaluará principalmente que la nueva estructura esté <strong>bien seleccionada, correctamente utilizada e integrada con lo aprendido anteriormente</strong>.</p>
+</div>
+</div>
+</section>
+<section id="uso-de-inteligencia-artificial" class="level1">
+<h1>Uso de Inteligencia Artificial</h1>
+<p>Se mantienen los lineamientos establecidos para la Etapa I.</p>
+<p>El objetivo del proyecto continúa siendo desarrollar las habilidades de programación del estudiante.</p>
+<p>Se permite utilizar herramientas de Inteligencia Artificial para:</p>
+<ul>
+<li>corregir errores ortográficos;</li>
+<li>mejorar la redacción del informe;</li>
+<li>comprender mensajes de error del compilador;</li>
+<li>consultar o reforzar conceptos ya estudiados;</li>
+<li>solicitar explicaciones sobre el funcionamiento de una instrucción ya vista en clase.</li>
+</ul>
+<p>No se permite presentar como propio código fuente generado total o parcialmente por herramientas de Inteligencia Artificial.</p>
+<p>Durante la revisión, cualquier integrante deberá poder:</p>
+<ul>
+<li>explicar las estructuras utilizadas;</li>
+<li>justificar los tamaños seleccionados;</li>
+<li>explicar los recorridos;</li>
+<li>explicar los índices;</li>
+<li>justificar las funciones y parámetros;</li>
+<li>modificar una parte del código cuando el docente lo solicite.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="Regla sencilla">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Regla sencilla
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si el estudiante no puede explicar o modificar el código que presenta, no puede demostrar que dicho código representa su aprendizaje.</p>
+</div>
+</div>
+</section>
+<section id="evolución-del-proyecto-integrador" class="level1">
+<h1>Evolución del Proyecto Integrador</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Etapa</th>
+<th>Evolución</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Etapa I</strong></td>
+<td>Sistema funcional utilizando variables, decisiones, ciclos, procedimientos, funciones y parámetros.</td>
+</tr>
+<tr class="even">
+<td><strong>Etapa II</strong></td>
+<td>Optimización y ampliación mediante arreglos, vectores o matrices, manteniendo e integrando los conocimientos de la Etapa I.</td>
+</tr>
+<tr class="odd">
+<td><strong>Etapa III</strong></td>
+<td>Incorporación de archivos de texto para almacenar información de forma permanente.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="la-idea-detrás-de-la-etapa-ii" class="level1">
+<h1>La idea detrás de la Etapa II</h1>
+<pre class="text"><code>ETAPA I
+El sistema funciona
+      ↓
+pero trabaja principalmente
+con información individual
+      ↓
+APRENDEMOS
+ARREGLOS / VECTORES / MATRICES
+      ↓
+ETAPA II
+El mismo sistema ahora puede
+administrar conjuntos de datos
+      ↓
+registrar
+buscar
+recorrer
+calcular
+comparar
+mostrar
+      ↓
+el software EVOLUCIONA</code></pre>
+<div class="callout-success" title="Proyecto Integrador Evolutivo">
+<p>No estamos construyendo tres proyectos diferentes.</p>
+<p>Estamos observando cómo <strong>un mismo software cambia conforme aumenta nuestro conocimiento como programadores</strong>.</p>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,2609 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Laboratorio de Integración I – Algoritmos</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../capitulos/13_matrices_arreglos_bidimensionales.html" rel="next">
+<link href="../capitulos/12_vectores_paralelos_transicion_matrices.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-00cb48ef4f8381ff23467c959274e61b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-663c59e08f2ec96d6b2ddc79a12e8e5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../capitulos/13_laboratorio_del_problema_al_programa.html">Laboratorio de Integración I</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Algoritmos</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Presentación del curso</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/02_primeros_pasos_cpp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Clase 2. Primeros pasos en C++</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/Laboratorio_01_Desarrollo_de_una_Solucion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Laboratorio 1. Desarrollo de una solución informática</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/03_expresiones_logicas_estructuras_condicionales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Capítulo 3. Expresiones lógicas y estructuras condicionales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/04-laboratorio-ciclos-enum-cajero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Laboratorio No.&nbsp;3: ciclos, <code>enum</code> y simulación de un cajero automático</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/05_integracion_de_conceptos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Capítulo 5. Integración de conceptos: construyendo un programa completo</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/06_procedimientos_funciones_parametros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 6. Organizando nuestros programas mediante funciones y procedimientos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/07_laboratorio_guiado_integrador.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laboratorio guiado: desarrollo de una solución</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/08_arreglos_y_vectores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arreglos y vectores: muchas casillas, una sola estructura</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/09_laboratorio_arreglos_vectores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laboratorio: Arreglos y Vectores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/10_laboratorio_modularizacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Laboratorio: Modularización del analizador de notas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/11_vectores_cpp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vectores en C++</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/12_vectores_paralelos_transicion_matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Vectores paralelos: del control de estudiantes a las matrices</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/13_laboratorio_del_problema_al_programa.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Laboratorio de Integración I</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/13_matrices_arreglos_bidimensionales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Matrices y arreglos multidimensionales en C++</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/99_cierre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cierre del capítulo</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#del-problema-al-programa" id="toc-del-problema-al-programa" class="nav-link active" data-scroll-target="#del-problema-al-programa">Del problema al programa</a></li>
+  <li><a href="#la-ruta-que-seguiremos" id="toc-la-ruta-que-seguiremos" class="nav-link" data-scroll-target="#la-ruta-que-seguiremos">1. La ruta que seguiremos</a>
+  <ul class="collapse">
+  <li><a href="#antes-de-programar" id="toc-antes-de-programar" class="nav-link" data-scroll-target="#antes-de-programar">1.1 Antes de programar</a></li>
+  </ul></li>
+  <li><a href="#ejercicio-1.-empecemos-por-lo-esencial-variables-y-operaciones" id="toc-ejercicio-1.-empecemos-por-lo-esencial-variables-y-operaciones" class="nav-link" data-scroll-target="#ejercicio-1.-empecemos-por-lo-esencial-variables-y-operaciones">Ejercicio 1. Empecemos por lo esencial: variables y operaciones</a>
+  <ul class="collapse">
+  <li><a href="#el-requerimiento" id="toc-el-requerimiento" class="nav-link" data-scroll-target="#el-requerimiento">El requerimiento</a></li>
+  <li><a href="#antes-de-programar-1" id="toc-antes-de-programar-1" class="nav-link" data-scroll-target="#antes-de-programar-1">Antes de programar</a>
+  <ul class="collapse">
+  <li><a href="#análisis" id="toc-análisis" class="nav-link" data-scroll-target="#análisis">Análisis</a></li>
+  <li><a href="#pensemos-en-las-variables" id="toc-pensemos-en-las-variables" class="nav-link" data-scroll-target="#pensemos-en-las-variables">Pensemos en las variables</a></li>
+  <li><a href="#pseudocódigo" id="toc-pseudocódigo" class="nav-link" data-scroll-target="#pseudocódigo">Pseudocódigo</a></li>
+  <li><a href="#ahora-sí-c" id="toc-ahora-sí-c" class="nav-link" data-scroll-target="#ahora-sí-c">Ahora sí: C++</a></li>
+  <li><a href="#caso-de-prueba" id="toc-caso-de-prueba" class="nav-link" data-scroll-target="#caso-de-prueba">Caso de prueba</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ejercicio-2.-ahora-debemos-tomar-una-decisión" id="toc-ejercicio-2.-ahora-debemos-tomar-una-decisión" class="nav-link" data-scroll-target="#ejercicio-2.-ahora-debemos-tomar-una-decisión">Ejercicio 2. Ahora debemos tomar una decisión</a>
+  <ul class="collapse">
+  <li><a href="#el-requerimiento-1" id="toc-el-requerimiento-1" class="nav-link" data-scroll-target="#el-requerimiento-1">El requerimiento</a></li>
+  <li><a href="#analicemos-antes-de-escribir-código" id="toc-analicemos-antes-de-escribir-código" class="nav-link" data-scroll-target="#analicemos-antes-de-escribir-código">Analicemos antes de escribir código</a>
+  <ul class="collapse">
+  <li><a href="#qué-cambió-respecto-al-ejercicio-anterior" id="toc-qué-cambió-respecto-al-ejercicio-anterior" class="nav-link" data-scroll-target="#qué-cambió-respecto-al-ejercicio-anterior">¿Qué cambió respecto al ejercicio anterior?</a></li>
+  <li><a href="#antes-de-continuar" id="toc-antes-de-continuar" class="nav-link" data-scroll-target="#antes-de-continuar">Antes de continuar</a></li>
+  <li><a href="#pseudocódigo-esperado" id="toc-pseudocódigo-esperado" class="nav-link" data-scroll-target="#pseudocódigo-esperado">Pseudocódigo esperado</a></li>
+  <li><a href="#reto-de-programación" id="toc-reto-de-programación" class="nav-link" data-scroll-target="#reto-de-programación">Reto de programación</a></li>
+  <li><a href="#casos-de-prueba-obligatorios" id="toc-casos-de-prueba-obligatorios" class="nav-link" data-scroll-target="#casos-de-prueba-obligatorios">Casos de prueba obligatorios</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ejercicio-3.-una-decisión-puede-tener-varios-caminos" id="toc-ejercicio-3.-una-decisión-puede-tener-varios-caminos" class="nav-link" data-scroll-target="#ejercicio-3.-una-decisión-puede-tener-varios-caminos">Ejercicio 3. Una decisión puede tener varios caminos</a>
+  <ul class="collapse">
+  <li><a href="#el-requerimiento-2" id="toc-el-requerimiento-2" class="nav-link" data-scroll-target="#el-requerimiento-2">El requerimiento</a></li>
+  <li><a href="#no-programe-todavía" id="toc-no-programe-todavía" class="nav-link" data-scroll-target="#no-programe-todavía">No programe todavía</a>
+  <ul class="collapse">
+  <li><a href="#construya-la-lógica" id="toc-construya-la-lógica" class="nav-link" data-scroll-target="#construya-la-lógica">Construya la lógica</a></li>
+  <li><a href="#pruebas-mínimas" id="toc-pruebas-mínimas" class="nav-link" data-scroll-target="#pruebas-mínimas">Pruebas mínimas</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ejercicio-4.-cuando-una-tarea-debe-repetirse" id="toc-ejercicio-4.-cuando-una-tarea-debe-repetirse" class="nav-link" data-scroll-target="#ejercicio-4.-cuando-una-tarea-debe-repetirse">Ejercicio 4. Cuando una tarea debe repetirse</a>
+  <ul class="collapse">
+  <li><a href="#el-requerimiento-3" id="toc-el-requerimiento-3" class="nav-link" data-scroll-target="#el-requerimiento-3">El requerimiento</a></li>
+  <li><a href="#analicemos-el-problema" id="toc-analicemos-el-problema" class="nav-link" data-scroll-target="#analicemos-el-problema">Analicemos el problema</a>
+  <ul class="collapse">
+  <li><a href="#preguntas-de-análisis" id="toc-preguntas-de-análisis" class="nav-link" data-scroll-target="#preguntas-de-análisis">Preguntas de análisis</a></li>
+  <li><a href="#simulación-manual" id="toc-simulación-manual" class="nav-link" data-scroll-target="#simulación-manual">Simulación manual</a></li>
+  <li><a href="#primera-solución" id="toc-primera-solución" class="nav-link" data-scroll-target="#primera-solución">Primera solución</a></li>
+  <li><a href="#reto-adicional" id="toc-reto-adicional" class="nav-link" data-scroll-target="#reto-adicional">Reto adicional</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ejercicio-5.-construyamos-un-menú" id="toc-ejercicio-5.-construyamos-un-menú" class="nav-link" data-scroll-target="#ejercicio-5.-construyamos-un-menú">Ejercicio 5. Construyamos un menú</a>
+  <ul class="collapse">
+  <li><a href="#el-requerimiento-4" id="toc-el-requerimiento-4" class="nav-link" data-scroll-target="#el-requerimiento-4">El requerimiento</a></li>
+  <li><a href="#aquí-aparecen-dos-problemas-diferentes" id="toc-aquí-aparecen-dos-problemas-diferentes" class="nav-link" data-scroll-target="#aquí-aparecen-dos-problemas-diferentes">Aquí aparecen dos problemas diferentes</a>
+  <ul class="collapse">
+  <li><a href="#antes-de-programar-2" id="toc-antes-de-programar-2" class="nav-link" data-scroll-target="#antes-de-programar-2">Antes de programar</a></li>
+  <li><a href="#diseño-general" id="toc-diseño-general" class="nav-link" data-scroll-target="#diseño-general">Diseño general</a></li>
+  <li><a href="#pregunta-importante" id="toc-pregunta-importante" class="nav-link" data-scroll-target="#pregunta-importante">Pregunta importante</a></li>
+  <li><a href="#reto-avanzado" id="toc-reto-avanzado" class="nav-link" data-scroll-target="#reto-avanzado">Reto avanzado</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ejercicio-6.-usemos-for-cuando-conocemos-las-repeticiones" id="toc-ejercicio-6.-usemos-for-cuando-conocemos-las-repeticiones" class="nav-link" data-scroll-target="#ejercicio-6.-usemos-for-cuando-conocemos-las-repeticiones">Ejercicio 6. Usemos <code>for</code> cuando conocemos las repeticiones</a>
+  <ul class="collapse">
+  <li><a href="#el-requerimiento-5" id="toc-el-requerimiento-5" class="nav-link" data-scroll-target="#el-requerimiento-5">El requerimiento</a></li>
+  <li><a href="#pensemos-antes-de-programar" id="toc-pensemos-antes-de-programar" class="nav-link" data-scroll-target="#pensemos-antes-de-programar">Pensemos antes de programar</a>
+  <ul class="collapse">
+  <li><a href="#identifique-las-variables-necesarias" id="toc-identifique-las-variables-necesarias" class="nav-link" data-scroll-target="#identifique-las-variables-necesarias">Identifique las variables necesarias</a></li>
+  <li><a href="#pregunta-de-razonamiento" id="toc-pregunta-de-razonamiento" class="nav-link" data-scroll-target="#pregunta-de-razonamiento">Pregunta de razonamiento</a></li>
+  <li><a href="#reto" id="toc-reto" class="nav-link" data-scroll-target="#reto">Reto</a></li>
+  <li><a href="#reto-avanzado-1" id="toc-reto-avanzado-1" class="nav-link" data-scroll-target="#reto-avanzado-1">Reto avanzado</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ejercicio-7.-dividamos-el-problema-procedimientos" id="toc-ejercicio-7.-dividamos-el-problema-procedimientos" class="nav-link" data-scroll-target="#ejercicio-7.-dividamos-el-problema-procedimientos">Ejercicio 7. Dividamos el problema: procedimientos</a>
+  <ul class="collapse">
+  <li><a href="#el-requerimiento-6" id="toc-el-requerimiento-6" class="nav-link" data-scroll-target="#el-requerimiento-6">El requerimiento</a></li>
+  <li><a href="#la-pregunta-cambia" id="toc-la-pregunta-cambia" class="nav-link" data-scroll-target="#la-pregunta-cambia">La pregunta cambia</a>
+  <ul class="collapse">
+  <li><a href="#analicemos-responsabilidades" id="toc-analicemos-responsabilidades" class="nav-link" data-scroll-target="#analicemos-responsabilidades">Analicemos responsabilidades</a></li>
+  <li><a href="#primer-objetivo" id="toc-primer-objetivo" class="nav-link" data-scroll-target="#primer-objetivo">Primer objetivo</a></li>
+  </ul></li>
+  <li><a href="#detengámonos-aquí" id="toc-detengámonos-aquí" class="nav-link" data-scroll-target="#detengámonos-aquí">Detengámonos aquí</a>
+  <ul class="collapse">
+  <li><a href="#preguntas-de-comprensión" id="toc-preguntas-de-comprensión" class="nav-link" data-scroll-target="#preguntas-de-comprensión">Preguntas de comprensión</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ejercicio-8.-funciones-y-parámetros-piezas-reutilizables" id="toc-ejercicio-8.-funciones-y-parámetros-piezas-reutilizables" class="nav-link" data-scroll-target="#ejercicio-8.-funciones-y-parámetros-piezas-reutilizables">Ejercicio 8. Funciones y parámetros: piezas reutilizables</a>
+  <ul class="collapse">
+  <li><a href="#el-problema-de-nuestra-solución-anterior" id="toc-el-problema-de-nuestra-solución-anterior" class="nav-link" data-scroll-target="#el-problema-de-nuestra-solución-anterior">El problema de nuestra solución anterior</a></li>
+  <li><a href="#de-procedimiento-cerrado-a-procedimiento-reutilizable" id="toc-de-procedimiento-cerrado-a-procedimiento-reutilizable" class="nav-link" data-scroll-target="#de-procedimiento-cerrado-a-procedimiento-reutilizable">8.1 De procedimiento cerrado a procedimiento reutilizable</a>
+  <ul class="collapse">
+  <li><a href="#qué-cambió" id="toc-qué-cambió" class="nav-link" data-scroll-target="#qué-cambió">¿Qué cambió?</a></li>
+  </ul></li>
+  <li><a href="#ahora-necesitamos-devolver-un-resultado" id="toc-ahora-necesitamos-devolver-un-resultado" class="nav-link" data-scroll-target="#ahora-necesitamos-devolver-un-resultado">8.2 Ahora necesitamos devolver un resultado</a></li>
+  <li><a href="#pensemos-en-la-función-como-una-pequeña-máquina" id="toc-pensemos-en-la-función-como-una-pequeña-máquina" class="nav-link" data-scroll-target="#pensemos-en-la-función-como-una-pequeña-máquina">8.3 Pensemos en la función como una pequeña máquina</a></li>
+  <li><a href="#el-reto-integrador" id="toc-el-reto-integrador" class="nav-link" data-scroll-target="#el-reto-integrador">8.4 El reto integrador</a>
+  <ul class="collapse">
+  <li><a href="#organización-propuesta" id="toc-organización-propuesta" class="nav-link" data-scroll-target="#organización-propuesta">Organización propuesta</a></li>
+  <li><a href="#estructura-inicial" id="toc-estructura-inicial" class="nav-link" data-scroll-target="#estructura-inicial">Estructura inicial</a></li>
+  </ul></li>
+  <li><a href="#segundo-reto-función-para-determinar-el-mayor" id="toc-segundo-reto-función-para-determinar-el-mayor" class="nav-link" data-scroll-target="#segundo-reto-función-para-determinar-el-mayor">8.5 Segundo reto: función para determinar el mayor</a>
+  <ul class="collapse">
+  <li><a href="#preguntas" id="toc-preguntas" class="nav-link" data-scroll-target="#preguntas">Preguntas</a></li>
+  </ul></li>
+  <li><a href="#tercer-reto-función-para-determinar-si-un-número-es-par" id="toc-tercer-reto-función-para-determinar-si-un-número-es-par" class="nav-link" data-scroll-target="#tercer-reto-función-para-determinar-si-un-número-es-par">8.6 Tercer reto: función para determinar si un número es par</a>
+  <ul class="collapse">
+  <li><a href="#pregunta-importante-1" id="toc-pregunta-importante-1" class="nav-link" data-scroll-target="#pregunta-importante-1">Pregunta importante</a></li>
+  </ul></li>
+  <li><a href="#cuarto-reto-combine-funciones" id="toc-cuarto-reto-combine-funciones" class="nav-link" data-scroll-target="#cuarto-reto-combine-funciones">8.7 Cuarto reto: combine funciones</a>
+  <ul class="collapse">
+  <li><a href="#antes-de-escribir-código" id="toc-antes-de-escribir-código" class="nav-link" data-scroll-target="#antes-de-escribir-código">Antes de escribir código</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#desafío-final.-sistema-de-evaluación-de-hábitos-e-imc" id="toc-desafío-final.-sistema-de-evaluación-de-hábitos-e-imc" class="nav-link" data-scroll-target="#desafío-final.-sistema-de-evaluación-de-hábitos-e-imc">Desafío final. Sistema de evaluación de hábitos e IMC</a>
+  <ul class="collapse">
+  <li><a href="#situación" id="toc-situación" class="nav-link" data-scroll-target="#situación">Situación</a></li>
+  <li><a href="#el-requerimiento-7" id="toc-el-requerimiento-7" class="nav-link" data-scroll-target="#el-requerimiento-7">El requerimiento</a></li>
+  <li><a href="#cálculo-del-imc" id="toc-cálculo-del-imc" class="nav-link" data-scroll-target="#cálculo-del-imc">Cálculo del IMC</a></li>
+  <li><a href="#pero-el-imc-no-es-todo-el-problema" id="toc-pero-el-imc-no-es-todo-el-problema" class="nav-link" data-scroll-target="#pero-el-imc-no-es-todo-el-problema">Pero el IMC no es todo el problema</a></li>
+  <li><a href="#recomendaciones-que-puede-generar-el-programa" id="toc-recomendaciones-que-puede-generar-el-programa" class="nav-link" data-scroll-target="#recomendaciones-que-puede-generar-el-programa">Recomendaciones que puede generar el programa</a></li>
+  <li><a href="#ejemplo-del-reporte-esperado" id="toc-ejemplo-del-reporte-esperado" class="nav-link" data-scroll-target="#ejemplo-del-reporte-esperado">Ejemplo del reporte esperado</a></li>
+  </ul></li>
+  <li><a href="#antes-de-programar-analice" id="toc-antes-de-programar-analice" class="nav-link" data-scroll-target="#antes-de-programar-analice">Antes de programar: analice</a>
+  <ul class="collapse">
+  <li><a href="#a.-comprensión-del-requerimiento" id="toc-a.-comprensión-del-requerimiento" class="nav-link" data-scroll-target="#a.-comprensión-del-requerimiento">A. Comprensión del requerimiento</a></li>
+  <li><a href="#b.-entradas" id="toc-b.-entradas" class="nav-link" data-scroll-target="#b.-entradas">B. Entradas</a></li>
+  <li><a href="#c.-validaciones" id="toc-c.-validaciones" class="nav-link" data-scroll-target="#c.-validaciones">C. Validaciones</a></li>
+  <li><a href="#d.-procesos" id="toc-d.-procesos" class="nav-link" data-scroll-target="#d.-procesos">D. Procesos</a></li>
+  <li><a href="#e.-decisiones" id="toc-e.-decisiones" class="nav-link" data-scroll-target="#e.-decisiones">E. Decisiones</a></li>
+  <li><a href="#f.-repeticiones" id="toc-f.-repeticiones" class="nav-link" data-scroll-target="#f.-repeticiones">F. Repeticiones</a></li>
+  <li><a href="#g.-descomposición-del-problema" id="toc-g.-descomposición-del-problema" class="nav-link" data-scroll-target="#g.-descomposición-del-problema">G. Descomposición del problema</a></li>
+  </ul></li>
+  <li><a href="#requisitos-mínimos-de-programación" id="toc-requisitos-mínimos-de-programación" class="nav-link" data-scroll-target="#requisitos-mínimos-de-programación">Requisitos mínimos de programación</a></li>
+  <li><a href="#entregables" id="toc-entregables" class="nav-link" data-scroll-target="#entregables">Entregables</a></li>
+  <li><a href="#preparación-para-la-exposición" id="toc-preparación-para-la-exposición" class="nav-link" data-scroll-target="#preparación-para-la-exposición">Preparación para la exposición</a></li>
+  <li><a href="#qué-hemos-recuperado" id="toc-qué-hemos-recuperado" class="nav-link" data-scroll-target="#qué-hemos-recuperado">¿Qué hemos recuperado?</a></li>
+  <li><a href="#la-idea-que-debe-quedar-completa" id="toc-la-idea-que-debe-quedar-completa" class="nav-link" data-scroll-target="#la-idea-que-debe-quedar-completa">La idea que debe quedar completa</a></li>
+  <li><a href="#semáforo-de-aprendizaje" id="toc-semáforo-de-aprendizaje" class="nav-link" data-scroll-target="#semáforo-de-aprendizaje">Semáforo de aprendizaje</a></li>
+  <li><a href="#próximo-paso-arreglos-y-vectores" id="toc-próximo-paso-arreglos-y-vectores" class="nav-link" data-scroll-target="#próximo-paso-arreglos-y-vectores">Próximo paso: arreglos y vectores</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Laboratorio de Integración I</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="del-problema-al-programa" class="level2">
+<h2 class="anchored" data-anchor-id="del-problema-al-programa">Del problema al programa</h2>
+<blockquote class="blockquote">
+<p><strong>Propósito de esta clase:</strong> detenernos un momento, integrar lo aprendido y fortalecer el puente entre <strong>comprender un problema</strong> y <strong>convertirlo en un programa</strong>.</p>
+</blockquote>
+<p>Este laboratorio no pretende volver a impartir los temas anteriores. El objetivo es diferente: resolver problemas de forma ordenada, comenzando por el análisis y aumentando gradualmente la dificultad hasta integrar variables, bifurcaciones, ciclos, menús, <code>for</code>, procedimientos, funciones y parámetros.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Regla principal del laboratorio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>No comenzamos escribiendo código.</strong></p>
+<p>Antes de abrir el compilador debemos ser capaces de explicar con nuestras propias palabras:</p>
+<ol type="1">
+<li>¿Qué nos están pidiendo?</li>
+<li>¿Qué información conocemos o debemos solicitar?</li>
+<li>¿Qué resultados necesitamos obtener?</li>
+<li>¿Qué operaciones o decisiones debemos realizar?</li>
+<li>¿Qué estructura de programación podría ayudarnos?</li>
+<li>¿Cómo comprobaremos que nuestra solución funciona?</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+<section id="la-ruta-que-seguiremos" class="level2">
+<h2 class="anchored" data-anchor-id="la-ruta-que-seguiremos">1. La ruta que seguiremos</h2>
+<p>En todos los ejercicios utilizaremos la misma ruta de razonamiento:</p>
+<p><strong>REQUERIMIENTO → ANÁLISIS → SOLUCIÓN → PSEUDOCÓDIGO → C++ → PRUEBA</strong></p>
+<p>No importa si el problema es sencillo o complejo. La metodología será siempre la misma.</p>
+<section id="antes-de-programar" class="level3">
+<h3 class="anchored" data-anchor-id="antes-de-programar">1.1 Antes de programar</h3>
+<p>Para cada problema responderemos primero estas preguntas:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pregunta</th>
+<th>¿Qué buscamos?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>¿Cuál es el requerimiento?</td>
+<td>Explicar qué debe resolver el programa.</td>
+</tr>
+<tr class="even">
+<td>¿Qué sabemos?</td>
+<td>Datos disponibles y reglas del problema.</td>
+</tr>
+<tr class="odd">
+<td>¿Qué necesitamos?</td>
+<td>Entradas que deberá proporcionar el usuario.</td>
+</tr>
+<tr class="even">
+<td>¿Qué debemos obtener?</td>
+<td>Salidas o resultados esperados.</td>
+</tr>
+<tr class="odd">
+<td>¿Cómo podemos resolverlo?</td>
+<td>Operaciones, decisiones y repeticiones necesarias.</td>
+</tr>
+<tr class="even">
+<td>¿Qué estructuras necesitamos?</td>
+<td>Variables, <code>if</code>, <code>switch</code>, <code>while</code>, <code>for</code>, funciones, etc.</td>
+</tr>
+<tr class="odd">
+<td>¿Cómo lo comprobamos?</td>
+<td>Casos de prueba.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Consejo del Ingeniero
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si todavía no puede explicar la solución sin utilizar C++, <strong>todavía no es momento de programar</strong>.</p>
+<p>Primero resolvemos el problema nosotros. Después le enseñamos a la computadora cómo hacerlo.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="ejercicio-1.-empecemos-por-lo-esencial-variables-y-operaciones" class="level1">
+<h1>Ejercicio 1. Empecemos por lo esencial: variables y operaciones</h1>
+<section id="el-requerimiento" class="level2">
+<h2 class="anchored" data-anchor-id="el-requerimiento">El requerimiento</h2>
+<p>Una tienda necesita un programa que calcule el total que debe pagar un cliente por la compra de un producto.</p>
+<p>El usuario debe ingresar:</p>
+<ul>
+<li>nombre del producto;</li>
+<li>precio unitario;</li>
+<li>cantidad comprada.</li>
+</ul>
+<p>El programa debe mostrar:</p>
+<ul>
+<li>nombre del producto;</li>
+<li>subtotal de la compra.</li>
+</ul>
+</section>
+<section id="antes-de-programar-1" class="level2">
+<h2 class="anchored" data-anchor-id="antes-de-programar-1">Antes de programar</h2>
+<p>Respondamos juntos:</p>
+<ol type="1">
+<li>¿Qué problema estamos resolviendo?</li>
+<li>¿Qué datos necesitamos solicitar?</li>
+<li>¿Cuáles de esos datos son texto, enteros o reales?</li>
+<li>¿Qué dato debemos calcular?</li>
+<li>¿Cuál es la fórmula?</li>
+<li>¿Qué información debe mostrarse al final?</li>
+</ol>
+<section id="análisis" class="level3">
+<h3 class="anchored" data-anchor-id="análisis">Análisis</h3>
+<p><strong>Entradas</strong></p>
+<ul>
+<li><code>producto</code></li>
+<li><code>precio</code></li>
+<li><code>cantidad</code></li>
+</ul>
+<p><strong>Proceso</strong></p>
+<p><span class="math display">\[
+subtotal = precio \times cantidad
+\]</span></p>
+<p><strong>Salidas</strong></p>
+<ul>
+<li>producto;</li>
+<li>subtotal.</li>
+</ul>
+</section>
+<section id="pensemos-en-las-variables" class="level3">
+<h3 class="anchored" data-anchor-id="pensemos-en-las-variables">Pensemos en las variables</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Tipo sugerido</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>producto</code></td>
+<td><code>string</code></td>
+<td>Guardar el nombre del producto</td>
+</tr>
+<tr class="even">
+<td><code>precio</code></td>
+<td><code>double</code></td>
+<td>Guardar el precio unitario</td>
+</tr>
+<tr class="odd">
+<td><code>cantidad</code></td>
+<td><code>int</code></td>
+<td>Guardar la cantidad comprada</td>
+</tr>
+<tr class="even">
+<td><code>subtotal</code></td>
+<td><code>double</code></td>
+<td>Guardar el resultado</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pseudocódigo" class="level3">
+<h3 class="anchored" data-anchor-id="pseudocódigo">Pseudocódigo</h3>
+<pre class="text"><code>Inicio
+    Definir producto
+    Definir precio, subtotal
+    Definir cantidad
+
+    Leer producto
+    Leer precio
+    Leer cantidad
+
+    subtotal = precio * cantidad
+
+    Mostrar producto
+    Mostrar subtotal
+Fin</code></pre>
+</section>
+<section id="ahora-sí-c" class="level3">
+<h3 class="anchored" data-anchor-id="ahora-sí-c">Ahora sí: C++</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    string producto<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> precio<span class="op">,</span> subtotal<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> cantidad<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese el nombre del producto: "</span><span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> producto<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese el precio: Q"</span><span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> precio<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese la cantidad: "</span><span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> cantidad<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    subtotal <span class="op">=</span> precio <span class="op">*</span> cantidad<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Producto: "</span> <span class="op">&lt;&lt;</span> producto <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Subtotal: Q"</span> <span class="op">&lt;&lt;</span> subtotal <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="caso-de-prueba" class="level3">
+<h3 class="anchored" data-anchor-id="caso-de-prueba">Caso de prueba</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Producto</th>
+<th style="text-align: right;">Precio</th>
+<th style="text-align: right;">Cantidad</th>
+<th style="text-align: right;">Resultado esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cuaderno</td>
+<td style="text-align: right;">Q15.00</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">Q60.00</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>¿Qué recuperamos aquí?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Variables, tipos de datos, entrada, proceso, salida, operadores aritméticos y asignación.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="ejercicio-2.-ahora-debemos-tomar-una-decisión" class="level1">
+<h1>Ejercicio 2. Ahora debemos tomar una decisión</h1>
+<section id="el-requerimiento-1" class="level2">
+<h2 class="anchored" data-anchor-id="el-requerimiento-1">El requerimiento</h2>
+<p>La tienda decide aplicar un <strong>10 % de descuento</strong> cuando el subtotal de la compra sea mayor a Q500.</p>
+<p>El programa debe mostrar:</p>
+<ul>
+<li>subtotal;</li>
+<li>descuento aplicado;</li>
+<li>total a pagar.</li>
+</ul>
+</section>
+<section id="analicemos-antes-de-escribir-código" class="level2">
+<h2 class="anchored" data-anchor-id="analicemos-antes-de-escribir-código">Analicemos antes de escribir código</h2>
+<p>La primera parte ya la conocemos:</p>
+<p><span class="math display">\[
+subtotal = precio \times cantidad
+\]</span></p>
+<p>Ahora aparece una pregunta:</p>
+<blockquote class="blockquote">
+<p><strong>¿El subtotal es mayor a Q500?</strong></p>
+</blockquote>
+<p>Si la respuesta es verdadera:</p>
+<p><span class="math display">\[
+subtotal = precio \times cantidad
+\]</span></p>
+<p>Si es falsa:</p>
+<p>[ descuento = 0 ]</p>
+<p>Finalmente:</p>
+<p>[ total = subtotal - descuento ]</p>
+<section id="qué-cambió-respecto-al-ejercicio-anterior" class="level3">
+<h3 class="anchored" data-anchor-id="qué-cambió-respecto-al-ejercicio-anterior">¿Qué cambió respecto al ejercicio anterior?</h3>
+<p>Ya no basta con ejecutar instrucciones en secuencia. El programa debe <strong>tomar una decisión</strong>.</p>
+<pre class="text"><code>¿subtotal &gt; 500?
+       |
+   +---+---+
+   |       |
+  Sí      No
+   |       |
+10 %      0 %</code></pre>
+</section>
+<section id="antes-de-continuar" class="level3">
+<h3 class="anchored" data-anchor-id="antes-de-continuar">Antes de continuar</h3>
+<p>Complete:</p>
+<pre class="text"><code>Entradas:
+_____________________________________
+
+Procesos:
+_____________________________________
+
+Condición:
+_____________________________________
+
+Salidas:
+_____________________________________</code></pre>
+</section>
+<section id="pseudocódigo-esperado" class="level3">
+<h3 class="anchored" data-anchor-id="pseudocódigo-esperado">Pseudocódigo esperado</h3>
+<p>Construya primero el pseudocódigo utilizando una estructura <code>Si ... Sino</code>.</p>
+</section>
+<section id="reto-de-programación" class="level3">
+<h3 class="anchored" data-anchor-id="reto-de-programación">Reto de programación</h3>
+<p>Implemente la solución en C++ utilizando:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(...)</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="casos-de-prueba-obligatorios" class="level3">
+<h3 class="anchored" data-anchor-id="casos-de-prueba-obligatorios">Casos de prueba obligatorios</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Subtotal</th>
+<th>¿Descuento?</th>
+<th>Resultado esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Q300</td>
+<td>No</td>
+<td>Q300</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Q500</td>
+<td>No</td>
+<td>Q500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Q600</td>
+<td>Sí</td>
+<td>Q540</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Observe el límite
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El requerimiento dice <strong>mayor a Q500</strong>, no “mayor o igual”.</p>
+<p>Por eso Q500 <strong>no</strong> recibe descuento.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="ejercicio-3.-una-decisión-puede-tener-varios-caminos" class="level1">
+<h1>Ejercicio 3. Una decisión puede tener varios caminos</h1>
+<section id="el-requerimiento-2" class="level2">
+<h2 class="anchored" data-anchor-id="el-requerimiento-2">El requerimiento</h2>
+<p>Crear un programa que solicite una nota entre 0 y 100 y muestre la clasificación correspondiente:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Nota</th>
+<th>Clasificación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">90–100</td>
+<td>Excelente</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">80–89</td>
+<td>Muy bueno</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">70–79</td>
+<td>Bueno</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">61–69</td>
+<td>Aprobado</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0–60</td>
+<td>Reprobado</td>
+</tr>
+</tbody>
+</table>
+<p>Si la nota es menor que 0 o mayor que 100, debe mostrar:</p>
+<pre class="text"><code>Nota inválida</code></pre>
+</section>
+<section id="no-programe-todavía" class="level2">
+<h2 class="anchored" data-anchor-id="no-programe-todavía">No programe todavía</h2>
+<p>Primero responda:</p>
+<ol type="1">
+<li>¿Cuántas entradas existen?</li>
+<li>¿Cuántas posibles salidas existen?</li>
+<li>¿Qué debemos verificar antes de clasificar la nota?</li>
+<li>¿Importa el orden en que evaluemos las condiciones?</li>
+<li>¿Necesitamos un <code>if</code> simple o varias decisiones relacionadas?</li>
+</ol>
+<section id="construya-la-lógica" class="level3">
+<h3 class="anchored" data-anchor-id="construya-la-lógica">Construya la lógica</h3>
+<p>Complete el siguiente esquema:</p>
+<pre class="text"><code>Si la nota es inválida
+    ___________________________
+Sino si _______________________
+    Mostrar "Excelente"
+Sino si _______________________
+    Mostrar "Muy bueno"
+Sino si _______________________
+    Mostrar "Bueno"
+Sino si _______________________
+    Mostrar "Aprobado"
+Sino
+    ___________________________</code></pre>
+</section>
+<section id="pruebas-mínimas" class="level3">
+<h3 class="anchored" data-anchor-id="pruebas-mínimas">Pruebas mínimas</h3>
+<p>Pruebe al menos:</p>
+<pre class="text"><code>-5
+0
+60
+61
+75
+89
+90
+100
+105</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Pregunta clave
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>¿Por qué probamos precisamente valores cercanos a los límites?</p>
+<p>Porque muchos errores de lógica aparecen en los extremos de los rangos.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="ejercicio-4.-cuando-una-tarea-debe-repetirse" class="level1">
+<h1>Ejercicio 4. Cuando una tarea debe repetirse</h1>
+<section id="el-requerimiento-3" class="level2">
+<h2 class="anchored" data-anchor-id="el-requerimiento-3">El requerimiento</h2>
+<p>Un docente necesita ingresar las notas de <strong>N estudiantes</strong> y calcular el promedio general del grupo.</p>
+<p>El programa debe:</p>
+<ol type="1">
+<li>preguntar cuántos estudiantes serán ingresados;</li>
+<li>solicitar cada nota;</li>
+<li>acumular las notas;</li>
+<li>calcular el promedio;</li>
+<li>mostrar el resultado.</li>
+</ol>
+</section>
+<section id="analicemos-el-problema" class="level2">
+<h2 class="anchored" data-anchor-id="analicemos-el-problema">Analicemos el problema</h2>
+<p>Hasta ahora podíamos escribir:</p>
+<pre class="text"><code>Leer nota1
+Leer nota2
+Leer nota3</code></pre>
+<p>Pero no sabemos anticipadamente cuántos estudiantes existirán.</p>
+<p>Entonces aparece una nueva necesidad:</p>
+<blockquote class="blockquote">
+<p><strong>Repetir una misma acción N veces.</strong></p>
+</blockquote>
+<section id="preguntas-de-análisis" class="level3">
+<h3 class="anchored" data-anchor-id="preguntas-de-análisis">Preguntas de análisis</h3>
+<ul>
+<li>¿Qué dato controla cuántas veces repetimos?</li>
+<li>¿Qué variable cambia en cada repetición?</li>
+<li>¿Qué variable acumula las notas?</li>
+<li>¿En qué momento calculamos el promedio?</li>
+<li>¿Debemos utilizar <code>if</code>?</li>
+<li>¿Debemos utilizar un ciclo?</li>
+</ul>
+</section>
+<section id="simulación-manual" class="level3">
+<h3 class="anchored" data-anchor-id="simulación-manual">Simulación manual</h3>
+<p>Supongamos:</p>
+<pre class="text"><code>N = 4
+
+Notas:
+70
+80
+90
+100</code></pre>
+<p>Complete:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Repetición</th>
+<th style="text-align: right;">Nota</th>
+<th style="text-align: right;">Acumulador</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">70</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">____</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">____</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">____</td>
+</tr>
+</tbody>
+</table>
+<p>Luego:</p>
+<p><span class="math display">\[
+promedio = \frac{suma}{N}
+\]</span></p>
+</section>
+<section id="primera-solución" class="level3">
+<h3 class="anchored" data-anchor-id="primera-solución">Primera solución</h3>
+<p>Resuelva utilizando <code>while</code>.</p>
+</section>
+<section id="reto-adicional" class="level3">
+<h3 class="anchored" data-anchor-id="reto-adicional">Reto adicional</h3>
+<p>Además del promedio, muestre cuántos estudiantes aprobaron con nota mayor o igual a 61.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>¿Qué estamos integrando?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Variables + acumuladores + contadores + decisiones + ciclos.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="ejercicio-5.-construyamos-un-menú" class="level1">
+<h1>Ejercicio 5. Construyamos un menú</h1>
+<section id="el-requerimiento-4" class="level2">
+<h2 class="anchored" data-anchor-id="el-requerimiento-4">El requerimiento</h2>
+<p>Crear una calculadora que muestre repetidamente el siguiente menú:</p>
+<pre class="text"><code>============================
+       CALCULADORA
+============================
+1. Sumar
+2. Restar
+3. Multiplicar
+4. Dividir
+5. Salir
+============================
+Seleccione una opción:</code></pre>
+<p>El programa debe solicitar dos números y realizar la operación seleccionada.</p>
+<p>Después de mostrar el resultado, debe regresar al menú.</p>
+<p>El programa termina únicamente cuando el usuario selecciona la opción <code>5</code>.</p>
+</section>
+<section id="aquí-aparecen-dos-problemas-diferentes" class="level2">
+<h2 class="anchored" data-anchor-id="aquí-aparecen-dos-problemas-diferentes">Aquí aparecen dos problemas diferentes</h2>
+<p><strong>Problema A:</strong> seleccionar una operación.</p>
+<p><strong>Problema B:</strong> repetir el menú hasta que el usuario decida salir.</p>
+<section id="antes-de-programar-2" class="level3">
+<h3 class="anchored" data-anchor-id="antes-de-programar-2">Antes de programar</h3>
+<p>¿Qué estructura utilizaría para cada problema?</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Necesidad</th>
+<th>Estructura propuesta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Seleccionar entre opciones exactas</td>
+<td>__________</td>
+</tr>
+<tr class="even">
+<td>Repetir el menú</td>
+<td>__________</td>
+</tr>
+<tr class="odd">
+<td>Evitar división entre cero</td>
+<td>__________</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="diseño-general" class="level3">
+<h3 class="anchored" data-anchor-id="diseño-general">Diseño general</h3>
+<pre class="text"><code>Inicio
+
+Repetir
+    Mostrar menú
+    Leer opción
+
+    Según opción
+        1 -&gt; sumar
+        2 -&gt; restar
+        3 -&gt; multiplicar
+        4 -&gt; dividir
+        5 -&gt; salir
+        otro -&gt; opción inválida
+
+Mientras opción sea diferente de 5
+
+Fin</code></pre>
+</section>
+<section id="pregunta-importante" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-importante">Pregunta importante</h3>
+<p>¿Qué debe ocurrir si el usuario selecciona división e ingresa <code>0</code> como segundo número?</p>
+<p>Ese pequeño detalle convierte un programa que “funciona” en un programa mejor diseñado.</p>
+</section>
+<section id="reto-avanzado" class="level3">
+<h3 class="anchored" data-anchor-id="reto-avanzado">Reto avanzado</h3>
+<p>Agregue:</p>
+<pre class="text"><code>6. Potencia</code></pre>
+<p>sin alterar el funcionamiento de las opciones anteriores.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="ejercicio-6.-usemos-for-cuando-conocemos-las-repeticiones" class="level1">
+<h1>Ejercicio 6. Usemos <code>for</code> cuando conocemos las repeticiones</h1>
+<section id="el-requerimiento-5" class="level2">
+<h2 class="anchored" data-anchor-id="el-requerimiento-5">El requerimiento</h2>
+<p>Una empresa desea registrar las ventas realizadas durante <strong>7 días</strong>.</p>
+<p>El programa debe solicitar la venta de cada día y al finalizar mostrar:</p>
+<ul>
+<li>venta total de la semana;</li>
+<li>promedio diario;</li>
+<li>día con mayor venta;</li>
+<li>cantidad de días cuya venta fue mayor a Q1,000.</li>
+</ul>
+</section>
+<section id="pensemos-antes-de-programar" class="level2">
+<h2 class="anchored" data-anchor-id="pensemos-antes-de-programar">Pensemos antes de programar</h2>
+<p>Sabemos exactamente cuántas veces debemos repetir:</p>
+<pre class="text"><code>7 días</code></pre>
+<p>Por lo tanto, podemos expresar naturalmente:</p>
+<pre class="text"><code>Para día = 1 hasta 7
+    ...
+Fin Para</code></pre>
+<section id="identifique-las-variables-necesarias" class="level3">
+<h3 class="anchored" data-anchor-id="identifique-las-variables-necesarias">Identifique las variables necesarias</h3>
+<p>Complete:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Propósito</th>
+<th>Variable posible</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Controlar el día</td>
+<td><code>dia</code></td>
+</tr>
+<tr class="even">
+<td>Guardar venta actual</td>
+<td>__________</td>
+</tr>
+<tr class="odd">
+<td>Acumular ventas</td>
+<td>__________</td>
+</tr>
+<tr class="even">
+<td>Guardar venta mayor</td>
+<td>__________</td>
+</tr>
+<tr class="odd">
+<td>Guardar día de mayor venta</td>
+<td>__________</td>
+</tr>
+<tr class="even">
+<td>Contar ventas mayores a Q1,000</td>
+<td>__________</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pregunta-de-razonamiento" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-de-razonamiento">Pregunta de razonamiento</h3>
+<p>¿Cómo podemos determinar la venta mayor sin asignar arbitrariamente un número muy grande o muy pequeño?</p>
+<p>Pista: piense qué ocurre con <strong>el primer dato ingresado</strong>.</p>
+</section>
+<section id="reto" class="level3">
+<h3 class="anchored" data-anchor-id="reto">Reto</h3>
+<p>Resuelva el problema utilizando <code>for</code>.</p>
+</section>
+<section id="reto-avanzado-1" class="level3">
+<h3 class="anchored" data-anchor-id="reto-avanzado-1">Reto avanzado</h3>
+<p>Muestre además:</p>
+<ul>
+<li>cuántos días estuvieron por debajo del promedio.</li>
+</ul>
+<p>Piense con cuidado: ¿podemos saber esto durante la primera lectura de datos o necesitaríamos conservar información adicional?</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Alto pedagógico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta última pregunta es importante.</p>
+<p>A veces comprendemos perfectamente un problema, pero descubrimos que la información disponible en ese momento <strong>no es suficiente</strong> para resolver una parte.</p>
+<p>Esta necesidad nos prepara para trabajar posteriormente con <strong>arreglos y vectores</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="ejercicio-7.-dividamos-el-problema-procedimientos" class="level1">
+<h1>Ejercicio 7. Dividamos el problema: procedimientos</h1>
+<p>Hasta ahora hemos colocado prácticamente todo dentro de <code>main()</code>.</p>
+<p>Eso funciona para programas pequeños. Pero cuando un programa comienza a crecer, necesitamos organizar mejor nuestras soluciones.</p>
+<section id="el-requerimiento-6" class="level2">
+<h2 class="anchored" data-anchor-id="el-requerimiento-6">El requerimiento</h2>
+<p>Retomemos la calculadora del ejercicio 5.</p>
+<p>En lugar de realizar todas las operaciones dentro de <code>main()</code>, queremos separar responsabilidades.</p>
+<p>Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarMenu<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"1. Sumar"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"2. Restar"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"3. Multiplicar"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"4. Dividir"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"5. Salir"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="la-pregunta-cambia" class="level2">
+<h2 class="anchored" data-anchor-id="la-pregunta-cambia">La pregunta cambia</h2>
+<p>Antes preguntábamos:</p>
+<blockquote class="blockquote">
+<p>¿Qué instrucciones necesita mi programa?</p>
+</blockquote>
+<p>Ahora preguntaremos:</p>
+<blockquote class="blockquote">
+<p><strong>¿Qué tareas diferentes realiza mi programa?</strong></p>
+</blockquote>
+<p>Podemos identificar:</p>
+<pre class="text"><code>mostrarMenu()
+sumar()
+restar()
+multiplicar()
+dividir()</code></pre>
+<section id="analicemos-responsabilidades" class="level3">
+<h3 class="anchored" data-anchor-id="analicemos-responsabilidades">Analicemos responsabilidades</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tarea</th>
+<th>¿Qué hace?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mostrarMenu()</code></td>
+<td>Presenta las opciones</td>
+</tr>
+<tr class="even">
+<td><code>sumar()</code></td>
+<td>Realiza una suma</td>
+</tr>
+<tr class="odd">
+<td><code>restar()</code></td>
+<td>Realiza una resta</td>
+</tr>
+<tr class="even">
+<td><code>multiplicar()</code></td>
+<td>Realiza una multiplicación</td>
+</tr>
+<tr class="odd">
+<td><code>dividir()</code></td>
+<td>Realiza una división</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="primer-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="primer-objetivo">Primer objetivo</h3>
+<p>Construya una versión donde cada operación se encuentre en un procedimiento independiente.</p>
+<p>Ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sumar<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> a<span class="op">,</span> b<span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese el primer número: "</span><span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> a<span class="op">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese el segundo número: "</span><span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> b<span class="op">;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Resultado: "</span> <span class="op">&lt;&lt;</span> a <span class="op">+</span> b <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Luego <code>main()</code> solamente coordina:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> opcion<span class="op">;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span> <span class="op">{</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        mostrarMenu<span class="op">();</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        cin <span class="op">&gt;&gt;</span> opcion<span class="op">;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">switch</span> <span class="op">(</span>opcion<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">case</span> <span class="dv">1</span><span class="op">:</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                sumar<span class="op">();</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>            <span class="co">// continuar...</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">while</span> <span class="op">(</span>opcion <span class="op">!=</span> <span class="dv">5</span><span class="op">);</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="detengámonos-aquí" class="level2">
+<h2 class="anchored" data-anchor-id="detengámonos-aquí">Detengámonos aquí</h2>
+<p>Observe algo importante.</p>
+<p><code>main()</code> comienza a ser más fácil de leer porque ya no contiene todos los detalles.</p>
+<p>Podemos leerlo casi como una historia:</p>
+<pre class="text"><code>mostrar menú
+leer opción
+ejecutar operación
+repetir</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Idea fundamental
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un procedimiento nos permite <strong>darle nombre a una tarea</strong>.</p>
+<p>En lugar de pensar en veinte instrucciones, podemos pensar:</p>
+<blockquote class="blockquote">
+<p>“Ahora quiero sumar.”</p>
+</blockquote>
+<p>y delegar esa responsabilidad a <code>sumar()</code>.</p>
+</div>
+</div>
+<section id="preguntas-de-comprensión" class="level3">
+<h3 class="anchored" data-anchor-id="preguntas-de-comprensión">Preguntas de comprensión</h3>
+<ol type="1">
+<li>¿Qué ventaja tiene separar el programa?</li>
+<li>¿Qué ocurre si necesitamos sumar desde dos lugares diferentes?</li>
+<li>¿Estamos repitiendo código?</li>
+<li>¿Quién controla el flujo general del programa?</li>
+<li>¿Qué responsabilidad debería tener <code>main()</code>?</li>
+</ol>
+<hr>
+</section>
+</section>
+</section>
+<section id="ejercicio-8.-funciones-y-parámetros-piezas-reutilizables" class="level1">
+<h1>Ejercicio 8. Funciones y parámetros: piezas reutilizables</h1>
+<p>Este es el punto en el que queremos poner especial atención.</p>
+<section id="el-problema-de-nuestra-solución-anterior" class="level2">
+<h2 class="anchored" data-anchor-id="el-problema-de-nuestra-solución-anterior">El problema de nuestra solución anterior</h2>
+<p>Observe este procedimiento:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sumar<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> a<span class="op">,</span> b<span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese el primer número: "</span><span class="op">;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> a<span class="op">;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese el segundo número: "</span><span class="op">;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> b<span class="op">;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Resultado: "</span> <span class="op">&lt;&lt;</span> a <span class="op">+</span> b <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Funciona.</p>
+<p>Pero <code>sumar()</code> está haciendo demasiadas cosas:</p>
+<ol type="1">
+<li>solicita datos;</li>
+<li>realiza el cálculo;</li>
+<li>muestra el resultado.</li>
+</ol>
+<p>¿Qué ocurriría si los números ya estuvieran disponibles?</p>
+<p>¿Qué ocurriría si quisiéramos utilizar la suma sin pedir nuevamente los datos?</p>
+<p>Aquí aparecen los <strong>parámetros</strong>.</p>
+</section>
+<section id="de-procedimiento-cerrado-a-procedimiento-reutilizable" class="level2">
+<h2 class="anchored" data-anchor-id="de-procedimiento-cerrado-a-procedimiento-reutilizable">8.1 De procedimiento cerrado a procedimiento reutilizable</h2>
+<p>Podemos escribir:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sumar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Resultado: "</span> <span class="op">&lt;&lt;</span> a <span class="op">+</span> b <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Y utilizarlo así:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sumar<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>o:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> y <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>sumar<span class="op">(</span>x<span class="op">,</span> y<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="qué-cambió" class="level3">
+<h3 class="anchored" data-anchor-id="qué-cambió">¿Qué cambió?</h3>
+<p><code>sumar()</code> ya no necesita saber de dónde vienen los números.</p>
+<p>Solamente recibe lo que necesita para trabajar.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Parámetros
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los parámetros permiten enviar información a un procedimiento o función.</p>
+<p>Podemos imaginarlo así:</p>
+<pre class="text"><code>main()
+   |
+   |  a = 10
+   |  b = 20
+   v
+sumar(a, b)</code></pre>
+<p>El procedimiento recibe los datos y realiza su tarea.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="ahora-necesitamos-devolver-un-resultado" class="level2">
+<h2 class="anchored" data-anchor-id="ahora-necesitamos-devolver-un-resultado">8.2 Ahora necesitamos devolver un resultado</h2>
+<p>Supongamos que queremos guardar la suma:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> sumar<span class="op">(</span>a<span class="op">,</span> b<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Entonces ya no queremos solamente mostrar el resultado.</p>
+<p>Queremos que la función <strong>devuelva</strong> un valor.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> sumar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ahora podemos hacer:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> resultado<span class="op">;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> sumar<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> resultado <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="pensemos-en-la-función-como-una-pequeña-máquina" class="level2">
+<h2 class="anchored" data-anchor-id="pensemos-en-la-función-como-una-pequeña-máquina">8.3 Pensemos en la función como una pequeña máquina</h2>
+<pre class="text"><code>          parámetros
+        10        20
+          \      /
+           \    /
+            v  v
+        +-----------+
+        |   sumar   |
+        +-----------+
+              |
+              v
+             30
+        valor retornado</code></pre>
+<p>Una función puede verse como un pequeño algoritmo:</p>
+<p><strong>ENTRADAS → PROCESO → SALIDA</strong></p>
+<p>Exactamente la misma lógica con la que comenzamos el curso.</p>
+<hr>
+</section>
+<section id="el-reto-integrador" class="level2">
+<h2 class="anchored" data-anchor-id="el-reto-integrador">8.4 El reto integrador</h2>
+<p>Construya nuevamente la calculadora utilizando funciones.</p>
+<p>Debe incluir:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> sumar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">);</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> restar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">);</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> multiplicar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">);</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> dividir<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">);</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarMenu<span class="op">();</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="organización-propuesta" class="level3">
+<h3 class="anchored" data-anchor-id="organización-propuesta">Organización propuesta</h3>
+<p><code>main()</code> será responsable de:</p>
+<ol type="1">
+<li>mostrar el menú;</li>
+<li>leer la opción;</li>
+<li>solicitar los números;</li>
+<li>llamar a la función correspondiente;</li>
+<li>recibir el resultado;</li>
+<li>mostrarlo;</li>
+<li>repetir hasta seleccionar salir.</li>
+</ol>
+<p>Las funciones serán responsables <strong>únicamente de realizar su operación</strong>.</p>
+</section>
+<section id="estructura-inicial" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-inicial">Estructura inicial</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarMenu<span class="op">();</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> sumar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">);</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> restar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">);</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> multiplicar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">);</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> dividir<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">);</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Diseñe aquí el programa principal.</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarMenu<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Mostrar opciones.</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> sumar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> restar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">// completar</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> multiplicar<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// completar</span></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> dividir<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">// completar</span></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Una función no elimina el análisis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Crear funciones no significa fragmentar el código porque sí.</p>
+<p>Cada función debe tener una responsabilidad clara.</p>
+<p>Pregúntese:</p>
+<p><strong>¿Qué recibe? → ¿Qué hace? → ¿Qué devuelve?</strong></p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="segundo-reto-función-para-determinar-el-mayor" class="level2">
+<h2 class="anchored" data-anchor-id="segundo-reto-función-para-determinar-el-mayor">8.5 Segundo reto: función para determinar el mayor</h2>
+<p>Construya:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> mayor<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Debe recibir dos números enteros y devolver el mayor.</p>
+<p>Ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> resultado <span class="op">=</span> mayor<span class="op">(</span><span class="dv">15</span><span class="op">,</span> <span class="dv">8</span><span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Resultado:</p>
+<pre class="text"><code>15</code></pre>
+<section id="preguntas" class="level3">
+<h3 class="anchored" data-anchor-id="preguntas">Preguntas</h3>
+<ul>
+<li>¿Cuáles son los parámetros?</li>
+<li>¿Qué tipo de dato devuelve?</li>
+<li>¿Necesita <code>cout</code> dentro de la función?</li>
+<li>¿Necesita <code>cin</code> dentro de la función?</li>
+<li>¿Dónde debería mostrarse el resultado?</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="tercer-reto-función-para-determinar-si-un-número-es-par" class="level2">
+<h2 class="anchored" data-anchor-id="tercer-reto-función-para-determinar-si-un-número-es-par">8.6 Tercer reto: función para determinar si un número es par</h2>
+<p>Diseñe:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> esPar<span class="op">(</span><span class="dt">int</span> numero<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ejemplos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>esPar<span class="op">(</span><span class="dv">8</span><span class="op">)</span>  <span class="op">-&gt;</span> <span class="kw">true</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>esPar<span class="op">(</span><span class="dv">7</span><span class="op">)</span>  <span class="op">-&gt;</span> <span class="kw">false</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Pista:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>numero <span class="op">%</span> <span class="dv">2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="pregunta-importante-1" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-importante-1">Pregunta importante</h3>
+<p>¿Por qué <code>bool</code> parece un tipo de retorno apropiado para esta función?</p>
+<hr>
+</section>
+</section>
+<section id="cuarto-reto-combine-funciones" class="level2">
+<h2 class="anchored" data-anchor-id="cuarto-reto-combine-funciones">8.7 Cuarto reto: combine funciones</h2>
+<p>Construya un programa que solicite <strong>N números</strong>.</p>
+<p>Para cada número debe utilizar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> esPar<span class="op">(</span><span class="dt">int</span> numero<span class="op">);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Al finalizar debe mostrar:</p>
+<ul>
+<li>cantidad de números pares;</li>
+<li>cantidad de números impares.</li>
+</ul>
+<p>Aquí estamos integrando:</p>
+<pre class="text"><code>variables
+    +
+ciclo
+    +
+función
+    +
+parámetros
+    +
+decisión</code></pre>
+<section id="antes-de-escribir-código" class="level3">
+<h3 class="anchored" data-anchor-id="antes-de-escribir-código">Antes de escribir código</h3>
+<p>Dibuje mentalmente el flujo:</p>
+<pre class="text"><code>main()
+  |
+  | lee número
+  |
+  +----&gt; esPar(numero)
+             |
+             +----&gt; true / false
+  |
+  | actualiza contador
+  |
+  +----&gt; siguiente número</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Este es el objetivo de la clase
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No memorizar una función.</p>
+<p>Comprender que un programa complejo puede construirse combinando <strong>pequeñas soluciones que ya sabemos resolver</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="desafío-final.-sistema-de-evaluación-de-hábitos-e-imc" class="level1">
+<h1>Desafío final. Sistema de evaluación de hábitos e IMC</h1>
+<section id="situación" class="level2">
+<h2 class="anchored" data-anchor-id="situación">Situación</h2>
+<p>Una clínica universitaria desea contar con un programa sencillo que permita realizar una <strong>evaluación educativa básica</strong> de algunos hábitos de alimentación y actividad física de una persona y calcular su <strong>Índice de Masa Corporal (IMC)</strong>.</p>
+<p>El programa no debe limitarse a calcular un número. Debe recopilar información, analizarla, tomar decisiones y presentar un reporte final comprensible.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este ejercicio tiene fines académicos para practicar análisis y programación.</p>
+<p>El IMC es un indicador de referencia y <strong>no constituye por sí solo un diagnóstico médico</strong>. Las recomendaciones del programa deben redactarse como orientaciones generales de hábitos saludables, no como tratamientos médicos personalizados.</p>
+</div>
+</div>
+</section>
+<section id="el-requerimiento-7" class="level2">
+<h2 class="anchored" data-anchor-id="el-requerimiento-7">El requerimiento</h2>
+<p>El sistema deberá solicitar inicialmente:</p>
+<ul>
+<li>nombre;</li>
+<li>edad;</li>
+<li>sexo;</li>
+<li>peso en kilogramos;</li>
+<li>estatura en metros.</li>
+</ul>
+<p>Posteriormente deberá preguntar por algunos hábitos, por ejemplo:</p>
+<pre class="text"><code>¿Cuántos días por semana consume comida rápida
+(pizza, hamburguesas, pollo frito, etc.)?
+
+¿Cuántos días por semana consume golosinas,
+frituras, pastelitos u otras chucherías?
+
+¿Cuántos días por semana consume bebidas azucaradas?
+
+¿Cuántas bebidas energizantes consume por semana?
+
+¿Cuántos días por semana consume bebidas alcohólicas?
+
+¿Cuántos días por semana consume frutas o verduras?
+
+¿Cuántos días por semana realiza al menos
+30 minutos de actividad física?</code></pre>
+<p>Los valores deberán ser validados cuando corresponda. Una frecuencia expresada en días por semana, por ejemplo, no debería aceptar valores como <code>-2</code>, <code>9</code> o <code>15</code>.</p>
+</section>
+<section id="cálculo-del-imc" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-del-imc">Cálculo del IMC</h2>
+<p>El programa deberá calcular:</p>
+<p><span class="math display">\[
+IMC = \frac{peso}{estatura^2}
+\]</span></p>
+<p>Para <strong>personas adultas</strong>, utilice la siguiente clasificación didáctica:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">IMC</th>
+<th>Clasificación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Menor de 18.5</td>
+<td>Bajo peso</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18.5 a 24.9</td>
+<td>Peso saludable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25.0 a 29.9</td>
+<td>Sobrepeso</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">30.0 o más</td>
+<td>Obesidad</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Validación necesaria
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Como esta clasificación corresponde a adultos, el programa debe verificar la edad. Si la persona es menor de 18 años, deberá indicar que esta clasificación no será aplicada y evitar emitir una clasificación de adulto.</p>
+</div>
+</div>
+</section>
+<section id="pero-el-imc-no-es-todo-el-problema" class="level2">
+<h2 class="anchored" data-anchor-id="pero-el-imc-no-es-todo-el-problema">Pero el IMC no es todo el problema</h2>
+<p>Una persona podría obtener un IMC dentro del rango saludable y, al mismo tiempo, reportar hábitos poco saludables. Por eso el programa deberá analizar <strong>dos componentes</strong>:</p>
+<pre class="text"><code>1. Resultado del IMC
+2. Hábitos reportados</code></pre>
+<p>y construir un reporte final utilizando ambos.</p>
+</section>
+<section id="recomendaciones-que-puede-generar-el-programa" class="level2">
+<h2 class="anchored" data-anchor-id="recomendaciones-que-puede-generar-el-programa">Recomendaciones que puede generar el programa</h2>
+<p>Las recomendaciones deben depender de la información ingresada. Algunos ejemplos de reglas son:</p>
+<pre class="text"><code>Si consume comida rápida con mucha frecuencia:
+    recomendar reducir su frecuencia y preferir
+    preparaciones caseras con alimentos variados.
+
+Si consume muchas golosinas, frituras o bebidas azucaradas:
+    recomendar disminuir su consumo y preferir
+    agua y alimentos menos procesados.
+
+Si consume bebidas energizantes:
+    recomendar limitar o evitar su consumo habitual.
+
+Si reporta consumo frecuente de alcohol:
+    mostrar una recomendación preventiva para reducirlo
+    o evitarlo.
+
+Si consume pocas frutas o verduras:
+    recomendar aumentar su presencia en las comidas.
+
+Si realiza poca actividad física:
+    recomendar incorporar actividad física regularmente,
+    de acuerdo con sus posibilidades y condición personal.</code></pre>
+<p>Estas reglas son una orientación. <strong>El estudiante deberá proponer y justificar su propia lógica.</strong></p>
+</section>
+<section id="ejemplo-del-reporte-esperado" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-del-reporte-esperado">Ejemplo del reporte esperado</h2>
+<pre class="text"><code>========================================
+        REPORTE DE EVALUACIÓN
+========================================
+
+Nombre: Ana López
+Edad: 22 años
+Peso: 68 kg
+Estatura: 1.65 m
+
+IMC: 24.98
+Clasificación: Peso saludable
+
+----------------------------------------
+HÁBITOS REPORTADOS
+----------------------------------------
+
+Comida rápida: 4 días/semana
+Chucherías: 5 días/semana
+Bebidas azucaradas: 3 días/semana
+Bebidas energizantes: 2 por semana
+Alcohol: 1 día/semana
+Frutas o verduras: 2 días/semana
+Actividad física: 1 día/semana
+
+----------------------------------------
+RECOMENDACIONES GENERALES
+----------------------------------------
+
+- Su IMC se encuentra en el rango de referencia
+  considerado saludable para adultos.
+- Considere disminuir la frecuencia de comida rápida.
+- Reduzca golosinas, frituras y bebidas azucaradas.
+- Prefiera agua como bebida habitual.
+- Aumente gradualmente el consumo de frutas y verduras.
+- Procure incorporar actividad física con regularidad.
+
+========================================</code></pre>
+<p>Observe que el programa <strong>no imprime siempre el mismo mensaje</strong>. Las recomendaciones deben construirse según las respuestas del usuario.</p>
+</section>
+</section>
+<section id="antes-de-programar-analice" class="level1">
+<h1>Antes de programar: analice</h1>
+<p>No se calificará una solución que comience directamente con el código.</p>
+<section id="a.-comprensión-del-requerimiento" class="level2">
+<h2 class="anchored" data-anchor-id="a.-comprensión-del-requerimiento">A. Comprensión del requerimiento</h2>
+<p>Explique con sus propias palabras qué problema debe resolver el programa.</p>
+</section>
+<section id="b.-entradas" class="level2">
+<h2 class="anchored" data-anchor-id="b.-entradas">B. Entradas</h2>
+<p>Identifique todos los datos que necesita solicitar y construya una tabla con variable, tipo y propósito.</p>
+</section>
+<section id="c.-validaciones" class="level2">
+<h2 class="anchored" data-anchor-id="c.-validaciones">C. Validaciones</h2>
+<p>Determine qué datos necesitan ser validados. Pregúntese:</p>
+<ul>
+<li>¿puede existir una estatura igual a cero?;</li>
+<li>¿puede existir un peso negativo?;</li>
+<li>¿pueden existir 10 días en una semana?;</li>
+<li>¿qué debe hacer el programa si el usuario ingresa un dato inválido?</li>
+</ul>
+</section>
+<section id="d.-procesos" class="level2">
+<h2 class="anchored" data-anchor-id="d.-procesos">D. Procesos</h2>
+<p>Como mínimo deberá considerar:</p>
+<pre class="text"><code>calcular IMC
+clasificar IMC
+analizar hábitos
+generar recomendaciones</code></pre>
+</section>
+<section id="e.-decisiones" class="level2">
+<h2 class="anchored" data-anchor-id="e.-decisiones">E. Decisiones</h2>
+<p>Identifique las decisiones que deberá tomar el algoritmo:</p>
+<pre class="text"><code>¿La persona es adulta?
+¿En qué rango se encuentra el IMC?
+¿Consume comida rápida frecuentemente?
+¿Consume bebidas energizantes?
+¿Consume suficientes frutas o verduras?
+¿Realiza actividad física regularmente?</code></pre>
+</section>
+<section id="f.-repeticiones" class="level2">
+<h2 class="anchored" data-anchor-id="f.-repeticiones">F. Repeticiones</h2>
+<p>Analice si necesita ciclos para validar datos, repetir preguntas, mostrar un menú o permitir evaluar a otra persona.</p>
+</section>
+<section id="g.-descomposición-del-problema" class="level2">
+<h2 class="anchored" data-anchor-id="g.-descomposición-del-problema">G. Descomposición del problema</h2>
+<p>Divida el programa en pequeñas responsabilidades. Antes de escribir una función, pregúntese:</p>
+<blockquote class="blockquote">
+<p><strong>¿Qué recibe? → ¿Qué hace? → ¿Qué devuelve?</strong></p>
+</blockquote>
+<p>Podrían existir funciones como:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> calcularIMC<span class="op">(</span><span class="dt">double</span> peso<span class="op">,</span> <span class="dt">double</span> estatura<span class="op">);</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>string clasificarIMC<span class="op">(</span><span class="dt">double</span> imc<span class="op">);</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> frecuenciaAlta<span class="op">(</span><span class="dt">int</span> dias<span class="op">);</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mostrarRecomendaciones<span class="op">(...);</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Estas firmas son únicamente ejemplos. El estudiante puede diseñar una solución diferente si puede <strong>explicar y defender su decisión</strong>.</p>
+</section>
+</section>
+<section id="requisitos-mínimos-de-programación" class="level1">
+<h1>Requisitos mínimos de programación</h1>
+<p>La solución deberá integrar de manera coherente:</p>
+<ul>
+<li>variables y tipos de datos;</li>
+<li>entrada y salida;</li>
+<li>operadores aritméticos;</li>
+<li>operadores relacionales y lógicos;</li>
+<li>bifurcaciones;</li>
+<li>ciclos;</li>
+<li>validación de datos;</li>
+<li>al menos un menú o mecanismo para repetir la evaluación;</li>
+<li>procedimientos;</li>
+<li>funciones;</li>
+<li>parámetros;</li>
+<li>valores retornados;</li>
+<li>casos de prueba.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>El objetivo no es hacer el programa más largo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El objetivo es demostrar que puede tomar un requerimiento, analizarlo, dividirlo y construir una solución utilizando las herramientas aprendidas durante el curso.</p>
+</div>
+</div>
+</section>
+<section id="entregables" class="level1">
+<h1>Entregables</h1>
+<p>El estudiante deberá entregar:</p>
+<ol type="1">
+<li><strong>Análisis del requerimiento.</strong></li>
+<li><strong>Entradas, procesos y salidas.</strong></li>
+<li><strong>Listado de variables y tipos de datos.</strong></li>
+<li><strong>Diagrama de flujo.</strong></li>
+<li><strong>Pseudocódigo.</strong></li>
+<li><strong>Código fuente en C++.</strong></li>
+<li><strong>Funciones utilizadas y explicación de sus parámetros.</strong></li>
+<li><strong>Al menos cinco casos de prueba.</strong></li>
+<li><strong>Captura o evidencia de ejecución.</strong></li>
+<li><strong>Breve conclusión:</strong> qué parte del problema le resultó más difícil y cómo la resolvió.</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>No se calificará únicamente el código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El propósito del desafío es evaluar el proceso completo:</p>
+<p><strong>comprender → analizar → diseñar → programar → probar → explicar</strong></p>
+<p>Un programa que funcione pero que el estudiante no pueda explicar no demuestra completamente el aprendizaje esperado.</p>
+</div>
+</div>
+</section>
+<section id="preparación-para-la-exposición" class="level1">
+<h1>Preparación para la exposición</h1>
+<p>El lunes se seleccionarán estudiantes al azar para explicar su solución.</p>
+<p>Deberán estar preparados para responder preguntas como:</p>
+<pre class="text"><code>¿Por qué utilizó esa variable?
+¿Por qué utilizó un if en esa parte?
+¿Qué ocurriría si cambia esta condición?
+¿Por qué eligió while, do-while o for?
+¿Qué parámetros recibe esta función?
+¿Qué devuelve?
+¿Qué ocurriría si eliminamos esta función?
+¿Cómo validó los datos?
+¿Qué caso de prueba utilizó para un valor límite?
+¿Cómo agregaría una nueva recomendación?</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No se trata de memorizar el código para la exposición.</p>
+<p>Debe ser capaz de <strong>explicar la lógica de su propia solución</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="qué-hemos-recuperado" class="level1">
+<h1>¿Qué hemos recuperado?</h1>
+<p>Durante estos ocho ejercicios recorrimos nuevamente los principales elementos del curso, pero no como temas aislados.</p>
+<p>Los utilizamos como <strong>herramientas para resolver problemas</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nivel</th>
+<th>Herramienta</th>
+<th>Pregunta que resuelve</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Variables</td>
+<td>¿Qué información necesito guardar?</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>if</code></td>
+<td>¿Debo tomar una decisión?</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>if / else if</code></td>
+<td>¿Existen varios caminos?</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>while</code></td>
+<td>¿Debo repetir mientras se cumpla una condición?</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Menú + <code>switch</code></td>
+<td>¿Debo seleccionar una acción?</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>for</code></td>
+<td>¿Sé cuántas veces debo repetir?</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Procedimientos</td>
+<td>¿Puedo separar una tarea?</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Funciones + parámetros</td>
+<td>¿Puedo crear una solución reutilizable que reciba y devuelva información?</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="la-idea-que-debe-quedar-completa" class="level1">
+<h1>La idea que debe quedar completa</h1>
+<p>Observe cómo evolucionó nuestro pensamiento:</p>
+<pre class="text"><code>Tengo un problema
+       ↓
+¿Qué me están pidiendo?
+       ↓
+¿Qué sé?
+       ↓
+¿Qué necesito?
+       ↓
+¿Qué debo calcular o decidir?
+       ↓
+¿Necesito repetir?
+       ↓
+¿Puedo dividir el problema?
+       ↓
+¿Qué funciones necesito?
+       ↓
+Escribo el algoritmo
+       ↓
+Lo convierto en C++
+       ↓
+Lo pruebo</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Consejo final del Ingeniero
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No intente recordar “qué código llevaba aquel ejercicio”.</p>
+<p>Pregúntese:</p>
+<p><strong>¿Qué necesita hacer este problema?</strong></p>
+<p>Cuando comprende la necesidad, puede elegir la herramienta adecuada.</p>
+<p>La programación deja de ser una colección de instrucciones y comienza a convertirse en una forma de resolver problemas.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="semáforo-de-aprendizaje" class="level1">
+<h1>Semáforo de aprendizaje</h1>
+<p>Antes de continuar, marque honestamente su situación actual.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Competencia</th>
+<th style="text-align: center;">🔴 Necesito ayuda</th>
+<th style="text-align: center;">🟡 Puedo hacerlo con orientación</th>
+<th style="text-align: center;">🟢 Puedo hacerlo solo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identifico entradas y salidas</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="even">
+<td>Selecciono variables apropiadas</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="odd">
+<td>Construyo operaciones</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="even">
+<td>Utilizo bifurcaciones</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="odd">
+<td>Construyo ciclos</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="even">
+<td>Construyo un menú</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="odd">
+<td>Utilizo <code>for</code></td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="even">
+<td>Comprendo procedimientos</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="odd">
+<td>Comprendo parámetros</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="even">
+<td>Construyo funciones</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+<tr class="odd">
+<td>Puedo pasar del problema al código</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: center;">☐</td>
+</tr>
+</tbody>
+</table>
+<p>El objetivo no es que todos marquen verde.</p>
+<p>El objetivo es identificar <strong>qué pieza falta</strong> para poder completarla.</p>
+<hr>
+</section>
+<section id="próximo-paso-arreglos-y-vectores" class="level1">
+<h1>Próximo paso: arreglos y vectores</h1>
+<p>En el ejercicio de las ventas semanales apareció una dificultad:</p>
+<blockquote class="blockquote">
+<p>¿Qué hacemos si necesitamos conservar varios valores para utilizarlos después?</p>
+</blockquote>
+<p>Hasta ahora hemos trabajado principalmente con variables individuales:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> nota<span class="op">;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> venta<span class="op">;</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> numero<span class="op">;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Pero pronto necesitaremos guardar conjuntos de datos:</p>
+<pre class="text"><code>nota 1
+nota 2
+nota 3
+...
+nota N</code></pre>
+<p>Ahí aparece nuestra siguiente herramienta:</p>
+<p><strong>arreglos y vectores</strong>.</p>
+<p>Ya no llegaremos a ellos como un tema aislado.</p>
+<p>Llegaremos porque ahora existe un problema que nuestras variables individuales ya no resuelven cómodamente.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Puente hacia la siguiente clase
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Primero aprendimos a guardar <strong>un dato</strong>.</p>
+<p>Ahora aprenderemos a guardar y procesar <strong>muchos datos relacionados</strong>.</p>
+<p>Ese será nuestro siguiente paso.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../capitulos/12_vectores_paralelos_transicion_matrices.html" class="pagination-link" aria-label="Vectores paralelos: del control de estudiantes a las matrices">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Vectores paralelos: del control de estudiantes a las matrices</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../capitulos/13_matrices_arreglos_bidimensionales.html" class="pagination-link" aria-label="Matrices y arreglos multidimensionales en C++">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Matrices y arreglos multidimensionales en C++</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Editorial Académica de Ingeniería en Sistemas</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Diseñar una vez. Enseñar toda la vida.</p>
+</div>
+    <div class="nav-footer-right">
+<p>Ing. Jorge Luis García Chacón</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

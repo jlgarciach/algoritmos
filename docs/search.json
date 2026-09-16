@@ -1740,13 +1740,493 @@
     ]
   },
   {
+    "objectID": "capitulos/12_vectores_paralelos_transicion_matrices.html",
+    "href": "capitulos/12_vectores_paralelos_transicion_matrices.html",
+    "title": "14  Vectores paralelos: del control de estudiantes a las matrices",
+    "section": "",
+    "text": "15 Antes de comenzar\nHasta ahora hemos utilizado arreglos y vectores para almacenar varios datos del mismo tipo. Por ejemplo, un vector puede guardar las notas de varios estudiantes:\nPero en un problema real rara vez necesitamos almacenar un solo dato.\nPensemos en un estudiante. Para identificarlo podríamos necesitar, como mínimo:\nEntonces aparece una nueva pregunta:\nEn esta clase resolveremos el problema utilizando vectores paralelos. Al final descubriremos una situación que nos llevará naturalmente hacia nuestro siguiente tema: las matrices.",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Vectores paralelos: del control de estudiantes a las matrices</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/12_vectores_paralelos_transicion_matrices.html#qué-está-ocurriendo",
+    "href": "capitulos/12_vectores_paralelos_transicion_matrices.html#qué-está-ocurriendo",
+    "title": "14  Vectores paralelos: del control de estudiantes a las matrices",
+    "section": "19.1 ¿Qué está ocurriendo?",
+    "text": "19.1 ¿Qué está ocurriendo?\nCuando i vale 0, el programa almacena los datos del primer estudiante en:\ncarnet[0]\nnombre[0]\nnota[0]\nCuando i vale 1, almacena los datos del segundo estudiante en:\ncarnet[1]\nnombre[1]\nnota[1]\nY así sucesivamente.\nEl mismo contador controla simultáneamente los tres vectores.",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Vectores paralelos: del control de estudiantes a las matrices</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/12_vectores_paralelos_transicion_matrices.html#el-detalle-más-importante",
+    "href": "capitulos/12_vectores_paralelos_transicion_matrices.html#el-detalle-más-importante",
+    "title": "14  Vectores paralelos: del control de estudiantes a las matrices",
+    "section": "21.1 El detalle más importante",
+    "text": "21.1 El detalle más importante\nLa búsqueda se realizó únicamente en:\ncarnet[i]\nPero una vez encontrada la posición podemos consultar:\nnombre[posicion]\nnota[posicion]\nPor tanto, la posición encontrada se convierte en el vínculo entre los vectores.\n\n\n\n\n\n\nNotaPregunta para discutir en clase\n\n\n\nSi encontramos el carnet en la posición 3, ¿en qué posición debemos buscar el nombre y la nota del estudiante?",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Vectores paralelos: del control de estudiantes a las matrices</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html",
+    "title": "Laboratorio de Integración I",
+    "section": "",
+    "text": "Del problema al programa\nEste laboratorio no pretende volver a impartir los temas anteriores. El objetivo es diferente: resolver problemas de forma ordenada, comenzando por el análisis y aumentando gradualmente la dificultad hasta integrar variables, bifurcaciones, ciclos, menús, for, procedimientos, funciones y parámetros.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#del-problema-al-programa",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#del-problema-al-programa",
+    "title": "Laboratorio de Integración I",
+    "section": "",
+    "text": "Propósito de esta clase: detenernos un momento, integrar lo aprendido y fortalecer el puente entre comprender un problema y convertirlo en un programa.\n\n\n\n\n\n\n\n\nImportanteRegla principal del laboratorio\n\n\n\nNo comenzamos escribiendo código.\nAntes de abrir el compilador debemos ser capaces de explicar con nuestras propias palabras:\n\n¿Qué nos están pidiendo?\n¿Qué información conocemos o debemos solicitar?\n¿Qué resultados necesitamos obtener?\n¿Qué operaciones o decisiones debemos realizar?\n¿Qué estructura de programación podría ayudarnos?\n¿Cómo comprobaremos que nuestra solución funciona?",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#la-ruta-que-seguiremos",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#la-ruta-que-seguiremos",
+    "title": "Laboratorio de Integración I",
+    "section": "1. La ruta que seguiremos",
+    "text": "1. La ruta que seguiremos\nEn todos los ejercicios utilizaremos la misma ruta de razonamiento:\nREQUERIMIENTO → ANÁLISIS → SOLUCIÓN → PSEUDOCÓDIGO → C++ → PRUEBA\nNo importa si el problema es sencillo o complejo. La metodología será siempre la misma.\n\n1.1 Antes de programar\nPara cada problema responderemos primero estas preguntas:\n\n\n\n\n\n\n\nPregunta\n¿Qué buscamos?\n\n\n\n\n¿Cuál es el requerimiento?\nExplicar qué debe resolver el programa.\n\n\n¿Qué sabemos?\nDatos disponibles y reglas del problema.\n\n\n¿Qué necesitamos?\nEntradas que deberá proporcionar el usuario.\n\n\n¿Qué debemos obtener?\nSalidas o resultados esperados.\n\n\n¿Cómo podemos resolverlo?\nOperaciones, decisiones y repeticiones necesarias.\n\n\n¿Qué estructuras necesitamos?\nVariables, if, switch, while, for, funciones, etc.\n\n\n¿Cómo lo comprobamos?\nCasos de prueba.\n\n\n\n\n\n\n\n\n\nTipConsejo del Ingeniero\n\n\n\nSi todavía no puede explicar la solución sin utilizar C++, todavía no es momento de programar.\nPrimero resolvemos el problema nosotros. Después le enseñamos a la computadora cómo hacerlo.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento",
+    "title": "Laboratorio de Integración I",
+    "section": "El requerimiento",
+    "text": "El requerimiento\nUna tienda necesita un programa que calcule el total que debe pagar un cliente por la compra de un producto.\nEl usuario debe ingresar:\n\nnombre del producto;\nprecio unitario;\ncantidad comprada.\n\nEl programa debe mostrar:\n\nnombre del producto;\nsubtotal de la compra.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#antes-de-programar-1",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#antes-de-programar-1",
+    "title": "Laboratorio de Integración I",
+    "section": "Antes de programar",
+    "text": "Antes de programar\nRespondamos juntos:\n\n¿Qué problema estamos resolviendo?\n¿Qué datos necesitamos solicitar?\n¿Cuáles de esos datos son texto, enteros o reales?\n¿Qué dato debemos calcular?\n¿Cuál es la fórmula?\n¿Qué información debe mostrarse al final?\n\n\nAnálisis\nEntradas\n\nproducto\nprecio\ncantidad\n\nProceso\n\\[\nsubtotal = precio \\times cantidad\n\\]\nSalidas\n\nproducto;\nsubtotal.\n\n\n\nPensemos en las variables\n\n\n\nVariable\nTipo sugerido\nFunción\n\n\n\n\nproducto\nstring\nGuardar el nombre del producto\n\n\nprecio\ndouble\nGuardar el precio unitario\n\n\ncantidad\nint\nGuardar la cantidad comprada\n\n\nsubtotal\ndouble\nGuardar el resultado\n\n\n\n\n\nPseudocódigo\nInicio\n    Definir producto\n    Definir precio, subtotal\n    Definir cantidad\n\n    Leer producto\n    Leer precio\n    Leer cantidad\n\n    subtotal = precio * cantidad\n\n    Mostrar producto\n    Mostrar subtotal\nFin\n\n\nAhora sí: C++\n#include &lt;iostream&gt;\n#include &lt;string&gt;\nusing namespace std;\n\nint main() {\n    string producto;\n    double precio, subtotal;\n    int cantidad;\n\n    cout &lt;&lt; \"Ingrese el nombre del producto: \";\n    cin &gt;&gt; producto;\n\n    cout &lt;&lt; \"Ingrese el precio: Q\";\n    cin &gt;&gt; precio;\n\n    cout &lt;&lt; \"Ingrese la cantidad: \";\n    cin &gt;&gt; cantidad;\n\n    subtotal = precio * cantidad;\n\n    cout &lt;&lt; \"\\nProducto: \" &lt;&lt; producto &lt;&lt; endl;\n    cout &lt;&lt; \"Subtotal: Q\" &lt;&lt; subtotal &lt;&lt; endl;\n\n    return 0;\n}\n\n\nCaso de prueba\n\n\n\nProducto\nPrecio\nCantidad\nResultado esperado\n\n\n\n\nCuaderno\nQ15.00\n4\nQ60.00\n\n\n\n\n\n\n\n\n\nNota¿Qué recuperamos aquí?\n\n\n\nVariables, tipos de datos, entrada, proceso, salida, operadores aritméticos y asignación.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-1",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-1",
+    "title": "Laboratorio de Integración I",
+    "section": "El requerimiento",
+    "text": "El requerimiento\nLa tienda decide aplicar un 10 % de descuento cuando el subtotal de la compra sea mayor a Q500.\nEl programa debe mostrar:\n\nsubtotal;\ndescuento aplicado;\ntotal a pagar.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#analicemos-antes-de-escribir-código",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#analicemos-antes-de-escribir-código",
+    "title": "Laboratorio de Integración I",
+    "section": "Analicemos antes de escribir código",
+    "text": "Analicemos antes de escribir código\nLa primera parte ya la conocemos:\n\\[\nsubtotal = precio \\times cantidad\n\\]\nAhora aparece una pregunta:\n\n¿El subtotal es mayor a Q500?\n\nSi la respuesta es verdadera:\n\\[\nsubtotal = precio \\times cantidad\n\\]\nSi es falsa:\n[ descuento = 0 ]\nFinalmente:\n[ total = subtotal - descuento ]\n\n¿Qué cambió respecto al ejercicio anterior?\nYa no basta con ejecutar instrucciones en secuencia. El programa debe tomar una decisión.\n¿subtotal &gt; 500?\n       |\n   +---+---+\n   |       |\n  Sí      No\n   |       |\n10 %      0 %\n\n\nAntes de continuar\nComplete:\nEntradas:\n_____________________________________\n\nProcesos:\n_____________________________________\n\nCondición:\n_____________________________________\n\nSalidas:\n_____________________________________\n\n\nPseudocódigo esperado\nConstruya primero el pseudocódigo utilizando una estructura Si ... Sino.\n\n\nReto de programación\nImplemente la solución en C++ utilizando:\nif (...) {\n    ...\n} else {\n    ...\n}\n\n\nCasos de prueba obligatorios\n\n\n\nSubtotal\n¿Descuento?\nResultado esperado\n\n\n\n\nQ300\nNo\nQ300\n\n\nQ500\nNo\nQ500\n\n\nQ600\nSí\nQ540\n\n\n\n\n\n\n\n\n\nAdvertenciaObserve el límite\n\n\n\nEl requerimiento dice mayor a Q500, no “mayor o igual”.\nPor eso Q500 no recibe descuento.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-2",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-2",
+    "title": "Laboratorio de Integración I",
+    "section": "El requerimiento",
+    "text": "El requerimiento\nCrear un programa que solicite una nota entre 0 y 100 y muestre la clasificación correspondiente:\n\n\n\nNota\nClasificación\n\n\n\n\n90–100\nExcelente\n\n\n80–89\nMuy bueno\n\n\n70–79\nBueno\n\n\n61–69\nAprobado\n\n\n0–60\nReprobado\n\n\n\nSi la nota es menor que 0 o mayor que 100, debe mostrar:\nNota inválida",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#no-programe-todavía",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#no-programe-todavía",
+    "title": "Laboratorio de Integración I",
+    "section": "No programe todavía",
+    "text": "No programe todavía\nPrimero responda:\n\n¿Cuántas entradas existen?\n¿Cuántas posibles salidas existen?\n¿Qué debemos verificar antes de clasificar la nota?\n¿Importa el orden en que evaluemos las condiciones?\n¿Necesitamos un if simple o varias decisiones relacionadas?\n\n\nConstruya la lógica\nComplete el siguiente esquema:\nSi la nota es inválida\n    ___________________________\nSino si _______________________\n    Mostrar \"Excelente\"\nSino si _______________________\n    Mostrar \"Muy bueno\"\nSino si _______________________\n    Mostrar \"Bueno\"\nSino si _______________________\n    Mostrar \"Aprobado\"\nSino\n    ___________________________\n\n\nPruebas mínimas\nPruebe al menos:\n-5\n0\n60\n61\n75\n89\n90\n100\n105\n\n\n\n\n\n\nTipPregunta clave\n\n\n\n¿Por qué probamos precisamente valores cercanos a los límites?\nPorque muchos errores de lógica aparecen en los extremos de los rangos.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-3",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-3",
+    "title": "Laboratorio de Integración I",
+    "section": "El requerimiento",
+    "text": "El requerimiento\nUn docente necesita ingresar las notas de N estudiantes y calcular el promedio general del grupo.\nEl programa debe:\n\npreguntar cuántos estudiantes serán ingresados;\nsolicitar cada nota;\nacumular las notas;\ncalcular el promedio;\nmostrar el resultado.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#analicemos-el-problema",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#analicemos-el-problema",
+    "title": "Laboratorio de Integración I",
+    "section": "Analicemos el problema",
+    "text": "Analicemos el problema\nHasta ahora podíamos escribir:\nLeer nota1\nLeer nota2\nLeer nota3\nPero no sabemos anticipadamente cuántos estudiantes existirán.\nEntonces aparece una nueva necesidad:\n\nRepetir una misma acción N veces.\n\n\nPreguntas de análisis\n\n¿Qué dato controla cuántas veces repetimos?\n¿Qué variable cambia en cada repetición?\n¿Qué variable acumula las notas?\n¿En qué momento calculamos el promedio?\n¿Debemos utilizar if?\n¿Debemos utilizar un ciclo?\n\n\n\nSimulación manual\nSupongamos:\nN = 4\n\nNotas:\n70\n80\n90\n100\nComplete:\n\n\n\nRepetición\nNota\nAcumulador\n\n\n\n\n1\n70\n70\n\n\n2\n80\n____\n\n\n3\n90\n____\n\n\n4\n100\n____\n\n\n\nLuego:\n\\[\npromedio = \\frac{suma}{N}\n\\]\n\n\nPrimera solución\nResuelva utilizando while.\n\n\nReto adicional\nAdemás del promedio, muestre cuántos estudiantes aprobaron con nota mayor o igual a 61.\n\n\n\n\n\n\nNota¿Qué estamos integrando?\n\n\n\nVariables + acumuladores + contadores + decisiones + ciclos.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-4",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-4",
+    "title": "Laboratorio de Integración I",
+    "section": "El requerimiento",
+    "text": "El requerimiento\nCrear una calculadora que muestre repetidamente el siguiente menú:\n============================\n       CALCULADORA\n============================\n1. Sumar\n2. Restar\n3. Multiplicar\n4. Dividir\n5. Salir\n============================\nSeleccione una opción:\nEl programa debe solicitar dos números y realizar la operación seleccionada.\nDespués de mostrar el resultado, debe regresar al menú.\nEl programa termina únicamente cuando el usuario selecciona la opción 5.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#aquí-aparecen-dos-problemas-diferentes",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#aquí-aparecen-dos-problemas-diferentes",
+    "title": "Laboratorio de Integración I",
+    "section": "Aquí aparecen dos problemas diferentes",
+    "text": "Aquí aparecen dos problemas diferentes\nProblema A: seleccionar una operación.\nProblema B: repetir el menú hasta que el usuario decida salir.\n\nAntes de programar\n¿Qué estructura utilizaría para cada problema?\n\n\n\nNecesidad\nEstructura propuesta\n\n\n\n\nSeleccionar entre opciones exactas\n__________\n\n\nRepetir el menú\n__________\n\n\nEvitar división entre cero\n__________\n\n\n\n\n\nDiseño general\nInicio\n\nRepetir\n    Mostrar menú\n    Leer opción\n\n    Según opción\n        1 -&gt; sumar\n        2 -&gt; restar\n        3 -&gt; multiplicar\n        4 -&gt; dividir\n        5 -&gt; salir\n        otro -&gt; opción inválida\n\nMientras opción sea diferente de 5\n\nFin\n\n\nPregunta importante\n¿Qué debe ocurrir si el usuario selecciona división e ingresa 0 como segundo número?\nEse pequeño detalle convierte un programa que “funciona” en un programa mejor diseñado.\n\n\nReto avanzado\nAgregue:\n6. Potencia\nsin alterar el funcionamiento de las opciones anteriores.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-5",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-5",
+    "title": "Laboratorio de Integración I",
+    "section": "El requerimiento",
+    "text": "El requerimiento\nUna empresa desea registrar las ventas realizadas durante 7 días.\nEl programa debe solicitar la venta de cada día y al finalizar mostrar:\n\nventa total de la semana;\npromedio diario;\ndía con mayor venta;\ncantidad de días cuya venta fue mayor a Q1,000.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#pensemos-antes-de-programar",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#pensemos-antes-de-programar",
+    "title": "Laboratorio de Integración I",
+    "section": "Pensemos antes de programar",
+    "text": "Pensemos antes de programar\nSabemos exactamente cuántas veces debemos repetir:\n7 días\nPor lo tanto, podemos expresar naturalmente:\nPara día = 1 hasta 7\n    ...\nFin Para\n\nIdentifique las variables necesarias\nComplete:\n\n\n\nPropósito\nVariable posible\n\n\n\n\nControlar el día\ndia\n\n\nGuardar venta actual\n__________\n\n\nAcumular ventas\n__________\n\n\nGuardar venta mayor\n__________\n\n\nGuardar día de mayor venta\n__________\n\n\nContar ventas mayores a Q1,000\n__________\n\n\n\n\n\nPregunta de razonamiento\n¿Cómo podemos determinar la venta mayor sin asignar arbitrariamente un número muy grande o muy pequeño?\nPista: piense qué ocurre con el primer dato ingresado.\n\n\nReto\nResuelva el problema utilizando for.\n\n\nReto avanzado\nMuestre además:\n\ncuántos días estuvieron por debajo del promedio.\n\nPiense con cuidado: ¿podemos saber esto durante la primera lectura de datos o necesitaríamos conservar información adicional?\n\n\n\n\n\n\nImportanteAlto pedagógico\n\n\n\nEsta última pregunta es importante.\nA veces comprendemos perfectamente un problema, pero descubrimos que la información disponible en ese momento no es suficiente para resolver una parte.\nEsta necesidad nos prepara para trabajar posteriormente con arreglos y vectores.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-6",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-6",
+    "title": "Laboratorio de Integración I",
+    "section": "El requerimiento",
+    "text": "El requerimiento\nRetomemos la calculadora del ejercicio 5.\nEn lugar de realizar todas las operaciones dentro de main(), queremos separar responsabilidades.\nPor ejemplo:\nvoid mostrarMenu() {\n    cout &lt;&lt; \"1. Sumar\" &lt;&lt; endl;\n    cout &lt;&lt; \"2. Restar\" &lt;&lt; endl;\n    cout &lt;&lt; \"3. Multiplicar\" &lt;&lt; endl;\n    cout &lt;&lt; \"4. Dividir\" &lt;&lt; endl;\n    cout &lt;&lt; \"5. Salir\" &lt;&lt; endl;\n}",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#la-pregunta-cambia",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#la-pregunta-cambia",
+    "title": "Laboratorio de Integración I",
+    "section": "La pregunta cambia",
+    "text": "La pregunta cambia\nAntes preguntábamos:\n\n¿Qué instrucciones necesita mi programa?\n\nAhora preguntaremos:\n\n¿Qué tareas diferentes realiza mi programa?\n\nPodemos identificar:\nmostrarMenu()\nsumar()\nrestar()\nmultiplicar()\ndividir()\n\nAnalicemos responsabilidades\n\n\n\nTarea\n¿Qué hace?\n\n\n\n\nmostrarMenu()\nPresenta las opciones\n\n\nsumar()\nRealiza una suma\n\n\nrestar()\nRealiza una resta\n\n\nmultiplicar()\nRealiza una multiplicación\n\n\ndividir()\nRealiza una división\n\n\n\n\n\nPrimer objetivo\nConstruya una versión donde cada operación se encuentre en un procedimiento independiente.\nEjemplo:\nvoid sumar() {\n    double a, b;\n\n    cout &lt;&lt; \"Ingrese el primer número: \";\n    cin &gt;&gt; a;\n\n    cout &lt;&lt; \"Ingrese el segundo número: \";\n    cin &gt;&gt; b;\n\n    cout &lt;&lt; \"Resultado: \" &lt;&lt; a + b &lt;&lt; endl;\n}\nLuego main() solamente coordina:\nint main() {\n\n    int opcion;\n\n    do {\n        mostrarMenu();\n        cin &gt;&gt; opcion;\n\n        switch (opcion) {\n            case 1:\n                sumar();\n                break;\n\n            // continuar...\n\n        }\n\n    } while (opcion != 5);\n\n    return 0;\n}",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#detengámonos-aquí",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#detengámonos-aquí",
+    "title": "Laboratorio de Integración I",
+    "section": "Detengámonos aquí",
+    "text": "Detengámonos aquí\nObserve algo importante.\nmain() comienza a ser más fácil de leer porque ya no contiene todos los detalles.\nPodemos leerlo casi como una historia:\nmostrar menú\nleer opción\nejecutar operación\nrepetir\n\n\n\n\n\n\nTipIdea fundamental\n\n\n\nUn procedimiento nos permite darle nombre a una tarea.\nEn lugar de pensar en veinte instrucciones, podemos pensar:\n\n“Ahora quiero sumar.”\n\ny delegar esa responsabilidad a sumar().\n\n\n\nPreguntas de comprensión\n\n¿Qué ventaja tiene separar el programa?\n¿Qué ocurre si necesitamos sumar desde dos lugares diferentes?\n¿Estamos repitiendo código?\n¿Quién controla el flujo general del programa?\n¿Qué responsabilidad debería tener main()?",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-problema-de-nuestra-solución-anterior",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-problema-de-nuestra-solución-anterior",
+    "title": "Laboratorio de Integración I",
+    "section": "El problema de nuestra solución anterior",
+    "text": "El problema de nuestra solución anterior\nObserve este procedimiento:\nvoid sumar() {\n    double a, b;\n\n    cout &lt;&lt; \"Ingrese el primer número: \";\n    cin &gt;&gt; a;\n\n    cout &lt;&lt; \"Ingrese el segundo número: \";\n    cin &gt;&gt; b;\n\n    cout &lt;&lt; \"Resultado: \" &lt;&lt; a + b &lt;&lt; endl;\n}\nFunciona.\nPero sumar() está haciendo demasiadas cosas:\n\nsolicita datos;\nrealiza el cálculo;\nmuestra el resultado.\n\n¿Qué ocurriría si los números ya estuvieran disponibles?\n¿Qué ocurriría si quisiéramos utilizar la suma sin pedir nuevamente los datos?\nAquí aparecen los parámetros.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#de-procedimiento-cerrado-a-procedimiento-reutilizable",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#de-procedimiento-cerrado-a-procedimiento-reutilizable",
+    "title": "Laboratorio de Integración I",
+    "section": "8.1 De procedimiento cerrado a procedimiento reutilizable",
+    "text": "8.1 De procedimiento cerrado a procedimiento reutilizable\nPodemos escribir:\nvoid sumar(double a, double b) {\n    cout &lt;&lt; \"Resultado: \" &lt;&lt; a + b &lt;&lt; endl;\n}\nY utilizarlo así:\nsumar(10, 20);\no:\ndouble x = 5;\ndouble y = 8;\n\nsumar(x, y);\n\n¿Qué cambió?\nsumar() ya no necesita saber de dónde vienen los números.\nSolamente recibe lo que necesita para trabajar.\n\n\n\n\n\n\nNotaParámetros\n\n\n\nLos parámetros permiten enviar información a un procedimiento o función.\nPodemos imaginarlo así:\nmain()\n   |\n   |  a = 10\n   |  b = 20\n   v\nsumar(a, b)\nEl procedimiento recibe los datos y realiza su tarea.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#ahora-necesitamos-devolver-un-resultado",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#ahora-necesitamos-devolver-un-resultado",
+    "title": "Laboratorio de Integración I",
+    "section": "8.2 Ahora necesitamos devolver un resultado",
+    "text": "8.2 Ahora necesitamos devolver un resultado\nSupongamos que queremos guardar la suma:\nresultado = sumar(a, b);\nEntonces ya no queremos solamente mostrar el resultado.\nQueremos que la función devuelva un valor.\ndouble sumar(double a, double b) {\n    return a + b;\n}\nAhora podemos hacer:\ndouble resultado;\n\nresultado = sumar(10, 20);\n\ncout &lt;&lt; resultado &lt;&lt; endl;",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#pensemos-en-la-función-como-una-pequeña-máquina",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#pensemos-en-la-función-como-una-pequeña-máquina",
+    "title": "Laboratorio de Integración I",
+    "section": "8.3 Pensemos en la función como una pequeña máquina",
+    "text": "8.3 Pensemos en la función como una pequeña máquina\n          parámetros\n        10        20\n          \\      /\n           \\    /\n            v  v\n        +-----------+\n        |   sumar   |\n        +-----------+\n              |\n              v\n             30\n        valor retornado\nUna función puede verse como un pequeño algoritmo:\nENTRADAS → PROCESO → SALIDA\nExactamente la misma lógica con la que comenzamos el curso.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-reto-integrador",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-reto-integrador",
+    "title": "Laboratorio de Integración I",
+    "section": "8.4 El reto integrador",
+    "text": "8.4 El reto integrador\nConstruya nuevamente la calculadora utilizando funciones.\nDebe incluir:\ndouble sumar(double a, double b);\ndouble restar(double a, double b);\ndouble multiplicar(double a, double b);\ndouble dividir(double a, double b);\nvoid mostrarMenu();\n\nOrganización propuesta\nmain() será responsable de:\n\nmostrar el menú;\nleer la opción;\nsolicitar los números;\nllamar a la función correspondiente;\nrecibir el resultado;\nmostrarlo;\nrepetir hasta seleccionar salir.\n\nLas funciones serán responsables únicamente de realizar su operación.\n\n\nEstructura inicial\n#include &lt;iostream&gt;\nusing namespace std;\n\nvoid mostrarMenu();\ndouble sumar(double a, double b);\ndouble restar(double a, double b);\ndouble multiplicar(double a, double b);\ndouble dividir(double a, double b);\n\nint main() {\n\n    // Diseñe aquí el programa principal.\n\n    return 0;\n}\n\nvoid mostrarMenu() {\n    // Mostrar opciones.\n}\n\ndouble sumar(double a, double b) {\n    return a + b;\n}\n\ndouble restar(double a, double b) {\n    // completar\n}\n\ndouble multiplicar(double a, double b) {\n    // completar\n}\n\ndouble dividir(double a, double b) {\n    // completar\n}\n\n\n\n\n\n\nAdvertenciaUna función no elimina el análisis\n\n\n\nCrear funciones no significa fragmentar el código porque sí.\nCada función debe tener una responsabilidad clara.\nPregúntese:\n¿Qué recibe? → ¿Qué hace? → ¿Qué devuelve?",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#segundo-reto-función-para-determinar-el-mayor",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#segundo-reto-función-para-determinar-el-mayor",
+    "title": "Laboratorio de Integración I",
+    "section": "8.5 Segundo reto: función para determinar el mayor",
+    "text": "8.5 Segundo reto: función para determinar el mayor\nConstruya:\nint mayor(int a, int b);\nDebe recibir dos números enteros y devolver el mayor.\nEjemplo:\nint resultado = mayor(15, 8);\nResultado:\n15\n\nPreguntas\n\n¿Cuáles son los parámetros?\n¿Qué tipo de dato devuelve?\n¿Necesita cout dentro de la función?\n¿Necesita cin dentro de la función?\n¿Dónde debería mostrarse el resultado?",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#tercer-reto-función-para-determinar-si-un-número-es-par",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#tercer-reto-función-para-determinar-si-un-número-es-par",
+    "title": "Laboratorio de Integración I",
+    "section": "8.6 Tercer reto: función para determinar si un número es par",
+    "text": "8.6 Tercer reto: función para determinar si un número es par\nDiseñe:\nbool esPar(int numero);\nEjemplos:\nesPar(8)  -&gt; true\nesPar(7)  -&gt; false\nPista:\nnumero % 2\n\nPregunta importante\n¿Por qué bool parece un tipo de retorno apropiado para esta función?",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#cuarto-reto-combine-funciones",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#cuarto-reto-combine-funciones",
+    "title": "Laboratorio de Integración I",
+    "section": "8.7 Cuarto reto: combine funciones",
+    "text": "8.7 Cuarto reto: combine funciones\nConstruya un programa que solicite N números.\nPara cada número debe utilizar:\nbool esPar(int numero);\nAl finalizar debe mostrar:\n\ncantidad de números pares;\ncantidad de números impares.\n\nAquí estamos integrando:\nvariables\n    +\nciclo\n    +\nfunción\n    +\nparámetros\n    +\ndecisión\n\nAntes de escribir código\nDibuje mentalmente el flujo:\nmain()\n  |\n  | lee número\n  |\n  +----&gt; esPar(numero)\n             |\n             +----&gt; true / false\n  |\n  | actualiza contador\n  |\n  +----&gt; siguiente número\n\n\n\n\n\n\nImportanteEste es el objetivo de la clase\n\n\n\nNo memorizar una función.\nComprender que un programa complejo puede construirse combinando pequeñas soluciones que ya sabemos resolver.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#situación",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#situación",
+    "title": "Laboratorio de Integración I",
+    "section": "Situación",
+    "text": "Situación\nUna clínica universitaria desea contar con un programa sencillo que permita realizar una evaluación educativa básica de algunos hábitos de alimentación y actividad física de una persona y calcular su Índice de Masa Corporal (IMC).\nEl programa no debe limitarse a calcular un número. Debe recopilar información, analizarla, tomar decisiones y presentar un reporte final comprensible.\n\n\n\n\n\n\nImportanteImportante\n\n\n\nEste ejercicio tiene fines académicos para practicar análisis y programación.\nEl IMC es un indicador de referencia y no constituye por sí solo un diagnóstico médico. Las recomendaciones del programa deben redactarse como orientaciones generales de hábitos saludables, no como tratamientos médicos personalizados.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-7",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#el-requerimiento-7",
+    "title": "Laboratorio de Integración I",
+    "section": "El requerimiento",
+    "text": "El requerimiento\nEl sistema deberá solicitar inicialmente:\n\nnombre;\nedad;\nsexo;\npeso en kilogramos;\nestatura en metros.\n\nPosteriormente deberá preguntar por algunos hábitos, por ejemplo:\n¿Cuántos días por semana consume comida rápida\n(pizza, hamburguesas, pollo frito, etc.)?\n\n¿Cuántos días por semana consume golosinas,\nfrituras, pastelitos u otras chucherías?\n\n¿Cuántos días por semana consume bebidas azucaradas?\n\n¿Cuántas bebidas energizantes consume por semana?\n\n¿Cuántos días por semana consume bebidas alcohólicas?\n\n¿Cuántos días por semana consume frutas o verduras?\n\n¿Cuántos días por semana realiza al menos\n30 minutos de actividad física?\nLos valores deberán ser validados cuando corresponda. Una frecuencia expresada en días por semana, por ejemplo, no debería aceptar valores como -2, 9 o 15.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#cálculo-del-imc",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#cálculo-del-imc",
+    "title": "Laboratorio de Integración I",
+    "section": "Cálculo del IMC",
+    "text": "Cálculo del IMC\nEl programa deberá calcular:\n\\[\nIMC = \\frac{peso}{estatura^2}\n\\]\nPara personas adultas, utilice la siguiente clasificación didáctica:\n\n\n\nIMC\nClasificación\n\n\n\n\nMenor de 18.5\nBajo peso\n\n\n18.5 a 24.9\nPeso saludable\n\n\n25.0 a 29.9\nSobrepeso\n\n\n30.0 o más\nObesidad\n\n\n\n\n\n\n\n\n\nAdvertenciaValidación necesaria\n\n\n\nComo esta clasificación corresponde a adultos, el programa debe verificar la edad. Si la persona es menor de 18 años, deberá indicar que esta clasificación no será aplicada y evitar emitir una clasificación de adulto.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#pero-el-imc-no-es-todo-el-problema",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#pero-el-imc-no-es-todo-el-problema",
+    "title": "Laboratorio de Integración I",
+    "section": "Pero el IMC no es todo el problema",
+    "text": "Pero el IMC no es todo el problema\nUna persona podría obtener un IMC dentro del rango saludable y, al mismo tiempo, reportar hábitos poco saludables. Por eso el programa deberá analizar dos componentes:\n1. Resultado del IMC\n2. Hábitos reportados\ny construir un reporte final utilizando ambos.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#recomendaciones-que-puede-generar-el-programa",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#recomendaciones-que-puede-generar-el-programa",
+    "title": "Laboratorio de Integración I",
+    "section": "Recomendaciones que puede generar el programa",
+    "text": "Recomendaciones que puede generar el programa\nLas recomendaciones deben depender de la información ingresada. Algunos ejemplos de reglas son:\nSi consume comida rápida con mucha frecuencia:\n    recomendar reducir su frecuencia y preferir\n    preparaciones caseras con alimentos variados.\n\nSi consume muchas golosinas, frituras o bebidas azucaradas:\n    recomendar disminuir su consumo y preferir\n    agua y alimentos menos procesados.\n\nSi consume bebidas energizantes:\n    recomendar limitar o evitar su consumo habitual.\n\nSi reporta consumo frecuente de alcohol:\n    mostrar una recomendación preventiva para reducirlo\n    o evitarlo.\n\nSi consume pocas frutas o verduras:\n    recomendar aumentar su presencia en las comidas.\n\nSi realiza poca actividad física:\n    recomendar incorporar actividad física regularmente,\n    de acuerdo con sus posibilidades y condición personal.\nEstas reglas son una orientación. El estudiante deberá proponer y justificar su propia lógica.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#ejemplo-del-reporte-esperado",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#ejemplo-del-reporte-esperado",
+    "title": "Laboratorio de Integración I",
+    "section": "Ejemplo del reporte esperado",
+    "text": "Ejemplo del reporte esperado\n========================================\n        REPORTE DE EVALUACIÓN\n========================================\n\nNombre: Ana López\nEdad: 22 años\nPeso: 68 kg\nEstatura: 1.65 m\n\nIMC: 24.98\nClasificación: Peso saludable\n\n----------------------------------------\nHÁBITOS REPORTADOS\n----------------------------------------\n\nComida rápida: 4 días/semana\nChucherías: 5 días/semana\nBebidas azucaradas: 3 días/semana\nBebidas energizantes: 2 por semana\nAlcohol: 1 día/semana\nFrutas o verduras: 2 días/semana\nActividad física: 1 día/semana\n\n----------------------------------------\nRECOMENDACIONES GENERALES\n----------------------------------------\n\n- Su IMC se encuentra en el rango de referencia\n  considerado saludable para adultos.\n- Considere disminuir la frecuencia de comida rápida.\n- Reduzca golosinas, frituras y bebidas azucaradas.\n- Prefiera agua como bebida habitual.\n- Aumente gradualmente el consumo de frutas y verduras.\n- Procure incorporar actividad física con regularidad.\n\n========================================\nObserve que el programa no imprime siempre el mismo mensaje. Las recomendaciones deben construirse según las respuestas del usuario.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#a.-comprensión-del-requerimiento",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#a.-comprensión-del-requerimiento",
+    "title": "Laboratorio de Integración I",
+    "section": "A. Comprensión del requerimiento",
+    "text": "A. Comprensión del requerimiento\nExplique con sus propias palabras qué problema debe resolver el programa.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#b.-entradas",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#b.-entradas",
+    "title": "Laboratorio de Integración I",
+    "section": "B. Entradas",
+    "text": "B. Entradas\nIdentifique todos los datos que necesita solicitar y construya una tabla con variable, tipo y propósito.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#c.-validaciones",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#c.-validaciones",
+    "title": "Laboratorio de Integración I",
+    "section": "C. Validaciones",
+    "text": "C. Validaciones\nDetermine qué datos necesitan ser validados. Pregúntese:\n\n¿puede existir una estatura igual a cero?;\n¿puede existir un peso negativo?;\n¿pueden existir 10 días en una semana?;\n¿qué debe hacer el programa si el usuario ingresa un dato inválido?",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#d.-procesos",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#d.-procesos",
+    "title": "Laboratorio de Integración I",
+    "section": "D. Procesos",
+    "text": "D. Procesos\nComo mínimo deberá considerar:\ncalcular IMC\nclasificar IMC\nanalizar hábitos\ngenerar recomendaciones",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#e.-decisiones",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#e.-decisiones",
+    "title": "Laboratorio de Integración I",
+    "section": "E. Decisiones",
+    "text": "E. Decisiones\nIdentifique las decisiones que deberá tomar el algoritmo:\n¿La persona es adulta?\n¿En qué rango se encuentra el IMC?\n¿Consume comida rápida frecuentemente?\n¿Consume bebidas energizantes?\n¿Consume suficientes frutas o verduras?\n¿Realiza actividad física regularmente?",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#f.-repeticiones",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#f.-repeticiones",
+    "title": "Laboratorio de Integración I",
+    "section": "F. Repeticiones",
+    "text": "F. Repeticiones\nAnalice si necesita ciclos para validar datos, repetir preguntas, mostrar un menú o permitir evaluar a otra persona.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_laboratorio_del_problema_al_programa.html#g.-descomposición-del-problema",
+    "href": "capitulos/13_laboratorio_del_problema_al_programa.html#g.-descomposición-del-problema",
+    "title": "Laboratorio de Integración I",
+    "section": "G. Descomposición del problema",
+    "text": "G. Descomposición del problema\nDivida el programa en pequeñas responsabilidades. Antes de escribir una función, pregúntese:\n\n¿Qué recibe? → ¿Qué hace? → ¿Qué devuelve?\n\nPodrían existir funciones como:\ndouble calcularIMC(double peso, double estatura);\nstring clasificarIMC(double imc);\nbool frecuenciaAlta(int dias);\nvoid mostrarRecomendaciones(...);\nEstas firmas son únicamente ejemplos. El estudiante puede diseñar una solución diferente si puede explicar y defender su decisión.",
+    "crumbs": [
+      "Laboratorio de Integración I"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_matrices_arreglos_bidimensionales.html",
+    "href": "capitulos/13_matrices_arreglos_bidimensionales.html",
+    "title": "15  Matrices y arreglos multidimensionales en C++",
+    "section": "",
+    "text": "16 Antes de comenzar\nEn la clase anterior aprendimos que varios vectores pueden trabajar de forma paralela.\nPor ejemplo, podemos tener:\nSi utilizamos la misma posición en los tres arreglos, los datos están relacionados:\nAsí:\ny:\npertenecen al mismo estudiante.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Matrices y arreglos multidimensionales en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-1-declarar-la-matriz",
+    "href": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-1-declarar-la-matriz",
+    "title": "15  Matrices y arreglos multidimensionales en C++",
+    "section": "30.1 Paso 1: declarar la matriz",
+    "text": "30.1 Paso 1: declarar la matriz\nconst int FILAS = 3;\nconst int COLUMNAS = 3;\n\nint matriz[FILAS][COLUMNAS];",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Matrices y arreglos multidimensionales en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-2-ingresar-los-datos",
+    "href": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-2-ingresar-los-datos",
+    "title": "15  Matrices y arreglos multidimensionales en C++",
+    "section": "30.2 Paso 2: ingresar los datos",
+    "text": "30.2 Paso 2: ingresar los datos\nfor (int i = 0; i &lt; FILAS; i++) {\n\n    for (int j = 0; j &lt; COLUMNAS; j++) {\n\n        cout &lt;&lt; \"Ingrese [\" &lt;&lt; i &lt;&lt; \"][\" &lt;&lt; j &lt;&lt; \"]: \";\n        cin &gt;&gt; matriz[i][j];\n\n    }\n}",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Matrices y arreglos multidimensionales en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-3-procesar-los-datos",
+    "href": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-3-procesar-los-datos",
+    "title": "15  Matrices y arreglos multidimensionales en C++",
+    "section": "30.3 Paso 3: procesar los datos",
+    "text": "30.3 Paso 3: procesar los datos\nint suma = 0;\nint mayor = matriz[0][0];\nint menor = matriz[0][0];\n\nfor (int i = 0; i &lt; FILAS; i++) {\n\n    for (int j = 0; j &lt; COLUMNAS; j++) {\n\n        suma += matriz[i][j];\n\n        if (matriz[i][j] &gt; mayor) {\n            mayor = matriz[i][j];\n        }\n\n        if (matriz[i][j] &lt; menor) {\n            menor = matriz[i][j];\n        }\n    }\n}",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Matrices y arreglos multidimensionales en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-4-calcular-el-promedio",
+    "href": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-4-calcular-el-promedio",
+    "title": "15  Matrices y arreglos multidimensionales en C++",
+    "section": "30.4 Paso 4: calcular el promedio",
+    "text": "30.4 Paso 4: calcular el promedio\nfloat promedio = (float)suma / (FILAS * COLUMNAS);",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Matrices y arreglos multidimensionales en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-5-mostrar-resultados",
+    "href": "capitulos/13_matrices_arreglos_bidimensionales.html#paso-5-mostrar-resultados",
+    "title": "15  Matrices y arreglos multidimensionales en C++",
+    "section": "30.5 Paso 5: mostrar resultados",
+    "text": "30.5 Paso 5: mostrar resultados\ncout &lt;&lt; \"Suma: \" &lt;&lt; suma &lt;&lt; endl;\ncout &lt;&lt; \"Promedio: \" &lt;&lt; promedio &lt;&lt; endl;\ncout &lt;&lt; \"Mayor: \" &lt;&lt; mayor &lt;&lt; endl;\ncout &lt;&lt; \"Menor: \" &lt;&lt; menor &lt;&lt; endl;",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Matrices y arreglos multidimensionales en C++</span>"
+    ]
+  },
+  {
     "objectID": "capitulos/99_cierre.html",
     "href": "capitulos/99_cierre.html",
-    "title": "14  Cierre del capítulo",
+    "title": "16  Cierre del capítulo",
     "section": "",
-    "text": "14.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
+    "text": "16.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
     "crumbs": [
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Cierre del capítulo</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Cierre del capítulo</span>"
     ]
   }
 ]
