@@ -25,6 +25,8 @@ book:
     - capitulos/12_vectores_paralelos_transicion_matrices.qmd
     - capitulos/13_laboratorio_del_problema_al_programa.qmd
     - capitulos/13_matrices_arreglos_bidimensionales.qmd
+    - capitulos/14_laboratorio_matrices.qmd
+    - capitulos/15_taller_cine_funciones_arreglos_matrices.qmd
     - capitulos/99_cierre.qmd
   page-footer:
     left: "Editorial Académica de Ingeniería en Sistemas"

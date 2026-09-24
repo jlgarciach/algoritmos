@@ -1,0 +1,901 @@
+---
+title: "Taller: Sistema de ventas de un cine"
+subtitle: "Funciones con parámetros, arreglos y matrices en C++"
+---
+
+# Taller: Sistema de ventas de un cine
+
+## Propósito del taller
+
+Hasta ahora hemos aprendido a resolver problemas utilizando variables, decisiones, ciclos y funciones. En este taller daremos un paso más: **organizaremos varios datos relacionados utilizando arreglos y matrices, y construiremos funciones que reciban esos datos mediante parámetros**.
+
+La meta no es escribir un programa enorme. La meta es aprender a **dividir un problema en pequeñas tareas**, donde cada función tenga una responsabilidad clara.
+
+> **Idea clave:** `main()` organiza el programa; las funciones realizan el trabajo.
+
+## ¿Qué aprenderemos?
+
+Al finalizar el taller, el estudiante podrá:
+
+1. utilizar un arreglo para almacenar varios datos del mismo tipo;
+2. utilizar una matriz para representar información organizada en filas y columnas;
+3. enviar valores, arreglos y matrices como parámetros a funciones;
+4. utilizar ciclos `for` para recorrer arreglos y matrices;
+5. crear funciones que devuelvan resultados mediante `return`;
+6. dividir un problema en funciones pequeñas y reutilizables;
+7. integrar funciones, parámetros, arreglos, matrices, ciclos y decisiones en un mismo programa.
+
+## 1. El problema
+
+Un pequeño cine desea analizar las entradas vendidas durante cuatro días: **jueves, viernes, sábado y domingo**.
+
+El cine vende tres tipos de entradas:
+
+| Tipo de entrada | Precio |
+|---|---:|
+| Niños | Q25.00 |
+| Adultos | Q40.00 |
+| Adultos mayores | Q30.00 |
+
+Durante los cuatro días se registraron las siguientes ventas:
+
+| Día | Niños | Adultos | Adultos mayores |
+|---|---:|---:|---:|
+| Jueves | 12 | 25 | 8 |
+| Viernes | 20 | 40 | 12 |
+| Sábado | 35 | 55 | 18 |
+| Domingo | 30 | 45 | 15 |
+
+El programa deberá responder preguntas como:
+
+- ¿Cuántas entradas se vendieron cada día?
+- ¿Cuánto dinero ingresó cada día?
+- ¿Cuántas entradas se vendieron durante los cuatro días?
+- ¿Cuánto dinero produjo el cine durante los cuatro días?
+- ¿Qué día tuvo la mayor cantidad de entradas vendidas?
+- ¿Qué tipo de entrada fue el más vendido?
+
+## 2. Antes de programar: comprendamos los datos
+
+Tenemos dos tipos de información.
+
+### 2.1 Los precios
+
+Los precios pueden almacenarse en un **arreglo**:
+
+```cpp
+const int TIPOS = 3;
+double precios[TIPOS] = {25.0, 40.0, 30.0};
+```
+
+Podemos imaginarlo así:
+
+| Posición | 0 | 1 | 2 |
+|---|---:|---:|---:|
+| Tipo | Niños | Adultos | Adultos mayores |
+| Precio | 25 | 40 | 30 |
+
+Por lo tanto:
+
+```cpp
+precios[0] // Q25
+precios[1] // Q40
+precios[2] // Q30
+```
+
+> **Pregunta para pensar:** ¿Por qué sería mejor guardar los precios en un arreglo en lugar de crear tres variables independientes?
+
+<details>
+<summary>Mostrar respuesta</summary>
+
+Porque los tres precios representan datos del mismo tipo y están relacionados. Al almacenarlos en un arreglo podemos recorrerlos utilizando un ciclo y acceder a ellos mediante una posición.
+
+</details>
+
+### 2.2 Las ventas
+
+Ahora tenemos varios días y, para cada día, tres tipos de entradas. Una matriz es adecuada para representar esta información.
+
+```cpp
+const int DIAS = 4;
+const int TIPOS = 3;
+
+int ventas[DIAS][TIPOS] = {
+    {12, 25,  8},
+    {20, 40, 12},
+    {35, 55, 18},
+    {30, 45, 15}
+};
+```
+
+Cada **fila** representa un día y cada **columna** representa un tipo de entrada.
+
+```text
+                 Columnas
+              0     1     2
+            -----------------
+Fila 0       12    25     8     Jueves
+Fila 1       20    40    12     Viernes
+Fila 2       35    55    18     Sábado
+Fila 3       30    45    15     Domingo
+              |     |     |
+            Niños Adultos Mayores
+```
+
+Por ejemplo:
+
+```cpp
+ventas[0][1]
+```
+
+representa las entradas de **adultos vendidas el jueves**, por lo tanto su valor es `25`.
+
+> **Pregunta:** ¿Qué representa `ventas[2][0]`?
+
+<details>
+<summary>Mostrar respuesta</summary>
+
+La cantidad de entradas para niños vendidas el sábado: `35`.
+
+</details>
+
+## 3. Empecemos por el problema más pequeño
+
+Antes de trabajar con toda la matriz, resolvamos una sola operación.
+
+Si se venden 25 entradas de adulto y cada entrada cuesta Q40:
+
+\[
+Ingreso = Cantidad \times Precio
+\]
+
+\[
+Ingreso = 25 \times 40 = Q1000
+\]
+
+Podemos convertir esta operación en una función.
+
+### Reto 1: `calcularIngreso()`
+
+Complete una función que reciba la cantidad de entradas y el precio de una entrada, y devuelva el ingreso obtenido.
+
+```cpp
+// Complete la función
+________ calcularIngreso(________ cantidad, ________ precio)
+{
+    return ______________________________;
+}
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+double calcularIngreso(int cantidad, double precio)
+{
+    return cantidad * precio;
+}
+```
+
+Ejemplos:
+
+```cpp
+cout << calcularIngreso(25, 40); // 1000
+cout << calcularIngreso(12, 25); // 300
+```
+
+</details>
+
+### ¿Qué está sucediendo?
+
+Cuando escribimos:
+
+```cpp
+calcularIngreso(25, 40);
+```
+
+los valores viajan hacia los parámetros:
+
+```text
+25  --------> cantidad
+40  --------> precio
+
+cantidad * precio
+       |
+       v
+     1000
+       |
+     return
+       |
+       v
+Programa principal
+```
+
+La función no necesita saber si se trata de niños, adultos o adultos mayores. Solamente necesita dos datos: **cantidad y precio**.
+
+## 4. Primer recorrido: total de entradas de un día
+
+Ahora queremos saber cuántas entradas se vendieron el jueves.
+
+Los datos son:
+
+```text
+12 + 25 + 8 = 45 entradas
+```
+
+Necesitamos recorrer las columnas de una fila de la matriz.
+
+### Reto 2: `totalEntradasDia()`
+
+```cpp
+int totalEntradasDia(int ventas[][TIPOS], int dia)
+{
+    int total = 0;
+
+    // Complete el ciclo
+
+    return total;
+}
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+int totalEntradasDia(int ventas[][TIPOS], int dia)
+{
+    int total = 0;
+
+    for (int tipo = 0; tipo < TIPOS; tipo++)
+    {
+        total += ventas[dia][tipo];
+    }
+
+    return total;
+}
+```
+
+Si llamamos:
+
+```cpp
+cout << totalEntradasDia(ventas, 0);
+```
+
+obtendremos:
+
+```text
+45
+```
+
+</details>
+
+> **Observe:** el parámetro `dia` permite utilizar la misma función para cualquier fila de la matriz.
+
+```cpp
+totalEntradasDia(ventas, 0); // jueves
+totalEntradasDia(ventas, 1); // viernes
+totalEntradasDia(ventas, 2); // sábado
+totalEntradasDia(ventas, 3); // domingo
+```
+
+## 5. Calcular el ingreso de un día
+
+Ahora debemos combinar **la matriz de ventas** con **el arreglo de precios**.
+
+Para el jueves:
+
+```text
+Niños:            12 × Q25 = Q300
+Adultos:          25 × Q40 = Q1000
+Adultos mayores:   8 × Q30 = Q240
+                              -----
+Ingreso del jueves          = Q1540
+```
+
+### Reto 3: `ingresoDia()`
+
+La función deberá recibir:
+
+- la matriz de ventas;
+- el arreglo de precios;
+- el número de día que queremos analizar.
+
+```cpp
+double ingresoDia(int ventas[][TIPOS], double precios[], int dia)
+{
+    double total = 0;
+
+    // Complete el proceso
+
+    return total;
+}
+```
+
+> **Pista:** ya construimos una función que calcula `cantidad × precio`. ¿Podemos reutilizarla?
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+double ingresoDia(int ventas[][TIPOS], double precios[], int dia)
+{
+    double total = 0;
+
+    for (int tipo = 0; tipo < TIPOS; tipo++)
+    {
+        total += calcularIngreso(ventas[dia][tipo], precios[tipo]);
+    }
+
+    return total;
+}
+```
+
+Observe esta línea:
+
+```cpp
+total += calcularIngreso(ventas[dia][tipo], precios[tipo]);
+```
+
+Una función está utilizando otra función. No necesitamos volver a escribir la multiplicación.
+
+</details>
+
+## 6. Mostrar el resumen de todos los días
+
+Ahora que podemos calcular las entradas y el ingreso de **un día**, podemos repetir el proceso para todos los días.
+
+Utilizaremos un arreglo adicional únicamente para mostrar los nombres:
+
+```cpp
+string dias[DIAS] = {"Jueves", "Viernes", "Sabado", "Domingo"};
+```
+
+### Reto 4: mostrar el resumen
+
+Queremos obtener una salida similar a esta:
+
+```text
+DIA          ENTRADAS       INGRESO
+------------------------------------
+Jueves          45          Q1540.00
+Viernes         ...         Q...
+Sabado          ...         Q...
+Domingo         ...         Q...
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+void mostrarResumen(int ventas[][TIPOS], double precios[], string dias[])
+{
+    cout << "DIA\t\tENTRADAS\tINGRESO" << endl;
+    cout << "----------------------------------------" << endl;
+
+    for (int dia = 0; dia < DIAS; dia++)
+    {
+        cout << dias[dia] << "\t\t"
+             << totalEntradasDia(ventas, dia) << "\t\tQ"
+             << ingresoDia(ventas, precios, dia) << endl;
+    }
+}
+```
+
+</details>
+
+## 7. Total de entradas de los cuatro días
+
+Ya sabemos calcular el total de **un día**. Ahora queremos sumar todos los días.
+
+### Reto 5: `totalEntradas()`
+
+```cpp
+int totalEntradas(int ventas[][TIPOS])
+{
+    int total = 0;
+
+    // Complete el proceso
+
+    return total;
+}
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+int totalEntradas(int ventas[][TIPOS])
+{
+    int total = 0;
+
+    for (int dia = 0; dia < DIAS; dia++)
+    {
+        total += totalEntradasDia(ventas, dia);
+    }
+
+    return total;
+}
+```
+
+Nuevamente reutilizamos una función que ya existe.
+
+</details>
+
+## 8. Ingreso total del cine
+
+El mismo razonamiento puede utilizarse para calcular el ingreso total.
+
+### Reto 6: `ingresoTotal()`
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+double ingresoTotal(int ventas[][TIPOS], double precios[])
+{
+    double total = 0;
+
+    for (int dia = 0; dia < DIAS; dia++)
+    {
+        total += ingresoDia(ventas, precios, dia);
+    }
+
+    return total;
+}
+```
+
+</details>
+
+## 9. ¿Qué día vendió más entradas?
+
+Ahora necesitamos una comparación.
+
+No buscamos el valor solamente; necesitamos saber **en qué posición se encuentra** para después mostrar el nombre del día.
+
+### Reto 7: `diaMayorVenta()`
+
+La función devolverá la posición del día con mayor cantidad de entradas vendidas.
+
+```cpp
+int diaMayorVenta(int ventas[][TIPOS])
+{
+    int mayorDia = 0;
+
+    // Complete el proceso
+
+    return mayorDia;
+}
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+int diaMayorVenta(int ventas[][TIPOS])
+{
+    int mayorDia = 0;
+    int mayorCantidad = totalEntradasDia(ventas, 0);
+
+    for (int dia = 1; dia < DIAS; dia++)
+    {
+        int cantidad = totalEntradasDia(ventas, dia);
+
+        if (cantidad > mayorCantidad)
+        {
+            mayorCantidad = cantidad;
+            mayorDia = dia;
+        }
+    }
+
+    return mayorDia;
+}
+```
+
+Luego podemos utilizar la posición devuelta:
+
+```cpp
+int posicion = diaMayorVenta(ventas);
+cout << "Dia con mayor venta: " << dias[posicion];
+```
+
+</details>
+
+## 10. Reto final: ¿qué tipo de entrada fue el más vendido?
+
+Hasta ahora recorrimos la matriz principalmente **por filas**. Para resolver este reto debemos pensar de otra manera: sumar una **columna completa**.
+
+```text
+                Niños   Adultos   Mayores
+Jueves            12       25        8
+Viernes           20       40       12
+Sábado            35       55       18
+Domingo           30       45       15
+                  ↓        ↓         ↓
+                sumar    sumar     sumar
+```
+
+Construya una función que determine qué tipo de entrada tuvo la mayor cantidad de ventas.
+
+```cpp
+int tipoMasVendido(int ventas[][TIPOS]);
+```
+
+> **Pista:** para cada tipo de entrada deberá recorrer todos los días.
+
+<details>
+<summary>Mostrar solución del reto final</summary>
+
+```cpp
+int tipoMasVendido(int ventas[][TIPOS])
+{
+    int mayorTipo = 0;
+    int mayorCantidad = 0;
+
+    for (int tipo = 0; tipo < TIPOS; tipo++)
+    {
+        int totalTipo = 0;
+
+        for (int dia = 0; dia < DIAS; dia++)
+        {
+            totalTipo += ventas[dia][tipo];
+        }
+
+        if (tipo == 0 || totalTipo > mayorCantidad)
+        {
+            mayorCantidad = totalTipo;
+            mayorTipo = tipo;
+        }
+    }
+
+    return mayorTipo;
+}
+```
+
+Podemos mostrar el resultado utilizando otro arreglo:
+
+```cpp
+string tipos[TIPOS] = {"Ninos", "Adultos", "Adultos mayores"};
+
+int posicion = tipoMasVendido(ventas);
+cout << "Tipo mas vendido: " << tipos[posicion];
+```
+
+</details>
+
+## 11. Construyamos el programa completo
+
+Antes de mostrar la solución, observe cómo debería quedar dividido el problema:
+
+```text
+main()
+ |
+ +-- mostrarResumen()
+ |      |
+ |      +-- totalEntradasDia()
+ |      |
+ |      +-- ingresoDia()
+ |             |
+ |             +-- calcularIngreso()
+ |
+ +-- totalEntradas()
+ |
+ +-- ingresoTotal()
+ |
+ +-- diaMayorVenta()
+ |
+ +-- tipoMasVendido()
+```
+
+La función `main()` ya no necesita conocer todos los detalles de los cálculos. Su trabajo es **coordinar** las demás funciones.
+
+<details>
+<summary>Mostrar programa completo</summary>
+
+```cpp
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+// variablas y constantes globales
+const int DIAS = 4; // jueves, viernes, sábado y domingo
+const int TIPOS = 3; // niños, adultos, adultos mayores
+
+// Prototipos
+double calcularIngreso(int cantidad, double precio);
+int totalEntradasDia(int ventas[][TIPOS], int dia);
+double ingresoDia(int ventas[][TIPOS], double precios[], int dia);
+void mostrarResumen(int ventas[][TIPOS], double precios[], string dias[]);
+int totalEntradas(int ventas[][TIPOS]);
+double ingresoTotal(int ventas[][TIPOS], double precios[]);
+int diaMayorVenta(int ventas[][TIPOS]);
+int tipoMasVendido(int ventas[][TIPOS]);
+
+// función principal
+int main() 
+{
+    string dias[DIAS] = {"Jueves", "Viernes", "Sabado", "Domingo"};
+    string tipos[TIPOS] = {"Ninos", "Adultos", "Adultos mayores"};
+    double precios[TIPOS] = {25.0, 40.0, 30.0}; // precios
+    int ventas[DIAS][TIPOS] = { // ventas por dia niños/adultos/adultos mayores
+                                {25, 12,8}, // jueves
+                                {20, 40,12}, // viernes
+                                {35, 55,18}, // sábado
+                                {30, 45,15}, // domingo
+
+                            };
+
+    cout << "========================================" << endl;
+    cout << "       SISTEMA DE VENTAS DEL CINE" << endl;
+    cout << "========================================" << endl << endl;
+
+    mostrarResumen(ventas, precios, dias);
+
+    cout << endl;
+    cout << "Total de entradas: " << totalEntradas(ventas) << endl;
+    cout << "Ingreso total: Q" << fixed << setprecision(2)
+         << ingresoTotal(ventas, precios) << endl;
+
+    int mejorDia = diaMayorVenta(ventas);
+    cout << "Dia con mayor venta: " << dias[mejorDia]
+         << " (" << totalEntradasDia(ventas, mejorDia) << " entradas)" << endl;
+
+    int mejorTipo = tipoMasVendido(ventas);
+    cout << "Tipo de entrada mas vendido: " << tipos[mejorTipo] << endl;
+
+    return 0;
+}
+
+// Implementaciones
+
+// Función que cálcula el ingreso de venta de tickets por el precio
+double calcularIngreso(int cantidad, double precio)
+{
+    return cantidad * precio;
+}
+
+// Función que recorre cada día (filas) y obtiene el total de ventas por tipo (niño + adulto + adulto mayor)
+int totalEntradasDia(int ventas[][TIPOS], int dia)
+{
+    int total = 0;
+    for (int tipo = 0; tipo < TIPOS; tipo++)
+    {
+        total += ventas[dia][tipo];
+    }
+
+    return total;
+}
+
+// Función que recorre cada día (filas) y multiplica la cantidad vendida (tipo) por el precio de cada boleto
+double ingresoDia(int ventas[][TIPOS], double precios[], int dia)
+{
+    double total = 0;
+
+    for (int tipo = 0; tipo < TIPOS; tipo++)
+    {
+        total += calcularIngreso(ventas[dia][tipo], precios[tipo]);
+    }
+
+    return total;
+}
+
+/* Recorre el arreglo de los días y utiliza las funciones:
+    totalEntradasDia(ventas, dia)... 
+    ingresoDia(ventas, precios, dia)...
+        ventas -> matriz de ventas
+        precios -> arreglo de precios
+        dia -> arreglo de días (4), jueves, viernes, sábado y domingo
+*/
+void mostrarResumen(int ventas[][TIPOS], double precios[], string dias[])
+{
+    cout << "DIA\t\tENTRADAS\tINGRESO" << endl;
+    cout << "----------------------------------------" << endl;
+
+    for (int dia = 0; dia < DIAS; dia++)
+    {
+        cout << dias[dia] << "\t\t"
+             << totalEntradasDia(ventas, dia) << "\t\tQ"
+             << ingresoDia(ventas, precios, dia) << endl;
+    }
+}
+
+/* Función que recorre la matriz y el arreglo de los días, usa la función
+    totalEntradasDia(ventas, dia) retorna el total de entradas por día */
+int totalEntradas(int ventas[][TIPOS])
+{
+    int total = 0;
+
+    for (int dia = 0; dia < DIAS; dia++)
+    {
+        total += totalEntradasDia(ventas, dia);
+    }
+
+    return total;
+}
+
+/* Función que recorre la matriz, el arreglo de precios y el arreglo de los días, 
+usa la función ingresoDias(ventas, precios, dia) retorna el total en quetzales
+por los días */
+double ingresoTotal(int ventas[][TIPOS], double precios[])
+{
+    double total = 0;
+
+    for (int dia = 0; dia < DIAS; dia++)
+    {
+        total += ingresoDia(ventas, precios, dia);
+    }
+
+    return total;
+}
+
+/* Función que recorre el total de entradas por día, luego identifica 
+    el día de mayor venta con la función totalEntradasDias(ventas, dia). */
+int diaMayorVenta(int ventas[][TIPOS])
+{
+    int mayorDia = 0; // variable de retorno, que lleva el valor con mayor venta
+    int mayorCantidad = totalEntradasDia(ventas, 0); // variable temporal
+
+    for (int dia = 1; dia < DIAS; dia++)
+    {
+        int cantidad = totalEntradasDia(ventas, dia);
+
+        if (cantidad > mayorCantidad)
+        {
+            mayorCantidad = cantidad;
+            mayorDia = dia;
+        }
+    }
+
+    return mayorDia;
+}
+
+/* Función que recorre la matriz de ventas y luego identifica 
+    por tipo de boleto, cual fue el de mayor venta. 
+    returna el tipo. */
+int tipoMasVendido(int ventas[][TIPOS])
+{
+    int mayorTipo = 0;
+    int mayorCantidad = 0;
+
+    for (int tipo = 0; tipo < TIPOS; tipo++)
+    {
+        int totalTipo = 0;
+
+        for (int dia = 0; dia < DIAS; dia++)
+        {
+            totalTipo += ventas[dia][tipo];
+        }
+
+        if (tipo == 0 || totalTipo > mayorCantidad)
+        {
+            mayorCantidad = totalTipo;
+            mayorTipo = tipo;
+        }
+    }
+
+    return mayorTipo;
+}
+```
+
+</details>
+
+## 12. Resultados esperados
+
+Antes de ejecutar el programa, calcule algunos resultados manualmente. Después compárelos con el programa.
+
+<details>
+<summary>Mostrar resultados esperados</summary>
+
+```text
+DIA          ENTRADAS    INGRESO
+------------------------------------
+Jueves       45          Q1540.00
+Viernes      72          Q2460.00
+Sabado       108         Q3625.00
+Domingo      90          Q3070.00
+
+Total de entradas: 315
+Ingreso total: Q10695.00
+Dia con mayor venta: Sabado (108 entradas)
+Tipo de entrada mas vendido: Adultos
+```
+
+</details>
+
+## 13. Preguntas de comprobación
+
+1. ¿Por qué los precios se almacenaron en un arreglo?
+2. ¿Por qué las ventas se almacenaron en una matriz?
+3. ¿Qué representan las filas de la matriz?
+4. ¿Qué representan las columnas?
+5. ¿Qué información recibe `calcularIngreso()` mediante parámetros?
+6. ¿Qué devuelve `totalEntradasDia()`?
+7. ¿Por qué `ingresoDia()` puede llamar a `calcularIngreso()`?
+8. ¿Cuál es la diferencia entre recorrer una fila y recorrer una columna?
+9. ¿Qué ventaja obtenemos al dividir el programa en varias funciones?
+10. ¿Qué función modificaría si el administrador quisiera conocer el día con mayor ingreso en lugar del día con mayor número de entradas?
+
+<details>
+<summary>Mostrar respuestas</summary>
+
+1. Porque son datos relacionados del mismo tipo y pueden recorrerse por posición.
+2. Porque existen dos dimensiones relacionadas: días y tipos de entrada.
+3. Cada fila representa un día.
+4. Cada columna representa un tipo de entrada.
+5. La cantidad de entradas y el precio unitario.
+6. La suma de las entradas vendidas durante un día.
+7. Porque una función puede reutilizar otra función ya construida.
+8. Una fila mantiene fijo el día y cambia el tipo; una columna mantiene fijo el tipo y cambia el día.
+9. El programa queda más organizado, reutilizable y fácil de comprender y probar.
+10. Podría construirse una función similar a `diaMayorVenta()`, pero comparando los resultados de `ingresoDia()`.
+
+</details>
+
+## 14. Desafío adicional
+
+Si termina antes del tiempo asignado, construya:
+
+```cpp
+int diaMayorIngreso(int ventas[][TIPOS], double precios[]);
+```
+
+La función debe devolver la posición del día que produjo más dinero.
+
+**Regla:** no vuelva a calcular manualmente los ingresos. Reutilice `ingresoDia()`.
+
+<details>
+<summary>Mostrar solución del desafío</summary>
+
+```cpp
+int diaMayorIngreso(int ventas[][TIPOS], double precios[])
+{
+    int mejorDia = 0;
+    double mayorIngreso = ingresoDia(ventas, precios, 0);
+
+    for (int dia = 1; dia < DIAS; dia++)
+    {
+        double ingreso = ingresoDia(ventas, precios, dia);
+
+        if (ingreso > mayorIngreso)
+        {
+            mayorIngreso = ingreso;
+            mejorDia = dia;
+        }
+    }
+
+    return mejorDia;
+}
+```
+
+</details>
+
+## 15. Cierre del taller
+
+En este taller no aprendimos solamente a trabajar con un cine. Aprendimos una forma de **pensar un programa**.
+
+Partimos de una operación pequeña:
+
+```text
+cantidad × precio
+```
+
+Luego organizamos varios precios en un **arreglo**.
+
+Después organizamos las ventas de varios días en una **matriz**.
+
+Finalmente dividimos el problema en **funciones**, pasando la información que cada función necesita mediante **parámetros**.
+
+> **Consejo del Ingeniero:** cuando un problema parezca grande, no intente resolverlo todo dentro de `main()`. Divídalo en preguntas pequeñas y convierta cada responsabilidad en una función.
+
+### Lo que integramos
+
+- funciones;
+- parámetros;
+- `return`;
+- arreglos;
+- matrices;
+- ciclos `for`;
+- acumuladores;
+- estructuras `if`;
+- reutilización de funciones;
+- solución modular de problemas.
+
