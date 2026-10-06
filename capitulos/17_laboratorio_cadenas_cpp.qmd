@@ -1,0 +1,742 @@
+---
+title: "Laboratorio: Cadenas en C++"
+author: "Ing. Jorge L. García"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+# Propósito del laboratorio
+
+En este laboratorio construiremos un programa completo para profundizar en el manejo de variables de tipo `string` y, al mismo tiempo, reforzar conocimientos que ya hemos trabajado: **variables, decisiones, ciclos, procedimientos, funciones y parámetros**.
+
+Trabajaremos con un dato que utilizamos todos los días: **el nombre completo de una persona**. A partir de él aprenderemos que una cadena no solamente se almacena o se muestra en pantalla; también podemos **medirla, recorrerla carácter por carácter, contar sus palabras y transformarla**.
+
+> **Idea clave:** una cadena está formada por caracteres. Al analizar esos caracteres podemos obtener nueva información y transformar el texto.
+
+## Objetivos de aprendizaje
+
+Al finalizar el laboratorio, el estudiante será capaz de:
+
+- Declarar y utilizar variables de tipo `string`.
+- Leer nombres completos que contienen espacios.
+- Utilizar procedimientos y funciones dentro de un mismo programa.
+- Enviar información a funciones mediante parámetros por valor.
+- Determinar la longitud de una cadena.
+- Recorrer una cadena carácter por carácter.
+- Contar palabras dentro de una cadena.
+- Transformar los caracteres de un texto.
+- Integrar diferentes módulos dentro de una solución completa.
+
+# 1. El problema
+
+Construiremos un programa que solicite al usuario:
+
+- Su **nombre completo**.
+- Su **año de nacimiento**.
+
+A partir de esos datos, el programa deberá mostrar:
+
+1. Edad aproximada en años.
+2. Cantidad de caracteres que contiene el nombre completo.
+3. Cantidad de palabras que forman el nombre.
+4. Nombre completo convertido a mayúsculas.
+5. Iniciales de la persona.
+
+El programa deberá estar organizado mediante **un procedimiento y varias funciones**.
+
+> **Importante:** antes de consultar cada solución, intente construirla. El objetivo del laboratorio es analizar, diseñar y programar, no copiar código.
+
+# 2. Diseñemos antes de programar
+
+Dividamos el problema en tareas pequeñas.
+
+| Módulo | Tipo | Responsabilidad |
+|---|---|---|
+| Solicitar datos | Procedimiento | Solicitar nombre completo y año de nacimiento y mostrar los resultados |
+| Calcular edad | Función | Obtener la edad aproximada a partir del año de nacimiento |
+| Longitud del nombre | Función | Determinar la cantidad de caracteres |
+| Contar palabras | Función | Determinar cuántas palabras forman el nombre |
+| Convertir a mayúsculas | Función | Transformar el nombre completo a letras mayúsculas |
+| Obtener iniciales | Función | Construir las iniciales de la persona |
+
+Observe que cada módulo tiene **una responsabilidad específica**.
+
+La idea es que la función principal únicamente inicie el programa y que el trabajo se distribuya entre el procedimiento y las funciones.
+
+# 3. Preparación del programa
+
+Para trabajar con este laboratorio necesitaremos las herramientas de C++ que permiten:
+
+- Entrada y salida de información.
+- Manejo de cadenas.
+- Transformación de caracteres entre mayúsculas y minúsculas.
+
+Antes de continuar, cree un programa nuevo en C++ y prepare la estructura básica necesaria.
+
+<details>
+<summary><strong>Ver preparación del programa</strong></summary>
+
+```cpp
+#include <iostream>
+#include <string>
+#include <cctype>
+
+using namespace std;
+```
+
+</details>
+
+# 4. Paso 1: solicitar los datos
+
+Nuestro primer módulo será un **procedimiento** encargado de coordinar el programa.
+
+Dentro de este procedimiento debemos:
+
+1. Crear una variable para almacenar el nombre completo.
+2. Crear una variable para almacenar el año de nacimiento.
+3. Solicitar ambos datos al usuario.
+4. Conservarlos para enviarlos posteriormente a las diferentes funciones.
+
+## Un pequeño problema que debemos resolver
+
+El nombre de una persona normalmente contiene espacios. Por ejemplo:
+
+```text
+Maria Fernanda Lopez
+```
+
+Por lo tanto, debemos utilizar una forma de lectura que permita capturar **toda la línea** y no solamente la primera palabra.
+
+Intente construir el procedimiento antes de consultar la solución.
+
+<details>
+<summary><strong>Ver solución: procedimiento para solicitar datos</strong></summary>
+
+```cpp
+void solicitarDatos() {
+    string nombre;
+    int anioNacimiento;
+
+    cout << "Ingrese su nombre completo: ";
+    getline(cin, nombre);
+
+    cout << "Ingrese su anio de nacimiento: ";
+    cin >> anioNacimiento;
+}
+```
+
+**Observe:** utilizamos `getline()` porque necesitamos capturar el nombre completo, incluyendo los espacios.
+
+</details>
+
+# 5. Paso 2: calcular la edad
+
+Construya una función que reciba como parámetro el **año de nacimiento** y devuelva la **edad aproximada** de la persona.
+
+Para este laboratorio utilizaremos **2026 como año actual**.
+
+Por ejemplo:
+
+```text
+Año de nacimiento: 2005
+Edad aproximada: 21 años
+```
+
+Piense antes de programar:
+
+- ¿Qué dato recibe la función?
+- ¿Qué tipo de dato debe devolver?
+- ¿Qué operación matemática necesita realizar?
+
+<details>
+<summary><strong>Ver solución: función para calcular la edad</strong></summary>
+
+```cpp
+int calcularEdad(int anioNacimiento) {
+    return 2026 - anioNacimiento;
+}
+```
+
+</details>
+
+> **Nota:** la edad es aproximada porque solamente estamos utilizando el año de nacimiento. No conocemos el día ni el mes.
+
+# 6. Paso 3: obtener la longitud del nombre
+
+Ahora construiremos una función que reciba el **nombre completo** y devuelva la cantidad total de caracteres que contiene.
+
+Recuerde que los espacios también forman parte de una cadena y, por lo tanto, cuentan como caracteres.
+
+Por ejemplo:
+
+```text
+Ana Lopez
+```
+
+contiene **9 caracteres**.
+
+Antes de consultar la solución, determine mentalmente:
+
+| Cadena | Cantidad de caracteres |
+|---|---:|
+| `Luis` | ? |
+| `Ana Maria` | ? |
+| `Juan Perez` | ? |
+
+<details>
+<summary><strong>Ver respuestas y solución</strong></summary>
+
+| Cadena | Cantidad de caracteres |
+|---|---:|
+| `Luis` | 4 |
+| `Ana Maria` | 9 |
+| `Juan Perez` | 10 |
+
+La función puede construirse así:
+
+```cpp
+int longitudNombre(string nombre) {
+    return nombre.length();
+}
+```
+
+El método `.length()` devuelve la cantidad de caracteres almacenados en la cadena.
+
+</details>
+
+# 7. Paso 4: contar las palabras del nombre
+
+Ahora tenemos un problema más interesante.
+
+Observe el siguiente nombre:
+
+```text
+Jorge Luis Garcia Chacon
+```
+
+Visualmente podemos determinar que contiene **cuatro palabras**. Sin embargo, nuestro programa debe descubrirlo automáticamente.
+
+Construya una función que:
+
+1. Reciba el nombre completo.
+2. Recorra sus caracteres uno por uno.
+3. Detecte cuándo comienza una nueva palabra.
+4. Lleve un contador.
+5. Devuelva la cantidad total de palabras encontradas.
+
+### Antes de programar
+
+Analice estas entradas:
+
+```text
+Carlos
+Ana Maria
+Juan Carlos Perez
+```
+
+¿Cuántas palabras debería devolver la función en cada caso?
+
+Piense cómo podría utilizar los **espacios** para detectar dónde termina o comienza una palabra.
+
+<details>
+<summary><strong>Ver solución: función para contar palabras</strong></summary>
+
+```cpp
+int contarPalabras(string texto) {
+    int palabras = 0;
+    bool dentroPalabra = false;
+
+    for (int i = 0; i < texto.length(); i++) {
+        if (texto[i] != ' ' && dentroPalabra == false) {
+            palabras++;
+            dentroPalabra = true;
+        }
+        else if (texto[i] == ' ') {
+            dentroPalabra = false;
+        }
+    }
+
+    return palabras;
+}
+```
+
+En esta solución estamos integrando varios conocimientos anteriores: variables, `bool`, ciclos, decisiones, operadores, parámetros y retorno de valores.
+
+</details>
+
+# 8. Paso 5: convertir el nombre a mayúsculas
+
+Construya una función que reciba el nombre completo y devuelva una nueva cadena con todas sus letras en mayúscula.
+
+Ejemplo:
+
+```text
+Entrada : Jorge Luis Garcia
+Salida  : JORGE LUIS GARCIA
+```
+
+Para resolverlo deberá pensar en algo importante:
+
+> Si queremos transformar todo el nombre, tendremos que recorrer todos sus caracteres.
+
+La función deberá devolver un `string`.
+
+<details>
+<summary><strong>Ver solución: convertir a mayúsculas</strong></summary>
+
+```cpp
+string convertirMayusculas(string texto) {
+    for (int i = 0; i < texto.length(); i++) {
+        texto[i] = toupper(texto[i]);
+    }
+
+    return texto;
+}
+```
+
+`toupper()` transforma un carácter a mayúscula. Al combinarla con un ciclo podemos transformar la cadena completa.
+
+</details>
+
+# 9. Paso 6: obtener las iniciales
+
+Construiremos ahora una función que transforme:
+
+```text
+Jorge Luis Garcia Chacon
+```
+
+en:
+
+```text
+JLGC
+```
+
+La función deberá:
+
+1. Recibir el nombre completo.
+2. Identificar la primera letra de cada palabra.
+3. Convertir cada inicial a mayúscula.
+4. Construir una nueva cadena con las iniciales encontradas.
+5. Devolver el resultado.
+
+### Pista de análisis
+
+No piense todavía en instrucciones de C++. Piense primero en cómo lo haría una persona:
+
+- La primera letra del nombre es una inicial.
+- Después de un espacio comienza otra palabra.
+- La primera letra de esa nueva palabra también es una inicial.
+
+Ahora intente convertir esa lógica en un algoritmo.
+
+<details>
+<summary><strong>Ver solución: obtener iniciales</strong></summary>
+
+```cpp
+string obtenerIniciales(string nombre) {
+    string iniciales = "";
+
+    if (nombre.length() > 0) {
+        iniciales += toupper(nombre[0]);
+    }
+
+    for (int i = 1; i < nombre.length(); i++) {
+        if (nombre[i - 1] == ' ' && nombre[i] != ' ') {
+            iniciales += toupper(nombre[i]);
+        }
+    }
+
+    return iniciales;
+}
+```
+
+</details>
+
+# 10. Integramos las funciones en el procedimiento
+
+Ya tenemos las piezas principales. Ahora debemos regresar al procedimiento que solicita los datos.
+
+Modifíquelo para que, después de capturar el nombre y el año de nacimiento, muestre:
+
+- Nombre ingresado.
+- Edad aproximada.
+- Cantidad de caracteres.
+- Cantidad de palabras.
+- Nombre en mayúsculas.
+- Iniciales.
+
+La condición es importante:
+
+> El procedimiento **no debe volver a resolver los cálculos**. Debe utilizar las funciones que ya construimos.
+
+Intente realizar la integración completa antes de abrir la solución.
+
+<details>
+<summary><strong>Ver solución: procedimiento integrado</strong></summary>
+
+```cpp
+void solicitarDatos() {
+    string nombre;
+    int anioNacimiento;
+
+    cout << "Ingrese su nombre completo: ";
+    getline(cin, nombre);
+
+    cout << "Ingrese su anio de nacimiento: ";
+    cin >> anioNacimiento;
+
+    cout << "\n========== RESULTADOS ==========" << endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Edad aproximada: "
+         << calcularEdad(anioNacimiento) << " anios" << endl;
+    cout << "Cantidad de caracteres: "
+         << longitudNombre(nombre) << endl;
+    cout << "Cantidad de palabras: "
+         << contarPalabras(nombre) << endl;
+    cout << "Nombre en mayusculas: "
+         << convertirMayusculas(nombre) << endl;
+    cout << "Iniciales: "
+         << obtenerIniciales(nombre) << endl;
+}
+```
+
+</details>
+
+# 11. Construya la función principal
+
+Llegó el momento de crear la función principal del programa.
+
+Como hemos distribuido las responsabilidades correctamente, la función principal debe ser **muy sencilla**: solamente necesita iniciar el procedimiento que coordina nuestro programa.
+
+Intente construirla.
+
+<details>
+<summary><strong>Ver solución: función principal</strong></summary>
+
+```cpp
+int main() {
+    solicitarDatos();
+    return 0;
+}
+```
+
+Esto nos permite observar una idea importante de la programación modular: la función principal coordina el inicio y los demás módulos realizan las tareas específicas.
+
+</details>
+
+# 12. Programa completo
+
+Antes de abrir la solución completa, revise su programa y compruebe que contiene, en un orden adecuado:
+
+1. Librerías necesarias.
+2. Espacio de nombres.
+3. Función para calcular la edad.
+4. Función para obtener la longitud.
+5. Función para contar palabras.
+6. Función para convertir a mayúsculas.
+7. Función para obtener las iniciales.
+8. Procedimiento para solicitar datos y mostrar resultados.
+9. Función principal.
+
+Compile y corrija los errores que encuentre.
+
+<details>
+<summary><strong>Ver programa completo</strong></summary>
+
+```cpp
+#include <iostream>
+#include <string>
+#include <cctype>
+
+using namespace std;
+
+int calcularEdad(int anioNacimiento) {
+    return 2026 - anioNacimiento;
+}
+
+int longitudNombre(string nombre) {
+    return nombre.length();
+}
+
+int contarPalabras(string texto) {
+    int palabras = 0;
+    bool dentroPalabra = false;
+
+    for (int i = 0; i < texto.length(); i++) {
+        if (texto[i] != ' ' && dentroPalabra == false) {
+            palabras++;
+            dentroPalabra = true;
+        }
+        else if (texto[i] == ' ') {
+            dentroPalabra = false;
+        }
+    }
+
+    return palabras;
+}
+
+string convertirMayusculas(string texto) {
+    for (int i = 0; i < texto.length(); i++) {
+        texto[i] = toupper(texto[i]);
+    }
+
+    return texto;
+}
+
+string obtenerIniciales(string nombre) {
+    string iniciales = "";
+
+    if (nombre.length() > 0) {
+        iniciales += toupper(nombre[0]);
+    }
+
+    for (int i = 1; i < nombre.length(); i++) {
+        if (nombre[i - 1] == ' ' && nombre[i] != ' ') {
+            iniciales += toupper(nombre[i]);
+        }
+    }
+
+    return iniciales;
+}
+
+void solicitarDatos() {
+    string nombre;
+    int anioNacimiento;
+
+    cout << "Ingrese su nombre completo: ";
+    getline(cin, nombre);
+
+    cout << "Ingrese su anio de nacimiento: ";
+    cin >> anioNacimiento;
+
+    cout << "\n========== RESULTADOS ==========" << endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Edad aproximada: "
+         << calcularEdad(anioNacimiento) << " anios" << endl;
+    cout << "Cantidad de caracteres: "
+         << longitudNombre(nombre) << endl;
+    cout << "Cantidad de palabras: "
+         << contarPalabras(nombre) << endl;
+    cout << "Nombre en mayusculas: "
+         << convertirMayusculas(nombre) << endl;
+    cout << "Iniciales: "
+         << obtenerIniciales(nombre) << endl;
+}
+
+int main() {
+    solicitarDatos();
+    return 0;
+}
+```
+
+</details>
+
+# 13. Comprobemos el programa
+
+Realice una prueba utilizando los siguientes datos:
+
+```text
+Nombre completo: Maria Fernanda Lopez
+Año de nacimiento: 2005
+```
+
+**Antes de ejecutar**, escriba en su cuaderno qué resultados espera obtener para:
+
+- Edad.
+- Longitud del nombre.
+- Número de palabras.
+- Nombre en mayúsculas.
+- Iniciales.
+
+Después ejecute el programa y compare sus predicciones.
+
+<details>
+<summary><strong>Ver resultado esperado</strong></summary>
+
+```text
+========== RESULTADOS ==========
+Nombre: Maria Fernanda Lopez
+Edad aproximada: 21 anios
+Cantidad de caracteres: 20
+Cantidad de palabras: 3
+Nombre en mayusculas: MARIA FERNANDA LOPEZ
+Iniciales: MFL
+```
+
+</details>
+
+# 14. Un desafío adicional: corregir el formato del nombre
+
+Ahora aumentaremos un poco la dificultad.
+
+Queremos construir una nueva función capaz de transformar:
+
+```text
+jORGE lUIS garCIA
+```
+
+en:
+
+```text
+Jorge Luis Garcia
+```
+
+La regla será:
+
+- La primera letra de cada palabra debe quedar en mayúscula.
+- Las demás letras deben quedar en minúscula.
+- Los espacios deben conservarse.
+
+Antes de programar, responda:
+
+1. ¿Cómo podemos reconocer que estamos al inicio de una palabra?
+2. ¿Qué debemos hacer cuando encontramos un espacio?
+3. ¿Será necesario recorrer toda la cadena?
+4. ¿Qué deberá devolver la función?
+
+Intente construirla y agréguela al programa.
+
+<details>
+<summary><strong>Ver solución: formato correcto del nombre</strong></summary>
+
+```cpp
+string formatoNombre(string texto) {
+    bool nuevaPalabra = true;
+
+    for (int i = 0; i < texto.length(); i++) {
+        if (texto[i] == ' ') {
+            nuevaPalabra = true;
+        }
+        else if (nuevaPalabra == true) {
+            texto[i] = toupper(texto[i]);
+            nuevaPalabra = false;
+        }
+        else {
+            texto[i] = tolower(texto[i]);
+        }
+    }
+
+    return texto;
+}
+```
+
+</details>
+
+# 15. Reto individual
+
+Ahora le corresponde ampliar el programa.
+
+Agregue **dos funciones nuevas**. Puede seleccionar entre las siguientes opciones:
+
+- Contar cuántas vocales tiene el nombre.
+- Contar cuántas veces aparece la letra `a` o `A`.
+- Mostrar el nombre al revés.
+- Obtener la primera letra del nombre.
+- Obtener la última letra del nombre.
+- Convertir todo el nombre a minúsculas.
+
+## Condiciones
+
+- Cada operación debe resolverse mediante una **función diferente**.
+- Las funciones deben recibir el nombre mediante un parámetro.
+- No se permite colocar toda la solución directamente dentro de la función principal.
+- Debe utilizar al menos un ciclo en una de las funciones nuevas.
+- Los resultados deben integrarse a la salida general del programa.
+
+# 16. Reto de análisis
+
+Sin ejecutar el programa, considere el siguiente nombre:
+
+```text
+Ana Sofia Morales
+```
+
+Determine:
+
+1. Cantidad de caracteres: __________
+2. Cantidad de palabras: __________
+3. Nombre convertido a mayúsculas: __________________________
+4. Iniciales: __________
+5. Resultado de corregir el formato de `aNA soFIA moRALES`: __________________________
+
+<details>
+<summary><strong>Ver respuestas</strong></summary>
+
+1. Cantidad de caracteres: **17**
+2. Cantidad de palabras: **3**
+3. Nombre convertido a mayúsculas: **ANA SOFIA MORALES**
+4. Iniciales: **ASM**
+5. Formato correcto: **Ana Sofia Morales**
+
+</details>
+
+# 17. Preguntas de cierre
+
+Responda con sus propias palabras:
+
+1. ¿Por qué necesitamos una lectura especial cuando el nombre contiene espacios?
+2. ¿En qué posición comienza una cadena?
+3. ¿Cómo podemos determinar la cantidad de caracteres de una cadena?
+4. ¿Qué significa recorrer una cadena carácter por carácter?
+5. ¿Por qué un espacio también cuenta dentro de la longitud de una cadena?
+6. ¿Cuál es la diferencia entre un procedimiento y una función que devuelve un valor?
+7. ¿Por qué es conveniente dividir un programa en varias funciones?
+8. ¿Puede una función recibir una cadena como parámetro?
+9. ¿Puede una función devolver una cadena?
+10. ¿Qué conocimientos anteriores utilizamos para resolver este laboratorio?
+
+<details>
+<summary><strong>Orientación para el docente</strong></summary>
+
+1. Porque una lectura convencional puede detenerse al encontrar el primer espacio; necesitamos capturar la línea completa.
+2. En la posición `0`.
+3. Utilizando la operación que proporciona la longitud del `string`.
+4. Examinar cada carácter almacenado en sus diferentes posiciones.
+5. Porque el espacio también es un carácter almacenado dentro de la cadena.
+6. Un procedimiento realiza una tarea; una función puede además devolver un resultado mediante `return`.
+7. Permite separar responsabilidades, reutilizar código y facilitar la comprensión del programa.
+8. Sí.
+9. Sí.
+10. Variables, tipos de datos, decisiones, ciclos, operadores, procedimientos, funciones y parámetros.
+
+</details>
+
+# Producto final del laboratorio
+
+Al finalizar, el programa deberá contener como mínimo:
+
+- Un procedimiento para solicitar los datos y coordinar la presentación de resultados.
+- Una función para calcular la edad a partir del año de nacimiento.
+- Una función para obtener la longitud del nombre.
+- Una función para contar palabras.
+- Una función para convertir la cadena a mayúsculas.
+- Una función para obtener las iniciales.
+- Una función para dar formato correcto al nombre.
+- Dos funciones adicionales seleccionadas del reto individual.
+- Una función principal sencilla que inicie el programa.
+
+> **Meta del laboratorio:** utilizar las cadenas como una oportunidad para integrar lo aprendido. No estamos comenzando de cero: estamos usando variables, ciclos, decisiones, procedimientos y funciones para resolver problemas cada vez más completos.
+
+# Para seguir practicando
+
+Construya un programa similar que solicite una **frase completa** y permita obtener:
+
+- Cantidad de caracteres.
+- Cantidad de palabras.
+- Cantidad de vocales.
+- Frase en mayúsculas.
+- Frase en minúsculas.
+- Frase invertida.
+
+Cada operación deberá resolverse mediante una función independiente.
+
+---
+
+**Cierre:** una cadena puede ser leída, recorrida, analizada y transformada. Al combinar `string` con funciones, ciclos y decisiones comenzamos a construir programas más organizados y capaces de resolver problemas más interesantes.

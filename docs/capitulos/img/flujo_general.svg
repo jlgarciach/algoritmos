@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620">
+<style>
+text{font-family:Arial,sans-serif;fill:#263238}.t{font-size:25px;font-weight:bold}.s{font-size:20px}
+.box{fill:#f7fbfa;stroke:#319f90;stroke-width:3;rx:16}.menu{fill:#fff5ef;stroke:#d35400;stroke-width:3;rx:16}
+.end{fill:#fbeae5;stroke:#d35400;stroke-width:3;rx:16}.line{stroke:#646464;stroke-width:3;fill:none;marker-end:url(#a)}
+</style><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#646464"/></marker></defs>
+<rect x="430" y="25" width="240" height="65" class="box"/><text x="550" y="66" text-anchor="middle" class="t">INICIO</text>
+<path d="M550 90 V130" class="line"/>
+<rect x="365" y="130" width="370" height="80" class="box"/><text x="550" y="165" text-anchor="middle" class="t">AUTENTICACIÓN</text><text x="550" y="195" text-anchor="middle" class="s">usuario + contraseña</text>
+<path d="M550 210 V255" class="line"/>
+<rect x="390" y="255" width="320" height="70" class="menu"/><text x="550" y="298" text-anchor="middle" class="t">MENÚ PRINCIPAL</text>
+<path d="M550 325 V370 M550 370 H140 M550 370 H960" stroke="#646464" stroke-width="3" fill="none"/>
+<path d="M140 370 V405 M345 370 V405 M550 370 V405 M755 370 V405 M960 370 V405" class="line"/>
+<rect x="55" y="405" width="170" height="75" class="box"/><text x="140" y="450" text-anchor="middle" class="s">1. Registrar</text>
+<rect x="260" y="405" width="170" height="75" class="box"/><text x="345" y="450" text-anchor="middle" class="s">2. Mostrar</text>
+<rect x="465" y="405" width="170" height="75" class="box"/><text x="550" y="438" text-anchor="middle" class="s">3. Calcular</text><text x="550" y="463" text-anchor="middle" class="s">bono</text>
+<rect x="670" y="405" width="170" height="75" class="box"/><text x="755" y="450" text-anchor="middle" class="s">4. Estado</text>
+<rect x="875" y="405" width="170" height="75" class="end"/><text x="960" y="450" text-anchor="middle" class="s">5. Salir</text>
+<path d="M960 480 V545 H550" class="line"/>
+<rect x="430" y="525" width="240" height="65" class="end"/><text x="550" y="566" text-anchor="middle" class="t">FIN</text>
+</svg>

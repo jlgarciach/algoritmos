@@ -58,5 +58,8 @@
   },
   "capitulos/14_laboratorio_matrices.qmd": {
     "14_laboratorio_matrices.html": "36b56d7b"
+  },
+  "capitulos/16_cadenas_en_cpp.qmd": {
+    "16_cadenas_en_cpp.html": "e61a6b2f"
   }
 }

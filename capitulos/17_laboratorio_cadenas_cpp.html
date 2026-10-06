@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ing. Jorge L. García">
+
+<title>Laboratorio: Cadenas en C++</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="17_laboratorio_cadenas_cpp_files/libs/clipboard/clipboard.min.js"></script>
+<script src="17_laboratorio_cadenas_cpp_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="17_laboratorio_cadenas_cpp_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="17_laboratorio_cadenas_cpp_files/libs/quarto-html/popper.min.js"></script>
+<script src="17_laboratorio_cadenas_cpp_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="17_laboratorio_cadenas_cpp_files/libs/quarto-html/anchor.min.js"></script>
+<link href="17_laboratorio_cadenas_cpp_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="17_laboratorio_cadenas_cpp_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="17_laboratorio_cadenas_cpp_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="17_laboratorio_cadenas_cpp_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="17_laboratorio_cadenas_cpp_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#propósito-del-laboratorio" id="toc-propósito-del-laboratorio" class="nav-link active" data-scroll-target="#propósito-del-laboratorio"><span class="header-section-number">1</span> Propósito del laboratorio</a>
+  <ul class="collapse">
+  <li><a href="#objetivos-de-aprendizaje" id="toc-objetivos-de-aprendizaje" class="nav-link" data-scroll-target="#objetivos-de-aprendizaje"><span class="header-section-number">1.1</span> Objetivos de aprendizaje</a></li>
+  </ul></li>
+  <li><a href="#el-problema" id="toc-el-problema" class="nav-link" data-scroll-target="#el-problema"><span class="header-section-number">2</span> 1. El problema</a></li>
+  <li><a href="#diseñemos-antes-de-programar" id="toc-diseñemos-antes-de-programar" class="nav-link" data-scroll-target="#diseñemos-antes-de-programar"><span class="header-section-number">3</span> 2. Diseñemos antes de programar</a></li>
+  <li><a href="#preparación-del-programa" id="toc-preparación-del-programa" class="nav-link" data-scroll-target="#preparación-del-programa"><span class="header-section-number">4</span> 3. Preparación del programa</a></li>
+  <li><a href="#paso-1-solicitar-los-datos" id="toc-paso-1-solicitar-los-datos" class="nav-link" data-scroll-target="#paso-1-solicitar-los-datos"><span class="header-section-number">5</span> 4. Paso 1: solicitar los datos</a>
+  <ul class="collapse">
+  <li><a href="#un-pequeño-problema-que-debemos-resolver" id="toc-un-pequeño-problema-que-debemos-resolver" class="nav-link" data-scroll-target="#un-pequeño-problema-que-debemos-resolver"><span class="header-section-number">5.1</span> Un pequeño problema que debemos resolver</a></li>
+  </ul></li>
+  <li><a href="#paso-2-calcular-la-edad" id="toc-paso-2-calcular-la-edad" class="nav-link" data-scroll-target="#paso-2-calcular-la-edad"><span class="header-section-number">6</span> 5. Paso 2: calcular la edad</a></li>
+  <li><a href="#paso-3-obtener-la-longitud-del-nombre" id="toc-paso-3-obtener-la-longitud-del-nombre" class="nav-link" data-scroll-target="#paso-3-obtener-la-longitud-del-nombre"><span class="header-section-number">7</span> 6. Paso 3: obtener la longitud del nombre</a></li>
+  <li><a href="#paso-4-contar-las-palabras-del-nombre" id="toc-paso-4-contar-las-palabras-del-nombre" class="nav-link" data-scroll-target="#paso-4-contar-las-palabras-del-nombre"><span class="header-section-number">8</span> 7. Paso 4: contar las palabras del nombre</a>
+  <ul class="collapse">
+  <li><a href="#antes-de-programar" id="toc-antes-de-programar" class="nav-link" data-scroll-target="#antes-de-programar"><span class="header-section-number">8.0.1</span> Antes de programar</a></li>
+  </ul></li>
+  <li><a href="#paso-5-convertir-el-nombre-a-mayúsculas" id="toc-paso-5-convertir-el-nombre-a-mayúsculas" class="nav-link" data-scroll-target="#paso-5-convertir-el-nombre-a-mayúsculas"><span class="header-section-number">9</span> 8. Paso 5: convertir el nombre a mayúsculas</a></li>
+  <li><a href="#paso-6-obtener-las-iniciales" id="toc-paso-6-obtener-las-iniciales" class="nav-link" data-scroll-target="#paso-6-obtener-las-iniciales"><span class="header-section-number">10</span> 9. Paso 6: obtener las iniciales</a>
+  <ul class="collapse">
+  <li><a href="#pista-de-análisis" id="toc-pista-de-análisis" class="nav-link" data-scroll-target="#pista-de-análisis"><span class="header-section-number">10.0.1</span> Pista de análisis</a></li>
+  </ul></li>
+  <li><a href="#integramos-las-funciones-en-el-procedimiento" id="toc-integramos-las-funciones-en-el-procedimiento" class="nav-link" data-scroll-target="#integramos-las-funciones-en-el-procedimiento"><span class="header-section-number">11</span> 10. Integramos las funciones en el procedimiento</a></li>
+  <li><a href="#construya-la-función-principal" id="toc-construya-la-función-principal" class="nav-link" data-scroll-target="#construya-la-función-principal"><span class="header-section-number">12</span> 11. Construya la función principal</a></li>
+  <li><a href="#programa-completo" id="toc-programa-completo" class="nav-link" data-scroll-target="#programa-completo"><span class="header-section-number">13</span> 12. Programa completo</a></li>
+  <li><a href="#comprobemos-el-programa" id="toc-comprobemos-el-programa" class="nav-link" data-scroll-target="#comprobemos-el-programa"><span class="header-section-number">14</span> 13. Comprobemos el programa</a></li>
+  <li><a href="#un-desafío-adicional-corregir-el-formato-del-nombre" id="toc-un-desafío-adicional-corregir-el-formato-del-nombre" class="nav-link" data-scroll-target="#un-desafío-adicional-corregir-el-formato-del-nombre"><span class="header-section-number">15</span> 14. Un desafío adicional: corregir el formato del nombre</a></li>
+  <li><a href="#reto-individual" id="toc-reto-individual" class="nav-link" data-scroll-target="#reto-individual"><span class="header-section-number">16</span> 15. Reto individual</a>
+  <ul class="collapse">
+  <li><a href="#condiciones" id="toc-condiciones" class="nav-link" data-scroll-target="#condiciones"><span class="header-section-number">16.1</span> Condiciones</a></li>
+  </ul></li>
+  <li><a href="#reto-de-análisis" id="toc-reto-de-análisis" class="nav-link" data-scroll-target="#reto-de-análisis"><span class="header-section-number">17</span> 16. Reto de análisis</a></li>
+  <li><a href="#preguntas-de-cierre" id="toc-preguntas-de-cierre" class="nav-link" data-scroll-target="#preguntas-de-cierre"><span class="header-section-number">18</span> 17. Preguntas de cierre</a></li>
+  <li><a href="#producto-final-del-laboratorio" id="toc-producto-final-del-laboratorio" class="nav-link" data-scroll-target="#producto-final-del-laboratorio"><span class="header-section-number">19</span> Producto final del laboratorio</a></li>
+  <li><a href="#para-seguir-practicando" id="toc-para-seguir-practicando" class="nav-link" data-scroll-target="#para-seguir-practicando"><span class="header-section-number">20</span> Para seguir practicando</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="17_laboratorio_cadenas_cpp.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Laboratorio: Cadenas en C++</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ing. Jorge L. García </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="propósito-del-laboratorio" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Propósito del laboratorio</h1>
+<p>En este laboratorio construiremos un programa completo para profundizar en el manejo de variables de tipo <code>string</code> y, al mismo tiempo, reforzar conocimientos que ya hemos trabajado: <strong>variables, decisiones, ciclos, procedimientos, funciones y parámetros</strong>.</p>
+<p>Trabajaremos con un dato que utilizamos todos los días: <strong>el nombre completo de una persona</strong>. A partir de él aprenderemos que una cadena no solamente se almacena o se muestra en pantalla; también podemos <strong>medirla, recorrerla carácter por carácter, contar sus palabras y transformarla</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Idea clave:</strong> una cadena está formada por caracteres. Al analizar esos caracteres podemos obtener nueva información y transformar el texto.</p>
+</blockquote>
+<section id="objetivos-de-aprendizaje" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objetivos-de-aprendizaje"><span class="header-section-number">1.1</span> Objetivos de aprendizaje</h2>
+<p>Al finalizar el laboratorio, el estudiante será capaz de:</p>
+<ul>
+<li>Declarar y utilizar variables de tipo <code>string</code>.</li>
+<li>Leer nombres completos que contienen espacios.</li>
+<li>Utilizar procedimientos y funciones dentro de un mismo programa.</li>
+<li>Enviar información a funciones mediante parámetros por valor.</li>
+<li>Determinar la longitud de una cadena.</li>
+<li>Recorrer una cadena carácter por carácter.</li>
+<li>Contar palabras dentro de una cadena.</li>
+<li>Transformar los caracteres de un texto.</li>
+<li>Integrar diferentes módulos dentro de una solución completa.</li>
+</ul>
+</section>
+</section>
+<section id="el-problema" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> 1. El problema</h1>
+<p>Construiremos un programa que solicite al usuario:</p>
+<ul>
+<li>Su <strong>nombre completo</strong>.</li>
+<li>Su <strong>año de nacimiento</strong>.</li>
+</ul>
+<p>A partir de esos datos, el programa deberá mostrar:</p>
+<ol type="1">
+<li>Edad aproximada en años.</li>
+<li>Cantidad de caracteres que contiene el nombre completo.</li>
+<li>Cantidad de palabras que forman el nombre.</li>
+<li>Nombre completo convertido a mayúsculas.</li>
+<li>Iniciales de la persona.</li>
+</ol>
+<p>El programa deberá estar organizado mediante <strong>un procedimiento y varias funciones</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Importante:</strong> antes de consultar cada solución, intente construirla. El objetivo del laboratorio es analizar, diseñar y programar, no copiar código.</p>
+</blockquote>
+</section>
+<section id="diseñemos-antes-de-programar" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 2. Diseñemos antes de programar</h1>
+<p>Dividamos el problema en tareas pequeñas.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Módulo</th>
+<th>Tipo</th>
+<th>Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Solicitar datos</td>
+<td>Procedimiento</td>
+<td>Solicitar nombre completo y año de nacimiento y mostrar los resultados</td>
+</tr>
+<tr class="even">
+<td>Calcular edad</td>
+<td>Función</td>
+<td>Obtener la edad aproximada a partir del año de nacimiento</td>
+</tr>
+<tr class="odd">
+<td>Longitud del nombre</td>
+<td>Función</td>
+<td>Determinar la cantidad de caracteres</td>
+</tr>
+<tr class="even">
+<td>Contar palabras</td>
+<td>Función</td>
+<td>Determinar cuántas palabras forman el nombre</td>
+</tr>
+<tr class="odd">
+<td>Convertir a mayúsculas</td>
+<td>Función</td>
+<td>Transformar el nombre completo a letras mayúsculas</td>
+</tr>
+<tr class="even">
+<td>Obtener iniciales</td>
+<td>Función</td>
+<td>Construir las iniciales de la persona</td>
+</tr>
+</tbody>
+</table>
+<p>Observe que cada módulo tiene <strong>una responsabilidad específica</strong>.</p>
+<p>La idea es que la función principal únicamente inicie el programa y que el trabajo se distribuya entre el procedimiento y las funciones.</p>
+</section>
+<section id="preparación-del-programa" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> 3. Preparación del programa</h1>
+<p>Para trabajar con este laboratorio necesitaremos las herramientas de C++ que permiten:</p>
+<ul>
+<li>Entrada y salida de información.</li>
+<li>Manejo de cadenas.</li>
+<li>Transformación de caracteres entre mayúsculas y minúsculas.</li>
+</ul>
+<p>Antes de continuar, cree un programa nuevo en C++ y prepare la estructura básica necesaria.</p>
+<details>
+<summary>
+<strong>Ver preparación del programa</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cctype&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="paso-1-solicitar-los-datos" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 4. Paso 1: solicitar los datos</h1>
+<p>Nuestro primer módulo será un <strong>procedimiento</strong> encargado de coordinar el programa.</p>
+<p>Dentro de este procedimiento debemos:</p>
+<ol type="1">
+<li>Crear una variable para almacenar el nombre completo.</li>
+<li>Crear una variable para almacenar el año de nacimiento.</li>
+<li>Solicitar ambos datos al usuario.</li>
+<li>Conservarlos para enviarlos posteriormente a las diferentes funciones.</li>
+</ol>
+<section id="un-pequeño-problema-que-debemos-resolver" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="un-pequeño-problema-que-debemos-resolver"><span class="header-section-number">5.1</span> Un pequeño problema que debemos resolver</h2>
+<p>El nombre de una persona normalmente contiene espacios. Por ejemplo:</p>
+<pre class="text"><code>Maria Fernanda Lopez</code></pre>
+<p>Por lo tanto, debemos utilizar una forma de lectura que permita capturar <strong>toda la línea</strong> y no solamente la primera palabra.</p>
+<p>Intente construir el procedimiento antes de consultar la solución.</p>
+<details>
+<summary>
+<strong>Ver solución: procedimiento para solicitar datos</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solicitarDatos<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    string nombre<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> anioNacimiento<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese su nombre completo: "</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    getline<span class="op">(</span>cin<span class="op">,</span> nombre<span class="op">);</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese su anio de nacimiento: "</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> anioNacimiento<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Observe:</strong> utilizamos <code>getline()</code> porque necesitamos capturar el nombre completo, incluyendo los espacios.</p>
+</details>
+</section>
+</section>
+<section id="paso-2-calcular-la-edad" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 5. Paso 2: calcular la edad</h1>
+<p>Construya una función que reciba como parámetro el <strong>año de nacimiento</strong> y devuelva la <strong>edad aproximada</strong> de la persona.</p>
+<p>Para este laboratorio utilizaremos <strong>2026 como año actual</strong>.</p>
+<p>Por ejemplo:</p>
+<pre class="text"><code>Año de nacimiento: 2005
+Edad aproximada: 21 años</code></pre>
+<p>Piense antes de programar:</p>
+<ul>
+<li>¿Qué dato recibe la función?</li>
+<li>¿Qué tipo de dato debe devolver?</li>
+<li>¿Qué operación matemática necesita realizar?</li>
+</ul>
+<details>
+<summary>
+<strong>Ver solución: función para calcular la edad</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> calcularEdad<span class="op">(</span><span class="dt">int</span> anioNacimiento<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">2026</span> <span class="op">-</span> anioNacimiento<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<blockquote class="blockquote">
+<p><strong>Nota:</strong> la edad es aproximada porque solamente estamos utilizando el año de nacimiento. No conocemos el día ni el mes.</p>
+</blockquote>
+</section>
+<section id="paso-3-obtener-la-longitud-del-nombre" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> 6. Paso 3: obtener la longitud del nombre</h1>
+<p>Ahora construiremos una función que reciba el <strong>nombre completo</strong> y devuelva la cantidad total de caracteres que contiene.</p>
+<p>Recuerde que los espacios también forman parte de una cadena y, por lo tanto, cuentan como caracteres.</p>
+<p>Por ejemplo:</p>
+<pre class="text"><code>Ana Lopez</code></pre>
+<p>contiene <strong>9 caracteres</strong>.</p>
+<p>Antes de consultar la solución, determine mentalmente:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Cadena</th>
+<th style="text-align: right;">Cantidad de caracteres</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Luis</code></td>
+<td style="text-align: right;">?</td>
+</tr>
+<tr class="even">
+<td><code>Ana Maria</code></td>
+<td style="text-align: right;">?</td>
+</tr>
+<tr class="odd">
+<td><code>Juan Perez</code></td>
+<td style="text-align: right;">?</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+<strong>Ver respuestas y solución</strong>
+</summary>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Cadena</th>
+<th style="text-align: right;">Cantidad de caracteres</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Luis</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td><code>Ana Maria</code></td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td><code>Juan Perez</code></td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+<p>La función puede construirse así:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> longitudNombre<span class="op">(</span>string nombre<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nombre<span class="op">.</span>length<span class="op">();</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El método <code>.length()</code> devuelve la cantidad de caracteres almacenados en la cadena.</p>
+</details>
+</section>
+<section id="paso-4-contar-las-palabras-del-nombre" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> 7. Paso 4: contar las palabras del nombre</h1>
+<p>Ahora tenemos un problema más interesante.</p>
+<p>Observe el siguiente nombre:</p>
+<pre class="text"><code>Jorge Luis Garcia Chacon</code></pre>
+<p>Visualmente podemos determinar que contiene <strong>cuatro palabras</strong>. Sin embargo, nuestro programa debe descubrirlo automáticamente.</p>
+<p>Construya una función que:</p>
+<ol type="1">
+<li>Reciba el nombre completo.</li>
+<li>Recorra sus caracteres uno por uno.</li>
+<li>Detecte cuándo comienza una nueva palabra.</li>
+<li>Lleve un contador.</li>
+<li>Devuelva la cantidad total de palabras encontradas.</li>
+</ol>
+<section id="antes-de-programar" class="level3" data-number="8.0.1">
+<h3 data-number="8.0.1" class="anchored" data-anchor-id="antes-de-programar"><span class="header-section-number">8.0.1</span> Antes de programar</h3>
+<p>Analice estas entradas:</p>
+<pre class="text"><code>Carlos
+Ana Maria
+Juan Carlos Perez</code></pre>
+<p>¿Cuántas palabras debería devolver la función en cada caso?</p>
+<p>Piense cómo podría utilizar los <strong>espacios</strong> para detectar dónde termina o comienza una palabra.</p>
+<details>
+<summary>
+<strong>Ver solución: función para contar palabras</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> contarPalabras<span class="op">(</span>string texto<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> palabras <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> dentroPalabra <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> texto<span class="op">.</span>length<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>texto<span class="op">[</span>i<span class="op">]</span> <span class="op">!=</span> <span class="ch">' '</span> <span class="op">&amp;&amp;</span> dentroPalabra <span class="op">==</span> <span class="kw">false</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            palabras<span class="op">++;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>            dentroPalabra <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>texto<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">' '</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>            dentroPalabra <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> palabras<span class="op">;</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En esta solución estamos integrando varios conocimientos anteriores: variables, <code>bool</code>, ciclos, decisiones, operadores, parámetros y retorno de valores.</p>
+</details>
+</section>
+</section>
+<section id="paso-5-convertir-el-nombre-a-mayúsculas" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> 8. Paso 5: convertir el nombre a mayúsculas</h1>
+<p>Construya una función que reciba el nombre completo y devuelva una nueva cadena con todas sus letras en mayúscula.</p>
+<p>Ejemplo:</p>
+<pre class="text"><code>Entrada : Jorge Luis Garcia
+Salida  : JORGE LUIS GARCIA</code></pre>
+<p>Para resolverlo deberá pensar en algo importante:</p>
+<blockquote class="blockquote">
+<p>Si queremos transformar todo el nombre, tendremos que recorrer todos sus caracteres.</p>
+</blockquote>
+<p>La función deberá devolver un <code>string</code>.</p>
+<details>
+<summary>
+<strong>Ver solución: convertir a mayúsculas</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>string convertirMayusculas<span class="op">(</span>string texto<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> texto<span class="op">.</span>length<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        texto<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> toupper<span class="op">(</span>texto<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> texto<span class="op">;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>toupper()</code> transforma un carácter a mayúscula. Al combinarla con un ciclo podemos transformar la cadena completa.</p>
+</details>
+</section>
+<section id="paso-6-obtener-las-iniciales" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> 9. Paso 6: obtener las iniciales</h1>
+<p>Construiremos ahora una función que transforme:</p>
+<pre class="text"><code>Jorge Luis Garcia Chacon</code></pre>
+<p>en:</p>
+<pre class="text"><code>JLGC</code></pre>
+<p>La función deberá:</p>
+<ol type="1">
+<li>Recibir el nombre completo.</li>
+<li>Identificar la primera letra de cada palabra.</li>
+<li>Convertir cada inicial a mayúscula.</li>
+<li>Construir una nueva cadena con las iniciales encontradas.</li>
+<li>Devolver el resultado.</li>
+</ol>
+<section id="pista-de-análisis" class="level3" data-number="10.0.1">
+<h3 data-number="10.0.1" class="anchored" data-anchor-id="pista-de-análisis"><span class="header-section-number">10.0.1</span> Pista de análisis</h3>
+<p>No piense todavía en instrucciones de C++. Piense primero en cómo lo haría una persona:</p>
+<ul>
+<li>La primera letra del nombre es una inicial.</li>
+<li>Después de un espacio comienza otra palabra.</li>
+<li>La primera letra de esa nueva palabra también es una inicial.</li>
+</ul>
+<p>Ahora intente convertir esa lógica en un algoritmo.</p>
+<details>
+<summary>
+<strong>Ver solución: obtener iniciales</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>string obtenerIniciales<span class="op">(</span>string nombre<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    string iniciales <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>nombre<span class="op">.</span>length<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        iniciales <span class="op">+=</span> toupper<span class="op">(</span>nombre<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> nombre<span class="op">.</span>length<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>nombre<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">==</span> <span class="ch">' '</span> <span class="op">&amp;&amp;</span> nombre<span class="op">[</span>i<span class="op">]</span> <span class="op">!=</span> <span class="ch">' '</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>            iniciales <span class="op">+=</span> toupper<span class="op">(</span>nombre<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> iniciales<span class="op">;</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+</section>
+<section id="integramos-las-funciones-en-el-procedimiento" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> 10. Integramos las funciones en el procedimiento</h1>
+<p>Ya tenemos las piezas principales. Ahora debemos regresar al procedimiento que solicita los datos.</p>
+<p>Modifíquelo para que, después de capturar el nombre y el año de nacimiento, muestre:</p>
+<ul>
+<li>Nombre ingresado.</li>
+<li>Edad aproximada.</li>
+<li>Cantidad de caracteres.</li>
+<li>Cantidad de palabras.</li>
+<li>Nombre en mayúsculas.</li>
+<li>Iniciales.</li>
+</ul>
+<p>La condición es importante:</p>
+<blockquote class="blockquote">
+<p>El procedimiento <strong>no debe volver a resolver los cálculos</strong>. Debe utilizar las funciones que ya construimos.</p>
+</blockquote>
+<p>Intente realizar la integración completa antes de abrir la solución.</p>
+<details>
+<summary>
+<strong>Ver solución: procedimiento integrado</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solicitarDatos<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    string nombre<span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> anioNacimiento<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese su nombre completo: "</span><span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    getline<span class="op">(</span>cin<span class="op">,</span> nombre<span class="op">);</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese su anio de nacimiento: "</span><span class="op">;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> anioNacimiento<span class="op">;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">========== RESULTADOS =========="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Nombre: "</span> <span class="op">&lt;&lt;</span> nombre <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Edad aproximada: "</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> calcularEdad<span class="op">(</span>anioNacimiento<span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="st">" anios"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Cantidad de caracteres: "</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> longitudNombre<span class="op">(</span>nombre<span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Cantidad de palabras: "</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> contarPalabras<span class="op">(</span>nombre<span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Nombre en mayusculas: "</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> convertirMayusculas<span class="op">(</span>nombre<span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Iniciales: "</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> obtenerIniciales<span class="op">(</span>nombre<span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="construya-la-función-principal" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> 11. Construya la función principal</h1>
+<p>Llegó el momento de crear la función principal del programa.</p>
+<p>Como hemos distribuido las responsabilidades correctamente, la función principal debe ser <strong>muy sencilla</strong>: solamente necesita iniciar el procedimiento que coordina nuestro programa.</p>
+<p>Intente construirla.</p>
+<details>
+<summary>
+<strong>Ver solución: función principal</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    solicitarDatos<span class="op">();</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esto nos permite observar una idea importante de la programación modular: la función principal coordina el inicio y los demás módulos realizan las tareas específicas.</p>
+</details>
+</section>
+<section id="programa-completo" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> 12. Programa completo</h1>
+<p>Antes de abrir la solución completa, revise su programa y compruebe que contiene, en un orden adecuado:</p>
+<ol type="1">
+<li>Librerías necesarias.</li>
+<li>Espacio de nombres.</li>
+<li>Función para calcular la edad.</li>
+<li>Función para obtener la longitud.</li>
+<li>Función para contar palabras.</li>
+<li>Función para convertir a mayúsculas.</li>
+<li>Función para obtener las iniciales.</li>
+<li>Procedimiento para solicitar datos y mostrar resultados.</li>
+<li>Función principal.</li>
+</ol>
+<p>Compile y corrija los errores que encuentre.</p>
+<details>
+<summary>
+<strong>Ver programa completo</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cctype&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> calcularEdad<span class="op">(</span><span class="dt">int</span> anioNacimiento<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">2026</span> <span class="op">-</span> anioNacimiento<span class="op">;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> longitudNombre<span class="op">(</span>string nombre<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nombre<span class="op">.</span>length<span class="op">();</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> contarPalabras<span class="op">(</span>string texto<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> palabras <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> dentroPalabra <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> texto<span class="op">.</span>length<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>texto<span class="op">[</span>i<span class="op">]</span> <span class="op">!=</span> <span class="ch">' '</span> <span class="op">&amp;&amp;</span> dentroPalabra <span class="op">==</span> <span class="kw">false</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>            palabras<span class="op">++;</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>            dentroPalabra <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>texto<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">' '</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>            dentroPalabra <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> palabras<span class="op">;</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>string convertirMayusculas<span class="op">(</span>string texto<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> texto<span class="op">.</span>length<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>        texto<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> toupper<span class="op">(</span>texto<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> texto<span class="op">;</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>string obtenerIniciales<span class="op">(</span>string nombre<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>    string iniciales <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>nombre<span class="op">.</span>length<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>        iniciales <span class="op">+=</span> toupper<span class="op">(</span>nombre<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> nombre<span class="op">.</span>length<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>nombre<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">==</span> <span class="ch">' '</span> <span class="op">&amp;&amp;</span> nombre<span class="op">[</span>i<span class="op">]</span> <span class="op">!=</span> <span class="ch">' '</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>            iniciales <span class="op">+=</span> toupper<span class="op">(</span>nombre<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> iniciales<span class="op">;</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solicitarDatos<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>    string nombre<span class="op">;</span></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> anioNacimiento<span class="op">;</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese su nombre completo: "</span><span class="op">;</span></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>    getline<span class="op">(</span>cin<span class="op">,</span> nombre<span class="op">);</span></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Ingrese su anio de nacimiento: "</span><span class="op">;</span></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> anioNacimiento<span class="op">;</span></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">========== RESULTADOS =========="</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Nombre: "</span> <span class="op">&lt;&lt;</span> nombre <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Edad aproximada: "</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> calcularEdad<span class="op">(</span>anioNacimiento<span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="st">" anios"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Cantidad de caracteres: "</span></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> longitudNombre<span class="op">(</span>nombre<span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Cantidad de palabras: "</span></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> contarPalabras<span class="op">(</span>nombre<span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Nombre en mayusculas: "</span></span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> convertirMayusculas<span class="op">(</span>nombre<span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Iniciales: "</span></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>         <span class="op">&lt;&lt;</span> obtenerIniciales<span class="op">(</span>nombre<span class="op">)</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>    solicitarDatos<span class="op">();</span></span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="comprobemos-el-programa" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> 13. Comprobemos el programa</h1>
+<p>Realice una prueba utilizando los siguientes datos:</p>
+<pre class="text"><code>Nombre completo: Maria Fernanda Lopez
+Año de nacimiento: 2005</code></pre>
+<p><strong>Antes de ejecutar</strong>, escriba en su cuaderno qué resultados espera obtener para:</p>
+<ul>
+<li>Edad.</li>
+<li>Longitud del nombre.</li>
+<li>Número de palabras.</li>
+<li>Nombre en mayúsculas.</li>
+<li>Iniciales.</li>
+</ul>
+<p>Después ejecute el programa y compare sus predicciones.</p>
+<details>
+<summary>
+<strong>Ver resultado esperado</strong>
+</summary>
+<pre class="text"><code>========== RESULTADOS ==========
+Nombre: Maria Fernanda Lopez
+Edad aproximada: 21 anios
+Cantidad de caracteres: 20
+Cantidad de palabras: 3
+Nombre en mayusculas: MARIA FERNANDA LOPEZ
+Iniciales: MFL</code></pre>
+</details>
+</section>
+<section id="un-desafío-adicional-corregir-el-formato-del-nombre" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> 14. Un desafío adicional: corregir el formato del nombre</h1>
+<p>Ahora aumentaremos un poco la dificultad.</p>
+<p>Queremos construir una nueva función capaz de transformar:</p>
+<pre class="text"><code>jORGE lUIS garCIA</code></pre>
+<p>en:</p>
+<pre class="text"><code>Jorge Luis Garcia</code></pre>
+<p>La regla será:</p>
+<ul>
+<li>La primera letra de cada palabra debe quedar en mayúscula.</li>
+<li>Las demás letras deben quedar en minúscula.</li>
+<li>Los espacios deben conservarse.</li>
+</ul>
+<p>Antes de programar, responda:</p>
+<ol type="1">
+<li>¿Cómo podemos reconocer que estamos al inicio de una palabra?</li>
+<li>¿Qué debemos hacer cuando encontramos un espacio?</li>
+<li>¿Será necesario recorrer toda la cadena?</li>
+<li>¿Qué deberá devolver la función?</li>
+</ol>
+<p>Intente construirla y agréguela al programa.</p>
+<details>
+<summary>
+<strong>Ver solución: formato correcto del nombre</strong>
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>string formatoNombre<span class="op">(</span>string texto<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> nuevaPalabra <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> texto<span class="op">.</span>length<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>texto<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">' '</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            nuevaPalabra <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>nuevaPalabra <span class="op">==</span> <span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>            texto<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> toupper<span class="op">(</span>texto<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            nuevaPalabra <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>            texto<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> tolower<span class="op">(</span>texto<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> texto<span class="op">;</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="reto-individual" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> 15. Reto individual</h1>
+<p>Ahora le corresponde ampliar el programa.</p>
+<p>Agregue <strong>dos funciones nuevas</strong>. Puede seleccionar entre las siguientes opciones:</p>
+<ul>
+<li>Contar cuántas vocales tiene el nombre.</li>
+<li>Contar cuántas veces aparece la letra <code>a</code> o <code>A</code>.</li>
+<li>Mostrar el nombre al revés.</li>
+<li>Obtener la primera letra del nombre.</li>
+<li>Obtener la última letra del nombre.</li>
+<li>Convertir todo el nombre a minúsculas.</li>
+</ul>
+<section id="condiciones" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="condiciones"><span class="header-section-number">16.1</span> Condiciones</h2>
+<ul>
+<li>Cada operación debe resolverse mediante una <strong>función diferente</strong>.</li>
+<li>Las funciones deben recibir el nombre mediante un parámetro.</li>
+<li>No se permite colocar toda la solución directamente dentro de la función principal.</li>
+<li>Debe utilizar al menos un ciclo en una de las funciones nuevas.</li>
+<li>Los resultados deben integrarse a la salida general del programa.</li>
+</ul>
+</section>
+</section>
+<section id="reto-de-análisis" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> 16. Reto de análisis</h1>
+<p>Sin ejecutar el programa, considere el siguiente nombre:</p>
+<pre class="text"><code>Ana Sofia Morales</code></pre>
+<p>Determine:</p>
+<ol type="1">
+<li>Cantidad de caracteres: __________</li>
+<li>Cantidad de palabras: __________</li>
+<li>Nombre convertido a mayúsculas: __________________________</li>
+<li>Iniciales: __________</li>
+<li>Resultado de corregir el formato de <code>aNA soFIA moRALES</code>: __________________________</li>
+</ol>
+<details>
+<summary>
+<strong>Ver respuestas</strong>
+</summary>
+<ol type="1">
+<li>Cantidad de caracteres: <strong>17</strong></li>
+<li>Cantidad de palabras: <strong>3</strong></li>
+<li>Nombre convertido a mayúsculas: <strong>ANA SOFIA MORALES</strong></li>
+<li>Iniciales: <strong>ASM</strong></li>
+<li>Formato correcto: <strong>Ana Sofia Morales</strong></li>
+</ol>
+</details>
+</section>
+<section id="preguntas-de-cierre" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> 17. Preguntas de cierre</h1>
+<p>Responda con sus propias palabras:</p>
+<ol type="1">
+<li>¿Por qué necesitamos una lectura especial cuando el nombre contiene espacios?</li>
+<li>¿En qué posición comienza una cadena?</li>
+<li>¿Cómo podemos determinar la cantidad de caracteres de una cadena?</li>
+<li>¿Qué significa recorrer una cadena carácter por carácter?</li>
+<li>¿Por qué un espacio también cuenta dentro de la longitud de una cadena?</li>
+<li>¿Cuál es la diferencia entre un procedimiento y una función que devuelve un valor?</li>
+<li>¿Por qué es conveniente dividir un programa en varias funciones?</li>
+<li>¿Puede una función recibir una cadena como parámetro?</li>
+<li>¿Puede una función devolver una cadena?</li>
+<li>¿Qué conocimientos anteriores utilizamos para resolver este laboratorio?</li>
+</ol>
+<details>
+<summary>
+<strong>Orientación para el docente</strong>
+</summary>
+<ol type="1">
+<li>Porque una lectura convencional puede detenerse al encontrar el primer espacio; necesitamos capturar la línea completa.</li>
+<li>En la posición <code>0</code>.</li>
+<li>Utilizando la operación que proporciona la longitud del <code>string</code>.</li>
+<li>Examinar cada carácter almacenado en sus diferentes posiciones.</li>
+<li>Porque el espacio también es un carácter almacenado dentro de la cadena.</li>
+<li>Un procedimiento realiza una tarea; una función puede además devolver un resultado mediante <code>return</code>.</li>
+<li>Permite separar responsabilidades, reutilizar código y facilitar la comprensión del programa.</li>
+<li>Sí.</li>
+<li>Sí.</li>
+<li>Variables, tipos de datos, decisiones, ciclos, operadores, procedimientos, funciones y parámetros.</li>
+</ol>
+</details>
+</section>
+<section id="producto-final-del-laboratorio" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> Producto final del laboratorio</h1>
+<p>Al finalizar, el programa deberá contener como mínimo:</p>
+<ul>
+<li>Un procedimiento para solicitar los datos y coordinar la presentación de resultados.</li>
+<li>Una función para calcular la edad a partir del año de nacimiento.</li>
+<li>Una función para obtener la longitud del nombre.</li>
+<li>Una función para contar palabras.</li>
+<li>Una función para convertir la cadena a mayúsculas.</li>
+<li>Una función para obtener las iniciales.</li>
+<li>Una función para dar formato correcto al nombre.</li>
+<li>Dos funciones adicionales seleccionadas del reto individual.</li>
+<li>Una función principal sencilla que inicie el programa.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Meta del laboratorio:</strong> utilizar las cadenas como una oportunidad para integrar lo aprendido. No estamos comenzando de cero: estamos usando variables, ciclos, decisiones, procedimientos y funciones para resolver problemas cada vez más completos.</p>
+</blockquote>
+</section>
+<section id="para-seguir-practicando" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> Para seguir practicando</h1>
+<p>Construya un programa similar que solicite una <strong>frase completa</strong> y permita obtener:</p>
+<ul>
+<li>Cantidad de caracteres.</li>
+<li>Cantidad de palabras.</li>
+<li>Cantidad de vocales.</li>
+<li>Frase en mayúsculas.</li>
+<li>Frase en minúsculas.</li>
+<li>Frase invertida.</li>
+</ul>
+<p>Cada operación deberá resolverse mediante una función independiente.</p>
+<hr>
+<p><strong>Cierre:</strong> una cadena puede ser leída, recorrida, analizada y transformada. Al combinar <code>string</code> con funciones, ciclos y decisiones comenzamos a construir programas más organizados y capaces de resolver problemas más interesantes.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1205 @@
+---
+title: "Cadenas en C++"
+subtitle: "Introducción, declaración, lectura, recorrido y comparación"
+---
+
+# Cadenas en C++
+
+## Propósito de la clase
+
+Hasta ahora hemos utilizado variables, decisiones, ciclos, funciones, arreglos y matrices. En esta clase trabajaremos con un tipo de información que utilizamos todos los días: **texto**.
+
+Un nombre, una dirección, una contraseña o una frase están formados por caracteres. En C++ podemos trabajar con ellos mediante `string`.
+
+La meta no es solamente aprender a declarar una cadena. Queremos comprender **cómo está organizada**, cómo acceder a cada carácter y cómo recorrerla para realizar diferentes operaciones.
+
+> **Idea clave:** una cadena puede imaginarse como una fila de casillas. Cada casilla contiene un carácter y tiene una posición.
+
+## ¿Qué aprenderemos?
+
+Al finalizar la clase, el estudiante podrá:
+
+1. comprender qué es una cadena de caracteres;
+2. declarar y asignar variables `string`;
+3. identificar la posición de un carácter dentro de una cadena;
+4. recorrer una cadena utilizando un ciclo `for`;
+5. utilizar `.length()` para conocer su longitud;
+6. diferenciar `cin` de `getline()`;
+7. comparar cadenas con `==` y `.compare()`;
+8. reconocer el problema del buffer al combinar `cin` y `getline()`;
+9. realizar operaciones sencillas recorriendo carácter por carácter.
+
+## 1. Antes de programar: ¿qué es una cadena?
+
+Una **cadena de caracteres** (`string`) es una secuencia ordenada de letras, números, espacios o símbolos.
+
+Por ejemplo:
+
+```cpp
+string nombre = "JORGE";
+```
+
+Para nosotros, `JORGE` se ve como una palabra. Para comprender cómo podemos trabajar con ella, imaginémosla como una fila de casillas:
+
+```text
+             string nombre = "JORGE";
+
+                ┌───┬───┬───┬───┬───┐
+Carácter        │ J │ O │ R │ G │ E │
+                └───┴───┴───┴───┴───┘
+Posición          0   1   2   3   4
+                  ↑               ↑
+                inicio          último
+```
+
+Cada casilla contiene **un carácter**.
+
+Cada carácter tiene una **posición**, llamada índice.
+
+> **Observe:** igual que en los arreglos, la primera posición es `0`.
+
+Por lo tanto:
+
+```cpp
+nombre[0] // J
+nombre[1] // O
+nombre[2] // R
+nombre[3] // G
+nombre[4] // E
+```
+
+### Pregunta para pensar
+
+Si tenemos:
+
+```cpp
+string mensaje = "HOLA";
+```
+
+¿Qué mostrará?
+
+```cpp
+cout << mensaje[1];
+```
+
+<details>
+<summary>Mostrar respuesta</summary>
+
+Mostrará:
+
+```text
+O
+```
+
+Porque:
+
+```text
+Índice:       0   1   2   3
+              ↓   ↓   ↓   ↓
+            ┌───┬───┬───┬───┐
+Carácter    │ H │ O │ L │ A │
+            └───┴───┴───┴───┘
+```
+
+La posición `1` contiene la letra `O`.
+
+</details>
+
+## 2. La relación con los arreglos
+
+Ya conocemos esta idea:
+
+```cpp
+int numeros[5] = {10, 20, 30, 40, 50};
+```
+
+Podemos imaginar el arreglo así:
+
+```text
+            ┌────┬────┬────┬────┬────┐
+Valor       │ 10 │ 20 │ 30 │ 40 │ 50 │
+            └────┴────┴────┴────┴────┘
+Posición       0    1    2    3    4
+```
+
+Una cadena puede razonarse de forma parecida:
+
+```cpp
+string palabra = "GUATE";
+```
+
+```text
+            ┌───┬───┬───┬───┬───┐
+Carácter    │ G │ U │ A │ T │ E │
+            └───┴───┴───┴───┴───┘
+Posición      0   1   2   3   4
+```
+
+La gran diferencia es que ahora cada posición contiene **un carácter**.
+
+Esto nos permite aplicar una idea que ya conocemos:
+
+> **Si existen posiciones, podemos recorrerlas.**
+
+## 3. `string` y `char[]`
+
+En C++ existen diferentes formas de trabajar con cadenas.
+
+### Estilo clásico
+
+```cpp
+char palabra[10] = "Hola";
+```
+
+### Estilo moderno de C++
+
+```cpp
+string palabra = "Hola";
+```
+
+En esta clase utilizaremos principalmente `string` porque permite trabajar con cadenas de forma más flexible y sencilla.
+
+Para utilizarlo incluimos:
+
+```cpp
+#include <string>
+```
+
+Por ejemplo:
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string saludo = "Hola";
+
+    cout << saludo << endl;
+
+    return 0;
+}
+```
+
+## 4. Declarar y asignar cadenas
+
+Podemos declarar una cadena sin asignarle inicialmente un contenido:
+
+```cpp
+string nombre;
+```
+
+También podemos declararla y asignarla al mismo tiempo:
+
+```cpp
+string pais = "Guatemala";
+```
+
+O utilizar otra forma de inicialización:
+
+```cpp
+string saludo("Bienvenido");
+```
+
+Después podemos cambiar su contenido:
+
+```cpp
+nombre = "Juan";
+pais = "Guatemala";
+nombre = pais;
+```
+
+En la última instrucción, el contenido de `pais` se copia en `nombre`.
+
+### Reto 1: declaración y asignación
+
+Complete el programa para almacenar su nombre y el nombre de su universidad.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string nombre = ____________________;
+    string universidad = ____________________;
+
+    cout << nombre << endl;
+    cout << universidad << endl;
+
+    return 0;
+}
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+Una posible solución:
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string nombre = "Jorge";
+    string universidad = "Universidad Mariano Galvez";
+
+    cout << nombre << endl;
+    cout << universidad << endl;
+
+    return 0;
+}
+```
+
+</details>
+
+## 5. ¿Cuántas casillas tiene una cadena?
+
+Podemos conocer la longitud utilizando `.length()`.
+
+```cpp
+string palabra = "GUATE";
+
+cout << palabra.length();
+```
+
+Resultado:
+
+```text
+5
+```
+
+Visualmente:
+
+```text
+              1   2   3   4   5   ← cantidad de caracteres
+              ↓   ↓   ↓   ↓   ↓
+            ┌───┬───┬───┬───┬───┐
+            │ G │ U │ A │ T │ E │
+            └───┴───┴───┴───┴───┘
+Índice        0   1   2   3   4
+```
+
+Aquí aparece una diferencia muy importante:
+
+```text
+Longitud = 5
+Último índice = 4
+```
+
+Por lo tanto:
+
+\[
+\text{última posición} = \text{longitud} - 1
+\]
+
+### Pregunta
+
+Si:
+
+```cpp
+string ciudad = "GUATEMALA";
+```
+
+y `ciudad.length()` devuelve `9`, ¿cuál es el índice del último carácter?
+
+<details>
+<summary>Mostrar respuesta</summary>
+
+El último índice es:
+
+```text
+8
+```
+
+Porque los índices comienzan en `0`.
+
+```text
+Longitud: 9
+Índices : 0 1 2 3 4 5 6 7 8
+```
+
+</details>
+
+## 6. Recorrer una cadena
+
+Ahora aparece una de las ideas más importantes de la clase.
+
+Si cada carácter tiene una posición, podemos utilizar un ciclo `for` para visitar todas las posiciones.
+
+```cpp
+string palabra = "HOLA";
+
+for (int i = 0; i < palabra.length(); i++)
+{
+    cout << palabra[i] << endl;
+}
+```
+
+Podemos imaginar que `i` es un cursor que se mueve por las casillas:
+
+```text
+i = 0
+  ↓
+[H][O][L][A]
+
+i = 1
+   ↓
+[H][O][L][A]
+
+i = 2
+      ↓
+[H][O][L][A]
+
+i = 3
+         ↓
+[H][O][L][A]
+```
+
+En cada vuelta:
+
+```cpp
+palabra[i]
+```
+
+representa el carácter que se encuentra en la posición actual.
+
+### ¿Qué hace realmente el ciclo?
+
+```text
+i = 0  → palabra[0] → H
+i = 1  → palabra[1] → O
+i = 2  → palabra[2] → L
+i = 3  → palabra[3] → A
+```
+
+> **Idea clave:** recorrer una cadena significa visitar sus caracteres uno por uno.
+
+## 7. ¿Qué podemos hacer al recorrer una cadena?
+
+Una vez que podemos observar cada carácter, podemos realizar muchas operaciones:
+
+- contar vocales;
+- contar espacios;
+- buscar una letra;
+- contar cuántas veces aparece un carácter;
+- mostrar la cadena al revés;
+- cambiar caracteres;
+- analizar palabras y frases.
+
+Veamos algunos ejemplos.
+
+### Reto 2: contar vocales
+
+Queremos contar las vocales de:
+
+```cpp
+string palabra = "GUATEMALA";
+```
+
+Primero necesitamos recorrerla.
+
+```cpp
+int vocales = 0;
+
+for (int i = 0; i < palabra.length(); i++)
+{
+    // ¿Qué debemos preguntar aquí?
+}
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string palabra = "GUATEMALA";
+    int vocales = 0;
+
+    for (int i = 0; i < palabra.length(); i++)
+    {
+        if (palabra[i] == 'A' ||
+            palabra[i] == 'E' ||
+            palabra[i] == 'I' ||
+            palabra[i] == 'O' ||
+            palabra[i] == 'U')
+        {
+            vocales++;
+        }
+    }
+
+    cout << "Cantidad de vocales: " << vocales << endl;
+
+    return 0;
+}
+```
+
+Resultado:
+
+```text
+Cantidad de vocales: 5
+```
+
+Observe que para comparar **un carácter** utilizamos comillas simples:
+
+```cpp
+'A'
+```
+
+Mientras que una cadena utiliza comillas dobles:
+
+```cpp
+"GUATEMALA"
+```
+
+</details>
+
+### Reto 3: mostrar una palabra al revés
+
+Tenemos:
+
+```cpp
+string mensaje = "HOLA";
+```
+
+Queremos obtener:
+
+```text
+ALOH
+```
+
+Piense primero en las posiciones:
+
+```text
+            ┌───┬───┬───┬───┐
+            │ H │ O │ L │ A │
+            └───┴───┴───┴───┘
+Índice        0   1   2   3
+                          ↑
+                    comenzar aquí
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+string mensaje = "HOLA";
+
+for (int i = mensaje.length() - 1; i >= 0; i--)
+{
+    cout << mensaje[i];
+}
+```
+
+El recorrido es:
+
+```text
+i = 3 → A
+i = 2 → L
+i = 1 → O
+i = 0 → H
+```
+
+Resultado:
+
+```text
+ALOH
+```
+
+</details>
+
+## 8. Leer cadenas: `cin`
+
+Podemos solicitar una cadena:
+
+```cpp
+string nombre;
+
+cout << "Ingrese su nombre: ";
+cin >> nombre;
+```
+
+Si escribimos:
+
+```text
+Jorge
+```
+
+funciona correctamente.
+
+Pero ¿qué ocurre si escribimos?
+
+```text
+Jorge Luis Garcia
+```
+
+`cin` lee únicamente hasta encontrar el primer espacio.
+
+Por lo tanto, `nombre` recibiría:
+
+```text
+Jorge
+```
+
+## 9. Leer una línea completa: `getline()`
+
+Cuando queremos leer nombres completos, direcciones o frases utilizamos:
+
+```cpp
+getline(cin, nombre);
+```
+
+Por ejemplo:
+
+```cpp
+string nombre;
+
+cout << "Ingrese su nombre completo: ";
+getline(cin, nombre);
+
+cout << "Bienvenido " << nombre << endl;
+```
+
+Si el usuario escribe:
+
+```text
+Jorge Luis Garcia
+```
+
+la cadena puede imaginarse así:
+
+```text
+[J][o][r][g][e][ ][L][u][i][s][ ][G][a][r][c][i][a]
+                 ↑             ↑
+              espacio        espacio
+```
+
+Los espacios también forman parte de la cadena.
+
+### `cin` vs. `getline()`
+
+| Método | ¿Qué lee? | Ejemplo |
+|---|---|---|
+| `cin >> nombre` | Hasta el primer espacio | `Jorge` |
+| `getline(cin, nombre)` | Hasta el salto de línea | `Jorge Luis Garcia` |
+
+> **Regla práctica:** utilice `getline()` cuando necesite leer una frase, dirección o nombre completo.
+
+## 10. El problema de `cin` + `getline()`
+
+Observe este programa:
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int edad;
+    string nombre;
+
+    cout << "Ingrese su edad: ";
+    cin >> edad;
+
+    cout << "Ingrese su nombre completo: ";
+    getline(cin, nombre);
+
+    cout << "Hola " << nombre << endl;
+
+    return 0;
+}
+```
+
+Podríamos esperar que el programa permita escribir el nombre.
+
+Sin embargo, `getline()` puede encontrar inmediatamente el salto de línea que quedó pendiente después de ingresar la edad.
+
+Podemos imaginar el buffer de entrada así:
+
+```text
+Usuario escribe:
+
+25 [ENTER]
+
+Buffer:
+┌────┬────┬─────────┐
+│ 2  │ 5  │   \n    │
+└────┴────┴─────────┘
+             ↑
+        queda pendiente
+```
+
+`cin >> edad` toma:
+
+```text
+25
+```
+
+pero el salto de línea permanece.
+
+Entonces `getline()` encuentra ese salto de línea y considera que la línea terminó.
+
+### ¿Cómo lo corregimos?
+
+Antes de utilizar `getline()` limpiamos el salto pendiente:
+
+```cpp
+cin.ignore();
+```
+
+Programa corregido:
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int edad;
+    string nombre;
+
+    cout << "Ingrese su edad: ";
+    cin >> edad;
+
+    cin.ignore();
+
+    cout << "Ingrese su nombre completo: ";
+    getline(cin, nombre);
+
+    cout << "Hola " << nombre
+         << ", tienes " << edad << " anios." << endl;
+
+    return 0;
+}
+```
+
+> **Idea clave:** si utilizamos `cin` antes de `getline()`, debemos controlar el salto de línea pendiente.
+
+## 11. Comparar cadenas
+
+Con variables `string` podemos utilizar operadores de comparación.
+
+```cpp
+string a = "Guatemala";
+string b = "Guatemala";
+
+if (a == b)
+{
+    cout << "Iguales";
+}
+else
+{
+    cout << "Diferentes";
+}
+```
+
+### Reto 4: confirmar una contraseña
+
+Solicite una contraseña y luego pida repetirla.
+
+El programa debe indicar si ambas coinciden.
+
+```cpp
+string pass1, pass2;
+
+// Complete el programa
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string pass1, pass2;
+
+    cout << "Cree su contrasena: ";
+    getline(cin, pass1);
+
+    cout << "Repita su contrasena: ";
+    getline(cin, pass2);
+
+    if (pass1 == pass2)
+        cout << "Contrasena valida";
+    else
+        cout << "No coincide";
+
+    return 0;
+}
+```
+
+</details>
+
+## 12. Uso de `.compare()`
+
+También podemos comparar cadenas utilizando:
+
+```cpp
+cadena1.compare(cadena2)
+```
+
+Este método devuelve:
+
+```text
+  0   → las cadenas son iguales
+ < 0  → la primera aparece antes
+ > 0  → la primera aparece después
+```
+
+Por ejemplo:
+
+```cpp
+string nombre = "Jorge";
+
+if (nombre.compare("Jorge") == 0)
+{
+    cout << "Bienvenido, Jorge!";
+}
+```
+
+### ¿Por qué puede devolver menor o mayor que cero?
+
+Porque las cadenas también pueden compararse según el orden de sus caracteres.
+
+Esto permite determinar cuál aparece primero alfabéticamente.
+
+Por ejemplo:
+
+```text
+Ana
+Carlos
+```
+
+`Ana` aparece primero.
+
+## 13. Un detalle importante: mayúsculas y minúsculas
+
+Para una comparación directa:
+
+```text
+"Jorge"
+```
+
+y
+
+```text
+"jorge"
+```
+
+no son iguales.
+
+Los caracteres `J` y `j` son diferentes para el programa.
+
+> **Pregunta:** ¿Qué mostrará el siguiente código?
+
+```cpp
+string a = "Hola";
+string b = "hola";
+
+if (a == b)
+    cout << "Iguales";
+else
+    cout << "Diferentes";
+```
+
+<details>
+<summary>Mostrar respuesta</summary>
+
+```text
+Diferentes
+```
+
+La `H` mayúscula y la `h` minúscula son caracteres diferentes.
+
+</details>
+
+## 14. `string` frente a `char[]`
+
+Observe:
+
+```cpp
+char palabra1[] = "hola";
+char palabra2[] = "hola";
+```
+
+No debemos utilizar:
+
+```cpp
+if (palabra1 == palabra2)
+```
+
+para comparar el contenido de estos arreglos de caracteres.
+
+En cambio, con `string`:
+
+```cpp
+string palabra1 = "hola";
+string palabra2 = "hola";
+
+if (palabra1 == palabra2)
+{
+    cout << "Son iguales";
+}
+```
+
+la comparación del contenido es directa.
+
+> **Buena práctica para esta etapa del curso:** utilice `string` para trabajar con cadenas.
+
+## 15. Ejercicio principal
+
+Construya un programa que solicite **dos cadenas** y determine:
+
+1. si son iguales;
+2. cuál es más larga;
+3. cuál aparece primero alfabéticamente.
+
+Antes de programar, pensemos qué herramientas necesitamos:
+
+| Pregunta | Herramienta |
+|---|---|
+| ¿Son iguales? | `==` |
+| ¿Cuál es más larga? | `.length()` |
+| ¿Cuál aparece primero? | comparación de cadenas |
+
+### Inténtelo primero
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string cadena1, cadena2;
+
+    cout << "Ingrese la primera cadena: ";
+    getline(cin, cadena1);
+
+    cout << "Ingrese la segunda cadena: ";
+    getline(cin, cadena2);
+
+    // 1. Determinar si son iguales
+
+    // 2. Determinar cuál es más larga
+
+    // 3. Determinar cuál aparece primero alfabéticamente
+
+    return 0;
+}
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string cadena1, cadena2;
+
+    cout << "Ingrese la primera cadena: ";
+    getline(cin, cadena1);
+
+    cout << "Ingrese la segunda cadena: ";
+    getline(cin, cadena2);
+
+    cout << "\n--- Resultados ---\n";
+
+    // Verificar si son iguales
+    if (cadena1 == cadena2)
+        cout << "Las cadenas son iguales." << endl;
+    else
+        cout << "Las cadenas son diferentes." << endl;
+
+    // Determinar cuál es más larga
+    if (cadena1.length() > cadena2.length())
+        cout << "La primera cadena es mas larga." << endl;
+    else if (cadena1.length() < cadena2.length())
+        cout << "La segunda cadena es mas larga." << endl;
+    else
+        cout << "Ambas cadenas tienen la misma longitud." << endl;
+
+    // Determinar cuál aparece primero alfabéticamente
+    if (cadena1 < cadena2)
+        cout << "La primera cadena aparece primero alfabeticamente." << endl;
+    else if (cadena1 > cadena2)
+        cout << "La segunda cadena aparece primero alfabeticamente." << endl;
+    else
+        cout << "Ambas cadenas son iguales alfabeticamente." << endl;
+
+    return 0;
+}
+```
+
+</details>
+
+## 16. Pensemos como programadores: analizar carácter por carácter
+
+Hasta ahora hemos comparado cadenas completas.
+
+Pero recuerde nuestra primera imagen:
+
+```text
+            ┌───┬───┬───┬───┬───┐
+            │ G │ U │ A │ T │ E │
+            └───┴───┴───┴───┴───┘
+Índice        0   1   2   3   4
+```
+
+Podemos acceder a **cada casilla**.
+
+Esto significa que podemos resolver problemas que no serían posibles observando únicamente la palabra completa.
+
+### Ejemplo: contar una letra
+
+¿Cuántas veces aparece la letra `a`?
+
+```cpp
+string frase = "Guatemala";
+```
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+string frase = "Guatemala";
+int contador = 0;
+
+for (int i = 0; i < frase.length(); i++)
+{
+    if (frase[i] == 'a')
+    {
+        contador++;
+    }
+}
+
+cout << "La letra a aparece "
+     << contador << " veces." << endl;
+```
+
+</details>
+
+### Ejemplo: contar espacios
+
+```cpp
+string frase = "Universidad Mariano Galvez";
+```
+
+¿Cómo podríamos saber cuántas palabras contiene?
+
+Una primera pista consiste en contar los espacios.
+
+<details>
+<summary>Mostrar solución</summary>
+
+```cpp
+int espacios = 0;
+
+for (int i = 0; i < frase.length(); i++)
+{
+    if (frase[i] == ' ')
+    {
+        espacios++;
+    }
+}
+
+cout << "Espacios encontrados: " << espacios << endl;
+```
+
+En una frase sencilla, sin espacios adicionales al inicio, al final o repetidos, podemos razonar:
+
+```text
+palabras = espacios + 1
+```
+
+</details>
+
+## 17. Buenas prácticas
+
+Al trabajar con cadenas:
+
+- utilice `string` en lugar de `char[]` cuando no exista una razón específica para usar arreglos de caracteres;
+- recuerde incluir `#include <string>`;
+- utilice `getline()` para nombres completos y frases;
+- controle el buffer cuando mezcle `cin` y `getline()`;
+- recuerde que los índices comienzan en `0`;
+- nunca recorra más allá de `length() - 1`;
+- diferencie entre un carácter `'A'` y una cadena `"A"`.
+
+## 18. Preguntas de comprobación
+
+1. ¿Qué es una cadena?
+2. ¿Cómo podemos imaginar visualmente una cadena?
+3. ¿En qué posición se encuentra el primer carácter?
+4. Si una cadena tiene longitud `10`, ¿cuál es su último índice?
+5. ¿Qué representa `palabra[i]`?
+6. ¿Para qué utilizamos `.length()`?
+7. ¿Cuál es la diferencia entre `cin` y `getline()`?
+8. ¿Por qué puede fallar `getline()` después de utilizar `cin`?
+9. ¿Qué podemos hacer para resolver ese problema?
+10. ¿Qué devuelve `.compare()` cuando dos cadenas son iguales?
+11. ¿Son iguales `"Hola"` y `"hola"`?
+12. ¿Por qué recorrer una cadena nos permite realizar operaciones más complejas?
+
+<details>
+<summary>Mostrar respuestas</summary>
+
+1. Una secuencia ordenada de caracteres.
+2. Como una fila de casillas donde cada casilla contiene un carácter.
+3. En la posición `0`.
+4. En la posición `9`.
+5. El carácter ubicado en la posición indicada por `i`.
+6. Para conocer la cantidad de caracteres de una cadena.
+7. `cin` lee hasta el primer espacio; `getline()` lee hasta el salto de línea.
+8. Porque puede quedar pendiente el salto de línea generado al presionar Enter.
+9. Podemos limpiar el salto pendiente, por ejemplo con `cin.ignore()` antes de `getline()`.
+10. Devuelve `0`.
+11. No. Las mayúsculas y minúsculas representan caracteres diferentes.
+12. Porque podemos inspeccionar cada carácter y aplicar decisiones, contadores o transformaciones sobre él.
+
+</details>
+
+## 19. Desafío adicional
+
+Construya un programa que solicite una frase y determine:
+
+- cuántos caracteres contiene;
+- cuántas vocales tiene;
+- cuántos espacios contiene;
+- cuántas veces aparece la letra `a`;
+- y finalmente muestre la frase al revés.
+
+```cpp
+string frase;
+
+cout << "Ingrese una frase: ";
+getline(cin, frase);
+
+// Construya aquí la solución
+```
+
+<details>
+<summary>Mostrar solución del desafío</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string frase;
+    int vocales = 0;
+    int espacios = 0;
+    int cantidadA = 0;
+
+    cout << "Ingrese una frase: ";
+    getline(cin, frase);
+
+    for (int i = 0; i < frase.length(); i++)
+    {
+        char c = frase[i];
+
+        if (c == 'a' || c == 'A' ||
+            c == 'e' || c == 'E' ||
+            c == 'i' || c == 'I' ||
+            c == 'o' || c == 'O' ||
+            c == 'u' || c == 'U')
+        {
+            vocales++;
+        }
+
+        if (c == ' ')
+            espacios++;
+
+        if (c == 'a' || c == 'A')
+            cantidadA++;
+    }
+
+    cout << "\nCaracteres: " << frase.length() << endl;
+    cout << "Vocales: " << vocales << endl;
+    cout << "Espacios: " << espacios << endl;
+    cout << "Cantidad de letras a: " << cantidadA << endl;
+
+    cout << "Frase al reves: ";
+
+    for (int i = frase.length() - 1; i >= 0; i--)
+    {
+        cout << frase[i];
+    }
+
+    cout << endl;
+
+    return 0;
+}
+```
+
+</details>
+
+## 20. Cierre de la clase
+
+En esta clase no aprendimos solamente a guardar palabras en una variable.
+
+Aprendimos a mirar una cadena **desde el punto de vista del programa**:
+
+```text
+"ALGORITMOS"
+
+┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│ A │ L │ G │ O │ R │ I │ T │ M │ O │ S │
+└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+  0   1   2   3   4   5   6   7   8   9
+```
+
+Primero comprendimos que cada carácter ocupa una posición.
+
+Después aprendimos a acceder a esa posición:
+
+```cpp
+palabra[i]
+```
+
+Y finalmente descubrimos que podemos recorrer todas las posiciones:
+
+```cpp
+for (int i = 0; i < palabra.length(); i++)
+```
+
+A partir de allí una cadena deja de ser solamente una palabra: se convierte en **información que podemos analizar carácter por carácter**.
+
+> **Consejo del Ingeniero:** cuando trabaje con una cadena, no vea solamente la palabra completa. Imagine sus caracteres dentro de casillas y pregúntese: **¿qué necesito hacer con cada posición?**
+
+### Lo que integramos
+
+- `string`;
+- caracteres e índices;
+- `.length()`;
+- ciclos `for`;
+- acceso mediante `[i]`;
+- `cin`;
+- `getline()`;
+- `cin.ignore()`;
+- comparación con `==`;
+- `.compare()`;
+- decisiones `if`;
+- contadores;
+- recorrido directo e inverso de cadenas.
