@@ -33,6 +33,54 @@ Al finalizar el laboratorio, el estudiante será capaz de:
 - Transformar los caracteres de un texto.
 - Integrar diferentes módulos dentro de una solución completa.
 
+# Antes de comenzar: vocales con acento y la letra ñ
+
+Antes de trabajar con cadenas debemos resolver una duda frecuente: **¿cómo podemos mostrar correctamente en la consola las vocales con acento (`á, é, í, ó, ú`) y la letra `ñ`?**
+
+Cuando escribimos mensajes en español es normal utilizar caracteres como:
+
+```text
+número, año, niño, información, opción, programación
+```
+
+En algunos entornos de Windows, estos caracteres pueden mostrarse incorrectamente en la consola si no se utiliza la codificación adecuada. Para trabajar con **UTF-8** podemos agregar la librería `windows.h` y configurar la entrada y salida de la consola.
+
+```cpp
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+int main() {
+
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
+    cout << "Ingrese el número de niños: ";
+
+    return 0;
+}
+```
+
+Las instrucciones:
+
+```cpp
+SetConsoleOutputCP(CP_UTF8);
+SetConsoleCP(CP_UTF8);
+```
+
+indican a la consola de Windows que utilice **UTF-8** para la salida y la entrada de texto. A partir de ese momento podemos escribir normalmente mensajes como:
+
+```cpp
+cout << "Ingrese el año de nacimiento: ";
+cout << "Número de niños: ";
+cout << "Información registrada correctamente." << endl;
+```
+
+> **Importante:** `windows.h`, `SetConsoleOutputCP()` y `SetConsoleCP()` son específicos de **Windows**. Si utiliza un compilador en Linux, macOS o un entorno en línea que ya trabaja con UTF-8, normalmente no necesita estas instrucciones y `windows.h` podría no estar disponible.
+
+> **Buena práctica:** guarde siempre sus archivos de código fuente utilizando codificación **UTF-8**. Esto permite escribir directamente `á`, `é`, `í`, `ó`, `ú` y `ñ` dentro de las cadenas de texto.
+
 # 1. El problema
 
 Construiremos un programa que solicite al usuario:

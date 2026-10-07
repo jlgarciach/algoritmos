@@ -2660,13 +2660,53 @@
     ]
   },
   {
+    "objectID": "capitulos/17_laboratorio_cadenas_cpp.html",
+    "href": "capitulos/17_laboratorio_cadenas_cpp.html",
+    "title": "19  Laboratorio: Cadenas en C++",
+    "section": "",
+    "text": "20 Propósito del laboratorio\nEn este laboratorio construiremos un programa completo para profundizar en el manejo de variables de tipo string y, al mismo tiempo, reforzar conocimientos que ya hemos trabajado: variables, decisiones, ciclos, procedimientos, funciones y parámetros.\nTrabajaremos con un dato que utilizamos todos los días: el nombre completo de una persona. A partir de él aprenderemos que una cadena no solamente se almacena o se muestra en pantalla; también podemos medirla, recorrerla carácter por carácter, contar sus palabras y transformarla.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Laboratorio: Cadenas en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/17_laboratorio_cadenas_cpp.html#objetivos-de-aprendizaje",
+    "href": "capitulos/17_laboratorio_cadenas_cpp.html#objetivos-de-aprendizaje",
+    "title": "19  Laboratorio: Cadenas en C++",
+    "section": "20.1 Objetivos de aprendizaje",
+    "text": "20.1 Objetivos de aprendizaje\nAl finalizar el laboratorio, el estudiante será capaz de:\n\nDeclarar y utilizar variables de tipo string.\nLeer nombres completos que contienen espacios.\nUtilizar procedimientos y funciones dentro de un mismo programa.\nEnviar información a funciones mediante parámetros por valor.\nDeterminar la longitud de una cadena.\nRecorrer una cadena carácter por carácter.\nContar palabras dentro de una cadena.\nTransformar los caracteres de un texto.\nIntegrar diferentes módulos dentro de una solución completa.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Laboratorio: Cadenas en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/17_laboratorio_cadenas_cpp.html#un-pequeño-problema-que-debemos-resolver",
+    "href": "capitulos/17_laboratorio_cadenas_cpp.html#un-pequeño-problema-que-debemos-resolver",
+    "title": "19  Laboratorio: Cadenas en C++",
+    "section": "25.1 Un pequeño problema que debemos resolver",
+    "text": "25.1 Un pequeño problema que debemos resolver\nEl nombre de una persona normalmente contiene espacios. Por ejemplo:\nMaria Fernanda Lopez\nPor lo tanto, debemos utilizar una forma de lectura que permita capturar toda la línea y no solamente la primera palabra.\nIntente construir el procedimiento antes de consultar la solución.\n\n\nVer solución: procedimiento para solicitar datos\n\nvoid solicitarDatos() {\n    string nombre;\n    int anioNacimiento;\n\n    cout &lt;&lt; \"Ingrese su nombre completo: \";\n    getline(cin, nombre);\n\n    cout &lt;&lt; \"Ingrese su anio de nacimiento: \";\n    cin &gt;&gt; anioNacimiento;\n}\nObserve: utilizamos getline() porque necesitamos capturar el nombre completo, incluyendo los espacios.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Laboratorio: Cadenas en C++</span>"
+    ]
+  },
+  {
+    "objectID": "capitulos/17_laboratorio_cadenas_cpp.html#condiciones",
+    "href": "capitulos/17_laboratorio_cadenas_cpp.html#condiciones",
+    "title": "19  Laboratorio: Cadenas en C++",
+    "section": "36.1 Condiciones",
+    "text": "36.1 Condiciones\n\nCada operación debe resolverse mediante una función diferente.\nLas funciones deben recibir el nombre mediante un parámetro.\nNo se permite colocar toda la solución directamente dentro de la función principal.\nDebe utilizar al menos un ciclo en una de las funciones nuevas.\nLos resultados deben integrarse a la salida general del programa.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Laboratorio: Cadenas en C++</span>"
+    ]
+  },
+  {
     "objectID": "capitulos/99_cierre.html",
     "href": "capitulos/99_cierre.html",
-    "title": "19  Cierre del capítulo",
+    "title": "20  Cierre del capítulo",
     "section": "",
-    "text": "19.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
+    "text": "20.1 Próximo paso\nEn el siguiente capítulo continuaremos fortaleciendo la lógica mediante pseudocódigo, diagramas y ejercicios guiados.",
     "crumbs": [
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Cierre del capítulo</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Cierre del capítulo</span>"
     ]
   }
 ]

@@ -28,6 +28,7 @@ book:
     - capitulos/14_laboratorio_matrices.qmd
     - capitulos/15_taller_cine_funciones_arreglos_matrices.qmd
     - capitulos/16_cadenas_en_cpp.qmd
+    - capitulos/17_laboratorio_cadenas_cpp.qmd
     - capitulos/99_cierre.qmd
   page-footer:
     left: "Editorial Académica de Ingeniería en Sistemas"
